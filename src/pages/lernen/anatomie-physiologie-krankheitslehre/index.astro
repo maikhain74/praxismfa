@@ -44,8 +44,10 @@ const description =
 
         <div class="principle">
           <strong>Unser Lernprinzip:</strong>
-          Aufbau verstehen → Funktion verstehen → Erkrankung einordnen →
-          Bedeutung für die MFA-Praxis erkennen.
+          <span>
+            Aufbau verstehen → Funktion verstehen → Erkrankung einordnen →
+            Bedeutung für die MFA-Praxis erkennen.
+          </span>
         </div>
       </section>
 
@@ -82,7 +84,10 @@ const description =
             </div>
           </article>
 
-          <article class="card">
+          <a
+            class="card card-link"
+            href="/lernen/anatomie-physiologie-krankheitslehre/herz-kreislauf/"
+          >
             <span>03</span>
 
             <div>
@@ -93,7 +98,7 @@ const description =
                 des Herz-Kreislauf-Systems.
               </p>
             </div>
-          </article>
+          </a>
 
           <article class="card">
             <span>04</span>
@@ -290,6 +295,9 @@ const description =
     border-radius: 18px;
     background: #fff;
     line-height: 1.6;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
 
   .topics {
@@ -321,6 +329,21 @@ const description =
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .card-link {
+    color: #222;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .card-link:hover {
+    transform: translateY(-4px);
+    border-color: #c9c1ba;
+    box-shadow: 0 12px 30px rgba(34, 34, 34, 0.07);
   }
 
   .card span {
