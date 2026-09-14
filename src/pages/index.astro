@@ -14,9 +14,25 @@ const description =
   </head>
 
   <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a class="logo" href="/">PraxisMFA</a>
+
+        <div class="nav-links">
+          <a href="/lernen/">Lernen</a>
+          <a href="/praxis/">Praxis</a>
+          <a href="/pruefung/">Prüfung</a>
+          <a href="/lernkarten/">Lernkarten</a>
+          <a class="premium-link" href="/premium/">Premium</a>
+        </div>
+      </nav>
+    </header>
+
     <main>
       <section class="hero">
-        <p class="eyebrow">Die Lernplattform für Medizinische Fachangestellte</p>
+        <p class="eyebrow">
+          Die Lernplattform für Medizinische Fachangestellte
+        </p>
 
         <h1>PraxisMFA</h1>
 
@@ -54,12 +70,61 @@ const description =
     margin: 0;
   }
 
+  .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 32px;
+  }
+
+  .nav {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .logo {
+    color: #222;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    color: #444;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: #111;
+  }
+
+  .nav-links .premium-link {
+    padding: 9px 16px;
+    border: 1px solid #d8d2cc;
+    border-radius: 999px;
+    background: #fff;
+    color: #222;
+  }
+
   main {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px 20px;
+    padding: 100px 20px 32px;
   }
 
   .hero {
@@ -102,5 +167,29 @@ const description =
     border-radius: 999px;
     font-weight: 600;
     background: #fff;
+  }
+
+  @media (max-width: 760px) {
+    .site-header {
+      position: static;
+      padding: 20px;
+    }
+
+    .nav {
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .nav-links {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+    }
+
+    main {
+      min-height: auto;
+      padding: 80px 20px;
+    }
   }
 </style>
