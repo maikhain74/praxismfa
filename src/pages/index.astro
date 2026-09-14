@@ -1,11 +1,106 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = "PraxisMFA";
+const description =
+  "PraxisMFA ist die Lernplattform für Medizinische Fachangestellte. Verstehen. Anwenden. Prüfung bestehen.";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | Lernplattform für Medizinische Fachangestellte</title>
+  </head>
+
+  <body>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Die Lernplattform für Medizinische Fachangestellte</p>
+
+        <h1>PraxisMFA</h1>
+
+        <p class="claim">
+          Verstehen. Anwenden. Prüfung bestehen.
+        </p>
+
+        <p class="intro">
+          Lerne nicht nur Antworten auswendig. Verstehe, was du in der Praxis
+          erkennst, wie du richtig handelst und warum.
+        </p>
+
+        <div class="status">
+          PraxisMFA entsteht gerade.
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .hero {
+    width: min(760px, 100%);
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin: 0 0 16px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1;
+  }
+
+  .claim {
+    margin: 24px 0 0;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 700;
+  }
+
+  .intro {
+    max-width: 620px;
+    margin: 24px auto 0;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .status {
+    display: inline-block;
+    margin-top: 36px;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    font-weight: 600;
+    background: #fff;
+  }
+</style>
