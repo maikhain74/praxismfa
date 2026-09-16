@@ -1,0 +1,951 @@
+---
+const pageTitle = "Diagnostik in der Arztpraxis | PraxisMFA";
+const pageDescription =
+  "Lerne, welche kardiologischen Untersuchungen in der Arztpraxis wichtig sind und welche Aufgaben Medizinische Fachangestellte bei Vorbereitung, Durchführung und Dokumentation übernehmen.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+
+    <style>
+      :root {
+        --bg: #fffaf5;
+        --surface: #ffffff;
+        --soft: #f6eee4;
+        --orange: #e67e22;
+        --orange-soft: #fff1e4;
+        --text: #252525;
+        --muted: #6d6863;
+        --border: #eadfd4;
+        --shadow: 0 18px 45px rgba(65, 44, 27, 0.08);
+        --radius: 24px;
+        --max: 1040px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--border);
+        background: rgba(255, 250, 245, 0.96);
+      }
+
+      .header-inner {
+        width: min(var(--max), calc(100% - 40px));
+        min-height: 78px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .brand {
+        text-decoration: none;
+        font-size: 1.35rem;
+        font-weight: 850;
+        letter-spacing: -0.04em;
+      }
+
+      .brand span {
+        color: var(--orange);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+
+      nav a {
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        color: var(--orange);
+      }
+
+      .premium {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: var(--orange);
+        color: #fff;
+      }
+
+      nav .premium:hover {
+        color: #fff;
+      }
+
+      main {
+        width: min(var(--max), calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 54px 0 62px;
+      }
+
+      .back {
+        display: inline-block;
+        margin-bottom: 42px;
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .back:hover {
+        color: var(--orange);
+      }
+
+      .eyebrow,
+      .section-label {
+        margin: 0 0 12px;
+        color: var(--orange);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 850px;
+        margin: 0;
+        font-size: clamp(2.7rem, 7vw, 5.3rem);
+        line-height: 0.98;
+        letter-spacing: -0.065em;
+      }
+
+      .lead {
+        max-width: 790px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 1.16rem;
+      }
+
+      .goal {
+        max-width: 860px;
+        margin-top: 38px;
+        padding: 24px 28px;
+        border-left: 5px solid var(--orange);
+        border-radius: 0 18px 18px 0;
+        background: var(--soft);
+      }
+
+      .goal p {
+        margin: 0;
+      }
+
+      .content {
+        padding-bottom: 80px;
+      }
+
+      .section {
+        margin-bottom: 34px;
+        padding: 34px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .section h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.55rem, 4vw, 2.15rem);
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+      }
+
+      .section h3 {
+        margin: 26px 0 8px;
+        font-size: 1.08rem;
+      }
+
+      .section p:last-child {
+        margin-bottom: 0;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .card {
+        padding: 24px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: var(--soft);
+      }
+
+      .card h3 {
+        margin: 0 0 9px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .remember,
+      .practice,
+      .warning {
+        margin-top: 24px;
+        padding: 24px 26px;
+        border-radius: 20px;
+      }
+
+      .remember {
+        background: var(--orange-soft);
+        border: 1px solid #f2d1b3;
+      }
+
+      .practice {
+        background: var(--soft);
+        border: 1px solid var(--border);
+      }
+
+      .warning {
+        border-left: 5px solid var(--orange);
+        background: #fff7ef;
+      }
+
+      .remember strong,
+      .practice strong,
+      .warning strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      ul,
+      ol {
+        padding-left: 22px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .diagnostic-path {
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .diagnostic-step {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 18px;
+        align-items: start;
+        padding: 22px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: var(--soft);
+      }
+
+      .diagnostic-number {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--orange);
+        color: #fff;
+        font-weight: 850;
+      }
+
+      .diagnostic-step h3 {
+        margin: 1px 0 6px;
+      }
+
+      .diagnostic-step p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .role-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .role-card {
+        padding: 26px;
+        border-radius: 20px;
+      }
+
+      .role-card.mfa {
+        background: var(--orange-soft);
+        border: 1px solid #f2d1b3;
+      }
+
+      .role-card.doctor {
+        background: var(--soft);
+        border: 1px solid var(--border);
+      }
+
+      .role-card h3 {
+        margin-top: 0;
+      }
+
+      .summary {
+        padding: 34px;
+        border-radius: var(--radius);
+        background: var(--orange);
+        color: #fff;
+      }
+
+      .summary .section-label {
+        color: #fff;
+        opacity: 0.85;
+      }
+
+      .summary h2 {
+        margin: 0 0 18px;
+        font-size: clamp(1.55rem, 4vw, 2.15rem);
+      }
+
+      .summary ul {
+        margin-bottom: 0;
+      }
+
+      .self-check {
+        margin-top: 34px;
+        padding: 34px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+
+      .self-check h2 {
+        margin-top: 0;
+      }
+
+      .next {
+        margin-top: 34px;
+        padding: 30px;
+        border-radius: var(--radius);
+        background: var(--soft);
+      }
+
+      .next p {
+        margin: 0 0 8px;
+        color: var(--orange);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .next h2 {
+        margin: 0;
+        font-size: 1.55rem;
+      }
+
+            .lesson-image {
+        width: min(720px, 100%);
+        margin: 40px auto 56px;
+      }
+
+      .lesson-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+      }
+
+      @media (max-width: 850px) {
+        nav {
+          display: none;
+        }
+
+        .cards,
+        .role-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section,
+        .summary,
+        .self-check {
+          padding: 26px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .header-inner,
+        main {
+          width: min(100% - 28px, var(--max));
+        }
+
+        .hero {
+          padding-top: 36px;
+        }
+
+        .diagnostic-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/">Praxis<span>MFA</span></a>
+
+        <nav aria-label="Hauptnavigation">
+          <a href="/lernen/">Lernen</a>
+          <a href="/praxis/">Praxis</a>
+          <a href="/pruefung/">Prüfung</a>
+          <a href="/lernkarten/">Lernkarten</a>
+          <a class="premium" href="/premium/">Premium</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <a
+          class="back"
+          href="/lernen/anatomie-physiologie-krankheitslehre/herz-kreislauf/"
+        >
+          ← Zurück zu Herz & Kreislauf
+        </a>
+
+        <p class="eyebrow">Herz & Kreislauf · Lektion 11</p>
+
+        <h1>Diagnostik in der Arztpraxis</h1>
+
+        <p class="lead">
+          Puls fühlen, Blutdruck messen oder ein EKG schreiben sind nicht
+          einfach einzelne Handgriffe. Gute Diagnostik beginnt damit, zu
+          verstehen, welche Information eine Untersuchung liefert und wann ein
+          auffälliger Befund schnell weitergegeben werden muss.
+        </p>
+
+        <div class="goal">
+          <p>
+            <strong>Dein Lernziel:</strong> Du kannst wichtige kardiologische
+            Untersuchungen in der Arztpraxis unterscheiden und erklären,
+            welche Aufgaben MFA bei Vorbereitung, Durchführung, Beobachtung
+            und Dokumentation übernehmen.
+          </p>
+        </div>
+      </section>
+
+      <div class="lesson-image">
+        <img
+          src="/images/herz/diagnostik-arztpraxis-praxismfa.png"
+          alt="Infografik zur kardiologischen Diagnostik in der Arztpraxis mit Anamnese, Puls, Blutdruck, EKG, Langzeitdiagnostik, Labor und Echokardiografie"
+        />
+      </div>
+
+      <div class="content">
+        <section class="section">
+          <p class="section-label">01 · Grundprinzip</p>
+          <h2>Diagnostik ist mehr als ein einzelner Messwert</h2>
+
+          <p>
+            Wenn Patientinnen oder Patienten über Herzklopfen, Luftnot,
+            Schwindel oder Brustbeschwerden berichten, entsteht ein
+            medizinisches Gesamtbild nicht durch eine einzige Untersuchung.
+          </p>
+
+          <p>
+            Beschwerden, Vorgeschichte, klinischer Eindruck, Vitalparameter
+            und technische Untersuchungen liefern unterschiedliche
+            Informationen. Erst ihre medizinische Bewertung ermöglicht eine
+            diagnostische Einordnung.
+          </p>
+
+          <div class="remember">
+            <strong>Merke</strong>
+            Ein Messgerät liefert einen Wert oder eine Aufzeichnung. Die
+            medizinische Bedeutung dieses Ergebnisses muss anschließend im
+            Zusammenhang mit der Situation der Patientin oder des Patienten
+            beurteilt werden.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">02 · Der diagnostische Weg</p>
+          <h2>Vom ersten Eindruck zur gezielten Untersuchung</h2>
+
+          <div class="diagnostic-path">
+            <div class="diagnostic-step">
+              <span class="diagnostic-number">1</span>
+              <div>
+                <h3>Beschwerden und Vorgeschichte erfassen</h3>
+                <p>
+                  Was ist passiert? Seit wann bestehen die Beschwerden?
+                  Treten sie in Ruhe oder bei Belastung auf? Gibt es bekannte
+                  Erkrankungen oder Medikamente?
+                </p>
+              </div>
+            </div>
+
+            <div class="diagnostic-step">
+              <span class="diagnostic-number">2</span>
+              <div>
+                <h3>Patienten beobachten</h3>
+                <p>
+                  Allgemeinzustand, Atmung, Hautfarbe, Bewusstsein und
+                  erkennbare Kreislaufprobleme können wichtige Hinweise auf
+                  die Dringlichkeit geben.
+                </p>
+              </div>
+            </div>
+
+            <div class="diagnostic-step">
+              <span class="diagnostic-number">3</span>
+              <div>
+                <h3>Vitalparameter erheben</h3>
+                <p>
+                  Je nach Situation gehören dazu beispielsweise Puls und
+                  Blutdruck. Die Werte müssen korrekt erhoben und zuverlässig
+                  dokumentiert werden.
+                </p>
+              </div>
+            </div>
+
+            <div class="diagnostic-step">
+              <span class="diagnostic-number">4</span>
+              <div>
+                <h3>Technische Diagnostik vorbereiten</h3>
+                <p>
+                  Abhängig von der Fragestellung können beispielsweise
+                  12-Kanal-EKG, Langzeit-EKG oder eine
+                  24-Stunden-Blutdruckmessung eingesetzt werden.
+                </p>
+              </div>
+            </div>
+
+            <div class="diagnostic-step">
+              <span class="diagnostic-number">5</span>
+              <div>
+                <h3>Ergebnisse medizinisch beurteilen</h3>
+                <p>
+                  Die ärztliche Bewertung verbindet Beschwerden,
+                  Untersuchungsergebnisse und weitere Befunde miteinander.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">03 · Puls</p>
+          <h2>Ein schneller erster Eindruck vom Kreislauf</h2>
+
+          <p>
+            Beim Pulstasten können unter anderem Frequenz und Regelmäßigkeit
+            wahrgenommen werden. Ein auffälliger Puls kann ein wichtiger
+            Hinweis sein, ersetzt aber keine Rhythmusdiagnose.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Frequenz</h3>
+              <p>
+                Wie häufig ist der Puls innerhalb eines bestimmten Zeitraums
+                tastbar?
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Rhythmus</h3>
+              <p>
+                Wirkt die Pulsfolge regelmäßig oder fallen unregelmäßige
+                Abstände auf?
+              </p>
+            </div>
+          </div>
+
+          <div class="practice">
+            <strong>Für die MFA wichtig</strong>
+            Ein neu auffälliger oder deutlich unregelmäßiger Puls wird nicht
+            einfach als Diagnose bezeichnet. Beschwerden, Allgemeinzustand
+            und Messwerte werden erfasst und entsprechend der Situation
+            ärztlich weitergegeben.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">04 · Blutdruck</p>
+          <h2>Richtig messen und richtig einordnen</h2>
+
+          <p>
+            Blutdruckwerte können durch Messbedingungen beeinflusst werden.
+            Deshalb sind eine standardisierte Durchführung, eine passende
+            Manschette und die korrekte Dokumentation wichtig.
+          </p>
+
+          <p>
+            Ein einzelner auffälliger Praxiswert bedeutet nicht automatisch,
+            dass eine Hypertonie gesichert ist. Bei weiter bestehendem
+            Verdacht können wiederholte Messungen und insbesondere eine
+            ambulante 24-Stunden-Blutdruckmessung zur Diagnosesicherung
+            eingesetzt werden.
+          </p>
+
+          <div class="remember">
+            <strong>Verbindung zu Lektion 05 und 06</strong>
+            Dort hast du gelernt, was systolischer und diastolischer
+            Blutdruck bedeuten und was unter Hypertonie verstanden wird.
+            Jetzt wird daraus praktische Diagnostik.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">05 · 12-Kanal-EKG</p>
+          <h2>Die elektrische Aktivität des Herzens sichtbar machen</h2>
+
+          <p>
+            Das Elektrokardiogramm zeichnet elektrische Spannungsänderungen
+            des Herzens auf. Das 12-Kanal-EKG ermöglicht es, die elektrische
+            Herzaktivität aus verschiedenen Ableitungen zu betrachten.
+          </p>
+
+          <p>
+            Für eine verwertbare Aufzeichnung ist die technische Qualität
+            entscheidend. Elektroden müssen korrekt angebracht und störende
+            Einflüsse möglichst vermieden werden.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Vorbereitung</h3>
+              <p>
+                Patient informieren, Untersuchung vorbereiten und für eine
+                möglichst ruhige Aufzeichnung sorgen.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Durchführung</h3>
+              <p>
+                Elektroden entsprechend dem verwendeten Standard korrekt
+                platzieren und die Aufzeichnung technisch sauber durchführen.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Qualitätskontrolle</h3>
+              <p>
+                Auf offensichtliche technische Störungen und Artefakte achten
+                und bei Bedarf die Aufzeichnung überprüfen.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Weitergabe</h3>
+              <p>
+                Die Aufzeichnung korrekt zuordnen und zur medizinischen
+                Beurteilung bereitstellen.
+              </p>
+            </div>
+          </div>
+
+          <div class="warning">
+            <strong>Wichtig</strong>
+            Ein technisch geschriebenes EKG und die medizinische
+            Interpretation des EKGs sind zwei verschiedene Aufgaben. Die
+            diagnostische Bewertung erfolgt ärztlich.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">06 · Langzeit-EKG</p>
+          <h2>Wenn ein kurzer Ausschnitt nicht ausreicht</h2>
+
+          <p>
+            Herzrhythmusstörungen können nur zeitweise auftreten. Ein normales
+            Ruhe-EKG schließt deshalb nicht aus, dass zu einem anderen
+            Zeitpunkt eine Rhythmusstörung vorhanden ist.
+          </p>
+
+          <p>
+            Beim Langzeit-EKG wird die Herzaktivität über einen längeren
+            Zeitraum aufgezeichnet. Dadurch können Ereignisse erfasst werden,
+            die während eines kurzen 12-Kanal-EKGs möglicherweise nicht
+            auftreten.
+          </p>
+
+          <div class="practice">
+            <strong>MFA-Praxis</strong>
+            Je nach Praxisorganisation gehören die Vorbereitung der Haut,
+            das Anbringen der Elektroden und des Geräts, die Einweisung der
+            Patientin oder des Patienten sowie die Dokumentation zu den
+            unterstützenden Aufgaben.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">07 · 24-Stunden-Blutdruck</p>
+          <h2>Blutdruck außerhalb einer einzelnen Praxismessung</h2>
+
+          <p>
+            Bei der ambulanten Langzeitblutdruckmessung trägt die Patientin
+            oder der Patient ein Messgerät über einen längeren Zeitraum im
+            Alltag. Das Gerät führt wiederholt Blutdruckmessungen durch.
+          </p>
+
+          <p>
+            Dadurch entsteht ein deutlich umfassenderes Bild als durch einen
+            einzelnen Praxiswert. Die Nationale VersorgungsLeitlinie
+            Hypertonie empfiehlt die 24-Stunden-Blutdruckmessung bevorzugt zur
+            Bestätigung eines weiter bestehenden Hypertonieverdachts.
+          </p>
+
+          <div class="remember">
+            <strong>Merke</strong>
+            Praxisblutdruck und Langzeitblutdruck beantworten nicht exakt
+            dieselbe Frage. Deshalb müssen Messverfahren und Messsituation
+            immer mit dokumentiert und berücksichtigt werden.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">08 · Labor</p>
+          <h2>Laborwerte ergänzen das Gesamtbild</h2>
+
+          <p>
+            Bei kardiologischen Fragestellungen können abhängig von
+            Beschwerden, Erkrankung und Therapie unterschiedliche
+            Laboruntersuchungen relevant sein. Dazu können beispielsweise
+            Elektrolyte oder Parameter der Nierenfunktion gehören.
+          </p>
+
+          <p>
+            Welche Laborwerte bestimmt werden, richtet sich nach der
+            medizinischen Fragestellung. Die Laboruntersuchung ersetzt deshalb
+            weder Anamnese noch körperliche oder technische Diagnostik.
+          </p>
+
+          <div class="practice">
+            <strong>Für die MFA wichtig</strong>
+            Zur zuverlässigen Labordiagnostik gehören unter anderem die
+            korrekte Patientenidentifikation, fachgerechte Probengewinnung,
+            richtige Zuordnung und eine sichere Weiterverarbeitung der Probe
+            entsprechend den Vorgaben der Praxis.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">09 · Echokardiografie</p>
+          <h2>Das Herz im Ultraschall betrachten</h2>
+
+          <p>
+            Bei der Echokardiografie werden mithilfe von Ultraschall unter
+            anderem Herzstrukturen und Herzfunktion beurteilt. Sie kann
+            beispielsweise Informationen über Herzkammern, Herzklappen und
+            Pumpfunktion liefern.
+          </p>
+
+          <p>
+            Für MFA ist vor allem wichtig zu verstehen, warum diese
+            Untersuchung angeordnet wird und wie Patientinnen und Patienten
+            organisatorisch darauf vorbereitet und begleitet werden.
+          </p>
+
+          <div class="warning">
+            <strong>Abgrenzung</strong>
+            Die echokardiografische Untersuchung und Befundung ist nicht
+            dasselbe wie das Vorbereiten eines Untersuchungsplatzes oder die
+            organisatorische Betreuung der Patientin oder des Patienten.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">10 · Rollen verstehen</p>
+          <h2>Was macht die MFA, was beurteilt der Arzt?</h2>
+
+          <div class="role-grid">
+            <div class="role-card mfa">
+              <h3>MFA</h3>
+              <ul>
+                <li>Patientinnen und Patienten vorbereiten und informieren</li>
+                <li>vereinbarte Messungen fachgerecht durchführen</li>
+                <li>auf technische Qualität achten</li>
+                <li>Messwerte und Beobachtungen korrekt dokumentieren</li>
+                <li>auffällige Situationen erkennen und weitergeben</li>
+                <li>diagnostische Abläufe organisatorisch unterstützen</li>
+              </ul>
+            </div>
+
+            <div class="role-card doctor">
+              <h3>Ärztliche Aufgabe</h3>
+              <ul>
+                <li>medizinische Fragestellung festlegen</li>
+                <li>Befunde im klinischen Zusammenhang beurteilen</li>
+                <li>Diagnosen stellen</li>
+                <li>weiterführende Diagnostik festlegen</li>
+                <li>Therapieentscheidungen treffen</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="remember">
+            <strong>Das Entscheidende</strong>
+            Eine gute MFA muss nicht selbst die ärztliche Diagnose stellen.
+            Sie muss aber verstehen, was sie misst, eine Untersuchung
+            technisch zuverlässig unterstützen und erkennen, wann eine
+            Situation eine schnelle ärztliche Beurteilung benötigt.
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">11 · Praxissituation</p>
+          <h2>„Mein Herz stolpert und mir ist schwindelig.“</h2>
+
+          <p>
+            Eine 68-jährige Patientin kommt ohne Termin in die Praxis. Sie
+            berichtet, dass ihr Herz seit etwa einer Stunde immer wieder
+            „stolpert“. Zusätzlich sei ihr etwas schwindelig.
+          </p>
+
+          <h3>Wie gehst du als MFA strukturiert vor?</h3>
+
+          <ol>
+            <li>
+              Du erfasst die aktuellen Beschwerden und verschaffst dir einen
+              Eindruck vom Allgemeinzustand.
+            </li>
+            <li>
+              Du achtest auf Warnzeichen wie starke Brustbeschwerden,
+              ausgeprägte Luftnot, Bewusstseinsstörungen oder deutliche
+              Kreislaufprobleme.
+            </li>
+            <li>
+              Du erhebst entsprechend dem Praxisablauf relevante
+              Vitalparameter wie Puls und Blutdruck.
+            </li>
+            <li>
+              Die Patientin wird bei auffälliger Situation nicht einfach ins
+              Wartezimmer zurückgeschickt, sondern zeitnah ärztlich
+              vorgestellt.
+            </li>
+            <li>
+              Ein 12-Kanal-EKG wird entsprechend ärztlicher Anordnung bzw.
+              festgelegtem Praxisablauf vorbereitet und durchgeführt.
+            </li>
+            <li>
+              Beschwerden, Beobachtungen, Messwerte und Zeitpunkt werden
+              strukturiert weitergegeben und dokumentiert.
+            </li>
+          </ol>
+
+          <div class="practice">
+            <strong>Was du hier bereits verbindest</strong>
+            Herzfunktion, Kreislauf, Puls, Blutdruck und
+            Herzrhythmusstörungen sind jetzt keine einzelnen Lernkapitel mehr.
+            In dieser Situation brauchst du das Wissen aus mehreren
+            vorherigen Lektionen gleichzeitig.
+          </div>
+        </section>
+
+        <section class="summary">
+          <p class="section-label">12 · Zusammenfassung</p>
+          <h2>Das solltest du aus dieser Lektion mitnehmen</h2>
+
+          <ul>
+            <li>
+              Kardiologische Diagnostik besteht aus mehreren Bausteinen und
+              nicht nur aus einem Messwert.
+            </li>
+            <li>
+              Puls und Blutdruck liefern wichtige Informationen über die
+              Kreislaufsituation.
+            </li>
+            <li>
+              Das 12-Kanal-EKG zeichnet die elektrische Herzaktivität auf.
+            </li>
+            <li>
+              Langzeit-EKG und Langzeitblutdruck ermöglichen Beobachtungen
+              über einen längeren Zeitraum.
+            </li>
+            <li>
+              Labor und Echokardiografie können das diagnostische Gesamtbild
+              ergänzen.
+            </li>
+            <li>
+              MFA tragen wesentlich zu Vorbereitung, Durchführung,
+              Beobachtung, Qualität und Dokumentation diagnostischer Abläufe
+              bei.
+            </li>
+            <li>
+              Die medizinische Interpretation und Diagnosestellung bleibt
+              ärztliche Aufgabe.
+            </li>
+          </ul>
+        </section>
+
+        <section class="self-check">
+          <p class="section-label">Selbstcheck</p>
+          <h2>Kannst du diese Fragen beantworten?</h2>
+
+          <ol>
+            <li>
+              Warum reicht ein einzelner auffälliger Blutdruckwert nicht
+              automatisch zur Sicherung einer Hypertonie?
+            </li>
+            <li>
+              Welche Informationen kannst du bereits beim Pulstasten
+              wahrnehmen?
+            </li>
+            <li>
+              Was zeichnet ein 12-Kanal-EKG auf?
+            </li>
+            <li>
+              Warum kann ein Langzeit-EKG sinnvoll sein, obwohl das Ruhe-EKG
+              unauffällig war?
+            </li>
+            <li>
+              Welche Aufgabe hat die 24-Stunden-Blutdruckmessung?
+            </li>
+            <li>
+              Welche Aufgaben kann eine MFA bei diagnostischen Abläufen
+              übernehmen?
+            </li>
+            <li>
+              Wo liegt die Grenze zwischen technischer Durchführung und
+              medizinischer Beurteilung?
+            </li>
+          </ol>
+        </section>
+
+        <section class="next">
+          <p>Als Nächstes</p>
+          <h2>Lektion 12 · Praxissituationen für MFA</h2>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
