@@ -1,0 +1,828 @@
+---
+const pageTitle = "Praxissituationen für MFA | PraxisMFA";
+const pageDescription =
+  "Trainiere typische kardiologische Praxissituationen für Medizinische Fachangestellte und lerne, Beobachtungen, Dringlichkeit und das weitere Vorgehen strukturiert einzuordnen.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+
+    <style>
+      :root {
+        --bg: #fffaf5;
+        --surface: #ffffff;
+        --soft: #f6eee4;
+        --orange: #e67e22;
+        --orange-soft: #fff1e4;
+        --text: #252525;
+        --muted: #6d6863;
+        --border: #eadfd4;
+        --shadow: 0 18px 45px rgba(65, 44, 27, 0.08);
+        --radius: 24px;
+        --max: 1040px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--border);
+        background: rgba(255, 250, 245, 0.96);
+      }
+
+      .header-inner {
+        width: min(var(--max), calc(100% - 40px));
+        min-height: 78px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .brand {
+        text-decoration: none;
+        font-size: 1.35rem;
+        font-weight: 850;
+        letter-spacing: -0.04em;
+      }
+
+      .brand span {
+        color: var(--orange);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+
+      nav a {
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        color: var(--orange);
+      }
+
+      .premium {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: var(--orange);
+        color: #fff;
+      }
+
+      nav .premium:hover {
+        color: #fff;
+      }
+
+      main {
+        width: min(var(--max), calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 54px 0 62px;
+      }
+
+      .back {
+        display: inline-block;
+        margin-bottom: 42px;
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .back:hover {
+        color: var(--orange);
+      }
+
+      .eyebrow,
+      .section-label {
+        margin: 0 0 12px;
+        color: var(--orange);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 900px;
+        margin: 0;
+        font-size: clamp(2.7rem, 7vw, 5.3rem);
+        line-height: 0.98;
+        letter-spacing: -0.065em;
+      }
+
+      .lead {
+        max-width: 790px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 1.16rem;
+      }
+
+      .goal {
+        max-width: 860px;
+        margin-top: 38px;
+        padding: 24px 28px;
+        border-left: 5px solid var(--orange);
+        border-radius: 0 18px 18px 0;
+        background: var(--soft);
+      }
+
+      .goal p {
+        margin: 0;
+      }
+
+      .content {
+        padding-bottom: 80px;
+      }
+
+      .intro-box {
+        margin-bottom: 34px;
+        padding: 34px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .intro-box h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.55rem, 4vw, 2.15rem);
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+      }
+
+      .thinking-path {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .thinking-step {
+        padding: 18px 12px;
+        border-radius: 18px;
+        background: var(--soft);
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      .thinking-step span {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        margin: 0 auto 10px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--orange);
+        color: #fff;
+      }
+
+      .case {
+        margin-bottom: 34px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .case-header {
+        padding: 32px 34px;
+        background: var(--orange-soft);
+        border-bottom: 1px solid #f2d1b3;
+      }
+
+      .case-number {
+        margin: 0 0 8px;
+        color: var(--orange);
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .case-header h2 {
+        margin: 0;
+        font-size: clamp(1.65rem, 4vw, 2.3rem);
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+      }
+
+      .case-body {
+        padding: 34px;
+      }
+
+      .situation {
+        margin: 0 0 28px;
+        font-size: 1.08rem;
+      }
+
+      .question {
+        margin-top: 28px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      }
+
+      .question:first-of-type {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .question h3 {
+        margin: 0 0 9px;
+        font-size: 1.08rem;
+      }
+
+      .question p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .priority {
+        margin-top: 28px;
+        padding: 24px 26px;
+        border-left: 5px solid var(--orange);
+        border-radius: 0 18px 18px 0;
+        background: #fff7ef;
+      }
+
+      .priority strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .practice {
+        margin-top: 28px;
+        padding: 24px 26px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: var(--soft);
+      }
+
+      .practice strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .remember {
+        margin-top: 28px;
+        padding: 24px 26px;
+        border: 1px solid #f2d1b3;
+        border-radius: 20px;
+        background: var(--orange-soft);
+      }
+
+      .remember strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .summary {
+        padding: 34px;
+        border-radius: var(--radius);
+        background: var(--orange);
+        color: #fff;
+      }
+
+      .summary .section-label {
+        color: #fff;
+        opacity: 0.85;
+      }
+
+      .summary h2 {
+        margin: 0 0 18px;
+        font-size: clamp(1.55rem, 4vw, 2.15rem);
+      }
+
+      .summary ul {
+        margin-bottom: 0;
+        padding-left: 22px;
+      }
+
+      .summary li + li {
+        margin-top: 8px;
+      }
+
+      .self-check {
+        margin-top: 34px;
+        padding: 34px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+
+      .self-check h2 {
+        margin-top: 0;
+      }
+
+      .self-check ol {
+        padding-left: 22px;
+      }
+
+      .self-check li + li {
+        margin-top: 10px;
+      }
+
+      .finish {
+        margin-top: 34px;
+        padding: 34px;
+        border-radius: var(--radius);
+        background: var(--soft);
+      }
+
+      .finish p {
+        margin: 0 0 8px;
+        color: var(--orange);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .finish h2 {
+        margin: 0 0 12px;
+        font-size: 1.65rem;
+      }
+
+      .finish span {
+        color: var(--muted);
+      }
+
+      @media (max-width: 850px) {
+        nav {
+          display: none;
+        }
+
+        .thinking-path {
+          grid-template-columns: 1fr;
+        }
+
+        .intro-box,
+        .case-body,
+        .summary,
+        .self-check {
+          padding: 26px;
+        }
+
+        .case-header {
+          padding: 26px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .header-inner,
+        main {
+          width: min(100% - 28px, var(--max));
+        }
+
+        .hero {
+          padding-top: 36px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/">Praxis<span>MFA</span></a>
+
+        <nav aria-label="Hauptnavigation">
+          <a href="/lernen/">Lernen</a>
+          <a href="/praxis/">Praxis</a>
+          <a href="/pruefung/">Prüfung</a>
+          <a href="/lernkarten/">Lernkarten</a>
+          <a class="premium" href="/premium/">Premium</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <a
+          class="back"
+          href="/lernen/anatomie-physiologie-krankheitslehre/herz-kreislauf/"
+        >
+          ← Zurück zu Herz & Kreislauf
+        </a>
+
+        <p class="eyebrow">Herz & Kreislauf · Lektion 12</p>
+
+        <h1>Praxissituationen für MFA</h1>
+
+        <p class="lead">
+          Jetzt geht es nicht mehr darum, einzelne Begriffe auswendig zu
+          lernen. Du verbindest dein Wissen über Herz, Kreislauf, Puls,
+          Blutdruck, Erkrankungen und Diagnostik mit echten Situationen aus
+          der Arztpraxis.
+        </p>
+
+        <div class="goal">
+          <p>
+            <strong>Dein Lernziel:</strong> Du kannst kardiologische
+            Praxissituationen strukturiert erfassen, Warnzeichen erkennen,
+            sinnvolle nächste Schritte einordnen und deine Rolle als MFA von
+            der ärztlichen Verantwortung abgrenzen.
+          </p>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="intro-box">
+          <p class="section-label">Dein Denkweg</p>
+          <h2>Fünf Fragen geben dir Struktur</h2>
+
+          <p>
+            In einer Praxissituation musst du nicht sofort eine Diagnose
+            kennen. Entscheidend ist, dass du strukturiert denkst und wichtige
+            Informationen nicht übersiehst.
+          </p>
+
+          <div class="thinking-path">
+            <div class="thinking-step">
+              <span>1</span>
+              Was fällt mir auf?
+            </div>
+
+            <div class="thinking-step">
+              <span>2</span>
+              Was muss ich erheben?
+            </div>
+
+            <div class="thinking-step">
+              <span>3</span>
+              Wie dringend ist es?
+            </div>
+
+            <div class="thinking-step">
+              <span>4</span>
+              Was gebe ich weiter?
+            </div>
+
+            <div class="thinking-step">
+              <span>5</span>
+              Wo liegt meine Grenze?
+            </div>
+          </div>
+
+          <div class="remember">
+            <strong>Merke</strong>
+            Die Aufgabe der MFA besteht nicht darin, aus wenigen Symptomen
+            selbstständig eine ärztliche Diagnose zu stellen. Deine Stärke
+            liegt darin, Veränderungen wahrzunehmen, strukturiert zu handeln,
+            relevante Informationen weiterzugeben und bei dringlichen
+            Situationen keine Zeit zu verlieren.
+          </div>
+        </section>
+
+        <article class="case">
+          <header class="case-header">
+            <p class="case-number">Praxissituation 01</p>
+            <h2>Brustschmerz im Wartezimmer</h2>
+          </header>
+
+          <div class="case-body">
+            <p class="situation">
+              Ein 62-jähriger Patient meldet sich am Empfang. Seit ungefähr
+              20 Minuten habe er einen starken Druck in der Brust. Er wirkt
+              blass und unruhig und sagt, ihm sei übel.
+            </p>
+
+            <div class="question">
+              <h3>1. Was fällt dir auf?</h3>
+              <p>
+                Akute Brustbeschwerden zusammen mit Blässe, Unruhe und Übelkeit
+                können auf eine zeitkritische kardiale Situation hinweisen.
+                Entscheidend ist zunächst nicht, selbst eine Diagnose
+                festzulegen, sondern die mögliche Dringlichkeit zu erkennen.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>2. Was hat jetzt Priorität?</h3>
+              <p>
+                Der Patient wird nicht für eine normale Wartezeit eingeplant.
+                Die Situation muss unverzüglich entsprechend dem
+                Notfallablauf der Praxis weitergegeben werden. Parallel werden
+                die vorgesehenen Notfallmaßnahmen der Praxis eingeleitet.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>3. Welche Informationen sind wichtig?</h3>
+              <p>
+                Beginn und Art der Beschwerden, Begleitsymptome,
+                Allgemeinzustand sowie relevante Vitalparameter können für die
+                weitere Beurteilung wichtig sein, soweit ihre Erhebung die
+                notwendige Notfallversorgung nicht verzögert.
+              </p>
+            </div>
+
+            <div class="priority">
+              <strong>Priorität vor Vollständigkeit</strong>
+              Bei einer möglicherweise zeitkritischen Situation darf das
+              vollständige Ausfüllen eines Fragebogens oder eine ausführliche
+              Routineanamnese nicht die notwendige medizinische Versorgung
+              verzögern.
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <header class="case-header">
+            <p class="case-number">Praxissituation 02</p>
+            <h2>Herzklopfen und Schwindel</h2>
+          </header>
+
+          <div class="case-body">
+            <p class="situation">
+              Eine 68-jährige Patientin berichtet, dass ihr Herz seit etwa
+              einer Stunde immer wieder sehr schnell und unregelmäßig schlage.
+              Zusätzlich sei ihr schwindelig.
+            </p>
+
+            <div class="question">
+              <h3>1. Was verbindest du mit den bisherigen Lektionen?</h3>
+              <p>
+                Herzklopfen und ein als unregelmäßig wahrgenommener Herzschlag
+                können zu einer Herzrhythmusstörung passen. Schwindel kann
+                darauf hinweisen, dass die Kreislaufsituation mit betroffen
+                ist.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>2. Was erhebst du?</h3>
+              <p>
+                Allgemeinzustand, aktuelle Beschwerden und entsprechend dem
+                Praxisablauf relevante Vitalparameter wie Puls und Blutdruck
+                werden erfasst. Dabei wird besonders auf Frequenz,
+                Regelmäßigkeit und mögliche Warnzeichen geachtet.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>3. Was kann als Nächstes folgen?</h3>
+              <p>
+                Je nach Situation und Praxisablauf kann ein 12-Kanal-EKG
+                vorbereitet und durchgeführt werden. Die Aufzeichnung wird
+                anschließend medizinisch beurteilt.
+              </p>
+            </div>
+
+            <div class="practice">
+              <strong>Deine Rolle als MFA</strong>
+              Du kannst einen auffälligen Puls wahrnehmen und ein EKG
+              fachgerecht vorbereiten. Die Diagnose einer bestimmten
+              Herzrhythmusstörung ergibt sich daraus aber nicht automatisch
+              und wird ärztlich gestellt.
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <header class="case-header">
+            <p class="case-number">Praxissituation 03</p>
+            <h2>Sehr hoher Blutdruck</h2>
+          </header>
+
+          <div class="case-body">
+            <p class="situation">
+              Bei einem Patienten wird in der Praxis ein deutlich erhöhter
+              Blutdruckwert gemessen. Er wirkt ruhig und berichtet zunächst
+              über keine akuten Beschwerden.
+            </p>
+
+            <div class="question">
+              <h3>1. Was machst du nicht?</h3>
+              <p>
+                Du leitest aus einem einzelnen Messwert nicht selbstständig
+                eine Diagnose oder Therapieentscheidung ab.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>2. Was prüfst du?</h3>
+              <p>
+                Du achtest auf korrekte Messbedingungen, eine passende
+                Manschette und die zuverlässige Dokumentation. Je nach
+                Praxisablauf kann eine Kontrollmessung erforderlich sein.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>3. Warum sind Beschwerden entscheidend?</h3>
+              <p>
+                Ein auffälliger Blutdruckwert muss zusammen mit dem
+                klinischen Zustand betrachtet werden. Neu aufgetretene
+                Beschwerden wie Brustschmerz, ausgeprägte Luftnot,
+                neurologische Auffälligkeiten oder Bewusstseinsveränderungen
+                verändern die Dringlichkeit erheblich.
+              </p>
+            </div>
+
+            <div class="remember">
+              <strong>Der Denkfehler</strong>
+              Nicht allein die Höhe einer Zahl entscheidet über das weitere
+              Vorgehen. Messqualität, Beschwerden, Allgemeinzustand und die
+              ärztliche Beurteilung gehören zusammen.
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <header class="case-header">
+            <p class="case-number">Praxissituation 04</p>
+            <h2>Zunehmende Atemnot bei Herzinsuffizienz</h2>
+          </header>
+
+          <div class="case-body">
+            <p class="situation">
+              Eine Patientin mit bekannter Herzinsuffizienz ruft in der Praxis
+              an. Seit einigen Tagen könne sie schlechter Treppen steigen.
+              Heute sei die Atemnot deutlich stärker als sonst.
+            </p>
+
+            <div class="question">
+              <h3>1. Warum ist die Veränderung wichtig?</h3>
+              <p>
+                Bei einer bekannten chronischen Erkrankung ist nicht nur das
+                Vorhandensein eines Symptoms wichtig. Eine deutliche
+                Verschlechterung gegenüber dem bisherigen Zustand kann auf
+                eine Dekompensation oder eine andere akute Ursache hinweisen.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>2. Welche Informationen müssen weitergegeben werden?</h3>
+              <p>
+                Zeitpunkt und Verlauf der Verschlechterung, Ausmaß der
+                Atemnot, mögliche zusätzliche Beschwerden und weitere
+                relevante Beobachtungen werden strukturiert erfasst und
+                weitergegeben.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>3. Was ist nicht Aufgabe der MFA?</h3>
+              <p>
+                Eine MFA verändert aufgrund der telefonischen Schilderung
+                nicht eigenständig die verordnete Herzmedikation oder
+                Diuretikadosis. Therapieänderungen benötigen eine
+                entsprechende ärztliche Entscheidung.
+              </p>
+            </div>
+
+            <div class="priority">
+              <strong>Bei deutlicher Verschlechterung</strong>
+              Starke Atemnot, Bewusstseinsveränderungen, Brustbeschwerden oder
+              andere Zeichen einer akuten Instabilität erfordern eine
+              unverzügliche medizinische Einschätzung entsprechend dem
+              Notfallablauf.
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <header class="case-header">
+            <p class="case-number">Praxissituation 05</p>
+            <h2>Plötzlicher Kollaps in der Praxis</h2>
+          </header>
+
+          <div class="case-body">
+            <p class="situation">
+              Ein Patient steht im Flur auf, sackt plötzlich zusammen und
+              reagiert nicht mehr auf Ansprache.
+            </p>
+
+            <div class="question">
+              <h3>1. Was hat jetzt absolute Priorität?</h3>
+              <p>
+                Das ist keine Situation für eine normale diagnostische
+                Abklärung. Der Notfallablauf der Praxis wird sofort aktiviert.
+                Bewusstsein und Atmung werden unverzüglich entsprechend dem
+                vorgesehenen Notfallschema überprüft.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>2. Was passiert bei fehlender normaler Atmung?</h3>
+              <p>
+                Bei Bewusstlosigkeit ohne normale Atmung wird von einem
+                Kreislaufstillstand ausgegangen. Der Rettungsdienst wird
+                alarmiert und die Wiederbelebungsmaßnahmen werden unmittelbar
+                begonnen. Ein vorhandener AED wird entsprechend seinem
+                vorgesehenen Einsatz verwendet.
+              </p>
+            </div>
+
+            <div class="question">
+              <h3>3. Was ist hier die wichtigste Erkenntnis?</h3>
+              <p>
+                In einem lebensbedrohlichen Notfall darf die Suche nach einer
+                genauen Diagnose die lebensrettenden Sofortmaßnahmen nicht
+                verzögern.
+              </p>
+            </div>
+
+            <div class="priority">
+              <strong>Notfall bedeutet handeln</strong>
+              Erst die lebenswichtigen Funktionen sichern und den
+              Notfallablauf aktivieren. Die genaue Ursache des Kollapses wird
+              anschließend medizinisch geklärt.
+            </div>
+          </div>
+        </article>
+
+        <section class="summary">
+          <p class="section-label">Zusammenfassung</p>
+          <h2>So denkst du in der Praxis</h2>
+
+          <ul>
+            <li>Beobachte zuerst die Patientin oder den Patienten, nicht nur einen Messwert.</li>
+            <li>Erfasse relevante Beschwerden und Veränderungen strukturiert.</li>
+            <li>Prüfe Vitalparameter fachgerecht, wenn die Situation es zulässt.</li>
+            <li>Erkenne Warnzeichen und behandle dringliche Situationen nicht wie Routinefälle.</li>
+            <li>Gib Beobachtungen und Messwerte klar und vollständig weiter.</li>
+            <li>Verzögere bei einem Notfall notwendige Maßnahmen nicht durch Routineabläufe.</li>
+            <li>Unterscheide zwischen MFA-Aufgaben und ärztlicher Diagnostik und Therapie.</li>
+          </ul>
+        </section>
+
+        <section class="self-check">
+          <p class="section-label">Selbstcheck</p>
+          <h2>Kannst du jetzt begründen, was du tun würdest?</h2>
+
+          <ol>
+            <li>
+              Warum darf ein Patient mit akuten Brustbeschwerden nicht einfach
+              regulär im Wartezimmer warten?
+            </li>
+            <li>
+              Welche Informationen sind bei Herzklopfen und Schwindel
+              besonders wichtig?
+            </li>
+            <li>
+              Warum ist ein einzelner stark erhöhter Blutdruckwert nicht
+              automatisch gleichbedeutend mit einer bestimmten Diagnose?
+            </li>
+            <li>
+              Warum ist eine zunehmende Atemnot bei bekannter Herzinsuffizienz
+              relevant?
+            </li>
+            <li>
+              Was hat bei einer bewusstlosen Person ohne normale Atmung
+              Vorrang vor weiterer Diagnostik?
+            </li>
+            <li>
+              Wo endet in diesen Situationen die eigenständige Aufgabe der MFA
+              und wo beginnt die ärztliche Verantwortung?
+            </li>
+          </ol>
+        </section>
+
+        <section class="finish">
+          <p>Lernbereich abgeschlossen</p>
+          <h2>Du hast Herz & Kreislauf vollständig durchgearbeitet.</h2>
+          <span>
+            Vom Aufbau des Herzens bis zur Anwendung in konkreten
+            Praxissituationen hast du jetzt einen vollständigen Lernweg
+            durchlaufen.
+          </span>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
