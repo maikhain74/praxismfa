@@ -56,7 +56,7 @@ const description =
         </div>
 
         <div class="grid">
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/grundlagen-menschlicher-koerper/">
             <span>01</span>
 
             <div>
@@ -67,9 +67,9 @@ const description =
                 Lage- und Richtungsbezeichnungen.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/bewegungsapparat/">
             <span>02</span>
 
             <div>
@@ -80,9 +80,9 @@ const description =
                 Erkrankungen und Verletzungen.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/herz-kreislauf/">
             <span>03</span>
 
             <div>
@@ -93,9 +93,9 @@ const description =
                 des Herz-Kreislauf-Systems.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/atmungssystem/">
             <span>04</span>
 
             <div>
@@ -106,9 +106,9 @@ const description =
                 wichtige Warnzeichen.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/verdauungssystem/">
             <span>05</span>
 
             <div>
@@ -119,9 +119,9 @@ const description =
                 Speiseröhre, Magen, Darm, Leber und Bauchspeicheldrüse.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/niere-harnwege/">
             <span>06</span>
 
             <div>
@@ -132,9 +132,9 @@ const description =
                 Erkrankungen des Harnsystems.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="card">
+          <a class="card card-link" href="/lernen/anatomie-physiologie-krankheitslehre/nervensystem-sinnesorgane/">
             <span>07</span>
 
             <div>
@@ -145,7 +145,7 @@ const description =
                 neurologische Erkrankungen und Warnzeichen.
               </p>
             </div>
-          </article>
+          </a>
 
           <article class="card">
             <span>08</span>
@@ -321,6 +321,21 @@ const description =
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .card-link {
+    color: #222;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .card-link:hover {
+    transform: translateY(-4px);
+    border-color: #c9c1ba;
+    box-shadow: 0 12px 30px rgba(34, 34, 34, 0.07);
   }
 
   .card span {
