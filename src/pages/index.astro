@@ -16,7 +16,9 @@ const description =
   <body>
     <header class="site-header">
       <nav class="nav" aria-label="Hauptnavigation">
-        <a class="logo" href="/">PraxisMFA</a>
+        <a class="logo" href="/" aria-label="PraxisMFA Startseite">
+  <img src="/images/praxismfa-logo-header.png" alt="PraxisMFA" />
+</a>
 
         <div class="nav-links">
           <a href="/lernen/">Lernen</a>
@@ -45,10 +47,75 @@ const description =
           erkennst, wie du richtig handelst und warum.
         </p>
 
-        <div class="status">
-          PraxisMFA entsteht gerade.
+        <div class="hero-actions">
+  <a class="primary-cta" href="/lernen/">
+    Jetzt lernen
+  </a>
+
+  <span class="status">
+    PraxisMFA wächst kontinuierlich weiter.
+  </span>
+</div>
+      </section>
+
+      <section class="discover">
+        <div class="discover-inner">
+          <p class="section-eyebrow">Dein Einstieg ins Lernen</p>
+
+          <h2>Was möchtest du heute lernen?</h2>
+
+          <p class="section-intro">
+            Entdecke die Fachwelten von PraxisMFA und lerne Schritt für Schritt
+            für Ausbildung, Praxis und Prüfung.
+          </p>
+
+          <div class="featured-worlds">
+  <article class="featured-card">
+    <img
+      src="/images/fachwelten/hygiene-infektionsschutz.png"
+      alt="Hygiene und Infektionsschutz"
+    />
+    <div class="featured-card-content">
+      <span>Fachwelt 01</span>
+      <h3>Hygiene &amp; Infektionsschutz</h3>
+    </div>
+  </article>
+
+  <a
+    class="featured-card"
+    href="/lernen/anatomie-physiologie-krankheitslehre/"
+  >
+    <img
+      src="/images/fachwelten/anatomie-physiologie-krankheitslehre.png"
+      alt="Anatomie, Physiologie und Krankheitslehre"
+    />
+    <div class="featured-card-content">
+      <span>Fachwelt 03</span>
+      <h3>Anatomie, Physiologie &amp; Krankheitslehre</h3>
+    </div>
+  </a>
+
+  <a
+    class="featured-card"
+    href="/lernen/vitalzeichen-diagnostik/"
+  >
+    <img
+      src="/images/fachwelten/vitalzeichen-diagnostik.png"
+      alt="Vitalzeichen und Diagnostik"
+    />
+    <div class="featured-card-content">
+      <span>Fachwelt 04</span>
+      <h3>Vitalzeichen &amp; Diagnostik</h3>
+    </div>
+  </a>
+</div>
+
+<a class="discover-link" href="/lernen/">
+  Alle 9 Fachwelten entdecken →
+</a>
         </div>
       </section>
+
     </main>
   </body>
 </html>
@@ -88,11 +155,16 @@ const description =
   }
 
   .logo {
-    color: #222;
-    font-size: 1.3rem;
-    font-weight: 800;
-    text-decoration: none;
-  }
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  display: block;
+  width: 170px;
+  height: auto;
+}
 
   .nav-links {
     display: flex;
@@ -111,26 +183,29 @@ const description =
     color: #111;
   }
 
-  .nav-links .premium-link {
-    padding: 9px 16px;
-    border: 1px solid #d8d2cc;
-    border-radius: 999px;
-    background: #fff;
-    color: #222;
-  }
+ .nav-links .premium-link {
+  padding: 9px 16px;
+  border: 1px solid #e67e22;
+  border-radius: 999px;
+  background: #e67e22;
+  color: #fff;
+}
 
-  main {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 20px 32px;
-  }
+ main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 100px 20px 32px;
+}
 
   .hero {
-    width: min(760px, 100%);
-    text-align: center;
-  }
+  width: min(760px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
   .eyebrow {
     margin: 0 0 16px;
@@ -159,15 +234,144 @@ const description =
     line-height: 1.7;
   }
 
-  .status {
-    display: inline-block;
-    margin-top: 36px;
-    padding: 12px 18px;
-    border: 1px solid #ddd;
-    border-radius: 999px;
-    font-weight: 600;
-    background: #fff;
-  }
+  .hero-actions {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.primary-cta {
+  display: inline-block;
+  padding: 13px 22px;
+  border: 1px solid #e67e22;
+  border-radius: 999px;
+  background: #e67e22;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(34, 34, 34, 0.1);
+}
+
+.status {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  font-weight: 600;
+  background: #fff;
+}
+
+.discover {
+  width: 100%;
+  padding: 80px 20px;
+  background: #fff;
+}
+
+.discover-inner {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-eyebrow {
+  margin: 0 0 12px;
+  color: #e67e22;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.discover h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.15;
+}
+
+.section-intro {
+  max-width: 650px;
+  margin: 20px auto 0;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.featured-worlds {
+  width: 100%;
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: left;
+}
+
+.featured-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eee5dc;
+  border-radius: 18px;
+  background: #fffaf5;
+  color: #222;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+a.featured-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(34, 34, 34, 0.08);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 170px;
+  display: block;
+  object-fit: cover;
+}
+
+.featured-card-content {
+  padding: 20px;
+}
+
+.featured-card-content span {
+  display: block;
+  margin-bottom: 8px;
+  color: #e67e22;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.featured-card-content h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.discover-link {
+  display: inline-block;
+  margin-top: 28px;
+  color: #e67e22;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.discover-link:hover {
+  text-decoration: underline;
+}
 
   @media (max-width: 760px) {
     .site-header {
