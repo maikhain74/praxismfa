@@ -1,0 +1,686 @@
+---
+const title = "Patienten über Arzneimittel informieren und beraten";
+const description = "Lerne, wie du Patienten bei der sicheren Arzneimittelanwendung unterstützt, verständlich informierst und die Grenzen deiner MFA-Kompetenzen beachtest.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/arzneimittel-injektionen/">
+        ← Zurück zu Arzneimittel &amp; Injektionen
+      </a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 06 · Lektion 08</p>
+        <h1>Patienten über Arzneimittel informieren und beraten</h1>
+        <p class="intro">
+          Patienten müssen verstehen, wie sie ihre verordneten Arzneimittel
+          richtig anwenden. MFA unterstützen sie mit verständlichen
+          Informationen, erkennen Unsicherheiten und vermitteln bei
+          medizinischen Fragen an die verantwortliche Ärztin oder den Arzt.
+        </p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="eyebrow">Dein Lernziel</p>
+        <h2>Das kannst du nach dieser Lektion</h2>
+        <p>
+          Du erklärst grundlegende Anwendungshinweise verständlich,
+          unterstützt Patienten bei der Umsetzung ärztlicher Anweisungen,
+          erkennst typische Verständnisschwierigkeiten und unterscheidest
+          zwischen MFA-Patienteninformation und ärztlicher Beratung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum ist verständliche Arzneimittelinformation wichtig?</h2>
+        <p>
+          Arzneimittel können nur dann sicher angewendet werden, wenn
+          Patienten wissen, welches Präparat sie erhalten haben,
+          wie es nach ärztlicher Vorgabe angewendet wird und
+          was sie bei Problemen tun sollen.
+        </p>
+        <p>
+          Missverständnisse entstehen beispielsweise durch komplizierte
+          Fachbegriffe, Sprachbarrieren, eingeschränktes Sehvermögen
+          oder Unsicherheit im Umgang mit unterschiedlichen Arzneiformen.
+        </p>
+        <div class="remember">
+          <strong>Merke:&nbsp;</strong>
+          Eine verständliche Erklärung ist ein wichtiger Beitrag zur
+          Arzneimitteltherapiesicherheit.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Welche Informationen darf die MFA vermitteln?</h2>
+        <p>
+          MFA können Patienten über die praktische Anwendung eines
+          ärztlich verordneten Arzneimittels informieren und
+          bestehende ärztliche Anweisungen erläutern.
+        </p>
+        <p>Typische Aufgaben sind:</p>
+        <ul>
+          <li>Ärztlich festgelegte Einnahmezeiten verständlich erklären</li>
+          <li>Auf die vorgesehene Arzneiform und Anwendung hinweisen</li>
+          <li>Die Handhabung geeigneter Anwendungshilfen nach Einweisung zeigen</li>
+          <li>Auf Packungsbeilage und schriftliche Anweisungen aufmerksam machen</li>
+          <li>Fragen und Unsicherheiten erkennen und weiterleiten</li>
+        </ul>
+        <div class="warning-box">
+          <strong>Wichtig:&nbsp;</strong>
+          MFA dürfen nicht eigenständig Dosierungen verändern,
+          Arzneimittel absetzen oder eine neue Therapie empfehlen.
+          Medizinische Therapieentscheidungen trifft die Ärztin
+          oder der Arzt.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Einnahmehinweise verständlich erklären</h2>
+        <p>
+          Bei der Patienteninformation kommt es auf klare und
+          eindeutige Formulierungen an. Die MFA orientiert sich
+          an der konkreten ärztlichen Verordnung und den
+          zutreffenden Herstellerangaben.
+        </p>
+        <ul>
+          <li>Welche Arzneimittel sind laut Verordnung vorgesehen?</li>
+          <li>Wann und wie häufig sollen sie angewendet werden?</li>
+          <li>Welche Hinweise gelten zur Anwendung mit oder ohne Nahrung?</li>
+          <li>Welche Besonderheiten gelten für die jeweilige Arzneiform?</li>
+          <li>Welche schriftlichen Informationen stehen zur Verfügung?</li>
+        </ul>
+        <p>
+          Angaben wie „vor dem Essen“ oder „mit einer Mahlzeit“
+          dürfen nicht pauschal für alle Arzneimittel verwendet werden.
+          Entscheidend sind die konkreten Vorgaben.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:&nbsp;</strong>
+          Verwende kurze Sätze und bitte Patienten, die wichtigsten
+          Anwendungsschritte mit eigenen Worten wiederzugeben.
+          So erkennst du mögliche Missverständnisse.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <figure style="margin: 32px 0;">
+          <img
+            src="/images/patienten-ueber-arzneimittel-informieren-und-beraten.png"
+            alt="PraxisMFA-Lernbild: MFA informiert eine Patientin über die sichere Arzneimittelanwendung, Einnahmehinweise und den Umgang mit Fragen."
+            loading="lazy"
+            style="display: block; width: 100%; height: auto; border-radius: 16px;"
+          />
+        </figure>
+
+        <p class="section-number">04</p>
+        <h2>Patienten mit besonderen Bedürfnissen unterstützen</h2>
+        <p>
+          Nicht alle Patienten können Informationen auf dieselbe
+          Weise aufnehmen oder umsetzen. Die Kommunikation muss
+          deshalb an die jeweilige Situation angepasst werden.
+        </p>
+        <ul>
+          <li>Bei Sehproblemen gut lesbare Informationen anbieten</li>
+          <li>Bei Hörproblemen deutlich und zugewandt sprechen</li>
+          <li>Bei Sprachbarrieren geeignete Sprachmittlung organisieren</li>
+          <li>Bei komplexen Einnahmeplänen verständliche Übersichten nutzen</li>
+          <li>Bei Unsicherheit ausreichend Zeit für Rückfragen einplanen</li>
+        </ul>
+        <p>
+          Angehörige können mit Einwilligung des Patienten einbezogen
+          werden. Dabei sind Schweigepflicht und Datenschutz zu beachten.
+        </p>
+        <div class="connection">
+          <strong>Für die Praxis:&nbsp;</strong>
+          Frage nicht nur „Haben Sie alles verstanden?“.
+          Besser ist: „Können Sie mir kurz zeigen oder erklären,
+          wie Sie das Arzneimittel zu Hause anwenden werden?“
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Fragen zu Nebenwirkungen und Wechselwirkungen</h2>
+        <p>
+          Patienten berichten manchmal über Beschwerden, die sie
+          mit ihren Arzneimitteln in Verbindung bringen.
+          Solche Hinweise müssen ernst genommen werden.
+        </p>
+        <p>
+          Die MFA hört aufmerksam zu, erfasst die Angaben und
+          informiert die zuständige Ärztin oder den Arzt.
+          Sie stellt keine eigenständige Diagnose und entscheidet
+          nicht selbst über eine Änderung der Medikation.
+        </p>
+        <p>Wichtige Rückfragen können sein:</p>
+        <ul>
+          <li>Welches Arzneimittel wird angewendet?</li>
+          <li>Welche Beschwerden sind aufgetreten?</li>
+          <li>Wann haben die Beschwerden begonnen?</li>
+          <li>Bestehen weitere Beschwerden oder Warnzeichen?</li>
+          <li>Werden zusätzliche Arzneimittel oder Präparate verwendet?</li>
+        </ul>
+        <div class="warning-box">
+          <strong>Wichtig:&nbsp;</strong>
+          Bei Anzeichen einer schweren allergischen Reaktion,
+          insbesondere Atemnot oder Kreislaufproblemen,
+          ist sofort nach dem Notfallablauf der Praxis zu handeln.
+          Die ärztliche Hilfe muss unverzüglich hinzugezogen werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Was tun bei vergessener Einnahme oder Unsicherheit?</h2>
+        <p>
+          Patienten fragen häufig, was sie bei einer vergessenen
+          Dosis tun sollen oder ob sie ein Arzneimittel
+          eigenständig absetzen dürfen.
+        </p>
+        <p>
+          Hier gibt es keine allgemein gültige Antwort.
+          Das richtige Vorgehen hängt unter anderem vom
+          Arzneimittel, dem Einnahmezeitpunkt und der
+          individuellen Behandlungssituation ab.
+        </p>
+        <ul>
+          <li>Keine eigenständige Empfehlung zur Nachdosierung geben</li>
+          <li>Keine doppelte Einnahme als allgemeine Lösung empfehlen</li>
+          <li>Die konkrete ärztliche Vorgabe prüfen lassen</li>
+          <li>Unklare Situationen an die Ärztin oder den Arzt weitergeben</li>
+          <li>Bei akuten Beschwerden die Dringlichkeit beachten</li>
+        </ul>
+        <div class="remember">
+          <strong>Merke:&nbsp;</strong>
+          Die MFA unterstützt die sichere Umsetzung der Therapie,
+          entscheidet aber nicht eigenständig über Änderungen.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Patientengespräche sicher abschließen und dokumentieren</h2>
+        <p>
+          Ein gutes Informationsgespräch endet nicht mit der
+          letzten Erklärung. Wichtig ist, ob offene Fragen
+          geklärt wurden und weitere Schritte erforderlich sind.
+        </p>
+        <ul>
+          <li>Die wichtigsten Anwendungshinweise kurz zusammenfassen</li>
+          <li>Verständnis durch gezielte Rückfragen überprüfen</li>
+          <li>Offene medizinische Fragen ärztlich klären lassen</li>
+          <li>Vereinbarte weitere Schritte verständlich mitteilen</li>
+          <li>Relevante Informationen nach Praxisvorgabe dokumentieren</li>
+        </ul>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:&nbsp;</strong>
+          Dokumentiere sachlich, welche wesentlichen Informationen
+          vermittelt und welche Fragen an die Ärztin oder
+          den Arzt weitergegeben wurden.
+        </div>
+      </section>
+
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>„Kann ich einfach zwei Tabletten nehmen?“</h2>
+        <p>
+          Ein Patient ruft in der Arztpraxis an. Er nimmt ein
+          ärztlich verordnetes Arzneimittel regelmäßig ein,
+          hat die letzte Einnahme jedoch vergessen.
+          Nun fragt er die MFA, ob er beim nächsten Mal
+          die doppelte Menge einnehmen soll.
+        </p>
+        <h3>Wie reagierst du richtig?</h3>
+        <p>
+          Du empfiehlst keine eigenständige Dosierungsänderung.
+          Stattdessen erfragst du das betroffene Arzneimittel,
+          den vorgesehenen Einnahmezeitpunkt und die
+          aktuelle Situation. Du leitest die Frage zur
+          ärztlichen Klärung weiter.
+        </p>
+        <p>
+          Bestehen akute Beschwerden, wird die Dringlichkeit
+          sofort berücksichtigt und nach dem Praxisablauf gehandelt.
+        </p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <ul>
+          <li>Verständliche Arzneimittelinformation fördert die sichere Anwendung.</li>
+          <li>MFA erläutern ärztliche Vorgaben, treffen aber keine Therapieentscheidungen.</li>
+          <li>Einnahmehinweise müssen zum konkreten Arzneimittel passen.</li>
+          <li>Rückfragen helfen, Missverständnisse zu erkennen.</li>
+          <li>Verdächtige Nebenwirkungen werden ernst genommen und weitergeleitet.</li>
+          <li>Bei vergessener Einnahme wird nicht pauschal zur Nachdosierung geraten.</li>
+          <li>Wichtige Informationen und Rücksprachen werden nachvollziehbar dokumentiert.</li>
+        </ul>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Prüfe dein Wissen</h2>
+
+        <details>
+          <summary>1. Welche Aufgabe hat die MFA bei der Arzneimittelinformation?</summary>
+          <p>
+            Sie erklärt bestehende ärztliche Anwendungsvorgaben
+            verständlich und leitet medizinische Fragen weiter.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. Darf eine MFA eigenständig eine Dosierung verändern?</summary>
+          <p>
+            Nein. Eine Dosierungsänderung ist eine medizinische
+            Therapieentscheidung und muss ärztlich erfolgen.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. Wie überprüfst du, ob ein Patient die Anwendung verstanden hat?</summary>
+          <p>
+            Ich bitte ihn, die Anwendung mit eigenen Worten
+            zu erklären oder die Handhabung zu zeigen.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. Was machst du bei Verdacht auf eine Arzneimittelnebenwirkung?</summary>
+          <p>
+            Ich erfasse die Angaben, informiere die Ärztin
+            oder den Arzt und beachte mögliche Notfallzeichen.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. Was antwortest du bei einer vergessenen Arzneimitteldosis?</summary>
+          <p>
+            Ich gebe keine pauschale Empfehlung zur Nachdosierung,
+            sondern lasse das Vorgehen anhand der konkreten
+            Verordnung ärztlich klären.
+          </p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Grundlagen der Injektion und Injektionsarten</h2>
+        <p>
+          Lerne die wichtigsten Injektionsarten kennen und erfahre,
+          welche anatomischen, hygienischen und rechtlichen
+          Grundlagen für die sichere Durchführung wichtig sind.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

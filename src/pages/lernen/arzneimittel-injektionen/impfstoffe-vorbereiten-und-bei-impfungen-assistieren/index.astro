@@ -1,0 +1,845 @@
+---
+const title = "Impfstoffe vorbereiten und bei Impfungen assistieren";
+const description = "Lerne, wie Impfstoffe sicher gelagert, kontrolliert und vorbereitet werden und welche Aufgaben MFA bei Impfungen übernehmen.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/arzneimittel-injektionen/">
+        ← Zurück zu Arzneimittel &amp; Injektionen
+      </a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 06 · Lektion 13</p>
+        <h1>Impfstoffe vorbereiten und bei Impfungen assistieren</h1>
+        <p class="intro">
+          Impfungen gehören zu den wichtigen Maßnahmen
+          der Prävention. Medizinische Fachangestellte
+          unterstützen bei der Organisation, Lagerung,
+          Vorbereitung und Durchführung von Impfungen.
+          Dabei müssen Impfstoffsicherheit, Hygiene,
+          ärztliche Zuständigkeit und Dokumentation
+          zuverlässig berücksichtigt werden.
+        </p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="eyebrow">Dein Lernziel</p>
+        <h2>Das kannst du nach dieser Lektion</h2>
+        <p>
+          Du beschreibst die sichere Lagerung und
+          Vorbereitung von Impfstoffen, erklärst die
+          Bedeutung der Kühlkette und unterscheidest
+          ärztliche Aufgaben von delegierbaren
+          Tätigkeiten. Außerdem benennst du wichtige
+          Sicherheitskontrollen, Beobachtungsmaßnahmen
+          und Anforderungen an die Impfdokumentation.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Impfungen im Praxisalltag</h2>
+        <p>
+          Impfungen sollen das Immunsystem gezielt
+          auf bestimmte Krankheitserreger oder
+          deren Bestandteile vorbereiten.
+          Dadurch kann das Risiko einer Erkrankung
+          oder eines schweren Krankheitsverlaufs
+          verringert werden.
+        </p>
+        <p>
+          In Arztpraxen gehören beispielsweise
+          Impfungen gegen Tetanus, Diphtherie,
+          Influenza oder andere impfpräventable
+          Erkrankungen zum Versorgungsalltag.
+        </p>
+        <p>
+          Für die Impfentscheidung sind insbesondere
+          die aktuellen Empfehlungen der Ständigen
+          Impfkommission (STIKO), die individuelle
+          Situation des Patienten und die
+          Zulassung des Impfstoffs relevant.
+        </p>
+        <p>
+          MFA können Impftermine organisieren,
+          Impfunterlagen vorbereiten, Impfstoffe
+          kontrollieren und im Rahmen ihrer
+          Qualifikation bei Impfungen assistieren.
+        </p>
+        <div class="remember">
+          <strong>Merke:&nbsp;</strong>
+          Die Entscheidung, ob ein Patient
+          geimpft werden soll, ist eine
+          ärztliche Aufgabe. MFA unterstützen
+          den sicheren organisatorischen
+          und praktischen Ablauf.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Impfstoffe richtig lagern und die Kühlkette sichern</h2>
+        <p>
+          Viele Impfstoffe sind temperaturempfindlich.
+          Eine falsche Lagerung kann ihre Qualität
+          und Wirksamkeit beeinträchtigen.
+        </p>
+        <p>
+          Für zahlreiche Impfstoffe ist eine
+          Lagerung bei +2 bis +8 °C vorgesehen.
+          Entscheidend sind jedoch immer die
+          produktspezifischen Herstellerangaben.
+        </p>
+        <ul>
+          <li>Impfstoffe im dafür geeigneten Kühlschrank lagern</li>
+          <li>Vorgeschriebene Lagertemperaturen überwachen und dokumentieren</li>
+          <li>Impfstoffe vor unzulässigem Einfrieren schützen</li>
+          <li>Besondere Lichtschutzvorgaben beachten</li>
+          <li>Verfallsdaten und Lagerbestände regelmäßig kontrollieren</li>
+          <li>Impfstoffe möglichst erst unmittelbar vor der Anwendung entnehmen</li>
+          <li>Bei Temperaturabweichungen nach dem festgelegten Verfahren handeln</li>
+        </ul>
+        <p>
+          Wird eine Abweichung von der vorgeschriebenen
+          Lagertemperatur festgestellt, darf die
+          Verwendbarkeit nicht eigenständig angenommen
+          werden. Betroffene Impfstoffe werden
+          gekennzeichnet und bis zur fachlichen
+          Klärung nicht verwendet.
+        </p>
+        <div class="warning-box">
+          <strong>Wichtig:&nbsp;</strong>
+          Ein möglicherweise falsch gelagerter
+          Impfstoff darf nicht einfach wieder
+          in den Kühlschrank gestellt und
+          anschließend ungeprüft verwendet werden.
+          Die Verwendbarkeit muss geklärt werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Impfstoffe vor der Anwendung kontrollieren</h2>
+        <p>
+          Vor der Vorbereitung eines Impfstoffs
+          müssen die ärztliche Anordnung und
+          die vorgesehenen Produktangaben
+          sorgfältig überprüft werden.
+        </p>
+        <p>
+          Wichtige Kontrollen sind:
+        </p>
+        <ul>
+          <li>Richtiger Patient und eindeutige ärztliche Anordnung</li>
+          <li>Richtiger Impfstoff und vorgesehene Dosis</li>
+          <li>Geeigneter Verabreichungsweg</li>
+          <li>Verfallsdatum und gegebenenfalls Verwendbarkeit nach Anbruch</li>
+          <li>Unversehrtheit der Verpackung und des Behältnisses</li>
+          <li>Vorgeschriebene Lagerbedingungen</li>
+          <li>Chargennummer für die spätere Dokumentation</li>
+          <li>Besondere Hinweise zur Rekonstitution oder Handhabung</li>
+        </ul>
+        <p>
+          Auch das Aussehen des Impfstoffs
+          wird entsprechend der Fachinformation
+          kontrolliert. Nicht jede Trübung
+          ist ungewöhnlich; entscheidend
+          sind die produktspezifischen Vorgaben.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:&nbsp;</strong>
+          Lege den Impfstoff und seine
+          Fachinformation vor der Vorbereitung
+          bereit. So können Verabreichungsweg,
+          Dosis und besondere Hinweise
+          zuverlässig abgeglichen werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+      <figure style="margin: 32px 0;">
+        <img
+          src="/images/impfstoffe-vorbereiten-und-bei-impfungen-assistieren.png"
+          alt="PraxisMFA Lernbild: Impfstoffe vorbereiten und bei Impfungen assistieren"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+        <p class="section-number">04</p>
+        <h2>Impfstoffe hygienisch und sicher vorbereiten</h2>
+        <p>
+          Die Vorbereitung erfolgt entsprechend
+          der Herstellerangaben und den
+          geltenden Hygienestandards der Praxis.
+        </p>
+        <p>
+          Dazu gehören:
+        </p>
+        <ul>
+          <li>Händehygiene vor der aseptischen Vorbereitung</li>
+          <li>Saubere und geeignete Arbeitsfläche</li>
+          <li>Kontrolle von Spritze, Kanüle und Impfstoffbehältnis</li>
+          <li>Aseptische Handhabung aller sterilen Bestandteile</li>
+          <li>Produktspezifische Vorgaben zum Mischen oder Auflösen beachten</li>
+          <li>Vorgeschriebene Zeitgrenzen nach Rekonstitution berücksichtigen</li>
+          <li>Verwechslungen durch eindeutige Zuordnung vermeiden</li>
+        </ul>
+        <p>
+          Einige Impfstoffe werden gebrauchsfertig
+          geliefert, andere müssen vor der
+          Anwendung mit einem vorgesehenen
+          Lösungsmittel rekonstituiert werden.
+        </p>
+        <p>
+          Ein Lösungsmittel darf nicht
+          eigenmächtig ausgetauscht werden.
+          Auch Schütteln oder vorsichtiges
+          Schwenken richtet sich nach
+          den jeweiligen Herstellerangaben.
+        </p>
+        <div class="warning-box">
+          <strong>Wichtig:&nbsp;</strong>
+          Impfstoffe dürfen nicht nach
+          allgemeinen Gewohnheiten vorbereitet
+          werden. Die konkrete Fachinformation
+          ist maßgeblich, insbesondere bei
+          Rekonstitution und Haltbarkeit.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Bei der Impfung assistieren</h2>
+        <p>
+          Die ärztliche Person prüft die
+          Indikation, mögliche Kontraindikationen
+          und den individuellen Impfbedarf.
+          Sie trägt die Verantwortung für
+          die erforderliche Aufklärung.
+        </p>
+        <p>
+          Eine MFA unterstützt den Ablauf
+          entsprechend ihrer Qualifikation
+          und den organisatorischen Vorgaben.
+        </p>
+        <ul>
+          <li>Patientenidentität und Unterlagen abgleichen</li>
+          <li>Impfpass beziehungsweise Impfdokumentation bereitlegen</li>
+          <li>Benötigtes Material vollständig vorbereiten</li>
+          <li>Geeignete Lagerung des Patienten unterstützen</li>
+          <li>Hygienische Durchführung organisatorisch absichern</li>
+          <li>Verwendete Materialien sicher entsorgen</li>
+          <li>Patienten nach der Impfung entsprechend den Vorgaben beobachten</li>
+        </ul>
+        <p>
+          Ob die eigentliche Injektion
+          durch eine MFA übernommen werden darf,
+          hängt von der Delegierbarkeit im
+          konkreten Fall, ihrer Qualifikation
+          und der ärztlichen Entscheidung ab.
+        </p>
+        <p>
+          Die vorgesehene Injektionsregion
+          und die Injektionstechnik richten
+          sich nach Impfstoff, Alter,
+          körperlicher Konstitution und
+          den geltenden Empfehlungen.
+        </p>
+        <div class="connection">
+          <strong>Für die Praxis:&nbsp;</strong>
+          Eine gut vorbereitete Impfung
+          beginnt lange vor der Injektion:
+          mit korrekter Lagerung,
+          eindeutiger Zuordnung,
+          ärztlicher Prüfung und
+          vollständigen Materialien.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Patienten nach der Impfung beobachten</h2>
+        <p>
+          Nach einer Impfung können
+          vorübergehende lokale Reaktionen
+          wie Schmerzen, Rötung oder
+          Schwellung auftreten.
+        </p>
+        <p>
+          Auch allgemeine Beschwerden,
+          beispielsweise Müdigkeit oder
+          erhöhte Temperatur, sind
+          je nach Impfstoff möglich.
+        </p>
+        <p>
+          Wichtig ist die Unterscheidung
+          zwischen erwartbaren Impfreaktionen
+          und möglichen Warnzeichen.
+        </p>
+        <ul>
+          <li>Auf Schwindel oder Kreislaufprobleme achten</li>
+          <li>Bei Beschwerden die zuständige ärztliche Person informieren</li>
+          <li>Ungewöhnliche oder schwere Reaktionen sofort ernst nehmen</li>
+          <li>Bei Anzeichen einer Anaphylaxie unverzüglich den Notfallablauf einleiten</li>
+          <li>Beobachtungszeit und Nachsorge nach den geltenden Empfehlungen gestalten</li>
+        </ul>
+        <p>
+          Eine schwere allergische Reaktion
+          kann sich unter anderem durch
+          Atembeschwerden, Kreislaufprobleme
+          oder rasch auftretende
+          Beschwerden mehrerer Organsysteme
+          bemerkbar machen.
+        </p>
+        <p>
+          Das Praxisteam muss für solche
+          Notfälle vorbereitet sein.
+          Die Notfallausrüstung und die
+          Zuständigkeiten müssen bekannt sein.
+        </p>
+        <div class="remember">
+          <strong>Merke:&nbsp;</strong>
+          Die Beobachtung nach einer Impfung
+          gehört zur Patientensicherheit.
+          Bei Verdacht auf eine schwere
+          allergische Reaktion zählt
+          sofortiges Handeln nach dem
+          Notfallstandard der Praxis.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Impfungen vollständig dokumentieren</h2>
+        <p>
+          Impfungen müssen nachvollziehbar
+          dokumentiert werden. Für die
+          Impfbescheinigung gelten
+          insbesondere die Vorgaben
+          des § 22 Infektionsschutzgesetz.
+        </p>
+        <p>
+          Zu den gesetzlich vorgesehenen
+          Angaben gehören unter anderem:
+        </p>
+        <ul>
+          <li>Datum der Schutzimpfung</li>
+          <li>Bezeichnung und Chargenbezeichnung des Impfstoffs</li>
+          <li>Name der Krankheit, gegen die geimpft wurde</li>
+          <li>Name und Anschrift der verantwortlichen Person</li>
+          <li>Bestätigung der Durchführung nach den gesetzlichen Vorgaben</li>
+        </ul>
+        <p>
+          In der Patientenakte werden
+          darüber hinaus die für die
+          Behandlung relevanten Angaben
+          und gegebenenfalls besondere
+          Beobachtungen festgehalten.
+        </p>
+        <p>
+          Die Dokumentation soll unmittelbar
+          nach der Impfung erfolgen.
+          Einträge dürfen nicht aus
+          dem Gedächtnis ergänzt werden,
+          wenn die Angaben nicht
+          zuverlässig feststehen.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:&nbsp;</strong>
+          Kontrolliere die Chargennummer
+          direkt am verwendeten Impfstoff.
+          Ein Übertragungsfehler kann
+          die spätere Rückverfolgbarkeit
+          erheblich erschweren.
+        </div>
+      </section>
+
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>Temperaturabweichung im Impfstoffkühlschrank</h2>
+        <p>
+          Am Morgen kontrolliert eine
+          MFA-Auszubildende die dokumentierten
+          Temperaturen des Impfstoffkühlschranks.
+          Das Messsystem zeigt, dass die
+          Temperatur während der Nacht
+          außerhalb des vorgeschriebenen
+          Bereichs lag.
+        </p>
+        <p>
+          Für den Vormittag sind mehrere
+          Impftermine vereinbart.
+          Eine Kollegin schlägt vor,
+          die Impfstoffe trotzdem zu verwenden,
+          weil der Kühlschrank inzwischen
+          wieder die richtige Temperatur erreicht hat.
+        </p>
+        <h3>Wie sollte die Auszubildende handeln?</h3>
+        <p>
+          Sie meldet die Abweichung sofort
+          der verantwortlichen Person.
+          Betroffene Impfstoffe dürfen
+          bis zur fachlichen Klärung
+          nicht verwendet werden.
+        </p>
+        <p>
+          Die Temperaturabweichung wird
+          dokumentiert. Nach den
+          festgelegten Praxisabläufen
+          wird geklärt, ob die Impfstoffe
+          noch verwendbar sind.
+          Falls nötig, müssen Impftermine
+          angepasst oder geeignete
+          Ersatzimpfstoffe organisiert werden.
+        </p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <ul>
+          <li>Die ärztliche Impfentscheidung und Aufklärung sind nicht Aufgabe der MFA.</li>
+          <li>Impfstoffe müssen gemäß Herstellerangaben gelagert werden.</li>
+          <li>Die Kühlkette ist für die Impfstoffqualität entscheidend.</li>
+          <li>Vor der Vorbereitung werden Impfstoff, Dosis, Verabreichungsweg und Haltbarkeit kontrolliert.</li>
+          <li>Rekonstitution und Handhabung richten sich nach der Fachinformation.</li>
+          <li>Hygiene, Patientenbeobachtung und Notfallbereitschaft sind unverzichtbar.</li>
+          <li>Eine vollständige Impfdokumentation ermöglicht die Rückverfolgbarkeit.</li>
+        </ul>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Prüfe dein Wissen</h2>
+
+        <details>
+          <summary>1. Warum ist die Kühlkette bei Impfstoffen wichtig?</summary>
+          <p>
+            Weil unzulässige Temperaturen
+            die Qualität und Wirksamkeit
+            eines Impfstoffs beeinträchtigen können.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. Was ist bei einer Temperaturabweichung zu tun?</summary>
+          <p>
+            Die Abweichung dokumentieren,
+            die verantwortliche Person informieren
+            und betroffene Impfstoffe
+            bis zur fachlichen Klärung
+            nicht verwenden.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. Wer entscheidet über die medizinische Indikation einer Impfung?</summary>
+          <p>
+            Die zuständige ärztliche Person
+            auf Grundlage der individuellen
+            Situation und geltender Empfehlungen.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. Was ist bei der Rekonstitution eines Impfstoffs zu beachten?</summary>
+          <p>
+            Ausschließlich die
+            produktspezifischen Vorgaben,
+            insbesondere zum Lösungsmittel,
+            zur Handhabung und
+            zur Verwendungsdauer.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. Warum muss die Chargennummer dokumentiert werden?</summary>
+          <p>
+            Damit der verwendete Impfstoff
+            eindeutig zurückverfolgt
+            werden kann.
+          </p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Komplikationen und Notfälle bei Arzneimittelgabe und Injektionen</h2>
+        <p>
+          In der nächsten Lektion lernst du,
+          wie unerwünschte Reaktionen,
+          Komplikationen und medizinische
+          Notfälle frühzeitig erkannt
+          und angemessen weitergeleitet werden.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

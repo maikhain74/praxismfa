@@ -1,0 +1,805 @@
+---
+const title = "Intramuskuläre Injektionen vorbereiten und durchführen";
+const description = "Lerne die sichere Vorbereitung, anatomischen Grundlagen, Durchführung und Nachbereitung intramuskulärer Injektionen im MFA-Praxisalltag.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/arzneimittel-injektionen/">
+        ← Zurück zu Arzneimittel &amp; Injektionen
+      </a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 06 · Lektion 12</p>
+        <h1>Intramuskuläre Injektionen vorbereiten und durchführen</h1>
+        <p class="intro">
+          Bei einer intramuskulären Injektion wird ein Arzneimittel
+          in die Muskulatur eingebracht. Anders als bei der
+          subkutanen Injektion müssen dabei besonders
+          die anatomischen Strukturen und möglichen
+          Verletzungsrisiken berücksichtigt werden.
+          Du lernst, worauf es bei Vorbereitung,
+          Durchführung und Patientensicherheit ankommt.
+        </p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="eyebrow">Dein Lernziel</p>
+        <h2>Das kannst du nach dieser Lektion</h2>
+        <p>
+          Du erklärst das Prinzip der intramuskulären Injektion,
+          beschreibst geeignete Injektionsregionen und
+          anatomische Risiken, benennst die erforderlichen
+          Sicherheitskontrollen und erkennst Situationen,
+          in denen eine Injektion nicht ohne ärztliche
+          Rücksprache durchgeführt werden darf.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Was ist eine intramuskuläre Injektion?</h2>
+        <p>
+          Bei einer intramuskulären Injektion wird ein
+          Arzneimittel in das Muskelgewebe verabreicht.
+          Die Abkürzung lautet i.m.
+        </p>
+        <p>
+          Die Muskulatur ist gut durchblutet.
+          Wie schnell ein Arzneimittel aufgenommen wird,
+          hängt jedoch auch vom Wirkstoff,
+          seiner Zubereitung und der Injektionsregion ab.
+        </p>
+        <p>
+          Intramuskulär werden beispielsweise bestimmte
+          Impfstoffe und andere dafür zugelassene
+          Arzneimittel verabreicht.
+        </p>
+        <p>
+          Nicht jedes Arzneimittel darf intramuskulär
+          gegeben werden. Der vorgeschriebene
+          Verabreichungsweg ist verbindlich.
+        </p>
+        <div class="remember">
+          <strong>Merke:&nbsp;</strong>
+          Intramuskulär bedeutet: in die Muskulatur.
+          Eine versehentliche Verabreichung in
+          das falsche Gewebe kann die Wirksamkeit
+          und Sicherheit einer Behandlung beeinträchtigen.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Ärztliche Anordnung, Delegation und Verantwortung</h2>
+        <p>
+          Vor einer intramuskulären Injektion muss
+          eine eindeutige ärztliche Anordnung vorliegen.
+          Die Durchführung durch eine MFA setzt
+          voraus, dass die Tätigkeit im konkreten Fall
+          delegierbar ist und die ausführende Person
+          über die erforderliche Kompetenz verfügt.
+        </p>
+        <p>
+          Vor der Vorbereitung werden geprüft:
+        </p>
+        <ul>
+          <li>Identität des Patienten</li>
+          <li>Verordnetes Arzneimittel und vorgesehene Dosis</li>
+          <li>Intramuskulärer Verabreichungsweg</li>
+          <li>Vorgesehener Zeitpunkt der Gabe</li>
+          <li>Bekannte Allergien und relevante Risiken</li>
+          <li>Erforderliche ärztliche Aufklärung und Einwilligung</li>
+          <li>Eigene Qualifikation und geltende Praxisstandards</li>
+        </ul>
+        <p>
+          Bei fehlenden Angaben oder Unsicherheiten
+          muss die Durchführung unterbrochen
+          und ärztliche Rücksprache gehalten werden.
+        </p>
+        <div class="warning-box">
+          <strong>Wichtig:&nbsp;</strong>
+          Intramuskuläre Injektionen dürfen nicht
+          allein deshalb übernommen werden,
+          weil eine ärztliche Anordnung vorliegt.
+          Die persönliche Handlungskompetenz
+          und die konkrete Risikosituation
+          müssen berücksichtigt werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Injektionsregionen und anatomische Risiken</h2>
+        <p>
+          Die Auswahl einer geeigneten Injektionsregion
+          ist besonders wichtig, weil sich in der Nähe
+          von Muskeln auch Nerven und Blutgefäße befinden.
+        </p>
+        <p>
+          Häufig verwendete Regionen sind:
+        </p>
+        <ul>
+          <li><strong>Oberarm:&nbsp;</strong> Deltamuskel, insbesondere bei geeigneten Impfungen</li>
+          <li><strong>Oberschenkel:&nbsp;</strong> seitlicher Anteil des Musculus vastus lateralis</li>
+          <li><strong>Hüftregion:&nbsp;</strong> ventroglutealer Bereich, soweit für die konkrete Anwendung geeignet</li>
+        </ul>
+        <p>
+          Welche Region verwendet wird, richtet sich
+          unter anderem nach dem Arzneimittel,
+          dem Injektionsvolumen, dem Alter,
+          der körperlichen Konstitution
+          und den geltenden fachlichen Empfehlungen.
+        </p>
+        <p>
+          Besonders bei Injektionen in der Gesäßregion
+          muss die Nähe zu wichtigen Nerven
+          und Gefäßen berücksichtigt werden.
+          Die klassische dorsogluteale Injektionsregion
+          ist wegen möglicher Verletzungen
+          des Ischiasnervs kritisch zu beurteilen.
+        </p>
+        <div class="warning-box">
+          <strong>Wichtig:&nbsp;</strong>
+          Die genaue anatomische Orientierung
+          muss praktisch unter fachlicher Anleitung
+          erlernt werden. Eine schematische
+          Auswahl der Einstichstelle ohne sichere
+          anatomische Kenntnisse ist nicht ausreichend.
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+      <figure style="margin: 32px 0;">
+        <img
+          src="/images/intramuskulaere-injektionen-vorbereiten-und-durchfuehren.png"
+          alt="PraxisMFA Lernbild: Intramuskuläre Injektionen vorbereiten und durchführen"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+        <p class="section-number">04</p>
+        <h2>Patienten vorbereiten und informieren</h2>
+        <p>
+          Vor der Injektion wird die vorgesehene
+          Maßnahme mit dem Patienten abgeglichen.
+          Die erforderliche ärztliche Aufklärung
+          muss erfolgt sein.
+        </p>
+        <p>
+          Die MFA erläutert im Rahmen ihrer
+          Zuständigkeit den praktischen Ablauf
+          und achtet auf eine ruhige,
+          respektvolle Kommunikation.
+        </p>
+        <ul>
+          <li>Patientenidentität überprüfen</li>
+          <li>Einwilligung und mögliche Bedenken beachten</li>
+          <li>Eine geeignete, entspannte Körperposition ermöglichen</li>
+          <li>Privatsphäre und Intimsphäre schützen</li>
+          <li>Vorgesehene Injektionsregion beurteilen</li>
+          <li>Auf Hautveränderungen und lokale Beschwerden achten</li>
+          <li>Bei Unklarheiten die zuständige ärztliche Person einbeziehen</li>
+        </ul>
+        <p>
+          Angst und starke Muskelanspannung können
+          die Behandlung erschweren. Eine verständliche
+          Erklärung und eine geeignete Lagerung
+          unterstützen einen sicheren Ablauf.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:&nbsp;</strong>
+          Frage vor der Injektion nach Beschwerden
+          an der vorgesehenen Stelle.
+          Schmerzen, Entzündungen oder andere
+          Auffälligkeiten müssen vor der
+          Durchführung fachlich bewertet werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Intramuskuläre Injektion sicher durchführen</h2>
+        <p>
+          Die konkrete Durchführung richtet sich
+          nach dem Arzneimittel, der Injektionsregion,
+          der verwendeten Kanüle und den geltenden
+          fachlichen Standards.
+        </p>
+        <p>
+          Zum sicheren Ablauf gehören:
+        </p>
+        <ul>
+          <li>Ärztliche Anordnung und Sicherheitskontrollen abschließend prüfen</li>
+          <li>Händehygiene entsprechend den Indikationen durchführen</li>
+          <li>Arzneimittel und Materialien aseptisch vorbereiten</li>
+          <li>Geeignete Injektionsregion anatomisch sicher bestimmen</li>
+          <li>Passende Kanüle anhand der konkreten Situation auswählen</li>
+          <li>Hautantiseptik einschließlich Einwirkzeit korrekt durchführen</li>
+          <li>Injektion gemäß Arzneimittelvorgaben und geschultem Verfahren durchführen</li>
+          <li>Kanüle unmittelbar in einem geeigneten Abwurfbehälter entsorgen</li>
+        </ul>
+        <p>
+          Bei der intramuskulären Injektion muss
+          die Kanüle das Muskelgewebe sicher erreichen,
+          ohne unnötige Verletzungsrisiken zu erzeugen.
+          Die Auswahl der Kanülenlänge hängt daher
+          unter anderem von der Körperregion
+          und dem Körperbau des Patienten ab.
+        </p>
+        <p>
+          Auch die Frage, ob eine Aspiration
+          vorgesehen ist, muss anhand des
+          konkreten Arzneimittels und der
+          aktuellen fachlichen Empfehlungen
+          beurteilt werden. Bei vielen
+          intramuskulären Impfungen wird
+          eine Aspiration nicht empfohlen.
+        </p>
+        <div class="connection">
+          <strong>Für die Praxis:&nbsp;</strong>
+          Eine intramuskuläre Injektion ist
+          keine rein technische Handlung.
+          Sichere anatomische Orientierung,
+          passende Materialauswahl und
+          Patientenbeobachtung sind
+          ebenso wichtig wie die Injektion selbst.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Komplikationen erkennen und richtig handeln</h2>
+        <p>
+          Intramuskuläre Injektionen können
+          lokale und allgemeine unerwünschte
+          Reaktionen auslösen.
+        </p>
+        <p>
+          Mögliche Auffälligkeiten sind:
+        </p>
+        <ul>
+          <li>Schmerzen oder ausgeprägte Druckempfindlichkeit</li>
+          <li>Bluterguss oder Blutung</li>
+          <li>Rötung, Schwellung oder Überwärmung</li>
+          <li>Lokale Infektion oder Abszessbildung</li>
+          <li>Ungewöhnliche Missempfindungen oder neurologische Beschwerden</li>
+          <li>Schwindel oder Kreislaufreaktionen</li>
+          <li>Anzeichen einer allergischen Reaktion</li>
+        </ul>
+        <p>
+          Bei plötzlich auftretenden starken Schmerzen,
+          elektrisierenden Missempfindungen oder
+          anderen ungewöhnlichen Beschwerden
+          muss die Durchführung sofort unterbrochen
+          und ärztliche Hilfe hinzugezogen werden.
+        </p>
+        <p>
+          Bei Anzeichen eines akuten Notfalls,
+          insbesondere einer schweren allergischen
+          Reaktion, wird unverzüglich der
+          Notfallablauf der Praxis eingeleitet.
+        </p>
+        <div class="remember">
+          <strong>Merke:&nbsp;</strong>
+          Ungewöhnliche Schmerzen oder
+          neurologische Symptome während
+          einer Injektion sind Warnzeichen.
+          Die Maßnahme darf dann nicht
+          einfach fortgesetzt werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Nachbereitung und Dokumentation</h2>
+        <p>
+          Nach der Injektion werden die
+          verwendeten Materialien sicher entsorgt.
+          Anschließend erfolgen die notwendigen
+          Hygienemaßnahmen und die
+          Beobachtung des Patienten.
+        </p>
+        <p>
+          Die Dokumentation muss die durchgeführte
+          Behandlung nachvollziehbar machen.
+        </p>
+        <ul>
+          <li>Arzneimittel und verabreichte Dosis festhalten</li>
+          <li>Datum, Uhrzeit und Verabreichungsweg dokumentieren</li>
+          <li>Injektionsregion nachvollziehbar erfassen</li>
+          <li>Durchführende Person dokumentieren</li>
+          <li>Besondere Beobachtungen und Reaktionen festhalten</li>
+          <li>Erforderliche Chargenangaben ergänzen, insbesondere bei Impfstoffen</li>
+          <li>Abweichungen und Zwischenfälle unverzüglich weitergeben</li>
+        </ul>
+        <p>
+          Bei Impfungen gelten zusätzlich
+          die spezifischen gesetzlichen
+          Dokumentationsanforderungen.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:&nbsp;</strong>
+          Dokumentiere möglichst unmittelbar
+          nach der Durchführung.
+          Eine vollständige Dokumentation
+          unterstützt die Patientensicherheit
+          und die weitere Behandlung.
+        </div>
+      </section>
+
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>Unsicherheit bei der Injektionsstelle</h2>
+        <p>
+          Eine MFA-Auszubildende soll unter
+          Anleitung bei einer intramuskulären
+          Injektion assistieren.
+        </p>
+        <p>
+          Die Patientin ist sehr schlank.
+          Die Auszubildende ist unsicher,
+          ob die vorgesehene Kanülenlänge
+          und Injektionsregion geeignet sind.
+        </p>
+        <h3>Wie sollte sie reagieren?</h3>
+        <p>
+          Sie beginnt die Injektion nicht
+          auf eigene Verantwortung.
+          Sie spricht ihre Unsicherheit
+          offen an und bittet die
+          anleitende Fachkraft beziehungsweise
+          die zuständige ärztliche Person
+          um eine fachliche Beurteilung.
+        </p>
+        <p>
+          Erst nach Klärung der geeigneten
+          Injektionsregion, Materialauswahl
+          und Zuständigkeit kann die
+          weitere Durchführung erfolgen.
+        </p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <ul>
+          <li>Intramuskuläre Injektionen erfolgen in das Muskelgewebe.</li>
+          <li>Ärztliche Anordnung und persönliche Handlungskompetenz sind unverzichtbar.</li>
+          <li>Die anatomisch sichere Wahl der Injektionsregion schützt Nerven und Gefäße.</li>
+          <li>Kanülenlänge und Technik müssen individuell geeignet sein.</li>
+          <li>Hygiene und Hautantiseptik sind verbindliche Sicherheitsmaßnahmen.</li>
+          <li>Ungewöhnliche Beschwerden erfordern sofortige Unterbrechung und Abklärung.</li>
+          <li>Nachbereitung, Beobachtung und Dokumentation gehören zur vollständigen Durchführung.</li>
+        </ul>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Prüfe dein Wissen</h2>
+
+        <details>
+          <summary>1. In welches Gewebe erfolgt eine intramuskuläre Injektion?</summary>
+          <p>In das Muskelgewebe.</p>
+        </details>
+
+        <details>
+          <summary>2. Warum ist die anatomische Orientierung besonders wichtig?</summary>
+          <p>
+            Weil in der Nähe der Injektionsregionen
+            Nerven und Blutgefäße verlaufen,
+            die bei falscher Durchführung
+            verletzt werden können.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. Wovon hängt die Auswahl der Kanülenlänge ab?</summary>
+          <p>
+            Unter anderem von der Injektionsregion,
+            der körperlichen Konstitution,
+            dem Arzneimittel und den
+            geltenden fachlichen Vorgaben.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. Was tust du bei plötzlich auftretenden neurologischen Beschwerden?</summary>
+          <p>
+            Die Injektion sofort unterbrechen
+            und unverzüglich eine
+            ärztliche Beurteilung veranlassen.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. Welche Angaben gehören zur Dokumentation?</summary>
+          <p>
+            Unter anderem Arzneimittel,
+            Dosis, Zeitpunkt, Verabreichungsweg,
+            Injektionsregion, durchführende Person
+            und besondere Beobachtungen.
+          </p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Impfstoffe vorbereiten und bei Impfungen assistieren</h2>
+        <p>
+          In der nächsten Lektion lernst du,
+          wie Impfstoffe sicher vorbereitet werden
+          und welche Aufgaben MFA bei der
+          Organisation und Durchführung
+          von Impfungen übernehmen.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
