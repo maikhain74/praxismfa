@@ -1,0 +1,609 @@
+---
+const pageTitle = "Krampfanfälle und Epilepsie im Notfall | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="PraxisMFA: Epileptische Anfälle erkennen, Erste Hilfe leisten, Status epilepticus erkennen und Patienten sicher betreuen." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 17</p>
+    <h1>Krampfanfälle und Epilepsie im Notfall</h1>
+    <p class="lead">Ein Patient sitzt im Wartezimmer. Plötzlich verliert er das Bewusstsein, stürzt vom Stuhl und beginnt am ganzen Körper zu krampfen. Andere Patienten geraten in Panik. Du musst sofort handeln – aber welche Maßnahmen helfen wirklich und welche können gefährlich sein?</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erkennst unterschiedliche Formen epileptischer Anfälle, leitest sichere Erste-Hilfe-Maßnahmen ein, betreust Patienten nach einem Anfall und erkennst Situationen, in denen unverzüglich der Rettungsdienst alarmiert werden muss.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Was ist ein epileptischer Anfall?</h2>
+    <p>Ein epileptischer Anfall entsteht durch eine vorübergehende, übermäßige oder ungewöhnlich synchrone elektrische Aktivität von Nervenzellen im Gehirn.</p>
+    <p>Je nachdem, welche Hirnregionen betroffen sind, können sehr unterschiedliche Symptome auftreten.</p>
+    <p>Ein epileptischer Anfall muss nicht immer mit sichtbaren Krämpfen verbunden sein. Manche Patienten zeigen lediglich eine kurze Bewusstseinsstörung oder auffällige Bewegungen.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Nicht jeder epileptische Anfall ist ein großer Krampfanfall. Auch kurze Bewusstseinsaussetzer können epileptische Anfälle sein.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Epilepsie und einmaliger Krampfanfall</h2>
+    <p>Ein einzelner epileptischer Anfall bedeutet nicht automatisch, dass eine Epilepsie vorliegt.</p>
+    <p>Epilepsie ist eine Erkrankung des Gehirns mit einer anhaltenden Neigung zu epileptischen Anfällen. Die Diagnose erfolgt nach festgelegten medizinischen Kriterien.</p>
+    <p>Ein Anfall kann auch im Zusammenhang mit akuten Erkrankungen oder anderen Auslösern auftreten.</p>
+    <h3>Mögliche Auslöser und Zusammenhänge</h3>
+    <ul>
+      <li>Bekannte Epilepsie mit ausgelassener antikonvulsiver Medikation</li>
+      <li>Schlafmangel bei entsprechend empfindlichen Personen</li>
+      <li>Akute Stoffwechselstörungen, beispielsweise Hypoglykämie</li>
+      <li>Alkoholentzug</li>
+      <li>Akute Erkrankungen oder Verletzungen des Gehirns</li>
+      <li>Fieberassoziierte Anfälle bei kleinen Kindern</li>
+    </ul>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Bei einem erstmaligen Anfall muss die Ursache medizinisch abgeklärt werden. Nicht jeder Krampfanfall ist Ausdruck einer bekannten Epilepsie.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Welche Anfallsformen gibt es?</h2>
+    <h3>Fokale Anfälle</h3>
+    <p>Diese Anfälle beginnen in einem begrenzten Bereich des Gehirns. Sie können mit erhaltenem oder beeinträchtigtem Bewusstsein auftreten.</p>
+    <p>Mögliche Zeichen sind einseitige Zuckungen, ungewöhnliche Empfindungen, starres Blickverhalten oder wiederholte automatische Bewegungen.</p>
+    <h3>Generalisierte tonisch-klonische Anfälle</h3>
+    <p>Typisch sind ein Bewusstseinsverlust, eine Phase mit Muskelversteifung und anschließend rhythmische Zuckungen.</p>
+    <p>Die Atmung kann während des Anfalls unregelmäßig wirken. Nach dem Anfall besteht häufig eine Phase ausgeprägter Müdigkeit oder Verwirrtheit.</p>
+    <h3>Absencen</h3>
+    <p>Absencen können sich durch kurze Bewusstseinsunterbrechungen mit starrem Blick äußern. Sie werden leicht mit Unaufmerksamkeit verwechselt.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Beschreibe bei der Übergabe genau, was du beobachtet hast, statt nur zu sagen: „Der Patient hatte einen Krampfanfall.“
+    </div>
+  </section>
+
+  <section class="content-section">
+    
+    <figure style="margin: 2rem 0;">
+      <img
+        src="/images/krampfanfaelle-und-epilepsie-im-notfall.png"
+        alt="PraxisMFA-Infografik: Krampfanfälle und Epilepsie, Anfallsformen, Erste Hilfe, Verhalten nach dem Anfall und Status epilepticus"
+        loading="lazy"
+        style="display:block;width:100%;height:auto;border-radius:16px;"
+      />
+    </figure>
+
+    <p class="section-number">04</p>
+    <h2>Erste Hilfe während eines Krampfanfalls</h2>
+    <p>Während eines tonisch-klonischen Anfalls steht der Schutz vor zusätzlichen Verletzungen im Vordergrund.</p>
+    <ol>
+      <li>Ruhe bewahren und sofort Unterstützung aus dem Praxisteam rufen.</li>
+      <li>Den Zeitpunkt des Anfallsbeginns feststellen und die Dauer messen.</li>
+      <li>Gefährliche Gegenstände aus der unmittelbaren Umgebung entfernen.</li>
+      <li>Den Kopf möglichst vor harten Gegenständen schützen, beispielsweise durch eine weiche Unterlage.</li>
+      <li>Enge Kleidung am Hals vorsichtig lockern, soweit dies gefahrlos möglich ist.</li>
+      <li>Den Patienten nicht gewaltsam festhalten.</li>
+      <li>Keine Gegenstände, Finger oder Medikamente in den Mund einführen.</li>
+      <li>Den Anfall beobachten und bei Notfallzeichen 112 alarmieren.</li>
+    </ol>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Niemals versuchen, die Zuckungen durch Festhalten zu stoppen oder den Mund gewaltsam zu öffnen. Dadurch können schwere Verletzungen entstehen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Was passiert nach dem Anfall?</h2>
+    <p>Nach einem tonisch-klonischen Anfall folgt häufig eine sogenannte postiktale Phase.</p>
+    <p>Der Patient kann müde, verwirrt, desorientiert oder nur eingeschränkt ansprechbar sein.</p>
+    <ol>
+      <li>Bewusstsein und normale Atmung überprüfen.</li>
+      <li>Bei Bewusstlosigkeit und normaler Atmung die stabile Seitenlage durchführen.</li>
+      <li>Bei fehlender normaler Atmung sofort den Notfallalgorithmus mit Wiederbelebung beginnen.</li>
+      <li>Den Patienten vor weiteren Verletzungen schützen und beruhigen.</li>
+      <li>Beim Patienten bleiben und die Erholung beobachten.</li>
+      <li>Keine Nahrung, Getränke oder Tabletten geben, solange das Schlucken nicht sicher möglich ist.</li>
+    </ol>
+    <div class="remember">
+      <strong>Merke:</strong> Nach dem Krampfanfall muss die Atmung aktiv überprüft werden. Eine erschöpfte oder bewusstlose Person darf nicht einfach unbeobachtet bleiben.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Wann muss 112 alarmiert werden?</h2>
+    <p>Ein epileptischer Anfall kann in einen lebensbedrohlichen Notfall übergehen.</p>
+    <p>Eine sofortige rettungsdienstliche Versorgung ist insbesondere erforderlich bei:</p>
+    <ul>
+      <li>Einsetzendem oder anhaltendem Krampfanfall von etwa fünf Minuten oder länger</li>
+      <li>Mehreren Anfällen hintereinander ohne ausreichende Erholung dazwischen</li>
+      <li>Erstmaligem Krampfanfall</li>
+      <li>Fehlender normaler Atmung oder anhaltender schwerer Bewusstseinsstörung</li>
+      <li>Schweren Verletzungen während des Anfalls</li>
+      <li>Anfällen im Wasser</li>
+      <li>Besonderen Risikosituationen, beispielsweise Schwangerschaft</li>
+    </ul>
+    <p>Bei einem anhaltenden Krampfanfall darf nicht erst nach Ablauf von fünf Minuten mit der Organisation des Notrufs begonnen werden, wenn eine gefährliche Entwicklung bereits erkennbar ist.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Ein Krampfanfall, der fünf Minuten erreicht, ist ein zeitkritischer Notfall. Frühzeitig Hilfe organisieren und 112 alarmieren.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Status epilepticus erkennen</h2>
+    <p>Ein konvulsiver Status epilepticus liegt im klinischen Notfallmanagement vor, wenn ein tonisch-klonischer Anfall etwa fünf Minuten anhält oder Anfälle wiederholt auftreten, ohne dass der Patient dazwischen das Bewusstsein ausreichend wiedererlangt.</p>
+    <p>Ein solcher Zustand kann zu erheblichen Komplikationen führen und erfordert eine sofortige medizinische Behandlung.</p>
+    <h3>Warum ist die Zeit so wichtig?</h3>
+    <p>Je länger ein Anfall anhält, desto schwieriger kann seine Beendigung werden. Deshalb wird die Anfallsdauer von Beginn an dokumentiert.</p>
+    <p>Die MFA unterstützt die Notfallversorgung, bereitet angeforderte Materialien vor und beobachtet Bewusstsein, Atmung und Kreislauf.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Beim Status epilepticus ist die Anfallsdauer eine entscheidende Information für die weitere Behandlung.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Notfallmedikamente: Welche Rolle hat die MFA?</h2>
+    <p>Bei länger anhaltenden epileptischen Anfällen können ärztlich angeordnete Notfallmedikamente erforderlich sein. Häufig kommen Benzodiazepine zum Einsatz.</p>
+    <p>Welche Substanz, Dosierung und Applikationsform geeignet sind, hängt von der Situation und den geltenden medizinischen Vorgaben ab.</p>
+    <p>Für die MFA ist wichtig:</p>
+    <ul>
+      <li>Den Notfall sofort erkennen und Hilfe organisieren</li>
+      <li>Vorhandene individuelle Notfallpläne berücksichtigen</li>
+      <li>Ärztliche Anordnungen und festgelegte Zuständigkeiten beachten</li>
+      <li>Materialien für die weitere Behandlung vorbereiten</li>
+      <li>Atmung und Bewusstsein besonders aufmerksam beobachten</li>
+      <li>Medikamentengabe und Wirkung entsprechend Zuständigkeit dokumentieren</li>
+    </ul>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Notfallmedikamente werden nicht eigenmächtig verabreicht. Es gelten ärztliche Anordnung, individuelle Notfallpläne und die im Team geregelten Kompetenzen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Beobachtung und strukturierte Übergabe</h2>
+    <p>Für die weitere Diagnostik und Behandlung sind möglichst genaue Beobachtungen hilfreich.</p>
+    <h3>Diese Informationen solltest du erfassen</h3>
+    <ul>
+      <li>Beginn und Ende des Anfalls</li>
+      <li>Art der Bewegungen und betroffene Körperregionen</li>
+      <li>Bewusstseinszustand während und nach dem Anfall</li>
+      <li>Auffälligkeiten der Atmung</li>
+      <li>Mögliche Verletzungen</li>
+      <li>Bekannte Epilepsie und vorhandener Notfallplan</li>
+      <li>Durchgeführte Maßnahmen und beobachtete Veränderungen</li>
+    </ul>
+    <p>Die Übergabe muss sachlich und nachvollziehbar erfolgen. Vermutungen werden klar von tatsächlich beobachteten Zeichen getrennt.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> „Anfallsbeginn um 10:14 Uhr, zunächst Versteifung, danach rhythmische Zuckungen beider Arme und Beine, seit 10:17 Uhr keine Zuckungen mehr, Patient weiterhin schläfrig“ ist deutlich hilfreicher als „Patient hat gekrampft“.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Häufige Fehler vermeiden</h2>
+    <ul>
+      <li>Krampfende Arme oder Beine gewaltsam festhalten</li>
+      <li>Finger oder Gegenstände in den Mund stecken</li>
+      <li>Den Patienten während des Krampfens zum Trinken auffordern</li>
+      <li>Den Anfallsbeginn nicht dokumentieren</li>
+      <li>Eine anhaltende Anfallsserie unterschätzen</li>
+      <li>Nach dem Anfall die Atmung nicht überprüfen</li>
+      <li>Einen verwirrten Patienten allein lassen</li>
+      <li>Den Notruf bei Warnzeichen verzögern</li>
+    </ul>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Ein funktionierender Notfallablauf beginnt mit klarer Aufgabenverteilung: Eine Person betreut den Patienten, eine alarmiert Hilfe, eine weitere bereitet benötigtes Material vor.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PRAXISSITUATION</p>
+    <h2>Krampfanfall im Wartezimmer</h2>
+    <p>Ein 29-jähriger Patient wartet auf seine Untersuchung. Plötzlich verliert er das Bewusstsein und fällt zu Boden. Sein Körper versteift sich, anschließend treten rhythmische Zuckungen auf. Eine Begleitperson versucht, seine Arme festzuhalten.</p>
+    <p><strong>Dein Handeln:</strong> Du sorgst dafür, dass der Patient nicht zusätzlich verletzt wird, entfernst gefährliche Gegenstände und erklärst der Begleitperson, dass sie ihn nicht festhalten darf. Du rufst Unterstützung, notierst den Anfallsbeginn und beobachtest den Verlauf. Bei anhaltendem Anfall oder anderen Notfallzeichen wird unverzüglich 112 alarmiert. Nach dem Anfall kontrollierst du Bewusstsein und Atmung.</p>
+    <p><strong>Prüfungsfrage:</strong> Warum ist es falsch, dem Patienten während des Anfalls einen Gegenstand zwischen die Zähne zu schieben?</p>
+    <p><strong>Antwort:</strong> Dadurch können Zähne, Kiefer und Atemwege verletzt werden. Gegenstände im Mund erhöhen die Gefahr zusätzlicher Komplikationen.</p>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Epileptische Anfälle können sehr unterschiedlich aussehen.</li>
+      <li>Ein einzelner Anfall bedeutet nicht automatisch eine Epilepsie.</li>
+      <li>Während eines Krampfanfalls vor Verletzungen schützen.</li>
+      <li>Den Patienten nicht festhalten und nichts in den Mund stecken.</li>
+      <li>Den Anfallsbeginn und die Dauer dokumentieren.</li>
+      <li>Bei anhaltendem Krampfanfall um fünf Minuten oder früheren Warnzeichen sofort 112 alarmieren.</li>
+      <li>Wiederholte Anfälle ohne Erholung können einen Status epilepticus anzeigen.</li>
+      <li>Nach dem Anfall Bewusstsein und Atmung überprüfen.</li>
+      <li>Bei Bewusstlosigkeit mit normaler Atmung stabile Seitenlage.</li>
+      <li>Die MFA unterstützt die Notfallversorgung und dokumentiert Beobachtungen.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck: Prüfe dein Wissen</h2>
+    <details><summary>1. Was verursacht einen epileptischen Anfall?</summary><p>Eine vorübergehende übermäßige oder ungewöhnlich synchrone elektrische Aktivität von Nervenzellen im Gehirn.</p></details>
+    <details><summary>2. Bedeutet ein einzelner Anfall automatisch Epilepsie?</summary><p>Nein. Ein einzelner Anfall kann verschiedene Ursachen haben und muss entsprechend medizinisch eingeordnet werden.</p></details>
+    <details><summary>3. Wie kann ein generalisierter tonisch-klonischer Anfall aussehen?</summary><p>Bewusstseinsverlust, Muskelversteifung und anschließende rhythmische Zuckungen.</p></details>
+    <details><summary>4. Was ist während eines Krampfanfalls besonders wichtig?</summary><p>Den Patienten vor zusätzlichen Verletzungen schützen und die Anfallsdauer erfassen.</p></details>
+    <details><summary>5. Warum darf man krampfende Gliedmaßen nicht festhalten?</summary><p>Weil dadurch zusätzliche Verletzungen entstehen können und die Krämpfe so nicht sicher beendet werden.</p></details>
+    <details><summary>6. Was darf niemals in den Mund eingeführt werden?</summary><p>Finger oder Gegenstände, die Verletzungen oder eine Atemwegsgefährdung verursachen können.</p></details>
+    <details><summary>7. Wann ist ein anhaltender Krampfanfall ein zeitkritischer Notfall?</summary><p>Spätestens bei einer Dauer von etwa fünf Minuten; bei anderen Warnzeichen muss bereits früher Hilfe organisiert werden.</p></details>
+    <details><summary>8. Was versteht man unter einem konvulsiven Status epilepticus?</summary><p>Einen länger anhaltenden tonisch-klonischen Anfall oder wiederholte Anfälle ohne ausreichende Erholung dazwischen.</p></details>
+    <details><summary>9. Was muss nach dem Anfall überprüft werden?</summary><p>Insbesondere Bewusstsein und normale Atmung.</p></details>
+    <details><summary>10. Welche Informationen sind für die Übergabe besonders wichtig?</summary><p>Anfallsbeginn, Dauer, beobachtete Bewegungen, Bewusstseinszustand, Atmung, Verletzungen und durchgeführte Maßnahmen.</p></details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Notfallausstattung und Notfallmedikamente</h2>
+    <p>In Lektion 18 vertiefst du im Premiumbereich, welche Notfallausstattung eine Arztpraxis benötigt, wie sie kontrolliert wird und welche Rolle Notfallmedikamente im strukturierten Notfallmanagement spielen.</p>
+  </section>
+</main>
+</body>
+</html>

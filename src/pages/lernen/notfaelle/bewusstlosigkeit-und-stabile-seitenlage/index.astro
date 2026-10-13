@@ -1,0 +1,629 @@
+---
+const pageTitle = "Bewusstlosigkeit und stabile Seitenlage | PraxisMFA";
+---
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 06</p>
+    <h1>Bewusstlosigkeit und stabile Seitenlage</h1>
+    <p class="lead">Ein Patient reagiert nicht mehr, atmet aber normal. Jetzt musst du seine Atemwege schützen, die stabile Seitenlage sicher durchführen und seinen Zustand bis zum Eintreffen des Rettungsdienstes überwachen.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erklärst die Gefahren einer Bewusstlosigkeit, erkennst die Voraussetzungen für die stabile Seitenlage, führst sie schrittweise durch und reagierst richtig, wenn sich die Atmung verändert.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Warum Bewusstlosigkeit lebensgefährlich sein kann</h2>
+    <p>Eine bewusstlose Person reagiert nicht auf Ansprache und vorsichtige Berührung. Schutzreflexe können eingeschränkt sein oder ausfallen.</p>
+    <p>Dadurch entstehen besondere Gefahren:</p>
+    <ul>
+      <li>Die erschlaffte Zunge kann die Atemwege beeinträchtigen.</li>
+      <li>Speichel, Blut oder Erbrochenes können in die Atemwege gelangen.</li>
+      <li>Eine zunächst normale Atmung kann sich verschlechtern oder aussetzen.</li>
+    </ul>
+    <p>Eine bewusstlose Person darf deshalb niemals unbeobachtet bleiben.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Bewusstlosigkeit ist immer eine ernst zu nehmende Notfallsituation – auch wenn die Person zunächst normal atmet.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Wann ist die stabile Seitenlage richtig?</h2>
+    <p>Die stabile Seitenlage ist für eine bewusstlose Person vorgesehen, die normal atmet und keine sofortige Wiederbelebung benötigt.</p>
+    <h3>Die entscheidenden Voraussetzungen</h3>
+    <ul>
+      <li>Die Person reagiert nicht.</li>
+      <li>Die Atemwege wurden geöffnet.</li>
+      <li>Die Atmung wurde überprüft.</li>
+      <li>Eine normale Atmung ist eindeutig feststellbar.</li>
+    </ul>
+    <p>Rufe Hilfe, veranlasse den Notruf 112 und bringe die Person in die stabile Seitenlage, sofern keine besonderen Umstände ein angepasstes Vorgehen erfordern.</p>
+    <div class="warning-box">
+      <strong>Lebenswichtig:</strong> Bei fehlender normaler Atmung oder Schnappatmung ist die stabile Seitenlage nicht die richtige Maßnahme. Beginne unverzüglich mit der Wiederbelebung und lasse einen AED holen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Die stabile Seitenlage vorbereiten</h2>
+    <p>Bevor du die Person drehst, achtest du auf Eigenschutz, die Umgebung und mögliche Hindernisse.</p>
+    <ol>
+      <li>Rufe laut um Hilfe und veranlasse den Notruf 112.</li>
+      <li>Stelle sicher, dass die Person normal atmet.</li>
+      <li>Knie dich seitlich neben die Person.</li>
+      <li>Lege die Person möglichst auf den Rücken.</li>
+      <li>Entferne störende Gegenstände, soweit dies sicher möglich ist.</li>
+      <li>Bitte bei Bedarf eine weitere Person um Unterstützung.</li>
+    </ol>
+    <p>Die Umlagerung soll kontrolliert und ohne unnötige Verzögerung erfolgen.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Erkläre im Team klar, wer die Lagerung übernimmt, wer den Notruf absetzt und wer anschließend die Atmung überwacht.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/bewusstlosigkeit-und-stabile-seitenlage.png"
+      alt="PraxisMFA Lernbild: Bewusstlosigkeit erkennen, normale Atmung prüfen und stabile Seitenlage Schritt für Schritt durchführen"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Stabile Seitenlage – Schritt für Schritt</h2>
+    <p>Die folgende Anleitung beschreibt das übliche Vorgehen bei einer erwachsenen Person.</p>
+
+    <h3>Schritt 1: Nahen Arm positionieren</h3>
+    <p>Lege den dir zugewandten Arm ungefähr rechtwinklig zum Körper ab. Der Ellenbogen ist gebeugt, die Handfläche zeigt nach oben.</p>
+
+    <h3>Schritt 2: Fernen Arm an die Wange legen</h3>
+    <p>Führe den weiter entfernten Arm über den Brustkorb. Lege den Handrücken an die dir zugewandte Wange und halte die Hand dort fest.</p>
+
+    <h3>Schritt 3: Fernes Bein anwinkeln</h3>
+    <p>Greife das weiter entfernte Bein oberhalb des Knies und stelle den Fuß auf den Boden, sodass das Knie angewinkelt ist.</p>
+
+    <h3>Schritt 4: Person zu dir drehen</h3>
+    <p>Ziehe vorsichtig am angewinkelten Knie und drehe die Person zu dir auf die Seite. Halte dabei die Hand an der Wange.</p>
+
+    <h3>Schritt 5: Lage stabilisieren</h3>
+    <p>Richte das obere Bein so aus, dass Hüfte und Knie ungefähr rechtwinklig gebeugt sind. Dadurch liegt die Person stabil.</p>
+
+    <h3>Schritt 6: Atemwege offen halten</h3>
+    <p>Neige den Kopf vorsichtig nach hinten und richte das Gesicht leicht nach unten. So bleiben die Atemwege möglichst offen und Flüssigkeiten können aus dem Mund abfließen.</p>
+
+    <div class="remember">
+      <strong>Merke:</strong> Entscheidend ist nicht nur die Seitenlage, sondern dass die Person stabil liegt, der Atemweg offen bleibt und die Atmung weiter kontrolliert wird.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Nach der Lagerung: Atmung fortlaufend kontrollieren</h2>
+    <p>Mit der stabilen Seitenlage ist die Versorgung nicht abgeschlossen.</p>
+    <p>Du musst weiterhin beobachten:</p>
+    <ul>
+      <li>Atmet die Person regelmäßig und normal?</li>
+      <li>Heben und senken sich Brustkorb und Bauch?</li>
+      <li>Verändern sich Atemgeräusche oder Atembewegungen?</li>
+      <li>Treten Erbrechen oder andere neue Auffälligkeiten auf?</li>
+      <li>Verschlechtert sich der Allgemeinzustand?</li>
+    </ul>
+    <p>Bleibe bei der Person und überprüfe ihre Atmung regelmäßig beziehungsweise fortlaufend.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Wenn die Person nicht mehr normal atmet, drehe sie auf den Rücken und beginne sofort mit der Wiederbelebung. Der Notruf muss bereits veranlasst sein beziehungsweise unverzüglich erfolgen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Besondere Situationen beachten</h2>
+
+    <h3>Verdacht auf eine Verletzung der Wirbelsäule</h3>
+    <p>Nach einem Sturz oder Unfall kann eine Verletzung der Halswirbelsäule nicht ausgeschlossen sein. Unnötige Bewegungen sollen vermieden werden. Die Sicherung von Atemweg und Atmung hat jedoch Vorrang. Ist die Person bewusstlos und atmet normal, kann eine schonende Seitenlagerung erforderlich sein. Wenn möglich, helfen mehrere geschulte Personen bei der achsengerechten Drehung.</p>
+
+    <h3>Erbrechen</h3>
+    <p>Die Seitenlage kann helfen, das Abfließen von Erbrochenem zu ermöglichen. Achte darauf, dass der Mund nach unten gerichtet ist und der Atemweg offen bleibt.</p>
+
+    <h3>Schwangere Patientin</h3>
+    <p>Bei fortgeschrittener Schwangerschaft wird nach Möglichkeit eine Linksseitenlage bevorzugt, sofern die Situation dies zulässt. Entscheidend bleiben die Atemwegssicherung und die fortlaufende Überwachung.</p>
+
+    <h3>Enge Räume in der Arztpraxis</h3>
+    <p>In kleinen Behandlungszimmern müssen gegebenenfalls Gegenstände entfernt oder weitere Mitarbeitende zur Unterstützung hinzugezogen werden. Die notwendigen Maßnahmen dürfen dadurch nicht verzögert werden.</p>
+
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Eine besondere Situation erfordert möglicherweise eine Anpassung der Lagerung. Die Sicherung der Atmung bleibt immer das wichtigste Ziel.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Typische Fehler bei der stabilen Seitenlage</h2>
+    <ul>
+      <li><strong>Atmung nicht eindeutig geprüft:</strong> Eine Person mit Schnappatmung wird fälschlich in Seitenlage gebracht.</li>
+      <li><strong>Kopf nicht richtig positioniert:</strong> Der Atemweg bleibt möglicherweise beeinträchtigt.</li>
+      <li><strong>Instabile Lagerung:</strong> Die Person kann zurück auf den Rücken rollen.</li>
+      <li><strong>Mund nicht nach unten ausgerichtet:</strong> Flüssigkeiten können schlechter abfließen.</li>
+      <li><strong>Atmung nicht weiter kontrolliert:</strong> Eine Verschlechterung wird zu spät erkannt.</li>
+      <li><strong>Notruf vergessen:</strong> Die Person wird gelagert, ohne den Rettungsdienst zu alarmieren.</li>
+      <li><strong>Person allein gelassen:</strong> Niemand bemerkt Veränderungen des Zustands.</li>
+    </ul>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Übe die stabile Seitenlage praktisch mit einer anderen Person oder an einer geeigneten Trainingspuppe. Nur durch wiederholtes Üben werden die Bewegungsabläufe sicher.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="section-number">08</p>
+    <h2>Praxisfall: Bewusstloser Patient im Behandlungszimmer</h2>
+    <p>Ein 64-jähriger Patient wird nach einer Blutentnahme plötzlich blass und verliert das Bewusstsein. Eine Kollegin ruft dich zu Hilfe.</p>
+    <p>Du sprichst den Patienten laut an und berührst vorsichtig seine Schultern. Er reagiert nicht. Nach dem Öffnen der Atemwege stellst du innerhalb von höchstens zehn Sekunden eine regelmäßige, normale Atmung fest.</p>
+
+    <h3>Wie handelst du?</h3>
+    <ol>
+      <li>Du rufst weitere Hilfe und lässt den Notruf 112 veranlassen.</li>
+      <li>Du bringst den Patienten kontrolliert in die stabile Seitenlage.</li>
+      <li>Du positionierst den Kopf so, dass der Atemweg offen bleibt.</li>
+      <li>Du kontrollierst die Atmung fortlaufend.</li>
+      <li>Du bereitest die Übergabe an den Rettungsdienst vor.</li>
+    </ol>
+
+    <h3>Die Situation verändert sich</h3>
+    <p>Nach kurzer Zeit bemerkst du, dass der Patient nicht mehr regelmäßig atmet. Er zeigt nur noch vereinzelte schnappende Atembewegungen.</p>
+
+    <h3>Was musst du jetzt tun?</h3>
+    <p>Du behandelst dies als fehlende normale Atmung. Der Patient wird unverzüglich auf den Rücken gedreht, die Wiederbelebung wird begonnen und ein AED wird organisiert. Die Leitstelle wird über die Veränderung informiert.</p>
+
+    <div class="remember">
+      <strong>Merke:</strong> Die stabile Seitenlage ist keine endgültige Maßnahme. Wenn sich die Atmung verschlechtert, muss die Versorgung sofort angepasst werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Aufgaben der MFA bis zum Eintreffen des Rettungsdienstes</h2>
+    <p>Die MFA übernimmt im Rahmen ihrer Qualifikation wichtige Aufgaben:</p>
+    <ul>
+      <li>Die Person nicht allein lassen.</li>
+      <li>Die Atemwege offen halten und die Atmung überwachen.</li>
+      <li>Veränderungen sofort erkennen und darauf reagieren.</li>
+      <li>Ärztliche Unterstützung und Rettungsdienst einbeziehen.</li>
+      <li>Relevante Beobachtungen und Zeitpunkte festhalten, sofern die Versorgung dies zulässt.</li>
+      <li>Den Rettungsdienst über den bisherigen Verlauf informieren.</li>
+    </ul>
+    <p>Die Übergabe erfolgt klar und strukturiert, beispielsweise mit dem in Lektion 05 behandelten SBAR-Schema.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Die sichere Überwachung eines bewusstlosen Patienten ist eine aktive Aufgabe. Beobachten bedeutet, Veränderungen rechtzeitig zu erkennen und konsequent zu handeln.
+    </div>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Bewusstlosigkeit kann die Atemwege gefährden.</li>
+      <li>Die stabile Seitenlage ist bei Bewusstlosigkeit mit normaler Atmung angezeigt.</li>
+      <li>Notruf 112 und weitere Hilfe müssen veranlasst werden.</li>
+      <li>Die Lagerung muss stabil sein und den Atemweg offen halten.</li>
+      <li>Die Atmung wird nach der Lagerung fortlaufend kontrolliert.</li>
+      <li>Schnappatmung ist keine normale Atmung.</li>
+      <li>Bei fehlender normaler Atmung unverzüglich Wiederbelebung beginnen.</li>
+      <li>Besondere Umstände können eine angepasste Lagerung erforderlich machen.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck – Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Wann ist die stabile Seitenlage angezeigt?</summary>
+      <p>Wenn eine Person bewusstlos ist, aber normal atmet und keine sofortige Wiederbelebung benötigt.</p>
+    </details>
+
+    <details>
+      <summary>2. Warum kann Bewusstlosigkeit die Atmung gefährden?</summary>
+      <p>Weil Schutzreflexe ausfallen können, erschlaffte Strukturen die Atemwege beeinträchtigen und Flüssigkeiten in die Atemwege gelangen können.</p>
+    </details>
+
+    <details>
+      <summary>3. Wie wird der Kopf in der stabilen Seitenlage positioniert?</summary>
+      <p>Der Kopf wird vorsichtig nach hinten geneigt, um den Atemweg offen zu halten. Das Gesicht wird leicht nach unten gerichtet, damit Flüssigkeiten abfließen können.</p>
+    </details>
+
+    <details>
+      <summary>4. Was kontrollierst du nach der Lagerung?</summary>
+      <p>Vor allem, ob die Person weiterhin normal atmet. Zusätzlich beobachtest du Veränderungen des Zustands und mögliche Auffälligkeiten wie Erbrechen.</p>
+    </details>
+
+    <details>
+      <summary>5. Was tust du, wenn die Person nur noch schnappt?</summary>
+      <p>Schnappatmung ist keine normale Atmung. Die Person wird auf den Rücken gedreht und die Wiederbelebung unverzüglich begonnen. Der Notruf wird veranlasst beziehungsweise die Leitstelle informiert.</p>
+    </details>
+
+    <details>
+      <summary>6. Warum darfst du eine bewusstlose Person nicht allein lassen?</summary>
+      <p>Weil sich die Atmung jederzeit verschlechtern oder aussetzen kann. Eine fortlaufende Überwachung ermöglicht sofortiges Handeln.</p>
+    </details>
+
+    <details>
+      <summary>7. Welche Besonderheit gilt bei Verdacht auf eine Wirbelsäulenverletzung?</summary>
+      <p>Unnötige Bewegungen sollen vermieden werden. Atemweg und Atmung haben jedoch Vorrang. Falls erforderlich, wird die Person möglichst schonend und mit Unterstützung weiterer geschulter Helfender gedreht.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Herz-Kreislauf-Stillstand und Reanimation</h2>
+    <p>In der nächsten Lektion lernst du, wie du einen Herz-Kreislauf-Stillstand erkennst, eine wirksame Herzdruckmassage durchführst und die Wiederbelebung im Praxisteam organisierst.</p>
+  </section>
+</main>
+</body>
+</html>

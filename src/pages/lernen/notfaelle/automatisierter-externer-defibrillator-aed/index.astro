@@ -1,0 +1,699 @@
+---
+const pageTitle = "Automatisierter externer Defibrillator (AED) | PraxisMFA";
+---
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 08</p>
+    <h1>Automatisierter externer Defibrillator (AED)</h1>
+    <p class="lead">Ein Patient erleidet in der Arztpraxis einen Herz-Kreislauf-Stillstand. Während die Wiederbelebung läuft, bringt eine Kollegin den AED. Jetzt musst du wissen, wie du das Gerät sicher einsetzt und warum die Herzdruckmassage dabei möglichst wenig unterbrochen werden darf.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du verstehst die Aufgabe eines AED, kannst seine Anwendung bei Erwachsenen Schritt für Schritt erklären, kennst die richtige Elektrodenpositionierung und beachtest die Sicherheitsregeln bei Rhythmusanalyse und Schockabgabe.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Was ist ein AED?</h2>
+    <p>Ein automatisierter externer Defibrillator, kurz AED, ist ein Gerät zur Behandlung bestimmter lebensbedrohlicher Herzrhythmusstörungen bei einem Herz-Kreislauf-Stillstand.</p>
+    <p>Der AED analysiert den Herzrhythmus und entscheidet anhand seiner Programmierung, ob ein elektrischer Schock empfohlen wird.</p>
+    <p>Der Schock kann bei bestimmten Rhythmusstörungen helfen, die normale elektrische Aktivität des Herzens wiederherzustellen.</p>
+    <p>Der AED ersetzt jedoch weder die Herzdruckmassage noch den Notruf.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Der AED ergänzt die Herz-Lungen-Wiederbelebung. Die Herzdruckmassage wird so früh wie möglich begonnen und nur für notwendige Schritte unterbrochen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Wann wird ein AED eingesetzt?</h2>
+    <p>Ein AED wird bei einem vermuteten Herz-Kreislauf-Stillstand eingesetzt, wenn die Person nicht reagiert und nicht normal atmet.</p>
+    <p>Der AED soll so früh wie möglich zur betroffenen Person gebracht und angeschlossen werden.</p>
+    <p>Wichtig ist dabei die Reihenfolge:</p>
+    <ol>
+      <li>Herz-Kreislauf-Stillstand erkennen.</li>
+      <li>Hilfe rufen und Notruf 112 veranlassen.</li>
+      <li>Herzdruckmassage beginnen.</li>
+      <li>AED holen lassen und sobald verfügbar einsetzen.</li>
+    </ol>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Warte nicht mit der Herzdruckmassage, bis der AED eingetroffen ist. Die Wiederbelebung beginnt sofort.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Wie funktioniert der AED?</h2>
+    <p>Ein AED führt die Anwenderinnen und Anwender mit gesprochenen und häufig auch bildlichen Anweisungen durch die notwendigen Schritte.</p>
+    <p>Das Gerät kann:</p>
+    <ul>
+      <li>die elektrische Aktivität des Herzens über Klebeelektroden erfassen,</li>
+      <li>den Herzrhythmus analysieren,</li>
+      <li>erkennen, ob ein Schock empfohlen wird,</li>
+      <li>zur Schockabgabe auffordern oder diese bei vollautomatischen Geräten selbst auslösen,</li>
+      <li>zur Fortsetzung der Wiederbelebung auffordern.</li>
+    </ul>
+    <p>Bei halbautomatischen AED muss die Schocktaste nach entsprechender Aufforderung gedrückt werden. Vollautomatische Geräte lösen den Schock nach einer Warnung selbst aus.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Prüfe bei Übungen, welcher AED-Typ in deiner Arztpraxis vorhanden ist. Die genaue Bedienung richtet sich nach dem jeweiligen Gerät.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/automatisierter-externer-defibrillator-aed.png"
+      alt="PraxisMFA Lernbild: AED einschalten, Elektroden aufkleben, Rhythmusanalyse, Schockabgabe und Herzdruckmassage fortsetzen"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>AED anwenden – Schritt für Schritt</h2>
+
+    <h3>Schritt 1: AED einschalten</h3>
+    <p>Öffne das Gerät und schalte es ein. Bei manchen Modellen startet der AED bereits beim Öffnen des Deckels.</p>
+    <p>Folge ab jetzt konsequent den Sprach- und Bildanweisungen.</p>
+
+    <h3>Schritt 2: Brustkorb freimachen</h3>
+    <p>Entferne die Kleidung vom Oberkörper, damit die Elektroden direkt auf der Haut angebracht werden können.</p>
+    <p>Ist der Brustkorb stark nass, trockne die vorgesehenen Klebestellen rasch ab.</p>
+
+    <h3>Schritt 3: Elektroden aufkleben</h3>
+    <p>Entnimm die Klebeelektroden aus der Verpackung und bringe sie entsprechend der Abbildung auf den Elektroden an.</p>
+    <p>Bei Erwachsenen wird üblicherweise eine Elektrode rechts oben auf dem Brustkorb unterhalb des Schlüsselbeins angebracht und die andere links seitlich unterhalb der Achsel.</p>
+
+    <h3>Schritt 4: Rhythmusanalyse ermöglichen</h3>
+    <p>Der AED analysiert den Herzrhythmus. Während dieser Analyse darf niemand den Patienten berühren.</p>
+    <p>Sage laut und deutlich: <strong>„Alle weg vom Patienten!“</strong></p>
+
+    <h3>Schritt 5: Schockabgabe, wenn empfohlen</h3>
+    <p>Empfiehlt das Gerät einen Schock, stelle sicher, dass niemand den Patienten berührt.</p>
+    <p>Bei einem halbautomatischen AED drückst du die Schocktaste nach Aufforderung. Ein vollautomatischer AED gibt den Schock nach entsprechender Warnung selbstständig ab.</p>
+
+    <h3>Schritt 6: Herzdruckmassage sofort fortsetzen</h3>
+    <p>Beginne nach der Schockabgabe unverzüglich wieder mit der Herzdruckmassage. Warte nicht auf eine erneute Pulskontrolle.</p>
+    <p>Folge anschließend den weiteren Anweisungen des AED.</p>
+
+    <div class="remember">
+      <strong>Merke – AED-Ablauf:</strong>
+      <p><strong>Einschalten → Elektroden aufkleben → Abstand bei Analyse → gegebenenfalls Schock → sofort weiter reanimieren.</strong></p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Wo werden die Elektroden angebracht?</h2>
+    <p>Für Erwachsene ist die sogenannte anterolaterale Elektrodenposition üblich.</p>
+    <ul>
+      <li><strong>Erste Elektrode:</strong> rechts oben am Brustkorb, unterhalb des rechten Schlüsselbeins und rechts neben dem Brustbein.</li>
+      <li><strong>Zweite Elektrode:</strong> links seitlich am Brustkorb, unterhalb der linken Achsel.</li>
+    </ul>
+    <p>Die Elektroden dürfen sich nicht berühren. Die Abbildungen auf der Elektrodenverpackung geben die Positionierung vor.</p>
+    <p>Bei einem implantierten Herzschrittmacher oder Defibrillator dürfen die Elektroden nicht direkt über dem tastbaren Gerät angebracht werden. Halte möglichst mindestens acht Zentimeter Abstand.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Übe die Elektrodenpositionierung regelmäßig mit einem AED-Trainingsgerät. Im Notfall spart eine sichere Handhabung wertvolle Zeit.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Sicherheit bei Analyse und Schockabgabe</h2>
+    <p>Während der AED den Herzrhythmus analysiert, dürfen keine Berührungen oder Bewegungen des Patienten die Analyse stören.</p>
+    <p>Bei einer Schockabgabe darf niemand Kontakt zum Patienten haben.</p>
+    <h3>Deine Sicherheitskontrolle</h3>
+    <ol>
+      <li>Fordere alle Anwesenden auf, Abstand zu nehmen.</li>
+      <li>Kontrolliere sichtbar, dass niemand den Patienten berührt.</li>
+      <li>Beachte die Anweisungen des AED.</li>
+      <li>Gib den Schock nur bei entsprechender Geräteaufforderung ab.</li>
+      <li>Setze die Herzdruckmassage sofort danach fort.</li>
+    </ol>
+    <div class="warning-box">
+      <strong>Lebenswichtig:</strong> Während Rhythmusanalyse und Schockabgabe gilt: Niemand berührt den Patienten.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Was bedeutet „Kein Schock empfohlen“?</h2>
+    <p>Ein AED empfiehlt nicht bei jeder Form eines Herz-Kreislauf-Stillstands einen Schock.</p>
+    <p>Wenn das Gerät „Kein Schock empfohlen“ meldet, bedeutet das nicht automatisch, dass der Patient wieder einen funktionierenden Kreislauf hat.</p>
+    <p>Deshalb gilt:</p>
+    <ul>
+      <li>Beginne unverzüglich wieder mit der Herzdruckmassage.</li>
+      <li>Setze bei geschulter Beatmung die Wiederbelebung im Verhältnis 30:2 fort.</li>
+      <li>Folge den weiteren Anweisungen des AED.</li>
+      <li>Unterbrich die Maßnahmen nicht allein wegen der Meldung „Kein Schock empfohlen“.</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> Kein Schock empfohlen bedeutet nicht: Reanimation beendet.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Besondere Situationen beim AED-Einsatz</h2>
+
+    <h3>Feuchter Brustkorb</h3>
+    <p>Trockne die Stellen, an denen die Elektroden angebracht werden sollen. Die Elektroden müssen zuverlässig haften.</p>
+
+    <h3>Starke Brustbehaarung</h3>
+    <p>Wenn die Elektroden wegen sehr starker Behaarung nicht richtig haften, kann ein rasches Entfernen der Haare an den Klebestellen notwendig sein. Nutze dafür geeignetes Material aus der Notfallausstattung.</p>
+
+    <h3>Medikamentenpflaster</h3>
+    <p>Bringe Elektroden nicht direkt über einem Medikamentenpflaster an. Entferne ein Pflaster an der vorgesehenen Klebestelle unter Beachtung des Eigenschutzes und reinige beziehungsweise trockne die Haut.</p>
+
+    <h3>Implantierter Herzschrittmacher oder Defibrillator</h3>
+    <p>Klebe die Elektrode nicht direkt auf die sichtbare oder tastbare Implantatstelle.</p>
+
+    <h3>Sauerstoffversorgung</h3>
+    <p>Offene Sauerstoffzufuhr darf bei einer Schockabgabe keine gefährliche Sauerstoffanreicherung im unmittelbaren Brustbereich verursachen. Beachte die Sicherheitsvorgaben des verwendeten Beatmungs- und Sauerstoffsystems.</p>
+
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Diese Besonderheiten werden bei regelmäßigen Notfalltrainings mit dem tatsächlich vorhandenen AED und der Praxisausstattung geübt.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Zusammenarbeit während des AED-Einsatzes</h2>
+    <p>In einer Arztpraxis arbeiten häufig mehrere Personen gleichzeitig an der Notfallversorgung.</p>
+    <p>Eine sinnvolle Aufgabenverteilung ist:</p>
+    <ul>
+      <li><strong>MFA 1:</strong> führt die Herzdruckmassage durch.</li>
+      <li><strong>MFA 2:</strong> holt den AED und bereitet die Elektroden vor.</li>
+      <li><strong>MFA 3:</strong> setzt den Notruf 112 ab und organisiert den Zugang für den Rettungsdienst.</li>
+      <li><strong>Ärztliche Fachperson:</strong> übernimmt entsprechend der Situation die medizinische Leitung und weiterführende Maßnahmen.</li>
+    </ul>
+    <p>Während die Elektroden vorbereitet werden, sollte die Herzdruckmassage möglichst weiterlaufen. Nur für die notwendigen Analysen und Schockabgaben wird sie unterbrochen.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Nutze klare Kommandos: „AED ist da“, „Elektroden kleben“, „Alle weg zur Analyse“, „Schock wird abgegeben“, „Herzdruckmassage fortsetzen“.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Typische Fehler beim AED-Einsatz</h2>
+    <ul>
+      <li>Die Herzdruckmassage wird unterbrochen, während der AED erst geholt wird.</li>
+      <li>Das Gerät wird nicht sofort eingeschaltet.</li>
+      <li>Elektroden werden auf Kleidung statt auf die Haut geklebt.</li>
+      <li>Die Elektrodenpositionierung wird nicht anhand der Abbildungen kontrolliert.</li>
+      <li>Während der Rhythmusanalyse wird der Patient berührt.</li>
+      <li>Vor der Schockabgabe wird nicht überprüft, ob alle Abstand halten.</li>
+      <li>Nach einem Schock wird unnötig lange gewartet.</li>
+      <li>Die Meldung „Kein Schock empfohlen“ wird fälschlich als Entwarnung verstanden.</li>
+    </ul>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Die gefährlichsten Fehler sind unnötige Verzögerungen, lange Unterbrechungen der Herzdruckmassage und fehlende Sicherheitskontrollen.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="section-number">11</p>
+    <h2>Praxisfall: AED-Einsatz im Behandlungszimmer</h2>
+    <p>Ein 59-jähriger Patient kommt wegen Brustschmerzen in die Arztpraxis. Während der Untersuchung verliert er plötzlich das Bewusstsein.</p>
+    <p>Die MFA stellt fest, dass der Patient nicht reagiert und nicht normal atmet. Sie ruft um Hilfe und beginnt nach der Alarmierung sofort mit der Herzdruckmassage.</p>
+    <p>Eine Kollegin bringt den AED. Das Gerät wird eingeschaltet und die Elektroden werden auf den freigemachten Brustkorb geklebt.</p>
+
+    <h3>Die erste Rhythmusanalyse</h3>
+    <p>Der AED fordert alle auf, den Patienten nicht zu berühren. Das Team hält Abstand.</p>
+    <p>Das Gerät meldet: „Schock empfohlen.“ Nach der Sicherheitskontrolle wird der Schock entsprechend den Geräteanweisungen abgegeben.</p>
+    <p>Die MFA beginnt sofort wieder mit der Herzdruckmassage.</p>
+
+    <h3>Die nächste Analyse</h3>
+    <p>Nach dem vom AED vorgegebenen Reanimationsintervall erfolgt eine erneute Rhythmusanalyse. Dieses Mal meldet das Gerät: „Kein Schock empfohlen.“</p>
+    <p>Der Patient zeigt weiterhin keine eindeutigen Lebenszeichen. Deshalb wird die Wiederbelebung unverzüglich fortgesetzt.</p>
+
+    <h3>Was lernen wir aus diesem Fall?</h3>
+    <ul>
+      <li>Der AED wird so früh wie möglich eingesetzt.</li>
+      <li>Die Herzdruckmassage läuft während der Vorbereitung möglichst weiter.</li>
+      <li>Bei Analyse und Schockabgabe hält das gesamte Team Abstand.</li>
+      <li>Nach einem Schock wird sofort weiter reanimiert.</li>
+      <li>Auch nach „Kein Schock empfohlen“ wird die Wiederbelebung fortgesetzt, solange kein Grund zum Beenden vorliegt.</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> Der AED gibt die nächsten Schritte vor. Du sorgst dafür, dass die Herzdruckmassage wirksam bleibt und alle Sicherheitsregeln eingehalten werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Warum regelmäßiges AED-Training wichtig ist</h2>
+    <p>Ein AED ist für eine einfache Anwendung ausgelegt. Dennoch können Stress, Unsicherheit und fehlende Teamabsprachen im Ernstfall wertvolle Zeit kosten.</p>
+    <p>Deshalb sollte das Praxisteam regelmäßig üben:</p>
+    <ul>
+      <li>Standort und Zugänglichkeit des AED.</li>
+      <li>Einschalten und Bedienen des vorhandenen Geräts.</li>
+      <li>Korrektes Aufkleben der Trainingselektroden.</li>
+      <li>Sicherheitskommandos bei Analyse und Schockabgabe.</li>
+      <li>Fortsetzung der Herzdruckmassage ohne unnötige Verzögerung.</li>
+      <li>Zusammenarbeit mit den anderen Helfenden.</li>
+    </ul>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Verwende für Übungen ein AED-Trainingsgerät. Ein einsatzbereiter AED darf nicht für unkontrollierte Übungszwecke eingesetzt werden.
+    </div>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Der AED behandelt bestimmte schockbare Herzrhythmusstörungen.</li>
+      <li>Herzdruckmassage sofort beginnen und AED frühzeitig holen lassen.</li>
+      <li>AED einschalten und seinen Anweisungen folgen.</li>
+      <li>Elektroden direkt auf die Haut kleben.</li>
+      <li>Bei Erwachsenen üblicherweise eine Elektrode rechts oben und eine links seitlich am Brustkorb.</li>
+      <li>Während der Rhythmusanalyse darf niemand den Patienten berühren.</li>
+      <li>Vor jeder Schockabgabe muss der Kontakt zum Patienten ausgeschlossen sein.</li>
+      <li>Nach einem Schock sofort weiter reanimieren.</li>
+      <li>Auch bei „Kein Schock empfohlen“ die Herzdruckmassage fortsetzen, sofern keine eindeutigen Lebenszeichen oder andere Gründe zum Beenden vorliegen.</li>
+      <li>Regelmäßiges Training verbessert die Sicherheit im Praxisteam.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck – Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Welche Aufgabe hat ein AED?</summary>
+      <p>Er analysiert den Herzrhythmus und kann bei bestimmten Rhythmusstörungen eine elektrische Defibrillation empfehlen beziehungsweise auslösen.</p>
+    </details>
+
+    <details>
+      <summary>2. Wann soll ein AED eingesetzt werden?</summary>
+      <p>So früh wie möglich bei einem vermuteten Herz-Kreislauf-Stillstand, ohne den Beginn der Herzdruckmassage zu verzögern.</p>
+    </details>
+
+    <details>
+      <summary>3. Wo werden die Elektroden bei Erwachsenen üblicherweise angebracht?</summary>
+      <p>Eine Elektrode rechts oben am Brustkorb unterhalb des Schlüsselbeins, die andere links seitlich unterhalb der Achsel. Maßgeblich sind die Abbildungen des AED.</p>
+    </details>
+
+    <details>
+      <summary>4. Was ist während der Rhythmusanalyse wichtig?</summary>
+      <p>Niemand darf den Patienten berühren oder bewegen, damit die Analyse nicht gestört wird.</p>
+    </details>
+
+    <details>
+      <summary>5. Was muss vor einer Schockabgabe kontrolliert werden?</summary>
+      <p>Dass niemand den Patienten berührt und die Sicherheitsanweisungen des Geräts beachtet werden.</p>
+    </details>
+
+    <details>
+      <summary>6. Was machst du direkt nach einem abgegebenen Schock?</summary>
+      <p>Du beginnst sofort wieder mit der Herzdruckmassage und folgst den weiteren Anweisungen des AED.</p>
+    </details>
+
+    <details>
+      <summary>7. Bedeutet „Kein Schock empfohlen“, dass die Reanimation beendet ist?</summary>
+      <p>Nein. Ohne eindeutige Lebenszeichen oder einen anderen Grund zum Beenden wird die Wiederbelebung sofort fortgesetzt.</p>
+    </details>
+
+    <details>
+      <summary>8. Warum ist ein Helferwechsel während des AED-Einsatzes wichtig?</summary>
+      <p>Weil die Herzdruckmassage körperlich anstrengend ist und ihre Qualität bei Erschöpfung nachlassen kann. Der Wechsel soll möglichst ohne längere Unterbrechung erfolgen.</p>
+    </details>
+
+    <details>
+      <summary>9. Warum darf eine Elektrode nicht direkt über einem Herzschrittmacher angebracht werden?</summary>
+      <p>Weil das Implantat die Stromabgabe beeinflussen kann. Die Elektrode wird mit ausreichendem Abstand positioniert.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Atemnot und akute Atemwegsprobleme</h2>
+    <p>In der nächsten Lektion lernst du, wie du akute Atemnot erkennst, Atemwegsprobleme einschätzt und die richtigen Sofortmaßnahmen in der Arztpraxis einleitest.</p>
+  </section>
+</main>
+</body>
+</html>

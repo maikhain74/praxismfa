@@ -1,0 +1,618 @@
+---
+const pageTitle = "Verbrennungen und Verbrühungen | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="PraxisMFA: Verbrennungen und Verbrühungen erkennen, einschätzen und sicher erstversorgen. Mit Praxissituation und Selbstcheck." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 16</p>
+    <h1>Verbrennungen und Verbrühungen</h1>
+    <p class="lead">Eine Patientin kommt mit ihrem Kind in die Arztpraxis. Das Kind hat sich heißen Tee über den Unterarm geschüttet. Die Haut ist gerötet, erste Blasen bilden sich und das Kind weint vor Schmerzen. Was muss jetzt passieren – und welche Maßnahmen können sogar schaden?</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du unterscheidest Verbrennungen und Verbrühungen, erkennst wichtige Merkmale der Verletzungstiefe und -ausdehnung, leitest sichere Erste-Hilfe-Maßnahmen ein und erkennst Situationen, in denen sofort ärztliche beziehungsweise rettungsdienstliche Hilfe erforderlich ist.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Verbrennung oder Verbrühung – was ist der Unterschied?</h2>
+    <p>Beide Verletzungen entstehen durch thermische Einwirkung auf Haut und gegebenenfalls tiefer liegende Gewebe.</p>
+    <h3>Verbrennung</h3>
+    <p>Eine Verbrennung entsteht beispielsweise durch Flammen, heiße Gegenstände oder starke Wärmestrahlung. Auch elektrische Verletzungen können schwere thermische Gewebeschäden verursachen.</p>
+    <h3>Verbrühung</h3>
+    <p>Eine Verbrühung entsteht durch heiße Flüssigkeiten oder Wasserdampf. Typische Ursachen sind Tee, Kaffee, heißes Wasser oder Dampf aus Küchengeräten.</p>
+    <p>Die Schwere einer thermischen Verletzung hängt unter anderem von Temperatur, Einwirkdauer, betroffener Körperregion, Verletzungstiefe und Ausdehnung ab.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Nicht nur die Temperatur ist entscheidend. Auch die Dauer der Hitzeeinwirkung beeinflusst die Gewebeschädigung.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Was passiert mit der Haut?</h2>
+    <p>Hitze schädigt Zellen und kann die Schutzfunktion der Haut beeinträchtigen. Je nach Tiefe der Verletzung werden unterschiedliche Hautschichten betroffen.</p>
+    <p>Mögliche Folgen sind Schmerzen, Rötung, Schwellung, Blasenbildung und bei schweren Verletzungen die Zerstörung tieferer Gewebeschichten.</p>
+    <p>Größere thermische Verletzungen können außerdem erhebliche Flüssigkeitsverluste, Störungen des Wärmehaushalts und Kreislaufprobleme verursachen.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Eine thermische Verletzung ist nicht immer nur eine lokale Hautverletzung. Bei großen oder tiefen Verbrennungen kann der gesamte Organismus betroffen sein.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Verbrennungstiefe erkennen</h2>
+    <p>Die Einteilung nach Verletzungstiefe hilft, den möglichen Schweregrad einzuschätzen. Die endgültige Beurteilung erfolgt ärztlich.</p>
+    <h3>Oberflächliche Verbrennung – Grad 1</h3>
+    <ul>
+      <li>Gerötete, meist trockene Haut</li>
+      <li>Schmerzen und eventuell leichte Schwellung</li>
+      <li>Keine typischen Brandblasen</li>
+    </ul>
+    <h3>Teilhautverbrennung – Grad 2</h3>
+    <ul>
+      <li>Häufig Blasenbildung</li>
+      <li>Je nach Tiefe feuchte, rosige oder blassere Wundflächen</li>
+      <li>Schmerzen können ausgeprägt sein, bei tieferen Verletzungen auch vermindert</li>
+    </ul>
+    <h3>Tiefe Verbrennung – Grad 3</h3>
+    <ul>
+      <li>Alle Hautschichten sind zerstört</li>
+      <li>Haut kann weißlich, lederartig, bräunlich oder schwarz erscheinen</li>
+      <li>Die tief zerstörte Fläche kann wegen geschädigter Nerven wenig schmerzen</li>
+    </ul>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Wenig Schmerz bedeutet nicht automatisch eine harmlose Verletzung. Tiefe Verbrennungen können im zerstörten Gewebe schmerzarm sein.
+    </div>
+  </section>
+
+  <section class="content-section">
+    
+    <figure style="margin: 2rem 0;">
+      <img
+        src="/images/verbrennungen-und-verbruehungen.png"
+        alt="PraxisMFA-Infografik: Verbrennungen und Verbrühungen, Verletzungstiefe, Ausdehnung, Erste Hilfe und richtiges Kühlen"
+        loading="lazy"
+        style="display:block;width:100%;height:auto;border-radius:16px;"
+      />
+    </figure>
+
+    <p class="section-number">04</p>
+    <h2>Wie wird die Ausdehnung eingeschätzt?</h2>
+    <p>Neben der Tiefe ist wichtig, wie viel Körperoberfläche betroffen ist. Für die Einschätzung wird die verbrannte Körperoberfläche häufig in Prozent angegeben.</p>
+    <h3>Handflächenregel</h3>
+    <p>Die Handfläche der betroffenen Person einschließlich der Finger entspricht näherungsweise einem Prozent ihrer Körperoberfläche. Sie kann als grobe Orientierung für kleinere, unregelmäßig geformte Verletzungen dienen.</p>
+    <h3>Neunerregel</h3>
+    <p>Bei Erwachsenen können größere Verbrennungen mit der Neunerregel abgeschätzt werden. Bei Kindern gelten wegen anderer Körperproportionen angepasste Verfahren.</p>
+    <p>Reine Rötungen ohne tiefergehende Hautschädigung werden bei der Berechnung der relevanten verbrannten Körperoberfläche nicht mitgezählt.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Bei Kindern ist eine sorgfältige ärztliche Einschätzung besonders wichtig. Eine Erwachsenentabelle darf nicht unkritisch übernommen werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Erste Hilfe: Hitzeeinwirkung sofort beenden</h2>
+    <p>Bevor eine Wunde versorgt wird, muss die weitere thermische Einwirkung beendet werden.</p>
+    <ol>
+      <li>Eigenschutz beachten und die Gefahrenquelle sichern.</li>
+      <li>Die betroffene Person aus dem Gefahrenbereich bringen.</li>
+      <li>Bei Verbrühungen heiße oder durchnässte Kleidung vorsichtig entfernen, sofern sie nicht an der Haut haftet.</li>
+      <li>Schmuck und einschnürende Gegenstände frühzeitig entfernen, sofern dies ohne zusätzliche Verletzung möglich ist.</li>
+      <li>Die verletzte Person beruhigen und den Zustand beurteilen.</li>
+      <li>Bei schweren Verletzungen sofort ärztliche Hilfe und gegebenenfalls 112 organisieren.</li>
+    </ol>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Kleidung, die an der verbrannten Haut festklebt, nicht gewaltsam abziehen. Dadurch können zusätzliche Gewebeschäden entstehen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Richtig kühlen – aber Unterkühlung vermeiden</h2>
+    <p>Bei kleinflächigen thermischen Verletzungen kann zeitnahes Kühlen mit fließendem, kühlem Leitungswasser Schmerzen lindern und die Hitzeeinwirkung begrenzen.</p>
+    <p>Das Deutsche Rote Kreuz beschreibt eine Kühlung mit kühlem bis kaltem, jedoch nicht eisigem Wasser über etwa 20 Minuten. Entscheidend ist zugleich, eine Unterkühlung zu vermeiden.</p>
+    <ul>
+      <li>Kein Eis oder Eiswasser direkt auf die verletzte Haut geben.</li>
+      <li>Nur die betroffene kleine Körperregion kühlen, nicht den ganzen Körper.</li>
+      <li>Die Kühlung beenden, wenn die Person friert oder auskühlt.</li>
+      <li>Bei großflächigen oder schweren Verbrennungen den Wärmeerhalt priorisieren und keine ausgedehnte Kühlung durchführen.</li>
+      <li>Bei Säuglingen und Kleinkindern besonders auf Auskühlung achten.</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> Kühlen kann bei kleinen Verbrennungen sinnvoll sein. Bei schweren oder großflächigen Verbrennungen darf die Kühlung keine gefährliche Unterkühlung verursachen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Brandwunden sicher abdecken</h2>
+    <p>Nach den ersten Maßnahmen wird die verletzte Haut vor zusätzlicher Verunreinigung und mechanischer Reizung geschützt.</p>
+    <ol>
+      <li>Händehygiene und Eigenschutz beachten.</li>
+      <li>Eine geeignete sterile, möglichst nicht haftende Wundauflage verwenden.</li>
+      <li>Die Wunde locker abdecken und Druck oder Reibung vermeiden.</li>
+      <li>Die verletzte Person warmhalten und beobachten.</li>
+      <li>Die weitere Versorgung entsprechend ärztlicher Anordnung vorbereiten.</li>
+    </ol>
+    <p>Brandblasen werden in der Ersten Hilfe nicht eigenmächtig eröffnet. Auf die frische Brandwunde gehören keine Hausmittel.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Keine Butter, Öle, Mehl, Zahnpasta oder ungeeignete Salben auf eine frische Verbrennung auftragen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Wann ist eine Verbrennung besonders gefährlich?</h2>
+    <p>Eine sofortige ärztliche Beurteilung ist insbesondere bei tiefen, ausgedehnten oder funktionell kritischen Verletzungen erforderlich.</p>
+    <p>Besondere Aufmerksamkeit benötigen:</p>
+    <ul>
+      <li>Verbrennungen im Gesicht, an Händen, Füßen, Genitalien oder über großen Gelenken</li>
+      <li>Tiefe Verbrennungen und großflächige Hautschäden</li>
+      <li>Ringförmige Verbrennungen an Extremitäten oder am Rumpf</li>
+      <li>Thermische Verletzungen bei Säuglingen und kleinen Kindern</li>
+      <li>Elektrounfälle oder mögliche chemische Verletzungen</li>
+      <li>Hinweise auf Rauchgasinhalation oder eine Atemwegsverletzung</li>
+      <li>Kreislaufprobleme, Bewusstseinsstörungen oder erhebliche Schmerzen</li>
+    </ul>
+    <p>Bei schweren Verbrennungen, Atemproblemen oder Kreislaufinstabilität ist unverzüglich der Rettungsdienst über 112 zu alarmieren.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Auch eine relativ kleine Verbrennung an der Hand kann erhebliche funktionelle Folgen haben und muss sorgfältig beurteilt werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Rauchgasinhalation und Atemwegsgefahr</h2>
+    <p>Nach einem Brand in einem geschlossenen Raum kann nicht nur die Haut, sondern auch der Atemweg betroffen sein. Rauchgase können zusätzlich Vergiftungen verursachen.</p>
+    <p>Warnzeichen sind beispielsweise:</p>
+    <ul>
+      <li>Atemnot, Husten oder auffällige Atemgeräusche</li>
+      <li>Heiserkeit oder Veränderungen der Stimme</li>
+      <li>Ruß im Mund- oder Nasenbereich</li>
+      <li>Verbrennungen im Gesicht</li>
+      <li>Bewusstseinsstörungen nach Rauchgasexposition</li>
+    </ul>
+    <p>Bei Verdacht auf eine Atemwegsverletzung oder Rauchgasvergiftung muss unverzüglich professionelle Hilfe organisiert werden. Eine zunächst unauffällige Atmung schließt eine spätere Verschlechterung nicht aus.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Bei Rauchgasexposition in geschlossenen Räumen und Atemwegszeichen nicht auf sichtbare Hautverbrennungen warten. Der Atemweg kann akut gefährdet sein.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Aufgaben der MFA und häufige Fehler</h2>
+    <p>Als MFA unterstützt du die schnelle, strukturierte Versorgung im Praxisteam.</p>
+    <ul>
+      <li>Die Situation erkennen und Eigenschutz sicherstellen</li>
+      <li>Ärztliche Unterstützung und bei Bedarf 112 organisieren</li>
+      <li>Weitere Hitzeeinwirkung beenden und geeignete Erste Hilfe durchführen</li>
+      <li>Wärmeerhalt, sichere Wundabdeckung und Betreuung gewährleisten</li>
+      <li>Bewusstsein, Atmung und Kreislauf beobachten</li>
+      <li>Material bereitstellen und ärztliche Maßnahmen unterstützen</li>
+      <li>Unfallhergang, Zeitpunkt, betroffene Körperregionen und Maßnahmen dokumentieren</li>
+    </ul>
+    <h3>Diese Fehler musst du vermeiden</h3>
+    <ul>
+      <li>Große Verbrennungen ausgedehnt kühlen und dabei eine Unterkühlung verursachen</li>
+      <li>Eis direkt auf die verletzte Haut legen</li>
+      <li>Festklebende Kleidung abreißen</li>
+      <li>Brandblasen eigenmächtig öffnen</li>
+      <li>Hausmittel auf die Wunde auftragen</li>
+      <li>Eine mögliche Atemwegsverletzung übersehen</li>
+      <li>Den Notruf bei einer schweren Verletzung verzögern</li>
+    </ul>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Die MFA übernimmt Erste Hilfe und organisiert die Versorgung. Die Entscheidung über weitergehende Diagnostik, Schmerztherapie und Wundbehandlung erfolgt ärztlich.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PRAXISSITUATION</p>
+    <h2>Heißer Tee auf dem Unterarm</h2>
+    <p>Ein vierjähriges Kind wird in die Praxis gebracht. Es hat sich vor wenigen Minuten heißen Tee über den linken Unterarm geschüttet. Die Haut ist gerötet, teilweise bilden sich Blasen. Das Kind weint, ist aber wach und atmet normal.</p>
+    <p><strong>Dein Handeln:</strong> Du informierst sofort die Ärztin oder den Arzt, prüfst, ob noch heiße oder nasse Kleidung anliegt, und entfernst diese vorsichtig, soweit sie nicht festklebt. Du schützt das Kind vor Auskühlung. Wegen des jungen Alters und der Blasenbildung ist eine zeitnahe ärztliche Beurteilung wichtig. Du bereitest geeignetes Verbandmaterial vor und unterstützt die weitere Versorgung.</p>
+    <p><strong>Prüfungsfrage:</strong> Warum darf der gesamte Körper des Kindes nicht über längere Zeit mit kaltem Wasser gekühlt werden?</p>
+    <p><strong>Antwort:</strong> Kleine Kinder verlieren besonders leicht Körperwärme. Eine ausgedehnte Kühlung kann eine gefährliche Unterkühlung verursachen.</p>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Verbrennungen entstehen durch Hitzeeinwirkung, Verbrühungen durch heiße Flüssigkeiten oder Dampf.</li>
+      <li>Verletzungstiefe, Ausdehnung, Körperregion und Allgemeinzustand bestimmen die Gefährdung.</li>
+      <li>Blasen können auf eine Verbrennung zweiten Grades hinweisen.</li>
+      <li>Tiefe Verbrennungen können trotz schwerer Gewebeschädigung wenig schmerzen.</li>
+      <li>Die Handflächenregel dient der groben Einschätzung kleinerer Verletzungsflächen.</li>
+      <li>Weitere Hitzeeinwirkung sofort beenden und Eigenschutz beachten.</li>
+      <li>Kleine Verletzungen können vorsichtig gekühlt werden; Unterkühlung vermeiden.</li>
+      <li>Brandwunden steril und locker abdecken; keine Hausmittel oder Eis verwenden.</li>
+      <li>Bei Atemwegsgefahr, Kreislaufproblemen oder schweren Verletzungen sofort 112 alarmieren.</li>
+      <li>Die MFA leistet Erste Hilfe, betreut Patienten und unterstützt die ärztliche Versorgung.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck: Prüfe dein Wissen</h2>
+    <details><summary>1. Was ist der Unterschied zwischen Verbrennung und Verbrühung?</summary><p>Verbrennungen entstehen durch thermische Einwirkung etwa von Flammen oder heißen Gegenständen, Verbrühungen durch heiße Flüssigkeiten oder Dampf.</p></details>
+    <details><summary>2. Welche Zeichen sprechen für eine oberflächliche Verbrennung?</summary><p>Rötung, Schmerzen und gegebenenfalls leichte Schwellung ohne typische Brandblasen.</p></details>
+    <details><summary>3. Welche Verletzungstiefe kann mit Blasenbildung einhergehen?</summary><p>Eine Teilhautverbrennung zweiten Grades.</p></details>
+    <details><summary>4. Warum kann eine tiefe Verbrennung wenig schmerzen?</summary><p>Weil bei tiefer Gewebezerstörung auch Nervenendigungen geschädigt werden können.</p></details>
+    <details><summary>5. Wofür wird die Handflächenregel verwendet?</summary><p>Zur groben Einschätzung der betroffenen Körperoberfläche. Die Handfläche einschließlich Finger entspricht näherungsweise einem Prozent.</p></details>
+    <details><summary>6. Was ist die erste Maßnahme bei einer Verbrühung?</summary><p>Weitere Hitzeeinwirkung beenden und die Situation sichern.</p></details>
+    <details><summary>7. Warum ist bei der Kühlung Vorsicht notwendig?</summary><p>Eine zu ausgedehnte Kühlung kann insbesondere bei Kindern und großen Verbrennungen zur Unterkühlung führen.</p></details>
+    <details><summary>8. Darf festklebende Kleidung abgerissen werden?</summary><p>Nein. Dadurch können zusätzliche Haut- und Gewebeschäden entstehen.</p></details>
+    <details><summary>9. Welche Zeichen können auf eine Atemwegsverletzung nach einem Brand hinweisen?</summary><p>Beispielsweise Heiserkeit, Atemnot, auffällige Atemgeräusche und Ruß im Mund- oder Nasenbereich.</p></details>
+    <details><summary>10. Welche Aufgaben hat die MFA bei einer schweren Verbrennung?</summary><p>Erste Hilfe, Hilfe organisieren, Patienten betreuen und überwachen, Wärmeerhalt sicherstellen, ärztliche Maßnahmen unterstützen und dokumentieren.</p></details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Krampfanfälle und Epilepsie im Notfall</h2>
+    <p>In Lektion 17 lernst du, Krampfanfälle zu erkennen, die betroffene Person vor Verletzungen zu schützen und gefährliche Verläufe richtig einzuschätzen.</p>
+  </section>
+</main>
+</body>
+</html>

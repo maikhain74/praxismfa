@@ -1,0 +1,686 @@
+---
+const pageTitle = "Herz-Kreislauf-Stillstand und Reanimation | PraxisMFA";
+---
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 07</p>
+    <h1>Herz-Kreislauf-Stillstand und Reanimation</h1>
+    <p class="lead">Ein Patient bricht plötzlich zusammen und atmet nicht mehr normal. Jetzt zählt jede Sekunde. Du lernst, wie du eine wirksame Wiederbelebung beginnst, die Herzdruckmassage korrekt durchführst und gemeinsam mit deinem Praxisteam handelst.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erkennst einen möglichen Herz-Kreislauf-Stillstand, führst die Herzdruckmassage bei Erwachsenen korrekt durch, kennst das Verhältnis von Herzdruckmassage und Beatmung und organisierst die Wiederbelebung gemeinsam mit deinem Praxisteam.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Was geschieht bei einem Herz-Kreislauf-Stillstand?</h2>
+    <p>Bei einem Herz-Kreislauf-Stillstand kann das Herz keinen ausreichenden Blutkreislauf mehr aufrechterhalten. Gehirn und andere lebenswichtige Organe werden nicht mehr ausreichend mit Sauerstoff versorgt.</p>
+    <p>Ohne sofortige Hilfe entstehen innerhalb kurzer Zeit schwere Schäden. Deshalb muss die Wiederbelebung unverzüglich beginnen.</p>
+    <p>Die Herzdruckmassage übernimmt vorübergehend einen Teil der Pumpfunktion des Herzens und unterstützt die Durchblutung.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Bei einem Herz-Kreislauf-Stillstand ist schnelles Handeln entscheidend. Jede unnötige Verzögerung verschlechtert die Überlebenschancen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Woran erkennst du einen möglichen Herz-Kreislauf-Stillstand?</h2>
+    <p>Die entscheidenden Hinweise sind:</p>
+    <ul>
+      <li>Die Person reagiert nicht auf Ansprache und vorsichtige Berührung.</li>
+      <li>Die Person atmet nicht normal.</li>
+      <li>Es besteht möglicherweise Schnappatmung.</li>
+    </ul>
+    <p>Die Atemkontrolle darf höchstens zehn Sekunden dauern. Die genaue Durchführung kennst du bereits aus Lektion 04.</p>
+    <p>Eine langwierige Pulssuche darf den Beginn der Wiederbelebung nicht verzögern.</p>
+    <div class="warning-box">
+      <strong>Lebenswichtig:</strong> Bewusstlosigkeit und fehlende normale Atmung bedeuten: sofort Hilfe alarmieren, Notruf 112 veranlassen und mit der Herzdruckmassage beginnen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Die ersten Maßnahmen richtig organisieren</h2>
+    <ol>
+      <li>Prüfe, ob die Umgebung sicher ist.</li>
+      <li>Stelle fest, dass die Person nicht reagiert und nicht normal atmet.</li>
+      <li>Rufe laut um Hilfe.</li>
+      <li>Veranlasse sofort den Notruf 112.</li>
+      <li>Lasse einen AED holen, wenn einer verfügbar ist.</li>
+      <li>Beginne unverzüglich mit der Herzdruckmassage.</li>
+    </ol>
+    <p>Wenn du allein bist, rufe die 112 möglichst über die Lautsprecherfunktion deines Telefons an und beginne die Wiederbelebung entsprechend den Anweisungen der Leitstelle.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Sprich Kolleginnen und Kollegen direkt an: „Sie rufen jetzt die 112. Sie holen den AED.“ Klare Aufgaben verhindern Missverständnisse.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/herz-kreislauf-stillstand-und-reanimation.png"
+      alt="PraxisMFA Lernbild: Herz-Lungen-Wiederbelebung mit 30 Herzdruckmassagen, 2 Beatmungen, 100 bis 120 Kompressionen pro Minute und 5 bis 6 Zentimetern Drucktiefe"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Herz-Lungen-Wiederbelebung – Schritt für Schritt</h2>
+    <p>Wenn ein erwachsener Patient bewusstlos ist und nicht normal atmet, beginnst du nach dem Alarmieren sofort mit der Wiederbelebung.</p>
+
+    <h3>Schritt 1: Richtige Position einnehmen</h3>
+    <p>Der Patient liegt auf dem Rücken. Knie dich seitlich neben den Brustkorb. Beginne die Herzdruckmassage auf der vorhandenen Unterlage, ohne die Wiederbelebung durch unnötiges Umlagern zu verzögern.</p>
+
+    <h3>Schritt 2: Hände richtig auflegen</h3>
+    <p>Setze einen Handballen auf die untere Hälfte des Brustbeins, also in die Mitte des Brustkorbs. Lege die zweite Hand darüber und verschränke die Finger. Halte deine Arme gestreckt und die Schultern senkrecht über den Händen.</p>
+
+    <h3>Schritt 3: 30-mal auf den Brustkorb drücken</h3>
+    <p>Drücke den Brustkorb <strong>30-mal hintereinander</strong> ein.</p>
+    <ul>
+      <li>Drucktiefe: 5–6 cm bei Erwachsenen.</li>
+      <li>Geschwindigkeit: 100–120 Kompressionen pro Minute.</li>
+      <li>Nach jedem Drücken den Brustkorb vollständig entlasten.</li>
+      <li>Die Hände bleiben am richtigen Druckpunkt.</li>
+    </ul>
+
+    <h3>Schritt 4: 2-mal beatmen</h3>
+    <p>Wenn du in der Beatmung geschult bist, öffnest du nach den 30 Kompressionen den Atemweg und gibst <strong>2 Beatmungen</strong>.</p>
+    <p>Jede Beatmung dauert ungefähr eine Sekunde. Gib nur so viel Luft, dass sich der Brustkorb sichtbar hebt. Die gesamte Unterbrechung für beide Beatmungen soll höchstens zehn Sekunden dauern.</p>
+
+    <h3>Schritt 5: Sofort wieder 30-mal drücken</h3>
+    <p>Beginne unmittelbar nach den zwei Beatmungen erneut mit 30 Herzdruckmassagen. Danach folgen wieder zwei Beatmungen.</p>
+
+    <div class="remember">
+      <strong>Merke – der Reanimationsrhythmus:</strong>
+      <p><strong>30-mal drücken → 2-mal beatmen → 30-mal drücken → 2-mal beatmen.</strong></p>
+      <p>Wiederhole diesen Ablauf ohne unnötige Unterbrechungen. Sobald ein AED verfügbar ist, wird er eingesetzt und seinen Anweisungen gefolgt.</p>
+    </div>
+
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Wenn du nicht in der Beatmung geschult bist oder keine Beatmung durchführen kannst, drücke kontinuierlich auf den Brustkorb. Die Herzdruckmassage darf deshalb nicht ausbleiben.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Warum ist das Verhältnis 30:2 so wichtig?</h2>
+    <p>Die 30 Herzdruckmassagen unterstützen den Blutkreislauf. Die anschließenden zwei Beatmungen führen Sauerstoff zu. Geschulte Helfende verbinden deshalb beide Maßnahmen im Verhältnis 30:2.</p>
+    <p>Entscheidend ist, die Herzdruckmassage für die Beatmung nur kurz zu unterbrechen und danach sofort weiterzumachen.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Zähle die Kompressionen beim Üben laut von 1 bis 30. So bleibt der Ablauf nachvollziehbar und die zweite helfende Person weiß, wann die Beatmung folgt.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Warum Unterbrechungen gefährlich sind</h2>
+    <p>Bei jeder Unterbrechung der Herzdruckmassage nimmt die durch die Kompressionen erzeugte Durchblutung ab.</p>
+    <p>Deshalb gilt:</p>
+    <ul>
+      <li>Beginne so früh wie möglich.</li>
+      <li>Unterbrich die Herzdruckmassage nur, wenn es notwendig ist.</li>
+      <li>Halte Beatmungspausen möglichst kurz.</li>
+      <li>Setze die Kompressionen nach Anweisungen des AED unverzüglich fort.</li>
+      <li>Wechsle erschöpfte Helfende möglichst ohne längere Pause aus.</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> Eine wirksame Herzdruckmassage lebt von Kontinuität und Qualität.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Helferwechsel im Praxisteam</h2>
+    <p>Die Herzdruckmassage ist körperlich anstrengend. Mit zunehmender Erschöpfung kann die Qualität der Kompressionen nachlassen.</p>
+    <p>Wenn mehrere geschulte Helfende verfügbar sind, sollte die Person an der Herzdruckmassage ungefähr alle zwei Minuten gewechselt werden. Bei früherer Erschöpfung ist ein früherer Wechsel sinnvoll.</p>
+    <h3>So gelingt der Wechsel</h3>
+    <ol>
+      <li>Kündige den bevorstehenden Wechsel frühzeitig an.</li>
+      <li>Die nächste Person positioniert sich rechtzeitig.</li>
+      <li>Der Wechsel erfolgt möglichst ohne Unterbrechung.</li>
+      <li>Die neue Person setzt die Herzdruckmassage sofort im richtigen Rhythmus fort.</li>
+    </ol>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Trainiere den Helferwechsel im Team. Gerade hier entstehen in ungeübten Gruppen vermeidbare Pausen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Welche Rolle spielt der AED?</h2>
+    <p>Ein automatisierter externer Defibrillator (AED) kann bei bestimmten Herzrhythmusstörungen einen elektrischen Schock empfehlen.</p>
+    <p>Der AED sollte so früh wie möglich eingesetzt werden, sobald er verfügbar ist.</p>
+    <ul>
+      <li>Schalte den AED ein.</li>
+      <li>Folge den Sprach- und Bildanweisungen.</li>
+      <li>Unterbrich die Herzdruckmassage nur, wenn das Gerät es verlangt.</li>
+      <li>Während der Rhythmusanalyse und einer Schockabgabe darf niemand den Patienten berühren.</li>
+      <li>Setze die Herzdruckmassage unmittelbar nach entsprechender Geräteanweisung fort.</li>
+    </ul>
+    <p>Die ausführliche Anwendung des AED behandeln wir in Lektion 08.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Alle Mitarbeitenden sollten wissen, wo sich der AED befindet und wie er im Notfall schnell zum Patienten gelangt.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Typische Fehler bei der Reanimation</h2>
+    <ul>
+      <li><strong>Zu spätes Beginnen:</strong> Es wird zu lange nach weiteren Zeichen gesucht.</li>
+      <li><strong>Zu geringe Drucktiefe:</strong> Der Brustkorb wird nicht ausreichend komprimiert.</li>
+      <li><strong>Zu schnelles oder zu langsames Tempo:</strong> Die Kompressionen liegen außerhalb des empfohlenen Bereichs.</li>
+      <li><strong>Unvollständige Entlastung:</strong> Die Hände bleiben mit Druck auf dem Brustkorb.</li>
+      <li><strong>Zu lange Unterbrechungen:</strong> Die Herzdruckmassage wird unnötig pausiert.</li>
+      <li><strong>Ungünstige Körperhaltung:</strong> Die Helfenden ermüden schneller.</li>
+      <li><strong>Verspäteter Helferwechsel:</strong> Die Qualität der Kompressionen nimmt ab.</li>
+      <li><strong>AED zu spät eingesetzt:</strong> Ein verfügbares Gerät wird nicht frühzeitig organisiert.</li>
+    </ul>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Auch wenn du Angst hast, etwas falsch zu machen: Bei einem tatsächlichen Herz-Kreislauf-Stillstand ist sofortige Herzdruckmassage entscheidend. Untätigkeit ist besonders gefährlich.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="section-number">10</p>
+    <h2>Praxisfall: Herz-Kreislauf-Stillstand im Wartezimmer</h2>
+    <p>Ein 68-jähriger Patient sitzt im Wartezimmer einer Gemeinschaftspraxis. Plötzlich fällt er vom Stuhl und bleibt regungslos liegen.</p>
+    <p>Eine MFA spricht ihn laut an und berührt vorsichtig seine Schultern. Es erfolgt keine Reaktion. Nach dem Öffnen des Atemwegs zeigt der Patient nur vereinzelte schnappende Atembewegungen.</p>
+
+    <h3>Wie handelt das Praxisteam?</h3>
+    <ol>
+      <li>Die MFA erkennt die fehlende normale Atmung und ruft laut um Hilfe.</li>
+      <li>Eine Kollegin setzt sofort den Notruf 112 ab.</li>
+      <li>Eine weitere Person holt den AED.</li>
+      <li>Die erste MFA beginnt unverzüglich mit der Herzdruckmassage.</li>
+      <li>Ein geschulter Kollege unterstützt bei der Beatmung im Verhältnis 30:2.</li>
+      <li>Die Helfenden wechseln sich ungefähr alle zwei Minuten ab.</li>
+      <li>Nach Eintreffen des AED werden dessen Anweisungen befolgt.</li>
+      <li>Die Maßnahmen werden bis zur Übernahme durch den Rettungsdienst oder bis zu einem anderen eindeutigen Grund zum Beenden fortgesetzt.</li>
+    </ol>
+
+    <h3>Was ist in diesem Fall besonders wichtig?</h3>
+    <p>Die Schnappatmung darf nicht als normale Atmung fehlinterpretiert werden. Die Wiederbelebung muss sofort beginnen. Notruf und Organisation des AED erfolgen parallel.</p>
+
+    <div class="remember">
+      <strong>Merke:</strong> Nicht ansprechbar und keine normale Atmung: sofort Notruf 112, Herzdruckmassage und AED.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">11</p>
+    <h2>Wann wird die Reanimation beendet?</h2>
+    <p>Die Wiederbelebung wird grundsätzlich fortgesetzt, bis ein nachvollziehbarer Grund für das Beenden vorliegt.</p>
+    <p>Solche Gründe können sein:</p>
+    <ul>
+      <li>Qualifizierte Rettungskräfte übernehmen die Maßnahmen.</li>
+      <li>Die betroffene Person zeigt eindeutige Lebenszeichen und beginnt wieder normal zu atmen.</li>
+      <li>Die Helfenden sind vollständig erschöpft und können die Maßnahmen nicht mehr fortführen.</li>
+      <li>Eine akute Gefahr macht die Fortsetzung unmöglich.</li>
+    </ul>
+    <p>Bei Rückkehr normaler Atmung wird der Zustand fortlaufend überwacht. Die weitere Versorgung richtet sich nach der Situation und den Anweisungen der Rettungskräfte.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Auch wenn der Rettungsdienst bereits eingetroffen ist, werden die Maßnahmen nicht eigenständig unterbrochen, bevor die Versorgung tatsächlich übernommen wird.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Warum regelmäßiges Training unverzichtbar ist</h2>
+    <p>Reanimation kann nicht allein durch Lesen sicher erlernt werden. Die korrekte Drucktiefe, das richtige Tempo und der Helferwechsel müssen praktisch trainiert werden.</p>
+    <p>Geeignete Übungen im Praxisteam umfassen:</p>
+    <ul>
+      <li>Herzdruckmassage an einer Trainingspuppe.</li>
+      <li>Überprüfung von Drucktiefe und Frequenz.</li>
+      <li>Beatmung mit geeigneten Trainingshilfen.</li>
+      <li>Wechsel zwischen zwei Helfenden.</li>
+      <li>Einbindung eines AED-Trainingsgeräts.</li>
+      <li>Kommunikation und Aufgabenverteilung im Notfallteam.</li>
+    </ul>
+    <p>Regelmäßige praktische Schulungen verbessern die Sicherheit und reduzieren vermeidbare Fehler.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Nutze Rückmeldesysteme an Reanimationspuppen, wenn diese verfügbar sind. Sie helfen, Drucktiefe und Frequenz objektiv zu beurteilen.
+    </div>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Bewusstlosigkeit ohne normale Atmung ist ein möglicher Herz-Kreislauf-Stillstand.</li>
+      <li>Notruf 112 veranlassen und unverzüglich mit der Herzdruckmassage beginnen.</li>
+      <li>Herzdruckmassage: 100–120 Kompressionen pro Minute.</li>
+      <li>Drucktiefe bei Erwachsenen: fünf bis sechs Zentimeter.</li>
+      <li>Brustkorb nach jeder Kompression vollständig entlasten.</li>
+      <li>Bei geschulter Beatmung: 30 Kompressionen und zwei Beatmungen.</li>
+      <li>Wenn keine Beatmung möglich ist: kontinuierliche Herzdruckmassage.</li>
+      <li>Unterbrechungen so kurz wie möglich halten.</li>
+      <li>Helfende ungefähr alle zwei Minuten wechseln.</li>
+      <li>AED so früh wie möglich einsetzen.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck – Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Welche zwei Zeichen sprechen für einen möglichen Herz-Kreislauf-Stillstand?</summary>
+      <p>Die Person reagiert nicht und atmet nicht normal. Auch Schnappatmung zählt als fehlende normale Atmung.</p>
+    </details>
+
+    <details>
+      <summary>2. Wie schnell muss die Herzdruckmassage durchgeführt werden?</summary>
+      <p>Mit einer Frequenz von 100 bis 120 Kompressionen pro Minute.</p>
+    </details>
+
+    <details>
+      <summary>3. Wie tief wird der Brustkorb eines Erwachsenen eingedrückt?</summary>
+      <p>Etwa fünf bis sechs Zentimeter.</p>
+    </details>
+
+    <details>
+      <summary>4. Warum muss der Brustkorb vollständig entlastet werden?</summary>
+      <p>Damit sich das Herz zwischen den Kompressionen möglichst gut wieder mit Blut füllen kann.</p>
+    </details>
+
+    <details>
+      <summary>5. Welches Verhältnis gilt bei Herzdruckmassage und Beatmung?</summary>
+      <p>Bei geschulten Helfenden 30 Herzdruckmassagen und zwei Beatmungen.</p>
+    </details>
+
+    <details>
+      <summary>6. Was tust du, wenn du keine Beatmung durchführen kannst?</summary>
+      <p>Du führst kontinuierlich eine wirksame Herzdruckmassage durch.</p>
+    </details>
+
+    <details>
+      <summary>7. Wann sollten sich Helfende bei der Herzdruckmassage abwechseln?</summary>
+      <p>Ungefähr alle zwei Minuten oder früher bei Erschöpfung, möglichst ohne längere Unterbrechung.</p>
+    </details>
+
+    <details>
+      <summary>8. Warum ist der frühe Einsatz eines AED wichtig?</summary>
+      <p>Weil bestimmte Herzrhythmusstörungen durch eine Defibrillation behandelt werden können. Das Gerät analysiert den Rhythmus und gibt entsprechende Anweisungen.</p>
+    </details>
+
+    <details>
+      <summary>9. Was ist der häufigste gefährliche Denkfehler bei Schnappatmung?</summary>
+      <p>Sie fälschlich für normale Atmung zu halten und dadurch die Wiederbelebung zu verzögern.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Automatisierter externer Defibrillator (AED)</h2>
+    <p>In der nächsten Lektion lernst du, wie ein AED funktioniert, wie du ihn sicher anwendest und welche Sicherheitsregeln bei Rhythmusanalyse und Schockabgabe gelten.</p>
+  </section>
+</main>
+</body>
+</html>

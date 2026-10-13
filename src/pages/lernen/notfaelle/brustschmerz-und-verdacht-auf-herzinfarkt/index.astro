@@ -1,0 +1,588 @@
+---
+const pageTitle = "Brustschmerz und Verdacht auf Herzinfarkt | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="PraxisMFA: Brustschmerzen und Herzinfarkt erkennen, Notruf auslösen und als MFA im Praxisteam richtig handeln." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 10</p>
+    <h1>Brustschmerz und Verdacht auf Herzinfarkt</h1>
+    <p class="lead">Ein Patient klagt plötzlich über Druck auf der Brust. Jetzt kommt es darauf an, Warnzeichen zu erkennen, sofort Hilfe zu organisieren und keine wertvolle Zeit zu verlieren.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erkennst typische und atypische Hinweise auf einen Herzinfarkt, verstehst die Bedeutung eines akuten Koronarsyndroms und kannst die ersten Maßnahmen bei Brustschmerzen im Rahmen deiner Aufgaben als MFA sicher erklären.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Warum akuter Brustschmerz ein Notfall sein kann</h2>
+    <p>Brustschmerzen können unterschiedliche Ursachen haben. Dazu gehören Erkrankungen des Herzens, der Lunge, der Speiseröhre oder des Bewegungsapparates. Manche Ursachen sind harmlos, andere unmittelbar lebensbedrohlich.</p>
+    <p>Besonders gefährlich ist das <strong>akute Koronarsyndrom (ACS)</strong>. Dazu gehören der akute Herzinfarkt und die instabile Angina pectoris. Dabei ist die Blutversorgung des Herzmuskels plötzlich kritisch eingeschränkt.</p>
+    <p>Auch eine Lungenembolie oder eine akute Erkrankung der Hauptschlagader kann Brustschmerzen verursachen und lebensbedrohlich sein. Die MFA muss diese Diagnosen nicht selbst stellen. Ihre Aufgabe ist es, Warnzeichen ernst zu nehmen und unverzüglich Hilfe zu organisieren.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Akute, neu aufgetretene oder ungewohnt starke Brustschmerzen müssen rasch ärztlich eingeschätzt werden. Bei Verdacht auf eine lebensbedrohliche Ursache sofort 112 alarmieren.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Was passiert bei einem Herzinfarkt?</h2>
+    <p>Der Herzmuskel benötigt ständig Sauerstoff. Dieser wird über die Herzkranzgefäße zugeführt. Bei einem Herzinfarkt wird ein Teil des Herzmuskels durch eine akute Durchblutungsstörung geschädigt. Häufig entsteht diese durch ein Blutgerinnsel an einer veränderten Gefäßwand.</p>
+    <p>Je länger die Durchblutung gestört ist, desto größer kann die Schädigung werden. Deshalb ist eine schnelle medizinische Versorgung entscheidend.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Ein Herzinfarkt lässt sich nicht allein durch die Beschreibung der Schmerzen bestätigen oder ausschließen. Dafür sind ärztliche Beurteilung, EKG und weitere Untersuchungen notwendig.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Typische Warnzeichen erkennen</h2>
+    <p>Bei einem Herzinfarkt können folgende Beschwerden auftreten:</p>
+    <ul>
+      <li>Starker Druck, Enge, Brennen oder Schmerzen hinter dem Brustbein</li>
+      <li>Ausstrahlung in Arm, Schulter, Rücken, Hals, Kiefer oder Oberbauch</li>
+      <li>Atemnot und ausgeprägte Schwäche</li>
+      <li>Kalter Schweiß, Blässe oder Übelkeit</li>
+      <li>Angstgefühl, Unruhe oder das Gefühl einer akuten Bedrohung</li>
+      <li>Schwindel, Kreislaufprobleme oder Bewusstseinsstörungen</li>
+    </ul>
+    <p>Die Beschwerden können plötzlich auftreten oder sich entwickeln. Nicht alle Anzeichen müssen gleichzeitig vorhanden sein.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Auch wenn Schmerzen nachlassen, kann weiterhin ein ernstes Herzproblem bestehen. Eine scheinbare Besserung ist kein Grund, den Notruf zurückzunehmen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/brustschmerz-und-verdacht-auf-herzinfarkt.png"
+      alt="PraxisMFA Lernbild: Herzinfarkt erkennen, typische und atypische Warnzeichen sowie richtiges Handeln bei Brustschmerzen"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Atypische Symptome: nicht nur an Brustschmerz denken</h2>
+    <p>Besonders bei älteren Menschen, Frauen und Menschen mit Diabetes können weniger typische Beschwerden im Vordergrund stehen. Dazu zählen beispielsweise Atemnot, Übelkeit, ungewöhnliche Erschöpfung, Oberbauchbeschwerden oder allgemeine Schwäche.</p>
+    <p>Auch Menschen ohne ausgeprägte Brustschmerzen können einen Herzinfarkt erleiden. Die Symptome unterscheiden sich individuell; die genannten Personengruppen zeigen nicht zwangsläufig atypische Beschwerden.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Frage nicht nur „Haben Sie Brustschmerzen?“, sondern achte auch auf plötzlich aufgetretene Atemnot, Kaltschweißigkeit, Schwäche und eine deutliche Veränderung des Allgemeinzustands.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Erste Maßnahmen: So handelst du als MFA</h2>
+    <ol>
+      <li><strong>Situation erkennen:</strong> Beschwerden ernst nehmen und den Patienten nicht allein lassen.</li>
+      <li><strong>Sofort Hilfe holen:</strong> Ärztin oder Arzt und das Praxisteam alarmieren. Bei begründetem Verdacht auf einen Herzinfarkt unverzüglich 112 veranlassen.</li>
+      <li><strong>Belastung vermeiden:</strong> Patienten nicht weitergehen lassen. Eine bequeme, meist oberkörpererhöhte Position ermöglichen, sofern Zustand und Atmung das zulassen.</li>
+      <li><strong>Zustand überwachen:</strong> Bewusstsein und Atmung beobachten. Vitalzeichen und gegebenenfalls Sauerstoffsättigung erfassen, ohne die Alarmierung zu verzögern.</li>
+      <li><strong>Notfallausstattung vorbereiten:</strong> AED, Notfallkoffer und weitere benötigte Materialien bereithalten.</li>
+      <li><strong>Ärztliche Maßnahmen unterstützen:</strong> Zum Beispiel ein 12-Kanal-EKG vorbereiten oder ableiten, soweit dies im Praxisablauf vorgesehen ist.</li>
+      <li><strong>Übergabe vorbereiten:</strong> Beschwerden, Beginn, Veränderungen, Vorerkrankungen und bereits erfolgte Maßnahmen strukturiert weitergeben.</li>
+    </ol>
+    <div class="remember">
+      <strong>Merke:</strong> Der Notruf hat Vorrang. Ein EKG oder eine Blutdruckmessung darf die Alarmierung des Rettungsdienstes nicht verzögern.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Die richtige Lagerung und Betreuung</h2>
+    <p>Bei erhaltenem Bewusstsein und stabiler Atmung ist häufig eine bequeme, oberkörpererhöhte Position sinnvoll. Enge Kleidung kann gelockert werden. Die MFA spricht ruhig mit dem Patienten und verhindert unnötige Bewegung.</p>
+    <p>Bei ausgeprägten Kreislaufproblemen muss die Lagerung an den Zustand angepasst werden. Eine starre Lagerungsregel für alle Patienten mit Brustschmerzen gibt es nicht.</p>
+    <p>Bewusstlosigkeit und fehlende normale Atmung erfordern sofortige Wiederbelebungsmaßnahmen gemäß der bereits behandelten Reanimationslektion.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Patienten mit Verdacht auf Herzinfarkt nicht selbst mit dem Auto in die Klinik schicken und nicht eigenständig transportieren.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>EKG und Vitalzeichen: Was ist wichtig?</h2>
+    <p>Ein 12-Kanal-EKG kann Hinweise auf akute Veränderungen am Herzen liefern. Ein zunächst unauffälliges EKG schließt einen Herzinfarkt jedoch nicht sicher aus.</p>
+    <p>Zur Überwachung können unter anderem Puls, Blutdruck, Atemfrequenz, Sauerstoffsättigung und Bewusstseinslage erfasst werden. Diese Werte helfen bei der Beurteilung, ersetzen aber keine ärztliche Diagnostik.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Dokumentiere möglichst den Zeitpunkt des Beschwerdebeginns und wann das EKG erstellt wurde. Diese Angaben sind für die weitere Versorgung bedeutsam.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Medikamente und Sauerstoff: Zuständigkeiten beachten</h2>
+    <p>Die medikamentöse Behandlung eines vermuteten Herzinfarkts erfolgt nach ärztlicher Entscheidung beziehungsweise den geltenden Notfallvorgaben. Eine MFA entscheidet nicht selbstständig über die Gabe von Herzmedikamenten.</p>
+    <p>Auch Sauerstoff wird nicht automatisch jedem Patienten mit Brustschmerzen gegeben. Ob er erforderlich ist, richtet sich insbesondere nach der Sauerstoffversorgung und der medizinischen Beurteilung.</p>
+    <p>Bereite angeordnete Maßnahmen sorgfältig vor, prüfe die Zuständigkeit und dokumentiere die Durchführung.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Keine eigenständige Medikamentengabe und keine Verzögerung des Notrufs durch vorbereitende Maßnahmen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Strukturierte Übergabe an den Rettungsdienst</h2>
+    <p>Bei der Übergabe helfen klare und überprüfbare Informationen:</p>
+    <ul>
+      <li>Wer ist betroffen? Alter und relevante bekannte Erkrankungen</li>
+      <li>Welche Beschwerden bestehen und wann haben sie begonnen?</li>
+      <li>Wie haben sich die Beschwerden verändert?</li>
+      <li>Welche Vitalzeichen wurden gemessen?</li>
+      <li>Welche Maßnahmen wurden bereits durchgeführt?</li>
+      <li>Welche Medikamente wurden ärztlich angeordnet und gegeben?</li>
+    </ul>
+    <p>Ein mögliches Übergabebeispiel lautet: „Der Patient klagt seit etwa 15 Minuten über neu aufgetretenen starken Druck hinter dem Brustbein mit Ausstrahlung in den linken Arm. Er ist blass und kaltschweißig. Der Rettungsdienst wurde sofort alarmiert. Die Vitalwerte und das EKG liegen vor.“</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Häufige Fehler im Praxisalltag</h2>
+    <ul>
+      <li>Brustschmerzen vorschnell als Stress oder Verspannung einordnen</li>
+      <li>Bei fehlenden typischen Brustschmerzen einen Herzinfarkt ausschließen</li>
+      <li>Den Patienten allein im Wartezimmer lassen</li>
+      <li>Erst sämtliche Messungen abschließen und danach 112 anrufen</li>
+      <li>Ein unauffälliges EKG als sichere Entwarnung verstehen</li>
+      <li>Patienten selbst zur Klinik fahren lassen</li>
+      <li>Medikamente ohne entsprechende Anordnung verabreichen</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> Nicht die endgültige Diagnose ist die erste Aufgabe der MFA, sondern das frühzeitige Erkennen einer möglichen Gefahr und das sichere Einleiten der Notfallversorgung.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PRAXISSITUATION</p>
+    <h2>Ein Patient am Empfang</h2>
+    <p>Ein 62-jähriger Patient betritt die Praxis. Er wirkt blass, schwitzt stark und hält eine Hand auf die Brust. Auf Nachfrage berichtet er über starken Druck hinter dem Brustbein seit ungefähr zehn Minuten. Er möchte sich zunächst nur kurz hinsetzen und abwarten.</p>
+    <p><strong>Deine Aufgabe:</strong> Du erkennst die möglichen Warnzeichen eines akuten Koronarsyndroms. Du alarmierst sofort die Ärztin und veranlasst im abgestimmten Notfallablauf den Notruf 112. Du lässt den Patienten nicht allein, vermeidest körperliche Belastung und unterstützt die Überwachung sowie die Vorbereitung der Notfallausstattung.</p>
+    <p><strong>Entscheidende Erkenntnis:</strong> Der Wunsch des Patienten, zunächst abzuwarten, darf bei begründetem Verdacht auf einen Herzinfarkt nicht zu einer gefährlichen Verzögerung führen.</p>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Akuter Brustschmerz kann auf einen Herzinfarkt oder eine andere lebensbedrohliche Erkrankung hinweisen.</li>
+      <li>Ein Herzinfarkt ist auch ohne typische Brustschmerzen möglich.</li>
+      <li>Bei begründetem Verdacht sofort ärztliche Hilfe organisieren und 112 alarmieren.</li>
+      <li>Patienten nicht allein lassen, körperliche Belastung vermeiden und Zustand überwachen.</li>
+      <li>EKG und Vitalzeichen sind wichtig, dürfen den Notruf aber nicht verzögern.</li>
+      <li>Medikamente und Sauerstoff nur entsprechend den geltenden medizinischen Vorgaben einsetzen.</li>
+      <li>Beschwerdebeginn, Beobachtungen und Maßnahmen sorgfältig dokumentieren.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck: Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Was versteht man unter einem akuten Koronarsyndrom?</summary>
+      <p>Eine Gruppe akuter Durchblutungsstörungen des Herzens, zu denen der Herzinfarkt und die instabile Angina pectoris gehören.</p>
+    </details>
+    <details>
+      <summary>2. Welche drei typischen Warnzeichen können auftreten?</summary>
+      <p>Zum Beispiel starker Brustdruck, Ausstrahlung in Arm oder Kiefer und kalter Schweiß. Auch Atemnot oder Übelkeit sind möglich.</p>
+    </details>
+    <details>
+      <summary>3. Ist ein Herzinfarkt ohne starke Brustschmerzen möglich?</summary>
+      <p>Ja. Unter anderem Atemnot, Schwäche, Übelkeit oder Oberbauchbeschwerden können im Vordergrund stehen.</p>
+    </details>
+    <details>
+      <summary>4. Was hat bei begründetem Herzinfarktverdacht Vorrang: EKG oder Notruf?</summary>
+      <p>Der sofortige Notruf 112. Ein EKG darf die Alarmierung nicht verzögern.</p>
+    </details>
+    <details>
+      <summary>5. Warum soll der Patient nicht selbst zur Klinik fahren?</summary>
+      <p>Weil sich sein Zustand plötzlich verschlechtern kann und eine medizinisch überwachte Notfallversorgung erforderlich sein kann.</p>
+    </details>
+    <details>
+      <summary>6. Schließt ein unauffälliges EKG einen Herzinfarkt sicher aus?</summary>
+      <p>Nein. Die weitere ärztliche Diagnostik ist entscheidend.</p>
+    </details>
+    <details>
+      <summary>7. Darf eine MFA eigenständig Herzmedikamente geben?</summary>
+      <p>Nein. Die Medikamentengabe richtet sich nach ärztlicher Anordnung, Zuständigkeiten und geltenden Notfallvorgaben.</p>
+    </details>
+    <details>
+      <summary>8. Welche Angaben sind bei der Übergabe besonders wichtig?</summary>
+      <p>Beschwerden, Beginn, Verlauf, Vitalzeichen, relevante Vorerkrankungen und bereits durchgeführte Maßnahmen.</p>
+    </details>
+    <details>
+      <summary>9. Was tust du, wenn der Patient bewusstlos wird und nicht normal atmet?</summary>
+      <p>Du lässt sofort Hilfe und den AED organisieren und beginnst unverzüglich mit der Wiederbelebung entsprechend dem Notfallalgorithmus.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Schlaganfall erkennen und richtig handeln</h2>
+    <p>In Lektion 11 lernst du, wie du plötzlich auftretende neurologische Ausfälle erkennst, den FAST-Test einsetzt und bei Schlaganfallverdacht ohne Zeitverlust handelst.</p>
+  </section>
+</main>
+</body>
+</html>

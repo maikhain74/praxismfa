@@ -1,0 +1,613 @@
+---
+const pageTitle = "Bewusstsein und Atmung überprüfen | PraxisMFA";
+---
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 04</p>
+    <h1>Bewusstsein und Atmung überprüfen</h1>
+    <p class="lead">Ein Mensch liegt regungslos am Boden. Reagiert er noch? Atmet er normal? Die Antworten auf diese beiden Fragen entscheiden darüber, welche lebensrettenden Maßnahmen sofort notwendig sind.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du überprüfst systematisch das Bewusstsein und die Atmung einer betroffenen Person, erkennst Schnappatmung als Warnzeichen eines möglichen Kreislaufstillstands und leitest aus deinen Beobachtungen die richtigen Sofortmaßnahmen ab.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Warum Bewusstsein und Atmung zuerst überprüft werden</h2>
+    <p>Wenn ein Mensch plötzlich zusammenbricht, kann eine schwere Störung lebenswichtiger Körperfunktionen vorliegen. Besonders kritisch ist ein Herz-Kreislauf-Stillstand.</p>
+    <p>Deshalb müssen Helfende schnell feststellen, ob die betroffene Person reagiert und normal atmet.</p>
+    <p>Die Bewusstseins- und Atemkontrolle ist ein zentraler Bestandteil der Basismaßnahmen zur Wiederbelebung.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Eine bewusstlose Person ohne normale Atmung muss als möglicher Herz-Kreislauf-Stillstand behandelt werden. Sofort Hilfe alarmieren und mit der Wiederbelebung beginnen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Eigenschutz und Umgebung kontrollieren</h2>
+    <p>Bevor du dich einer regungslosen Person näherst, achtest du auf mögliche Gefahren.</p>
+    <ul>
+      <li>Ist die Umgebung sicher?</li>
+      <li>Besteht Gefahr durch Strom, Verkehr, gefährliche Gegenstände oder andere Einflüsse?</li>
+      <li>Kannst du dich der Person gefahrlos nähern?</li>
+      <li>Sind weitere Helfende erreichbar?</li>
+    </ul>
+    <p>In einer Arztpraxis können beispielsweise umgestürzte Gegenstände, medizinische Geräte oder Flüssigkeiten auf dem Boden zusätzliche Gefahren darstellen.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Sprich weitere Mitarbeitende frühzeitig direkt an. So können Alarmierung und weitere Maßnahmen parallel organisiert werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Bewusstsein überprüfen – so gehst du vor</h2>
+    <p>Sprich die betroffene Person laut und deutlich an.</p>
+    <p><strong>Beispiel:</strong> „Hallo! Können Sie mich hören? Öffnen Sie bitte die Augen!“</p>
+    <p>Reagiert sie nicht, berührst beziehungsweise schüttelst du sie vorsichtig an den Schultern.</p>
+    <h3>Mögliche Reaktionen</h3>
+    <ul>
+      <li>Die Person öffnet die Augen.</li>
+      <li>Sie antwortet oder spricht.</li>
+      <li>Sie führt eine gezielte Bewegung aus.</li>
+      <li>Sie reagiert überhaupt nicht.</li>
+    </ul>
+    <p>Bleibt jede Reaktion aus, behandelst du die Person als bewusstlos und rufst sofort laut um Hilfe.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Verzichte auf schmerzhafte Reize, Ohrfeigen oder andere ungeeignete Methoden, um eine Reaktion auszulösen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/bewusstsein-und-atmung-ueberpruefen.png"
+      alt="PraxisMFA Lernbild: Bewusstsein und Atmung überprüfen, Atemwege freimachen und Schnappatmung erkennen"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Atemwege freimachen</h2>
+    <p>Bei Bewusstlosigkeit kann die erschlaffte Zunge den Atemweg beeinträchtigen. Deshalb wird vor der Atemkontrolle der Atemweg geöffnet.</p>
+    <h3>Bei Erwachsenen</h3>
+    <ol>
+      <li>Bringe die Person möglichst in Rückenlage.</li>
+      <li>Lege eine Hand auf die Stirn.</li>
+      <li>Neige den Kopf vorsichtig nach hinten.</li>
+      <li>Hebe mit den Fingerspitzen der anderen Hand das Kinn an.</li>
+    </ol>
+    <p>Diese Maßnahme wird als Überstrecken des Kopfes mit Anheben des Kinns bezeichnet.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Ein geöffneter Atemweg ist die Voraussetzung für eine zuverlässige Atemkontrolle.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Atmung kontrollieren – höchstens zehn Sekunden</h2>
+    <p>Halte den Atemweg offen und überprüfe, ob die Person normal atmet.</p>
+    <h3>Sehen</h3>
+    <p>Beobachte, ob sich der Brustkorb regelmäßig hebt und senkt.</p>
+    <h3>Hören</h3>
+    <p>Achte auf normale Atemgeräusche.</p>
+    <h3>Fühlen</h3>
+    <p>Versuche, den Luftstrom an deiner Wange wahrzunehmen, ohne die Atemkontrolle unnötig zu verlängern.</p>
+    <p>Für die gesamte Atemkontrolle benötigst du höchstens zehn Sekunden.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Wenn du nicht sicher feststellen kannst, dass die Person normal atmet, behandelst du die Situation wie einen möglichen Kreislaufstillstand.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Normale Atmung und Schnappatmung unterscheiden</h2>
+    <p>Besonders gefährlich ist die Verwechslung von Schnappatmung mit normaler Atmung.</p>
+    <h3>Normale Atmung</h3>
+    <ul>
+      <li>Regelmäßige Atembewegungen.</li>
+      <li>Erkennbare, wiederkehrende Atemzüge.</li>
+      <li>Keine vereinzelten, krampfartigen Luftschnapper.</li>
+    </ul>
+    <h3>Schnappatmung</h3>
+    <ul>
+      <li>Einzelne, unregelmäßige Atemzüge.</li>
+      <li>Gelegentlich laute oder schnarchende, krampfartige Atembewegungen.</li>
+      <li>Längere Pausen zwischen den Atembewegungen.</li>
+      <li>Keine ausreichende normale Atmung.</li>
+    </ul>
+    <p>Schnappatmung kann unmittelbar nach einem Herz-Kreislauf-Stillstand auftreten und darf nicht als Zeichen einer ausreichenden Atmung fehlinterpretiert werden.</p>
+    <div class="warning-box">
+      <strong>Lebenswichtig:</strong> Schnappatmung ist keine normale Atmung. Bei Bewusstlosigkeit und Schnappatmung sofort den Notruf 112 veranlassen und mit der Wiederbelebung beginnen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Welche Maßnahmen folgen auf die Kontrolle?</h2>
+    <h3>Die Person reagiert und atmet normal</h3>
+    <p>Du beobachtest den Zustand, holst entsprechend der Situation ärztliche Unterstützung und führst notwendige weitere Maßnahmen durch.</p>
+    <h3>Die Person ist bewusstlos, atmet aber normal</h3>
+    <p>Du alarmierst Hilfe, veranlasst den Notruf 112, bringst die Person bei fehlenden entgegenstehenden Umständen in die stabile Seitenlage und kontrollierst die Atmung fortlaufend.</p>
+    <h3>Die Person ist bewusstlos und atmet nicht normal</h3>
+    <p>Du alarmierst Hilfe, veranlasst den Notruf 112 und beginnst unverzüglich mit der Herzdruckmassage. Ein AED wird so früh wie möglich eingesetzt, sobald er verfügbar ist.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Die stabile Seitenlage, die Reanimation und der AED werden in den folgenden Lektionen ausführlich behandelt. Entscheidend ist bereits jetzt, dass du die drei Situationen sicher unterscheiden kannst.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Typische Fehler bei der Bewusstseins- und Atemkontrolle</h2>
+    <ul>
+      <li><strong>Zu lange kontrollieren:</strong> Die Atemkontrolle dauert länger als zehn Sekunden.</li>
+      <li><strong>Schnappatmung falsch deuten:</strong> Einzelne Luftschnapper werden für normale Atmung gehalten.</li>
+      <li><strong>Atemweg nicht öffnen:</strong> Die Atmung wird bei nicht ausreichend geöffnetem Atemweg beurteilt.</li>
+      <li><strong>Auf Pulsmessung konzentrieren:</strong> Die Wiederbelebung wird durch eine langwierige Pulssuche verzögert.</li>
+      <li><strong>Hilfe zu spät rufen:</strong> Weitere Mitarbeitende und Rettungsdienst werden nicht rechtzeitig alarmiert.</li>
+      <li><strong>Kontrolle nicht wiederholen:</strong> Eine zunächst normal atmende bewusstlose Person wird nicht weiter beobachtet.</li>
+    </ul>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Trainiere die Bewusstseins- und Atemkontrolle regelmäßig praktisch. Unter Stress helfen eingeübte Abläufe, schneller und sicherer zu handeln.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="section-number">09</p>
+    <h2>Praxisfall: Ein Patient bricht am Empfang zusammen</h2>
+    <p>Ein 71-jähriger Patient wartet am Empfang auf seine Versichertenkarte. Plötzlich sackt er zusammen und bleibt regungslos am Boden liegen.</p>
+    <p>Du sprichst ihn laut an und berührst vorsichtig seine Schultern. Er reagiert nicht.</p>
+    <h3>Was machst du als Nächstes?</h3>
+    <ol>
+      <li>Du rufst laut um Hilfe und lässt weitere Mitarbeitende alarmieren.</li>
+      <li>Du öffnest den Atemweg durch vorsichtiges Überstrecken des Kopfes und Anheben des Kinns.</li>
+      <li>Du überprüfst die Atmung höchstens zehn Sekunden lang.</li>
+      <li>Du stellst fest, dass der Patient nur gelegentlich nach Luft schnappt.</li>
+      <li>Du behandelst dies als fehlende normale Atmung, veranlasst den Notruf 112 und beginnst sofort mit der Wiederbelebung.</li>
+      <li>Eine weitere Person organisiert den AED.</li>
+    </ol>
+    <h3>Warum ist das richtig?</h3>
+    <p>Die fehlende Reaktion und die Schnappatmung sind typische Hinweise auf einen möglichen Herz-Kreislauf-Stillstand. Die Wiederbelebung darf nicht durch weitere Routineuntersuchungen verzögert werden.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Nicht ansprechbar und keine normale Atmung bedeutet: sofort handeln.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Besonderheiten im Praxisteam</h2>
+    <p>In der Arztpraxis stehen häufig mehrere Helfende zur Verfügung. Nutze diese Möglichkeit, um Aufgaben parallel zu organisieren.</p>
+    <ul>
+      <li>Eine Person überprüft Bewusstsein und Atmung.</li>
+      <li>Eine weitere Person alarmiert den Rettungsdienst.</li>
+      <li>Eine dritte Person bringt den AED und die Notfallausstattung.</li>
+      <li>Bei fehlender normaler Atmung beginnt die Wiederbelebung ohne Verzögerung.</li>
+    </ul>
+    <p>Auch wenn ärztliche Hilfe unmittelbar erreichbar ist, dürfen lebensrettende Basismaßnahmen nicht unnötig aufgeschoben werden.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Die Verantwortung für die erste Hilfe endet nicht an der Tür des Behandlungszimmers. Jede entsprechend geschulte MFA muss einen möglichen Kreislaufstillstand erkennen und die notwendigen Basismaßnahmen einleiten können.
+    </div>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Überprüfe bei einer regungslosen Person zuerst die Reaktion auf Ansprache und vorsichtige Berührung.</li>
+      <li>Rufe bei fehlender Reaktion sofort um Hilfe.</li>
+      <li>Öffne den Atemweg vor der Atemkontrolle.</li>
+      <li>Kontrolliere die Atmung höchstens zehn Sekunden.</li>
+      <li>Schnappatmung ist keine normale Atmung.</li>
+      <li>Bei Bewusstlosigkeit ohne normale Atmung sofort Notruf und Wiederbelebung.</li>
+      <li>Bei Bewusstlosigkeit mit normaler Atmung Atemweg sichern und Atmung fortlaufend überwachen.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck – Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Wie überprüfst du das Bewusstsein einer Person?</summary>
+      <p>Durch lautes Ansprechen und vorsichtiges Berühren beziehungsweise Schütteln an den Schultern. Bleibt eine Reaktion aus, wird die Person als bewusstlos behandelt.</p>
+    </details>
+
+    <details>
+      <summary>2. Warum musst du vor der Atemkontrolle den Atemweg öffnen?</summary>
+      <p>Weil bei Bewusstlosigkeit erschlaffte Strukturen im Rachenraum den Atemweg beeinträchtigen können. Das Überstrecken des Kopfes und Anheben des Kinns hilft, den Atemweg zu öffnen.</p>
+    </details>
+
+    <details>
+      <summary>3. Wie lange darf die Atemkontrolle höchstens dauern?</summary>
+      <p>Höchstens zehn Sekunden.</p>
+    </details>
+
+    <details>
+      <summary>4. Was bedeutet Schnappatmung bei einer bewusstlosen Person?</summary>
+      <p>Sie ist keine normale Atmung und kann auf einen Herz-Kreislauf-Stillstand hinweisen. Sofort den Notruf 112 veranlassen und mit der Wiederbelebung beginnen.</p>
+    </details>
+
+    <details>
+      <summary>5. Was tust du bei Bewusstlosigkeit und normaler Atmung?</summary>
+      <p>Hilfe alarmieren, Notruf 112 veranlassen, bei fehlenden entgegenstehenden Umständen stabile Seitenlage herstellen und die Atmung fortlaufend kontrollieren.</p>
+    </details>
+
+    <details>
+      <summary>6. Warum sollst du bei fehlender normaler Atmung nicht erst lange den Puls suchen?</summary>
+      <p>Weil dies die lebensrettende Wiederbelebung verzögern kann. Entscheidend sind die fehlende Reaktion und die fehlende normale Atmung.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Notruf 112 und strukturierte Übergabe</h2>
+    <p>In der nächsten Lektion lernst du, wie du einen Notruf sicher absetzt, entscheidende Informationen übermittelst und eine strukturierte Übergabe an den Rettungsdienst vorbereitest.</p>
+  </section>
+</main>
+</body>
+</html>

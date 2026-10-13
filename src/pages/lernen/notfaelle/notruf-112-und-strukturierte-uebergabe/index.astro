@@ -1,0 +1,677 @@
+---
+const pageTitle = "Notruf 112 und strukturierte Übergabe | PraxisMFA";
+---
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 05</p>
+    <h1>Notruf 112 und strukturierte Übergabe</h1>
+    <p class="lead">Ein medizinischer Notfall verlangt schnelles Handeln. Doch auch die Kommunikation entscheidet darüber, wie rasch und gezielt Hilfe eintrifft. Lerne, einen Notruf sicher abzusetzen und wichtige Informationen ohne Zeitverlust weiterzugeben.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erkennst, wann der Rettungsdienst alarmiert werden muss, setzt einen strukturierten Notruf ab, beantwortest Rückfragen der Leitstelle und übergibst einen Notfallpatienten mit den wesentlichen Informationen an den Rettungsdienst.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Warum die richtige Kommunikation im Notfall entscheidend ist</h2>
+    <p>Bei einem medizinischen Notfall reicht es nicht aus, die Situation zu erkennen. Die notwendigen Informationen müssen schnell und eindeutig an die richtigen Personen gelangen.</p>
+    <p>Die Rettungsleitstelle entscheidet anhand der gemeldeten Situation über die Alarmierung geeigneter Rettungsmittel und kann Anweisungen für lebensrettende Maßnahmen geben.</p>
+    <p>Eine unklare Ortsangabe, unvollständige Informationen oder ein vorzeitig beendetes Gespräch können die Versorgung verzögern.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Ein guter Notruf ist kurz, verständlich und vollständig genug, damit die Leitstelle gezielt handeln kann.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Wann wählst du die 112?</h2>
+    <p>Die europaweit gültige Notrufnummer 112 wird bei akuten, möglicherweise lebensbedrohlichen Situationen gewählt.</p>
+    <h3>Typische Beispiele in der Arztpraxis</h3>
+    <ul>
+      <li>Bewusstlosigkeit oder fehlende normale Atmung.</li>
+      <li>Verdacht auf Herz-Kreislauf-Stillstand.</li>
+      <li>Akute schwere Atemnot.</li>
+      <li>Verdacht auf Herzinfarkt oder Schlaganfall.</li>
+      <li>Schwere allergische Reaktion mit Atem- oder Kreislaufproblemen.</li>
+      <li>Starke, nicht kontrollierbare Blutung.</li>
+      <li>Andere akute Situationen mit schwerer Gefährdung.</li>
+    </ul>
+    <p>Besteht der begründete Verdacht auf eine lebensbedrohliche Situation, darf die Alarmierung nicht durch langwierige Untersuchungen verzögert werden.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Bei Bewusstlosigkeit ohne normale Atmung müssen Notruf und Wiederbelebung unverzüglich veranlasst werden. Die Notrufabsetzung darf die Herzdruckmassage nicht unnötig verzögern.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Den Notruf vorbereiten – ohne Zeit zu verlieren</h2>
+    <p>In einer Arztpraxis sollte die genaue Anschrift einschließlich Etage, Zugang und möglicher Besonderheiten allen Mitarbeitenden bekannt sein.</p>
+    <p>Beim Notruf sind insbesondere folgende Angaben hilfreich:</p>
+    <ul>
+      <li>Genaue Adresse der Arztpraxis.</li>
+      <li>Gebäude, Stockwerk und Zugang.</li>
+      <li>Was passiert ist.</li>
+      <li>Wie viele Personen betroffen sind.</li>
+      <li>Bewusstseinslage und Atmung.</li>
+      <li>Bereits begonnene Notfallmaßnahmen.</li>
+    </ul>
+    <p>Fehlen einzelne Informationen, wird der Notruf trotzdem sofort abgesetzt. Die Leitstelle führt durch das Gespräch.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Ein gut sichtbarer Aushang mit Praxisanschrift, Stockwerk und Zugangsinformationen am Telefon kann im Ernstfall wertvolle Zeit sparen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/notruf-112-und-strukturierte-uebergabe.png"
+      alt="PraxisMFA Lernbild: Notruf 112, die 5-W-Fragen, Kommunikation mit der Leitstelle und strukturierte Übergabe nach SBAR"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Die 5-W-Fragen als Orientierung</h2>
+    <p>Die bekannten W-Fragen helfen, einen Notruf gedanklich zu strukturieren. Entscheidend ist jedoch, die Fragen der Leitstelle zu beantworten und ihren Anweisungen zu folgen.</p>
+    <h3>Wo ist der Notfall?</h3>
+    <p>Nenne den genauen Standort, möglichst mit Straße, Hausnummer, Ort, Stockwerk und Zugang.</p>
+    <h3>Was ist geschehen?</h3>
+    <p>Beschreibe das Ereignis sachlich, beispielsweise einen plötzlichen Zusammenbruch.</p>
+    <h3>Wie viele Betroffene gibt es?</h3>
+    <p>Nenne die Anzahl der betroffenen Personen.</p>
+    <h3>Welche Beschwerden oder Verletzungen liegen vor?</h3>
+    <p>Beschreibe vor allem lebensbedrohliche Auffälligkeiten wie Bewusstlosigkeit, fehlende normale Atmung oder starke Blutungen.</p>
+    <h3>Warten auf Rückfragen</h3>
+    <p>Beende das Gespräch nicht eigenständig. Die Leitstelle kann weitere Informationen benötigen oder konkrete Handlungsanweisungen geben.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Die W-Fragen sind eine Gedächtnishilfe, kein starrer Gesprächsablauf. Die Leitstelle steuert den Notruf.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>So kann ein Notruf in der Arztpraxis klingen</h2>
+    <p><strong>Leitstelle:</strong> „Notruf Feuerwehr und Rettungsdienst. Wo genau ist der Notfallort?“</p>
+    <p><strong>MFA:</strong> „Wir sind in der Gemeinschaftspraxis Musterstraße 12 in München, im ersten Stock. Der Eingang liegt im Innenhof.“</p>
+    <p><strong>Leitstelle:</strong> „Was ist passiert?“</p>
+    <p><strong>MFA:</strong> „Ein ungefähr 70-jähriger Patient ist plötzlich zusammengebrochen. Er ist bewusstlos und atmet nicht normal.“</p>
+    <p><strong>Leitstelle:</strong> „Wird bereits wiederbelebt?“</p>
+    <p><strong>MFA:</strong> „Ja, eine Kollegin führt die Herzdruckmassage durch. Unser AED wird gerade geholt.“</p>
+    <p><strong>Leitstelle:</strong> „Bleiben Sie in der Leitung. Ich gebe Ihnen weitere Anweisungen.“</p>
+    <p>Die MFA hört zu, beantwortet weitere Fragen und gibt Anweisungen an das Team weiter.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Wenn möglich, wird das Telefon auf Lautsprecher gestellt. So können Anweisungen gehört werden, während lebensrettende Maßnahmen fortgesetzt werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Kommunikation mit der Rettungsleitstelle</h2>
+    <p>Auch unter Zeitdruck sollte die MFA ruhig, deutlich und sachlich sprechen.</p>
+    <ul>
+      <li>Beantworte Fragen der Leitstelle möglichst genau.</li>
+      <li>Beschreibe Beobachtungen statt ungesicherter Diagnosen.</li>
+      <li>Teile Veränderungen des Patientenzustands sofort mit.</li>
+      <li>Wiederhole wichtige Anweisungen bei Bedarf.</li>
+      <li>Lege erst auf, wenn die Leitstelle das Gespräch beendet oder dazu auffordert.</li>
+    </ul>
+    <h3>Beobachtung statt Vermutung</h3>
+    <p><strong>Ungünstig:</strong> „Der Patient hat bestimmt einen Herzinfarkt.“</p>
+    <p><strong>Besser:</strong> „Der Patient klagt über starke Brustschmerzen, ist kaltschweißig und wirkt sehr blass.“</p>
+    <p>Konkrete Beobachtungen sind für die Einschätzung durch die Leitstelle häufig hilfreicher als eine nicht gesicherte Diagnose.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Sage ausdrücklich, wenn du etwas nicht weißt. Eine ehrliche Angabe ist besser als eine Vermutung.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Den Rettungsdienst empfangen und einweisen</h2>
+    <p>Nach dem Notruf muss der Zugang zum Patienten organisiert werden.</p>
+    <ul>
+      <li>Eine verfügbare Person empfängt den Rettungsdienst am Eingang.</li>
+      <li>Türen und Zugänge werden freigehalten.</li>
+      <li>Der schnellste Weg zum Patienten wird gezeigt.</li>
+      <li>Benötigte Patienteninformationen werden vorbereitet, soweit dies die Versorgung nicht verzögert.</li>
+      <li>Begonnene lebensrettende Maßnahmen werden bis zur Übernahme fortgeführt.</li>
+    </ul>
+    <p>Die Versorgung des Patienten hat immer Vorrang vor organisatorischen Nebentätigkeiten.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Niemand darf die laufende Wiederbelebung unterbrechen, nur um Unterlagen zu suchen oder den Rettungsdienst an der Tür zu begrüßen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Strukturierte Übergabe nach dem SBAR-Schema</h2>
+    <p>Beim Eintreffen des Rettungsdienstes müssen die entscheidenden Informationen möglichst geordnet übermittelt werden. Eine geeignete Orientierung bietet das SBAR-Schema.</p>
+    <h3>S – Situation</h3>
+    <p>Was ist aktuell das Hauptproblem?</p>
+    <p><strong>Beispiel:</strong> „Der Patient ist vor etwa fünf Minuten plötzlich zusammengebrochen.“</p>
+    <h3>B – Background (Hintergrund)</h3>
+    <p>Welche relevanten Informationen zur Vorgeschichte sind bekannt?</p>
+    <p><strong>Beispiel:</strong> „Er ist 71 Jahre alt. Eine koronare Herzerkrankung ist dokumentiert.“</p>
+    <h3>A – Assessment (Einschätzung)</h3>
+    <p>Welche Beobachtungen, Messwerte und Veränderungen liegen vor?</p>
+    <p><strong>Beispiel:</strong> „Er reagierte nicht und zeigte keine normale Atmung.“</p>
+    <h3>R – Recommendation (Empfehlung oder weiterer Handlungsbedarf)</h3>
+    <p>Welche Maßnahmen laufen, und was muss als Nächstes abgestimmt werden?</p>
+    <p><strong>Beispiel:</strong> „Wir führen seit etwa vier Minuten die Reanimation durch. Der AED ist angeschlossen. Bitte übernehmen Sie die Versorgung.“</p>
+    <div class="remember">
+      <strong>Merke:</strong> SBAR hilft, Informationen geordnet weiterzugeben. In einem akuten Notfall müssen lebenswichtige Angaben zuerst genannt werden. Das Schema darf die Übergabe nicht unnötig verlängern.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Welche Informationen sind bei der Übergabe wichtig?</h2>
+    <p>Je nach Notfallsituation können folgende Angaben entscheidend sein:</p>
+    <ul>
+      <li>Identität und ungefähres Alter des Patienten.</li>
+      <li>Beginn und Verlauf der Beschwerden.</li>
+      <li>Bewusstseinslage und Atmung.</li>
+      <li>Wichtige Vitalwerte, sofern erhoben.</li>
+      <li>Bekannte Erkrankungen, Allergien und relevante Medikamente.</li>
+      <li>Durchgeführte Maßnahmen und deren Zeitpunkt.</li>
+      <li>Beobachtete Veränderungen und Reaktionen.</li>
+    </ul>
+    <p>Die Informationen müssen sachlich, nachvollziehbar und möglichst zeitlich zugeordnet sein.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Wenn mehrere Personen beteiligt waren, sollte möglichst eine Person die Übergabe koordinieren. Andere Teammitglieder ergänzen nur notwendige Informationen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Typische Kommunikationsfehler im Notfall</h2>
+    <ul>
+      <li><strong>Ungenaue Ortsangabe:</strong> Stockwerk oder Zugang fehlen.</li>
+      <li><strong>Zu viele Nebensächlichkeiten:</strong> Lebenswichtige Angaben gehen unter.</li>
+      <li><strong>Unklare Formulierungen:</strong> „Es geht ihm schlecht“ beschreibt den Zustand nicht ausreichend.</li>
+      <li><strong>Vermutungen als Tatsachen:</strong> Eine ungesicherte Diagnose wird behauptet.</li>
+      <li><strong>Gespräch zu früh beenden:</strong> Rückfragen oder Anweisungen der Leitstelle werden verpasst.</li>
+      <li><strong>Ungeordnete Übergabe:</strong> Maßnahmen und Zeitangaben werden vergessen.</li>
+      <li><strong>Mehrere Personen sprechen gleichzeitig:</strong> Wichtige Informationen sind schwer verständlich.</li>
+    </ul>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Ein gemeinsam trainierter Notruf und eine kurze SBAR-Übung im Praxisteam verbessern die Handlungssicherheit.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="section-number">11</p>
+    <h2>Praxisfall: Akute Atemnot im Wartezimmer</h2>
+    <p>Eine 58-jährige Patientin meldet plötzlich starke Atemnot. Sie sitzt nach vorne gebeugt, spricht nur einzelne Wörter und wirkt zunehmend erschöpft.</p>
+    <p>Eine Kollegin bleibt bei der Patientin, während du den Rettungsdienst alarmierst. Der behandelnde Arzt wird unmittelbar informiert.</p>
+
+    <h3>Deine Aufgabe: Formuliere den Notruf</h3>
+    <p>Eine geeignete Meldung könnte lauten:</p>
+    <p>„Hier ist die Gemeinschaftspraxis in der Musterstraße 12 in München, erster Stock. Eine 58-jährige Patientin hat akute schwere Atemnot, kann nur einzelne Wörter sprechen und wirkt zunehmend erschöpft. Die ärztliche Versorgung wurde begonnen. Wir benötigen dringend einen Rettungswagen.“</p>
+
+    <h3>Welche Rückfragen könnten folgen?</h3>
+    <ul>
+      <li>Ist die Patientin ansprechbar?</li>
+      <li>Atmet sie noch?</li>
+      <li>Seit wann bestehen die Beschwerden?</li>
+      <li>Welche Maßnahmen wurden bereits durchgeführt?</li>
+      <li>Gibt es einen besonderen Zugang zur Praxis?</li>
+    </ul>
+
+    <h3>Die Übergabe an den Rettungsdienst</h3>
+    <p><strong>S:</strong> „58-jährige Patientin mit plötzlich aufgetretener schwerer Atemnot.“</p>
+    <p><strong>B:</strong> „Die bisher bekannte Vorgeschichte liegt in der Patientenakte vor. Weitere Angaben werden gerade ergänzt.“</p>
+    <p><strong>A:</strong> „Sie ist ansprechbar, kann aber nur einzelne Wörter sprechen und wirkt erschöpft. Die Beschwerden nehmen zu.“</p>
+    <p><strong>R:</strong> „Die ärztliche Erstversorgung läuft. Bitte übernehmen Sie die weitere Notfallversorgung. Die erhobenen Werte und Maßnahmen übergeben wir Ihnen jetzt.“</p>
+
+    <div class="remember">
+      <strong>Merke:</strong> Eine gute Übergabe enthält konkrete Beobachtungen, bekannte Fakten und die bereits erfolgten Maßnahmen – keine erfundenen Messwerte oder Diagnosen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Notruf und Übergabe im Team trainieren</h2>
+    <p>Die Abläufe sollten regelmäßig in kurzen praktischen Übungen trainiert werden.</p>
+    <h3>Eine einfache Übung für die Arztpraxis</h3>
+    <ol>
+      <li>Eine Person beschreibt eine realistische Notfallsituation.</li>
+      <li>Eine zweite Person übernimmt den simulierten Notruf.</li>
+      <li>Eine dritte Person spielt die Rettungsleitstelle und stellt Rückfragen.</li>
+      <li>Anschließend erfolgt eine kurze Übergabe nach SBAR.</li>
+      <li>Das Team bespricht, welche Informationen fehlten oder unklar waren.</li>
+    </ol>
+    <p>So werden Kommunikationsfehler erkannt, bevor ein echter Notfall eintritt.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Eine kurze, regelmäßig wiederholte Übung ist häufig hilfreicher als ein Notfallplan, den niemand praktisch anwenden kann.
+    </div>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Bei akuten lebensbedrohlichen Notfällen wird die 112 gewählt.</li>
+      <li>Die genaue Ortsangabe ist besonders wichtig.</li>
+      <li>Die 5-W-Fragen helfen bei der Orientierung, die Leitstelle führt das Gespräch.</li>
+      <li>Beschreibe Beobachtungen statt ungesicherter Diagnosen.</li>
+      <li>Beende den Notruf erst nach Aufforderung durch die Leitstelle.</li>
+      <li>Organisiere den Zugang für den Rettungsdienst, ohne die Versorgung zu unterbrechen.</li>
+      <li>Nutze SBAR für eine klare und strukturierte Übergabe.</li>
+      <li>Nenne wichtige Maßnahmen und Zeitpunkte möglichst genau.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck – Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Welche Informationen sind beim Notruf besonders wichtig?</summary>
+      <p>Vor allem der genaue Notfallort, das Ereignis, die Anzahl der Betroffenen, der aktuelle Zustand und bereits begonnene Maßnahmen. Die Leitstelle stellt weitere Fragen.</p>
+    </details>
+
+    <details>
+      <summary>2. Warum solltest du nicht eigenständig auflegen?</summary>
+      <p>Weil die Leitstelle weitere Informationen benötigen oder wichtige Anweisungen geben kann. Das Gespräch wird erst nach entsprechender Aufforderung beendet.</p>
+    </details>
+
+    <details>
+      <summary>3. Was bedeutet SBAR?</summary>
+      <p>Situation, Background (Hintergrund), Assessment (Einschätzung) und Recommendation (Empfehlung beziehungsweise weiterer Handlungsbedarf).</p>
+    </details>
+
+    <details>
+      <summary>4. Warum sind konkrete Beobachtungen besser als Vermutungen?</summary>
+      <p>Weil die Leitstelle und der Rettungsdienst auf nachvollziehbare Informationen angewiesen sind. Ungesicherte Diagnosen können die Einschätzung erschweren.</p>
+    </details>
+
+    <details>
+      <summary>5. Eine Patientin ist bewusstlos und atmet nicht normal. Was muss parallel zum Notruf geschehen?</summary>
+      <p>Die Wiederbelebung muss unverzüglich beginnen. Weitere Helfende organisieren den AED und unterstützen die Maßnahmen.</p>
+    </details>
+
+    <details>
+      <summary>6. Welche Angaben gehören zur Übergabe an den Rettungsdienst?</summary>
+      <p>Aktuelles Problem, relevante Vorgeschichte, beobachteter Zustand, erhobene Messwerte, zeitlicher Verlauf sowie durchgeführte Maßnahmen und deren Wirkung.</p>
+    </details>
+
+    <details>
+      <summary>7. Warum ist ein vorbereiteter Notfallplan in der Praxis hilfreich?</summary>
+      <p>Er erleichtert die Aufgabenverteilung, stellt wichtige Kontaktdaten bereit und reduziert vermeidbare Verzögerungen. Entscheidend ist, dass die Abläufe regelmäßig praktisch trainiert werden.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Bewusstlosigkeit und stabile Seitenlage</h2>
+    <p>In der nächsten Lektion lernst du, wie du bei einer bewusstlosen Person mit normaler Atmung handelst, die stabile Seitenlage durchführst und den Zustand bis zum Eintreffen des Rettungsdienstes überwachst.</p>
+  </section>
+</main>
+</body>
+</html>

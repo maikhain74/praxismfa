@@ -1,0 +1,599 @@
+---
+const pageTitle = "Unterzuckerung und diabetische Notfälle | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="Hypoglykämie, Hyperglykämie und diabetische Notfälle in der Arztpraxis erkennen und richtig handeln." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 14</p>
+    <h1>Unterzuckerung und diabetische Notfälle</h1>
+    <p class="lead">Ein Patient mit Diabetes beginnt im Wartezimmer plötzlich zu schwitzen. Er wirkt unruhig, seine Hände zittern und er antwortet zunehmend verwirrt. Jetzt kommt es darauf an, die Situation schnell und sicher einzuschätzen.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erkennst die Warnzeichen einer Unterzuckerung, beurteilst Blutzuckerwerte und unterscheidest zwischen einem sicher schluckfähigen und einem bewusstseinsgestörten Patienten. Außerdem erkennst du Hinweise auf schwere Überzuckerung und weißt, welche Aufgaben die MFA im Notfall übernimmt.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Was bedeutet Hypoglykämie?</h2>
+    <p>Eine Hypoglykämie ist eine Unterzuckerung. Die Glukosekonzentration im Blut sinkt so weit ab, dass Beschwerden auftreten oder eine gefährliche Situation entstehen kann.</p>
+    <p>Besonders gefährdet sind Menschen, die Insulin oder bestimmte andere blutzuckersenkende Medikamente erhalten.</p>
+    <p>Ein Blutzuckerwert unter <strong>70 mg/dl (3,9 mmol/l)</strong> ist ein wichtiger Warnwert. Werte unter <strong>54 mg/dl (3,0 mmol/l)</strong> gelten als klinisch bedeutsame Hypoglykämie.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Eine schwere Hypoglykämie wird nicht allein über einen Zahlenwert definiert. Entscheidend ist auch, ob der Patient zur Behandlung fremde Hilfe benötigt.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Warum entsteht eine Unterzuckerung?</h2>
+    <p>Glukose ist ein wichtiger Energielieferant für den Körper und besonders für das Gehirn. Sinkt der Blutzucker stark ab, können neurologische Störungen entstehen.</p>
+    <p>Typische Ursachen bei Menschen mit Diabetes sind:</p>
+    <ul>
+      <li>Zu hohe Insulindosis oder eine nicht passende Medikamentenwirkung</li>
+      <li>Ausgelassene oder verspätete Mahlzeiten</li>
+      <li>Ungewohnte körperliche Anstrengung</li>
+      <li>Alkoholkonsum, insbesondere ohne ausreichende Nahrungsaufnahme</li>
+      <li>Erkrankungen mit Erbrechen oder verminderter Nahrungsaufnahme</li>
+    </ul>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Frage nach der letzten Mahlzeit, der letzten Insulingabe und ungewohnter körperlicher Belastung. Diese Informationen helfen bei der Einschätzung.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Warnzeichen einer Hypoglykämie</h2>
+    <p>Die Symptome können plötzlich beginnen und unterschiedlich ausgeprägt sein.</p>
+    <ul>
+      <li><strong>Vegetative Zeichen:</strong> Schwitzen, Zittern, Herzklopfen, Hunger und Unruhe</li>
+      <li><strong>Allgemeine Beschwerden:</strong> Blässe, Schwäche, Schwindel und Konzentrationsprobleme</li>
+      <li><strong>Neurologische Zeichen:</strong> Verwirrtheit, Sprachstörungen, Sehstörungen und ungewöhnliches Verhalten</li>
+      <li><strong>Schwere Verläufe:</strong> Krampfanfälle, Bewusstseinsstörungen und Bewusstlosigkeit</li>
+    </ul>
+    <p>Manche Menschen mit Diabetes haben eine eingeschränkte Hypoglykämiewahrnehmung und bemerken die frühen Warnzeichen kaum.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Plötzliche Sprachstörungen oder Lähmungserscheinungen können auch auf einen Schlaganfall hinweisen. Eine Blutzuckermessung darf die notwendige Notfallversorgung nicht verzögern.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/unterzuckerung-und-diabetische-notfaelle.png"
+      alt="PraxisMFA Lernbild: Unterzuckerung und diabetische Notfälle erkennen, Blutzucker messen und richtig handeln"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Blutzucker messen und beurteilen</h2>
+    <p>Bei Verdacht auf eine Hypoglykämie ist eine zeitnahe Blutzuckermessung wichtig.</p>
+    <ol>
+      <li>Patienten ansprechen und Bewusstseinslage beurteilen.</li>
+      <li>Ärztliche Hilfe organisieren.</li>
+      <li>Kapilläre Blutzuckermessung nach Praxisstandard durchführen.</li>
+      <li>Messwert mit Beschwerden und klinischem Zustand vergleichen.</li>
+      <li>Messwert, Einheit und Uhrzeit dokumentieren.</li>
+    </ol>
+    <p>Saubere und trockene Finger sowie die korrekte Anwendung des Messgeräts sind wichtig. Verunreinigungen können das Ergebnis verfälschen.</p>
+    <p>Bei einem unplausiblen Messwert ist eine Kontrollmessung nach medizinischer Vorgabe sinnvoll. Lebensrettende Maßnahmen dürfen dadurch nicht verzögert werden.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Die Einheit gehört immer zum Messwert: mg/dl und mmol/l dürfen nicht verwechselt werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Unterzuckerung: Patient ist wach und kann sicher schlucken</h2>
+    <p>Ist der Patient wach, kooperativ und sicher schluckfähig, können schnell verfügbare Kohlenhydrate gegeben werden.</p>
+    <p>Bei einer milden Hypoglykämie werden häufig etwa <strong>15 bis 20 g schnell verfügbare Kohlenhydrate</strong> eingesetzt, beispielsweise Glukose. Die genaue Menge richtet sich nach dem geltenden Behandlungsschema und der individuellen Situation.</p>
+    <ol>
+      <li>Patienten betreuen und ärztliche Unterstützung informieren.</li>
+      <li>Schnell verfügbare Kohlenhydrate nach Notfallstandard geben.</li>
+      <li>Nach etwa 15 Minuten den Blutzucker erneut messen.</li>
+      <li>Bei weiterhin zu niedrigem Wert die Behandlung nach Vorgabe wiederholen.</li>
+      <li>Nach erfolgreicher Behandlung weitere Versorgung und Nahrungsaufnahme abstimmen.</li>
+    </ol>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Normale zuckerhaltige Getränke können geeignet sein. Light- oder Zero-Getränke liefern dagegen keine ausreichende Glukose für die Akutbehandlung.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Schwere Unterzuckerung: Bewusstseinsstörung oder Bewusstlosigkeit</h2>
+    <p>Kann der Patient nicht mehr sicher schlucken, besteht bei einer oralen Zucker- oder Flüssigkeitsgabe Aspirationsgefahr.</p>
+    <ol>
+      <li>Sofort Hilfe alarmieren und bei schwerem Notfall 112 veranlassen.</li>
+      <li>Bewusstsein und normale Atmung prüfen.</li>
+      <li>Bei Bewusstlosigkeit mit normaler Atmung Atemwege sichern und stabile Seitenlage herstellen.</li>
+      <li>Bei fehlender normaler Atmung unverzüglich mit der Wiederbelebung beginnen.</li>
+      <li>Blutzucker bestimmen, sofern dadurch keine lebensrettende Maßnahme verzögert wird.</li>
+      <li>Notfallmedikamente und weitere Versorgung vorbereiten.</li>
+      <li>Bewusstsein, Atmung und Kreislauf fortlaufend überwachen.</li>
+    </ol>
+    <p>Bei einer schweren Hypoglykämie können <strong>Glukagon</strong> oder <strong>intravenöse Glukose</strong> erforderlich sein. Die Anwendung erfolgt durch entsprechend befugte und qualifizierte Personen nach ärztlicher Anordnung beziehungsweise gültigem Notfallprotokoll.</p>
+    <div class="warning-box">
+      <strong>Lebenswichtige Regel:</strong> Bewusstlosen oder nicht sicher schluckfähigen Patienten niemals etwas zu essen oder zu trinken geben.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Was bedeutet Hyperglykämie?</h2>
+    <p>Eine Hyperglykämie ist eine Überzuckerung. Der Blutzucker ist erhöht. Nicht jede erhöhte Messung stellt sofort einen lebensbedrohlichen Notfall dar.</p>
+    <p>Bei ausgeprägter Überzuckerung können jedoch gefährliche Stoffwechselentgleisungen auftreten.</p>
+    <p>Mögliche Beschwerden sind:</p>
+    <ul>
+      <li>Starker Durst und häufiges Wasserlassen</li>
+      <li>Müdigkeit und ausgeprägte Schwäche</li>
+      <li>Übelkeit, Erbrechen oder Bauchschmerzen</li>
+      <li>Zeichen der Austrocknung</li>
+      <li>Bei schweren Verläufen Bewusstseinsstörungen</li>
+    </ul>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Ein hoher Blutzuckerwert muss immer gemeinsam mit den Beschwerden und dem Allgemeinzustand beurteilt werden.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Ketoazidose und hyperosmolares Syndrom</h2>
+    <h3>Diabetische Ketoazidose (DKA)</h3>
+    <p>Bei einem ausgeprägten Insulinmangel kann der Körper vermehrt Ketonkörper bilden. Dadurch entsteht eine gefährliche Übersäuerung des Blutes.</p>
+    <p>Typische Warnzeichen sind Übelkeit, Erbrechen, Bauchschmerzen, starke Schwäche und eine auffallend tiefe, angestrengte Atmung. Manchmal ist ein fruchtiger Atemgeruch bemerkbar.</p>
+    <p>Eine Ketoazidose kann auch ohne extrem hohe Blutzuckerwerte auftreten, beispielsweise im Zusammenhang mit bestimmten Diabetesmedikamenten.</p>
+    <h3>Hyperosmolares hyperglykämisches Syndrom (HHS)</h3>
+    <p>Beim HHS kommt es meist zu einer ausgeprägten Hyperglykämie mit erheblichem Flüssigkeitsverlust und starker Austrocknung. Bewusstseinsstörungen können hinzukommen.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Der Verdacht auf DKA oder HHS erfordert eine unverzügliche ärztliche Notfallbeurteilung und in der Regel eine klinische Behandlung.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Richtig handeln bei schwerer Überzuckerung</h2>
+    <ol>
+      <li>Allgemeinzustand, Bewusstsein und Atmung beurteilen.</li>
+      <li>Unverzüglich ärztliche Unterstützung holen.</li>
+      <li>Blutzucker messen und zusätzliche Diagnostik nach Anordnung vorbereiten.</li>
+      <li>Bei Bewusstseinsstörung, auffälliger Atmung oder schwerer Erkrankung 112 alarmieren.</li>
+      <li>Patienten nicht allein lassen und Veränderungen beobachten.</li>
+      <li>Messwerte, Beschwerden, Medikamente und zeitlichen Verlauf dokumentieren.</li>
+    </ol>
+    <p>Insulin, Infusionen und weitere Medikamente dürfen nicht eigenmächtig verabreicht werden. Die MFA handelt entsprechend ihrer Qualifikation, den rechtlichen Zuständigkeiten und ärztlichen Anordnungen.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Informationen über Diabetesmedikamente, letzte Mahlzeiten, Erbrechen und Beginn der Beschwerden sind für die Übergabe besonders hilfreich.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Häufige Fehler vermeiden</h2>
+    <ul>
+      <li>Verwirrtheit ausschließlich als Kreislaufschwäche deuten</li>
+      <li>Eine notwendige Blutzuckermessung vergessen</li>
+      <li>Einem bewusstlosen Patienten Traubenzucker oder Saft geben</li>
+      <li>Nach Kohlenhydratgabe keine Verlaufskontrolle durchführen</li>
+      <li>Eine schwere Überzuckerung nur anhand des Messwertes beurteilen</li>
+      <li>Auffällige Atmung bei einer möglichen Ketoazidose übersehen</li>
+      <li>Insulin ohne entsprechende Anordnung verabreichen</li>
+      <li>Messwerte ohne Einheit oder Uhrzeit dokumentieren</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> Bei einer akuten Hypoglykämie ist die sichere Schluckfähigkeit entscheidend für die Auswahl der Sofortmaßnahmen.
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PRAXISSITUATION</p>
+    <h2>Plötzlich verwirrt im Wartezimmer</h2>
+    <p>Ein 58-jähriger Patient mit insulinbehandeltem Diabetes wartet auf seine Untersuchung. Er beginnt stark zu schwitzen, seine Hände zittern und er antwortet ungewöhnlich langsam.</p>
+    <p>Seine Begleitperson berichtet, dass er heute Insulin gespritzt, aber kaum gefrühstückt hat.</p>
+    <p>Du alarmierst die Ärztin und misst den Blutzucker: <strong>48 mg/dl</strong>.</p>
+    <p>Der Patient ist wach und kann sicher schlucken. Nach dem Praxisnotfallplan erhält er schnell verfügbare Kohlenhydrate. Nach etwa 15 Minuten erfolgt eine erneute Blutzuckermessung. Die Ärztin entscheidet über die weitere Versorgung.</p>
+    <p><strong>Prüfungsfrage:</strong> Was würdest du ändern, wenn der Patient plötzlich bewusstlos wäre?</p>
+    <p><strong>Antwort:</strong> Keine orale Zucker- oder Flüssigkeitsgabe. Sofort Hilfe alarmieren, Atmung prüfen und die notwendigen lebensrettenden Maßnahmen einleiten.</p>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Unter 70 mg/dl beginnt ein wichtiger Hypoglykämie-Warnbereich.</li>
+      <li>Schwitzen, Zittern, Verwirrtheit und Bewusstseinsstörungen sind mögliche Warnzeichen.</li>
+      <li>Bei sicherer Schluckfähigkeit können schnell verfügbare Kohlenhydrate helfen.</li>
+      <li>Nach etwa 15 Minuten ist eine erneute Blutzuckerkontrolle wichtig.</li>
+      <li>Bei fehlender sicherer Schluckfähigkeit niemals etwas oral geben.</li>
+      <li>Schwere Hypoglykämien können Glukagon oder intravenöse Glukose erfordern.</li>
+      <li>DKA und HHS sind potenziell lebensbedrohliche Stoffwechselentgleisungen.</li>
+      <li>Die MFA erkennt Warnzeichen, organisiert Hilfe, unterstützt und dokumentiert.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck: Prüfe dein Wissen</h2>
+    <details><summary>1. Was bedeutet Hypoglykämie?</summary><p>Eine Unterzuckerung, bei der die Glukosekonzentration im Blut gefährlich absinken kann.</p></details>
+    <details><summary>2. Welcher Wert gilt als wichtiger Warnwert?</summary><p>Unter 70 mg/dl beziehungsweise 3,9 mmol/l.</p></details>
+    <details><summary>3. Nenne vier typische Warnzeichen.</summary><p>Schwitzen, Zittern, Herzklopfen und Verwirrtheit.</p></details>
+    <details><summary>4. Welche Untersuchung ist bei Verdacht wichtig?</summary><p>Eine zeitnahe Blutzuckermessung.</p></details>
+    <details><summary>5. Was kann ein sicher schluckfähiger Patient erhalten?</summary><p>Schnell verfügbare Kohlenhydrate entsprechend dem Behandlungsschema.</p></details>
+    <details><summary>6. Wann sollte erneut gemessen werden?</summary><p>In der Regel nach etwa 15 Minuten.</p></details>
+    <details><summary>7. Warum darf ein Bewusstloser keinen Saft erhalten?</summary><p>Wegen der Aspirationsgefahr bei fehlender sicherer Schluckfähigkeit.</p></details>
+    <details><summary>8. Welche Medikamente kommen bei schwerer Hypoglykämie infrage?</summary><p>Je nach Situation Glukagon oder intravenöse Glukose durch befugte und qualifizierte Personen.</p></details>
+    <details><summary>9. Welche Warnzeichen können auf eine Ketoazidose hinweisen?</summary><p>Zum Beispiel Erbrechen, Bauchschmerzen und eine tiefe, angestrengte Atmung.</p></details>
+    <details><summary>10. Welche Aufgaben übernimmt die MFA im diabetischen Notfall?</summary><p>Warnzeichen erkennen, Hilfe organisieren, Messungen unterstützen, ärztliche Maßnahmen vorbereiten und dokumentieren.</p></details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Starke Blutungen erkennen und versorgen</h2>
+    <p>In Lektion 15 lernst du, gefährliche Blutungen zu erkennen und eine wirksame Blutstillung im Notfall zu unterstützen.</p>
+  </section>
+</main>
+</body>
+</html>

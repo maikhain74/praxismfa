@@ -1,0 +1,621 @@
+---
+const pageTitle = "Schlaganfall erkennen und richtig handeln | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="PraxisMFA: Schlaganfall erkennen, FAST-Test anwenden, Notruf 112 auslösen und als MFA richtig handeln." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 11</p>
+    <h1>Schlaganfall erkennen und richtig handeln</h1>
+    <p class="lead">Ein Patient spricht plötzlich undeutlich, sein Mundwinkel hängt herab. Bei einem Schlaganfall zählt jede Minute. Du lernst, Warnzeichen zu erkennen und als MFA sofort richtig zu reagieren.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Das lernst du in dieser Lektion</h2>
+    <p>Du erklärst die Grundlagen eines Schlaganfalls, erkennst typische und weniger auffällige Symptome, wendest den FAST-Test an und beschreibst die richtigen Maßnahmen bis zum Eintreffen des Rettungsdienstes.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Was ist ein Schlaganfall?</h2>
+    <p>Ein Schlaganfall ist eine plötzlich auftretende Störung der Gehirnfunktion durch eine Erkrankung der Blutgefäße. Gehirnzellen können dadurch nicht mehr ausreichend mit Sauerstoff und Nährstoffen versorgt werden oder durch eine Blutung geschädigt werden.</p>
+    <p>Es gibt zwei wichtige Formen:</p>
+    <ul>
+      <li><strong>Ischämischer Schlaganfall:</strong> Ein Blutgefäß im Gehirn ist verschlossen. Das dahinterliegende Hirngewebe wird nicht mehr ausreichend durchblutet.</li>
+      <li><strong>Hämorrhagischer Schlaganfall:</strong> Ein Blutgefäß im Gehirn reißt und verursacht eine Blutung.</li>
+    </ul>
+    <p>Beide Formen sind medizinische Notfälle. Von außen kann die MFA nicht zuverlässig unterscheiden, welche Ursache vorliegt.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Bei Verdacht auf Schlaganfall sofort 112 alarmieren. Die genaue Ursache wird erst durch medizinische Untersuchungen geklärt.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Warum zählt jede Minute?</h2>
+    <p>Bei einer akuten Durchblutungsstörung können Nervenzellen geschädigt werden. Je früher eine geeignete Behandlung beginnt, desto größer ist die Chance, bleibende Schäden zu begrenzen.</p>
+    <p>Bestimmte Therapien kommen nur unter festgelegten medizinischen Voraussetzungen und innerhalb bestimmter Zeitfenster infrage. Die Entscheidung darüber trifft das spezialisierte Behandlungsteam.</p>
+    <p>Deshalb ist es wichtig, den Zeitpunkt zu ermitteln, zu dem die betroffene Person zuletzt ohne die aktuellen Symptome beobachtet wurde.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Notiere möglichst die genaue Uhrzeit des Symptombeginns. Ist sie unbekannt, dokumentiere, wann der Patient zuletzt sicher symptomfrei war.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Typische Warnzeichen eines Schlaganfalls</h2>
+    <p>Ein Schlaganfall beginnt häufig plötzlich. Zu den möglichen Symptomen gehören:</p>
+    <ul>
+      <li>Einseitig herabhängender Mundwinkel</li>
+      <li>Plötzliche Schwäche oder Lähmung eines Arms oder Beins</li>
+      <li>Sprachstörungen oder Schwierigkeiten, Gesprochenes zu verstehen</li>
+      <li>Plötzliche Sehstörungen, beispielsweise auf einem Auge oder in einem Teil des Gesichtsfeldes</li>
+      <li>Akute Gleichgewichts- oder Koordinationsstörungen</li>
+      <li>Plötzlich auftretender, ungewöhnlich starker Kopfschmerz</li>
+    </ul>
+    <p>Nicht alle Symptome müssen gleichzeitig auftreten. Schon ein einzelnes plötzliches neurologisches Ausfallzeichen kann auf einen Schlaganfall hinweisen.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Warte nicht darauf, dass weitere Symptome hinzukommen. Bereits bei einem begründeten Verdacht ist sofortiges Handeln erforderlich.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <figure style="margin: 36px 0; text-align: center;">
+    <img
+      src="/images/schlaganfall-erkennen-und-richtig-handeln.png"
+      alt="PraxisMFA Lernbild: Schlaganfall erkennen mit FAST und BE-FAST, Notruf 112 und Maßnahmen in der Arztpraxis"
+      loading="lazy"
+      style="display: block; width: 100%; height: auto; border-radius: 16px;"
+    />
+  </figure>
+
+  <p class="section-number">04</p>
+    <h2>Der FAST-Test: Schlaganfall schnell erkennen</h2>
+    <p>Der FAST-Test ist eine einfache Orientierungshilfe, um wichtige Schlaganfallzeichen rasch zu erkennen.</p>
+    <ul>
+      <li><strong>F – Face (Gesicht):</strong> Bitte den Patienten zu lächeln. Hängt ein Mundwinkel herab?</li>
+      <li><strong>A – Arms (Arme):</strong> Bitte beide Arme nach vorne zu strecken und die Handflächen nach oben zu drehen. Sinkt ein Arm ab oder kann nicht gehoben werden?</li>
+      <li><strong>S – Speech (Sprache):</strong> Bitte einen einfachen Satz nachzusprechen. Ist die Sprache verwaschen, unverständlich oder gelingt das Sprechen nicht?</li>
+      <li><strong>T – Time (Zeit):</strong> Bei Auffälligkeiten sofort 112 alarmieren und den Symptombeginn festhalten.</li>
+    </ul>
+    <div class="remember">
+      <strong>Merke:</strong> FAST ist ein schneller Verdachtstest und keine sichere Ausschlussdiagnostik. Ein unauffälliger FAST-Test schließt einen Schlaganfall nicht aus.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>BE-FAST: Weitere Warnzeichen beachten</h2>
+    <p>Der erweiterte BE-FAST-Test ergänzt zwei wichtige Bereiche:</p>
+    <ul>
+      <li><strong>B – Balance:</strong> Plötzlich auftretende Gleichgewichts- oder Koordinationsstörungen</li>
+      <li><strong>E – Eyes:</strong> Plötzliche Sehstörungen</li>
+    </ul>
+    <p>Danach folgen Face, Arms, Speech und Time wie beim FAST-Test.</p>
+    <p>Diese Erweiterung kann helfen, Schlaganfälle zu erkennen, bei denen beispielsweise Gleichgewichtsstörungen oder Sehstörungen im Vordergrund stehen.</p>
+    <div class="tip-box">
+      <strong>Praxis-Tipp:</strong> Ein Patient mit plötzlich starkem Schwindel, Gangunsicherheit oder Doppelbildern kann ebenfalls einen Schlaganfall haben – auch ohne hängenden Mundwinkel.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Erste Maßnahmen in der Arztpraxis</h2>
+    <ol>
+      <li><strong>Warnzeichen erkennen:</strong> Plötzlich auftretende neurologische Veränderungen ernst nehmen.</li>
+      <li><strong>Sofort alarmieren:</strong> Ärztin oder Arzt informieren und bei Schlaganfallverdacht unverzüglich den Notruf 112 veranlassen.</li>
+      <li><strong>Patienten nicht allein lassen:</strong> Ruhig sprechen und körperliche Belastung vermeiden.</li>
+      <li><strong>Symptombeginn klären:</strong> Zeitpunkt der ersten Beschwerden oder des letzten sicher symptomfreien Zustands dokumentieren.</li>
+      <li><strong>Bewusstsein und Atmung beobachten:</strong> Veränderungen sofort weitergeben und entsprechend dem Zustand handeln.</li>
+      <li><strong>Weitere Informationen erfassen:</strong> Relevante Vorerkrankungen, Medikamente und insbesondere blutgerinnungshemmende Arzneimittel erfragen, sofern dies ohne Zeitverlust möglich ist.</li>
+      <li><strong>Übergabe vorbereiten:</strong> Beobachtete Symptome, Uhrzeiten und durchgeführte Maßnahmen strukturiert übermitteln.</li>
+    </ol>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Untersuchungen in der Praxis dürfen den Notruf oder den notwendigen Transport in eine geeignete Klinik nicht verzögern.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Was du unbedingt vermeiden musst</h2>
+    <ul>
+      <li>Den Patienten selbst zur Klinik fahren lassen</li>
+      <li>Abwarten, ob die Beschwerden von allein verschwinden</li>
+      <li>Getränke, Essen oder Tabletten zum Schlucken anbieten</li>
+      <li>Eigenständig blutverdünnende Medikamente verabreichen</li>
+      <li>Den Patienten unnötig aufstehen oder gehen lassen</li>
+      <li>Ein negatives FAST-Ergebnis als Entwarnung betrachten</li>
+    </ul>
+    <p>Bei einem Schlaganfall können Schluckstörungen bestehen. Deshalb dürfen Essen, Getränke oder orale Medikamente nicht einfach angeboten werden.</p>
+    <div class="remember">
+      <strong>Merke:</strong> Keine eigenständige Medikamentengabe. Insbesondere lässt sich ohne Diagnostik nicht sicher unterscheiden, ob eine Gefäßverstopfung oder eine Hirnblutung vorliegt.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Wenn die Symptome wieder verschwinden: TIA</h2>
+    <p>Bei einer transitorischen ischämischen Attacke (TIA) treten vorübergehende neurologische Ausfälle durch eine zeitweise Durchblutungsstörung auf. Die Beschwerden können sich vollständig zurückbilden.</p>
+    <p>Das bedeutet jedoch nicht, dass keine Gefahr mehr besteht. Eine TIA kann ein Warnzeichen für einen nachfolgenden Schlaganfall sein und erfordert eine dringende medizinische Abklärung.</p>
+    <div class="warning-box">
+      <strong>Wichtig:</strong> Auch wenn Sprachstörung, Lähmung oder Sehstörung bereits verschwunden sind, muss bei einer gerade aufgetretenen verdächtigen Episode sofort eine notfallmedizinische Einschätzung über 112 erfolgen.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Bewusstsein, Atmung und sichere Betreuung</h2>
+    <p>Die Betreuung richtet sich nach dem Zustand des Patienten. Bei erhaltenem Bewusstsein wird eine sichere, bequeme Position ermöglicht. Unnötige Bewegungen werden vermieden.</p>
+    <p>Bei Bewusstlosigkeit mit normaler Atmung muss die Atemwegssicherung beachtet werden. Ist keine normale Atmung vorhanden, beginnt unverzüglich die Wiederbelebung mit Organisation eines AED.</p>
+    <p>Beobachte Veränderungen der Sprache, Bewegungsfähigkeit, Atmung und Bewusstseinslage. Gib Verschlechterungen sofort weiter.</p>
+    <div class="connection">
+      <strong>Für die Praxis:</strong> Wiederhole den FAST-Test nicht ständig auf Kosten der Versorgung. Entscheidend sind frühzeitige Alarmierung, kontinuierliche Beobachtung und klare Übergabe.
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Übergabe an den Rettungsdienst</h2>
+    <p>Bei der Übergabe sind insbesondere folgende Informationen wichtig:</p>
+    <ul>
+      <li>Welche Symptome wurden beobachtet?</li>
+      <li>Wann haben sie begonnen?</li>
+      <li>Wann war der Patient zuletzt sicher symptomfrei?</li>
+      <li>Welche Körperseite ist betroffen?</li>
+      <li>Gab es eine Veränderung oder Rückbildung der Symptome?</li>
+      <li>Welche Vorerkrankungen und Medikamente sind bekannt?</li>
+      <li>Welche Maßnahmen wurden durchgeführt?</li>
+    </ul>
+    <p><strong>Beispiel:</strong> „Die Patientin entwickelte um 10:20 Uhr plötzlich eine verwaschene Sprache und eine Schwäche des rechten Arms. Um 10:15 Uhr sprach sie noch normal. Der Notruf wurde sofort ausgelöst. Die Symptome bestehen weiterhin.“</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">11</p>
+    <h2>Häufige Fehler und ihre Folgen</h2>
+    <ul>
+      <li><strong>„Der Patient kann noch sprechen, also ist es kein Schlaganfall.“</strong> Auch leichte Sprachstörungen können ein Warnzeichen sein.</li>
+      <li><strong>„Der FAST-Test ist negativ, also ist alles in Ordnung.“</strong> Andere neurologische Ausfälle können trotzdem auf einen Schlaganfall hinweisen.</li>
+      <li><strong>„Die Beschwerden sind weg, wir warten ab.“</strong> Auch vorübergehende Ausfälle sind dringend abklärungsbedürftig.</li>
+      <li><strong>„Wir messen erst alles und rufen danach an.“</strong> Der Notruf darf nicht verzögert werden.</li>
+      <li><strong>„Ein Glas Wasser wird helfen.“</strong> Wegen möglicher Schluckstörungen darf nichts oral gegeben werden.</li>
+    </ul>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PRAXISSITUATION</p>
+    <h2>Plötzliche Sprachstörung am Empfang</h2>
+    <p>Eine 74-jährige Patientin kommt mit ihrem Ehemann in die Praxis. Während der Anmeldung fällt dir auf, dass sie undeutlich spricht. Ihr rechter Mundwinkel hängt leicht herab. Als du sie bittest, beide Arme nach vorne zu strecken, sinkt der rechte Arm ab.</p>
+    <p>Der Ehemann berichtet, dass seine Frau vor etwa zehn Minuten noch völlig normal gesprochen hat.</p>
+    <p><strong>Deine Aufgabe:</strong> Du erkennst die akuten Warnzeichen, alarmierst unverzüglich die Ärztin und veranlasst den Notruf 112. Du hältst den Zeitpunkt des letzten sicher symptomfreien Zustands fest, lässt die Patientin nicht allein und bereitest eine strukturierte Übergabe vor.</p>
+    <p><strong>Entscheidende Erkenntnis:</strong> Der FAST-Test unterstützt das Erkennen eines Schlaganfalls. Die sofortige Alarmierung darf jedoch nicht von weiteren Tests abhängig gemacht werden.</p>
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Ein Schlaganfall ist eine akute Störung der Gehirnfunktion und ein medizinischer Notfall.</li>
+      <li>FAST hilft, Gesichtslähmung, Armschwäche und Sprachstörungen zu erkennen.</li>
+      <li>BE-FAST berücksichtigt zusätzlich Gleichgewichts- und Sehstörungen.</li>
+      <li>Ein unauffälliger FAST-Test schließt einen Schlaganfall nicht aus.</li>
+      <li>Bei Verdacht sofort 112 alarmieren und den Patienten nicht allein lassen.</li>
+      <li>Symptombeginn beziehungsweise letzten sicher symptomfreien Zeitpunkt dokumentieren.</li>
+      <li>Keine Nahrung, Getränke oder eigenständig verabreichten Medikamente geben.</li>
+      <li>Auch vorübergehend verschwundene Symptome erfordern dringende Abklärung.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck: Prüfe dein Wissen</h2>
+
+    <details>
+      <summary>1. Welche zwei Hauptformen des Schlaganfalls gibt es?</summary>
+      <p>Den ischämischen Schlaganfall durch eine Durchblutungsstörung und den hämorrhagischen Schlaganfall durch eine Blutung.</p>
+    </details>
+    <details>
+      <summary>2. Wofür steht FAST?</summary>
+      <p>Face, Arms, Speech und Time: Gesicht, Arme, Sprache und Zeit.</p>
+    </details>
+    <details>
+      <summary>3. Welche zwei zusätzlichen Bereiche enthält BE-FAST?</summary>
+      <p>Balance für Gleichgewichtsstörungen und Eyes für Sehstörungen.</p>
+    </details>
+    <details>
+      <summary>4. Schließt ein unauffälliger FAST-Test einen Schlaganfall aus?</summary>
+      <p>Nein. Beispielsweise können Gleichgewichts- oder Sehstörungen im Vordergrund stehen.</p>
+    </details>
+    <details>
+      <summary>5. Was ist bei Schlaganfallverdacht die wichtigste Sofortmaßnahme?</summary>
+      <p>Unverzüglich 112 alarmieren und die weitere Notfallversorgung organisieren.</p>
+    </details>
+    <details>
+      <summary>6. Warum ist der Symptombeginn so wichtig?</summary>
+      <p>Weil die Auswahl bestimmter Behandlungsmöglichkeiten unter anderem vom zeitlichen Verlauf abhängt.</p>
+    </details>
+    <details>
+      <summary>7. Darf die MFA dem Patienten Wasser anbieten?</summary>
+      <p>Nein. Eine mögliche Schluckstörung kann zum Verschlucken und zur Aspiration führen.</p>
+    </details>
+    <details>
+      <summary>8. Was bedeutet TIA?</summary>
+      <p>Transitorische ischämische Attacke: vorübergehende neurologische Ausfälle durch eine zeitweise Durchblutungsstörung. Sie erfordert dringende Abklärung.</p>
+    </details>
+    <details>
+      <summary>9. Welche Informationen sind für die Übergabe besonders wichtig?</summary>
+      <p>Art der Ausfälle, betroffene Körperseite, Symptombeginn oder letzter sicher symptomfreier Zeitpunkt, Verlauf, Medikamente und Maßnahmen.</p>
+    </details>
+    <details>
+      <summary>10. Was tust du bei Bewusstlosigkeit ohne normale Atmung?</summary>
+      <p>Sofort Hilfe und AED organisieren und unverzüglich mit der Wiederbelebung beginnen.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Kreislaufkollaps und Synkope</h2>
+    <p>In Lektion 12 lernst du, wie du eine kurze Bewusstlosigkeit einschätzt, mögliche Warnzeichen erkennst und im Praxisalltag sicher handelst.</p>
+  </section>
+</main>
+</body>
+</html>
