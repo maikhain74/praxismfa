@@ -1,0 +1,1003 @@
+---
+const pageTitle = "Praxissituationen und Prüfungsfälle zu Notfällen | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="Premiumlektion für MFA: Notfallkoffer, ABCDE-Ausstattung, Notfallmedikamente, Funktionskontrollen, Arzneimittelsicherheit und Praxisfälle." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 19 · PREMIUM</p>
+    <h1>Praxissituationen und Prüfungsfälle zu Notfällen</h1>
+    <p class="lead">Ein Patient verliert im Wartezimmer plötzlich das Bewusstsein. Das Praxisteam handelt schnell, alarmiert den Rettungsdienst und übergibt den Patienten. Doch anschließend stellt sich heraus: Niemand hat den genauen Zeitpunkt des Ereignisses festgehalten. Welche Informationen müssen dokumentiert werden? Wie formulierst du sachlich und nachvollziehbar? Und wie kann das Team aus dem Ereignis lernen?</p>
+  </section>
+
+  <section class="goal">
+    <p class="eyebrow">DEIN LERNZIEL</p>
+    <p>Du bearbeitest komplexe Notfallsituationen aus dem Alltag einer Arztpraxis, erkennst lebensbedrohliche Veränderungen, setzt Prioritäten und begründest deine Entscheidungen. Du übst die Zusammenarbeit im Praxisteam, die strukturierte Übergabe und die fachgerechte Nachbereitung – so, wie es in einer anspruchsvollen praktischen oder mündlichen Prüfung erwartet wird.</p>
+  </section>
+
+  <figure class="lesson-graphic">
+    <img
+      src="/images/praxissituationen-und-pruefungsfaelle-zu-notfaellen.png"
+      alt="PraxisMFA: Notfalltraining mit Reanimation, AED und typischen Prüfungsaufgaben"
+      loading="lazy"
+    />
+  </figure>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Prüfungsfall: Zusammenbruch im Wartezimmer</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Es ist 10:15 Uhr. Ein 68-jähriger Patient wartet auf seine Blutdruckkontrolle. Plötzlich sackt er auf seinem Stuhl zusammen und reagiert nicht mehr auf Ansprache. Andere Patienten rufen um Hilfe. Du bist die erste MFA am Einsatzort.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Beschreibe deine ersten Maßnahmen in der richtigen Reihenfolge.</li>
+      <li>Erkläre, wie du Bewusstsein und Atmung überprüfst.</li>
+      <li>Der Patient atmet nicht normal. Welche Maßnahmen leitest du ein?</li>
+      <li>Wie setzt du den AED ein und organisierst die Zusammenarbeit?</li>
+      <li>Welche Informationen übergibst du dem Rettungsdienst?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Situation sichern und Hilfe organisieren:</strong>&nbsp;Du achtest auf die Sicherheit aller Beteiligten, sprichst den Patienten laut an und prüfst vorsichtig seine Reaktion. Du rufst sofort nach Unterstützung und lässt die Ärztin oder den Arzt hinzuholen. Wenn möglich, bringst du den Patienten mit Unterstützung sicher auf eine feste, ebene Unterlage. Andere Teammitglieder übernehmen den Notruf und holen den AED.</p>
+    <p><strong>2. Atmung beurteilen:</strong>&nbsp;Bei fehlender Reaktion öffnest du die Atemwege und überprüfst die normale Atmung höchstens zehn Sekunden lang. Einzelne schnappende Atemzüge sind keine normale Atmung. Eine zeitaufwendige Pulssuche darf den Beginn der Reanimation nicht verzögern.</p>
+    <p><strong>3. Reanimation beginnen:</strong>&nbsp;Bei fehlender normaler Atmung veranlasst du den Notruf 112 und beginnst unverzüglich mit Herzdruckmassage: Druckpunkt in der Mitte des Brustkorbs, Frequenz 100–120 pro Minute, Drucktiefe etwa 5–6 cm bei Erwachsenen, vollständige Entlastung nach jeder Kompression. Wenn du entsprechend geschult bist und Beatmung sicher durchführen kannst, arbeitest du im Verhältnis 30:2. Andernfalls führst du kontinuierliche Herzdruckmassage durch.</p>
+    <p><strong>4. AED verwenden:</strong>&nbsp;Sobald der AED eintrifft, wird er eingeschaltet. Du folgst den Sprach- und Bildanweisungen, bringst die Elektroden am entblößten Brustkorb an und stellst sicher, dass bei Analyse und Schockabgabe niemand den Patienten berührt. Unterbrechungen der Herzdruckmassage hältst du möglichst kurz. Danach setzt du die Reanimation sofort fort, entsprechend den AED-Anweisungen.</p>
+    <p><strong>5. Übergabe:</strong>&nbsp;Du berichtest dem Rettungsdienst strukturiert über den beobachteten Kollaps, die fehlende Reaktion, den Atembefund, den Beginn der Reanimation, die AED-Anweisungen beziehungsweise Schockabgaben sowie bekannte Vorerkrankungen und weitere Maßnahmen. Zeitangaben werden so genau wie möglich dokumentiert.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Was ändert sich, wenn der Patient bewusstlos ist, aber normal atmet?</strong>&nbsp;Dann ist keine Herzdruckmassage angezeigt. Du sicherst die Atemwege durch die stabile Seitenlage, veranlasst die Notfallversorgung und kontrollierst die Atmung fortlaufend. Verschlechtert sich die Atmung, beurteilst du die Situation sofort neu.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Schnappatmung als normale Atmung einzuschätzen oder auf die Ärztin beziehungsweise den Arzt zu warten, bevor die notwendige Reanimation beginnt.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Prüfungsfall: Atemnot nach einer Injektion</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Eine 42-jährige Patientin erhält in der Arztpraxis ein ärztlich angeordnetes Medikament als Injektion. Wenige Minuten später klagt sie über Juckreiz, Schwindel und Engegefühl im Hals. Du bemerkst Quaddeln auf der Haut. Ihre Stimme verändert sich, und sie bekommt zunehmend schlecht Luft.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Welchen lebensbedrohlichen Notfall vermutest du?</li>
+      <li>Welche Warnzeichen machen sofortiges Handeln erforderlich?</li>
+      <li>Wie organisierst du Hilfe, Lagerung und Überwachung?</li>
+      <li>Welche Aufgaben übernimmt die MFA, welche die ärztliche Fachperson?</li>
+      <li>Was dokumentierst du nach der Versorgung?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Notfall erkennen:</strong>&nbsp;Die Kombination aus rasch auftretenden Hauterscheinungen, Halsenge, Stimmveränderung, Atemnot und Schwindel nach einer Medikamentengabe ist hochverdächtig auf eine Anaphylaxie. Besonders bedrohlich sind zunehmende Atemwegsverengung, Kreislaufversagen und Bewusstseinsstörungen. Auf weitere Symptome zu warten wäre gefährlich.</p>
+    <p><strong>2. Alarmieren:</strong>&nbsp;Du rufst unverzüglich die ärztliche Fachperson hinzu und organisierst den Notruf 112. Du benennst ausdrücklich den Verdacht auf eine schwere anaphylaktische Reaktion. Die weitere Gabe des möglichen Auslösers wird gestoppt, soweit sie noch läuft.</p>
+    <p><strong>3. Lagerung und Überwachung:</strong>&nbsp;Die Patientin darf nicht aufstehen oder umhergehen. Bei ausgeprägter Atemnot kann eine atemerleichternde Position mit erhöhtem Oberkörper sinnvoll sein; bei Kreislaufversagen ohne erhebliche Atemnot ist eine flache Lagerung angezeigt. Die Lagerung wird an Atmung, Kreislauf und Bewusstseinslage angepasst. Du beobachtest fortlaufend Bewusstsein, Atmung und Kreislauf und bereitest die Notfallausstattung vor.</p>
+    <p><strong>4. Ärztliche Behandlung unterstützen:</strong>&nbsp;Adrenalin zur intramuskulären Gabe ist bei Anaphylaxie mit Atemwegs- oder Kreislaufbeteiligung das entscheidende Notfallmedikament. Die MFA stellt im Rahmen ihrer Qualifikation und der geltenden Praxisabläufe die benötigte Ausstattung bereit und unterstützt die unverzügliche Behandlung nach ärztlicher Anordnung beziehungsweise verbindlich festgelegtem Notfallstandard. Weitere Maßnahmen, etwa Sauerstoffgabe oder Volumentherapie, erfolgen entsprechend der medizinischen Situation und den Zuständigkeiten. Die MFA entscheidet nicht eigenständig über verschreibungspflichtige Notfallmedikamente außerhalb ihrer Befugnisse.</p>
+    <p><strong>5. Verlauf und Übergabe:</strong>&nbsp;Du hältst den Zeitpunkt der Medikamentengabe, die ersten Symptome, den Verlauf, die Alarmierung, die ärztlichen Anordnungen und tatsächlich durchgeführten Maßnahmen einschließlich dokumentierter Medikamentengaben fest. Bei der Übergabe nennst du den vermuteten Auslöser, die Entwicklung der Symptome, den aktuellen Zustand und die bisherigen Behandlungen.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Was tust du, wenn die Patientin bewusstlos wird und nicht mehr normal atmet?</strong>&nbsp;Du beginnst unverzüglich die Reanimation und lässt den AED bereitstellen beziehungsweise anwenden. Die Behandlung der Anaphylaxie wird durch das Notfallteam parallel entsprechend den medizinischen Vorgaben fortgeführt.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Die Reaktion als harmlose Hautallergie abzutun oder die notwendige Notfallversorgung durch bloßes Beobachten zu verzögern.</p>
+  </section>
+
+<section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Prüfungsfall: Plötzliche Sprachstörung am Empfang</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Ein 73-jähriger Patient kommt mit seiner Ehefrau in die Praxis. Während der Anmeldung spricht er plötzlich undeutlich. Sein rechter Mundwinkel hängt herab, und er kann den rechten Arm nicht mehr richtig heben. Seine Ehefrau berichtet, dass er vor etwa 15 Minuten noch völlig unauffällig gewesen sei.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Welchen Notfall vermutest du und welche Befunde sprechen dafür?</li>
+      <li>Wie überprüfst du die Symptome mit dem FAST-Schema?</li>
+      <li>Welche Maßnahmen haben jetzt Priorität?</li>
+      <li>Warum ist der Zeitpunkt des Symptombeginns entscheidend?</li>
+      <li>Wie gestaltest du Notruf und Übergabe?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Verdachtsdiagnose:</strong>&nbsp;Die plötzlich aufgetretene Sprachstörung, einseitige Gesichtslähmung und Armschwäche sind typische Warnzeichen eines Schlaganfalls. Ein Schlaganfall ist ein zeitkritischer medizinischer Notfall, auch wenn sich Symptome zwischenzeitlich bessern.</p>
+    <p><strong>2. FAST-Schema:</strong>&nbsp;Face: Du achtest auf eine einseitige Gesichtsschwäche. Arms: Du lässt den Patienten, soweit möglich, beide Arme nach vorne halten und prüfst eine einseitige Schwäche. Speech: Du beurteilst, ob die Sprache verwaschen ist oder einfache Sätze nicht korrekt wiederholt werden können. Time: Du dokumentierst den Zeitpunkt, zu dem der Patient zuletzt sicher ohne Symptome war. Ein unauffälliger FAST-Test schließt einen Schlaganfall nicht sicher aus.</p>
+    <p><strong>3. Sofortmaßnahmen:</strong>&nbsp;Du alarmierst die ärztliche Fachperson und veranlasst unverzüglich den Notruf 112 mit dem Stichwort Schlaganfallverdacht. Der Patient bleibt unter Beobachtung. Du beurteilst Bewusstsein und Atmung, vermeidest unnötige körperliche Belastung und bereitest die strukturierte Übergabe vor. Du gibst weder Essen noch Getränke oder eigenständig Medikamente, da unter anderem Schluckstörungen möglich sind.</p>
+    <p><strong>4. Zeitangaben:</strong>&nbsp;Für die weitere Akutbehandlung ist entscheidend, wann der Patient zuletzt sicher symptomfrei war. Du hältst deshalb die Angabe der Ehefrau möglichst genau fest und unterscheidest sie vom Zeitpunkt, zu dem die Symptome erstmals bemerkt wurden. Die Entscheidung über Diagnostik und Behandlung trifft die weiterbehandelnde ärztliche Fachperson.</p>
+    <p><strong>5. Übergabe:</strong>&nbsp;Du übermittelst Alter, plötzlich aufgetretene Symptome, FAST-Befunde, Zeitpunkt des letzten bekannten symptomfreien Zustands, aktuelle Bewusstseins- und Atemsituation sowie bekannte Vorerkrankungen und Medikamente, insbesondere eine mögliche Antikoagulation. Unbekannte Angaben kennzeichnest du ausdrücklich als unbekannt.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Was ändert sich, wenn die Sprachstörung nach fünf Minuten wieder verschwindet?</strong>&nbsp;Die Notfallabklärung bleibt dringend. Vorübergehende neurologische Ausfälle können auf eine transitorische ischämische Attacke hinweisen und einem Schlaganfall vorausgehen. Du veranlasst weiterhin unverzüglich die medizinische Notfallversorgung.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Abzuwarten, weil der Patient noch laufen kann oder weil die Beschwerden bereits nachlassen.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">04</p>
+    <h2>Prüfungsfall: Verwirrter Patient mit Diabetes</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Ein 56-jähriger Patient mit bekanntem Diabetes mellitus erscheint zur Blutentnahme. Im Wartezimmer wird er zunehmend unruhig, schwitzt stark und beantwortet Fragen nur noch unzusammenhängend. Eine Kollegin berichtet, dass er heute noch nichts gegessen habe. Du stellst fest, dass er wach ist, aber nicht mehr zuverlässig mitarbeitet.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Welche Ursachen kommen infrage und welche ist besonders dringend zu überprüfen?</li>
+      <li>Wie gehst du bei der ersten Einschätzung vor?</li>
+      <li>Welche Bedeutung hat die Blutzuckermessung?</li>
+      <li>Welche Maßnahmen sind bei sicherer Schluckfähigkeit möglich und welche bei Bewusstseinsstörung verboten?</li>
+      <li>Was tust du, wenn der Patient bewusstlos wird?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Einschätzung:</strong>&nbsp;Schwitzen, Unruhe, Verwirrtheit und Diabetes sind hochverdächtig auf eine Hypoglykämie. Auch andere akute Ursachen einer Bewusstseinsveränderung sind möglich, etwa ein Schlaganfall. Deshalb darf die Verdachtsdiagnose nicht ohne weitere Beurteilung als gesichert gelten.</p>
+    <p><strong>2. Erste Maßnahmen:</strong>&nbsp;Du holst sofort ärztliche Unterstützung, sicherst den Patienten gegen Sturz und Verletzung und kontrollierst Bewusstsein, Atmung und weitere verfügbare Vitalparameter. Du lässt ihn nicht unbeaufsichtigt und organisierst bei schwerer Bewusstseinsstörung beziehungsweise lebensbedrohlichem Verlauf die Notfallversorgung über 112.</p>
+    <p><strong>3. Blutzucker bestimmen:</strong>&nbsp;Eine unverzügliche kapilläre Blutzuckermessung kann den Verdacht auf eine Unterzuckerung erhärten und die Behandlung steuern. Die Messung darf lebensrettende Maßnahmen nicht verzögern. Du dokumentierst den Messwert mit Einheit und Uhrzeit und meldest ihn unmittelbar der ärztlichen Fachperson.</p>
+    <p><strong>4. Schluckfähigkeit beachten:</strong>&nbsp;Ist der Patient vollständig wach, kooperativ und kann sicher schlucken, können rasch verfügbare Kohlenhydrate entsprechend dem Notfallstandard gegeben werden. Bei deutlicher Verwirrtheit, eingeschränktem Bewusstsein oder unsicherer Schluckfähigkeit gibst du nichts oral: Es besteht Aspirationsgefahr. Du bereitest die ärztlich angeordnete Notfallbehandlung vor und unterstützt sie im Rahmen deiner Qualifikation.</p>
+    <p><strong>5. Bewusstlosigkeit:</strong>&nbsp;Du prüfst unverzüglich die normale Atmung. Bei vorhandener normaler Atmung sicherst du die Atemwege durch die stabile Seitenlage und überwachst den Patienten fortlaufend. Fehlt die normale Atmung, beginnst du die Reanimation und lässt einen AED holen. Der Rettungsdienst wird alarmiert beziehungsweise über die Zustandsverschlechterung informiert.</p>
+    <p><strong>6. Nachbereitung:</strong>&nbsp;Du dokumentierst Symptome, Bewusstseinszustand, gemessene Werte, Zeitpunkte, Alarmierung, durchgeführte Maßnahmen und den Verlauf. Anschließend wird im Team geklärt, welche weiteren ärztlichen Untersuchungen und Maßnahmen erforderlich sind.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Der Blutzuckerwert liegt im Normbereich. Darfst du die Symptome trotzdem als Unterzuckerung behandeln und die Abklärung beenden?</strong>&nbsp;Nein. Eine andere Ursache der akuten Verwirrtheit muss dringend berücksichtigt werden. Die ärztliche Notfallbeurteilung wird fortgesetzt; bei Verdacht auf Schlaganfall oder anderen zeitkritischen Notfall ist 112 zu alarmieren.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Einem deutlich verwirrten Patienten Saft einzuflößen, obwohl er möglicherweise nicht sicher schlucken kann.</p>
+  </section>
+
+<section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Prüfungsfall: Plötzlicher Brustschmerz während einer Untersuchung</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Ein 61-jähriger Patient berichtet während einer Routineuntersuchung über plötzlich einsetzenden Druck hinter dem Brustbein. Die Beschwerden strahlen in den linken Arm aus. Er ist blass, kaltschweißig und klagt über Übelkeit. Auf Nachfrage beschreibt er die Schmerzen als stark und ungewohnt.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Welchen lebensbedrohlichen Notfall musst du vermuten?</li>
+      <li>Welche Sofortmaßnahmen leitest du ein?</li>
+      <li>Welche Aufgaben kannst du als MFA übernehmen?</li>
+      <li>Welche Fehler musst du bei Lagerung und Medikamentengabe vermeiden?</li>
+      <li>Wie reagierst du auf eine plötzliche Bewusstlosigkeit?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Verdacht erkennen:</strong>&nbsp;Die Kombination aus anhaltendem Brustdruck, Ausstrahlung, Kaltschweißigkeit und Übelkeit ist hochverdächtig auf ein akutes Koronarsyndrom einschließlich Herzinfarkt. Auch andere lebensbedrohliche Ursachen von Brustschmerz sind möglich. Eine sichere Unterscheidung ist anhand der Symptome allein nicht möglich.</p>
+    <p><strong>2. Sofort handeln:</strong>&nbsp;Du unterbrichst die Untersuchung, alarmierst unverzüglich die ärztliche Fachperson und veranlasst den Notruf 112. Der Patient soll sich nicht körperlich anstrengen oder selbstständig zur Klinik fahren. Du bleibst bei ihm und beobachtest Bewusstsein, Atmung und Kreislauf.</p>
+    <p><strong>3. MFA-Aufgaben:</strong>&nbsp;Du bereitest die Notfallausstattung vor, unterstützt die Erhebung der Vitalparameter und gegebenenfalls die Ableitung eines 12-Kanal-EKG. Die Durchführung eines EKG darf den Notruf oder die weitere Notfallversorgung nicht verzögern. Du hältst den AED bereit und dokumentierst den Beginn der Beschwerden sowie wichtige Veränderungen.</p>
+    <p><strong>4. Lagerung und Medikamente:</strong>&nbsp;Bei erhaltenem Bewusstsein wird eine für den Patienten möglichst angenehme, häufig oberkörperhohe Position gewählt, sofern der Kreislauf dies zulässt. Bei Kreislaufproblemen muss die Lagerung angepasst werden. Sauerstoff wird nicht pauschal allein wegen Brustschmerzen verabreicht, sondern nach medizinischer Indikation. Medikamente gibst du nur im Rahmen zulässiger ärztlicher Anordnungen und deiner Qualifikation. Insbesondere dürfen mögliche Gegenanzeigen nicht übergangen werden.</p>
+    <p><strong>5. Verschlechterung:</strong>&nbsp;Wird der Patient bewusstlos, überprüfst du sofort die normale Atmung. Bei fehlender normaler Atmung beginnst du unverzüglich die Herzdruckmassage und lässt den AED anwenden. Bei normaler Atmung sicherst du die Atemwege und kontrollierst den Zustand fortlaufend.</p>
+    <p><strong>6. Übergabe:</strong>&nbsp;Du nennst Zeitpunkt und Verlauf der Beschwerden, Begleitsymptome, Vitalparameter, bekannte Vorerkrankungen, regelmäßig eingenommene Medikamente und alle bereits durchgeführten Maßnahmen.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Der Patient erklärt, dass es bestimmt nur Sodbrennen sei. Darfst du den Notruf deshalb zurückstellen?</strong>&nbsp;Nein. Die geschilderten Warnzeichen erfordern eine unverzügliche Notfallabklärung. Die subjektive Vermutung des Patienten schließt einen Herzinfarkt nicht aus.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Erst ein EKG abzuwarten oder den Patienten allein zu lassen, während die Beschwerden weiterbestehen.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Prüfungsfall: Krampfanfall im Behandlungszimmer</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Eine 29-jährige Patientin sitzt nach einer Untersuchung auf der Behandlungsliege. Plötzlich verliert sie das Bewusstsein, ihr Körper versteift sich und es treten rhythmische Zuckungen der Arme und Beine auf. Du bist gemeinsam mit einer Kollegin im Raum. Die Patientin droht von der Liege zu fallen.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Welche unmittelbaren Gefahren bestehen?</li>
+      <li>Wie schützt du die Patientin während des Anfalls?</li>
+      <li>Welche Maßnahmen sind ausdrücklich zu vermeiden?</li>
+      <li>Wann ist der Rettungsdienst erforderlich?</li>
+      <li>Wie beurteilst und versorgst du die Patientin nach dem Anfall?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Verletzungen verhindern:</strong>&nbsp;Du rufst nach Hilfe, merkst dir den Beginn des Anfalls und schützt die Patientin vor einem Sturz und vor harten Gegenständen. Wenn gefahrlos möglich, wird sie vor einem Absturz von der Liege geschützt beziehungsweise auf eine sichere Unterlage gebracht. Der Kopf wird möglichst vor Verletzungen geschützt.</p>
+    <p><strong>2. Keine Gewalt anwenden:</strong>&nbsp;Du hältst die krampfenden Gliedmaßen nicht gewaltsam fest und versuchst nicht, die Bewegungen zu unterdrücken. Du steckst keine Gegenstände oder Finger in den Mund und versuchst nicht, den Kiefer zu öffnen. Während des Krampfanfalls gibst du weder Getränke noch Medikamente über den Mund.</p>
+    <p><strong>3. Hilfe organisieren:</strong>&nbsp;Du alarmierst die ärztliche Fachperson. Bei einem erstmaligen Anfall, einem Anfall von etwa fünf Minuten oder länger, wiederholten Anfällen ohne ausreichende Erholung, schwerer Verletzung, Atemproblemen oder ausbleibender Erholung ist der Rettungsdienst über 112 erforderlich. Auch bei Unsicherheit über den Zustand wird frühzeitig professionelle Notfallhilfe organisiert.</p>
+    <p><strong>4. Nach dem Anfall:</strong>&nbsp;Du überprüfst Bewusstsein und normale Atmung. Bei vorhandener normaler Atmung und fortbestehender Bewusstseinsstörung sicherst du die Atemwege, gegebenenfalls durch stabile Seitenlage, und überwachst die Patientin engmaschig. Bei fehlender normaler Atmung beginnst du die Reanimation und lässt einen AED holen. Du bleibst bei der Patientin, sprichst ruhig mit ihr und berücksichtigst, dass sie vorübergehend desorientiert sein kann.</p>
+    <p><strong>5. Beobachtung und Dokumentation:</strong>&nbsp;Du hältst Beginn, geschätzte Dauer, beobachtete Bewegungen, mögliche Verletzungen, Bewusstseinslage, Atembefund und Erholung fest. Für die ärztliche Beurteilung können Angaben zu bekannten Anfällen, Medikamenten und möglichen Auslösern wichtig sein. Beobachtungen werden sachlich dokumentiert; eine Epilepsiediagnose wird nicht allein aus diesem Ereignis abgeleitet.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Die Zuckungen hören nach zwei Minuten auf, aber die Patientin reagiert weiterhin kaum. Ist der Notfall damit beendet?</strong>&nbsp;Nein. Die Bewusstseins- und Atemsituation muss sofort neu beurteilt werden. Eine anhaltende Bewusstseinsstörung erfordert engmaschige Überwachung und ärztliche Notfallbeurteilung; bei fehlender normaler Atmung ist unverzüglich zu reanimieren.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Der Patientin etwas zwischen die Zähne zu schieben oder nach dem Ende der Zuckungen die weitere Überwachung zu unterlassen.</p>
+  </section>
+
+<section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Prüfungsfall: Starke Blutung nach einer Verletzung</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Ein 47-jähriger Patient betritt die Praxis mit einer tiefen Schnittverletzung am rechten Unterarm. Ein provisorisch angelegtes Handtuch ist bereits stark durchblutet. Der Patient wirkt blass, ist unruhig und berichtet über zunehmenden Schwindel. Eine Kollegin möchte zunächst seine Versichertenkarte einlesen.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Welche Hinweise sprechen für einen lebensbedrohlichen Blutverlust?</li>
+      <li>Welche Maßnahmen haben unmittelbar Vorrang?</li>
+      <li>Wie gehst du vor, wenn die Blutung durch direkten Druck nicht ausreichend kontrolliert werden kann?</li>
+      <li>Wie erkennst du eine mögliche Kreislaufverschlechterung?</li>
+      <li>Welche Informationen müssen dokumentiert und übergeben werden?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Situation einschätzen:</strong>&nbsp;Eine starke äußere Blutung in Verbindung mit Blässe, Unruhe und Schwindel kann auf einen erheblichen Blutverlust mit beginnender Kreislaufbeeinträchtigung hinweisen. Die administrative Aufnahme ist nachrangig. Du alarmierst sofort die ärztliche Fachperson und organisierst bei lebensbedrohlicher Blutung den Notruf 112.</p>
+    <p><strong>2. Blutung kontrollieren:</strong>&nbsp;Du schützt dich nach Möglichkeit mit geeigneten Einmalhandschuhen und übst unverzüglich festen direkten Druck auf die blutende Wunde aus, möglichst mit einer geeigneten Wundauflage. Eine Kollegin kann die benötigten Materialien holen und den Notruf übernehmen. Der Patient soll sich nicht unnötig bewegen und wird vor einem Sturz geschützt.</p>
+    <p><strong>3. Unzureichende Blutstillung:</strong>&nbsp;Wenn direkter Druck nicht genügt, wird die Blutstillung konsequent fortgesetzt und die verfügbare geeignete Notfallausstattung eingesetzt. Bei lebensbedrohlicher Extremitätenblutung kann ein dafür vorgesehenes Tourniquet durch entsprechend geschulte Personen nach geltendem Notfallstandard erforderlich sein. Es wird nicht improvisiert oder ohne entsprechende Kenntnisse angewendet. Der Zeitpunkt einer Tourniquet-Anlage muss dokumentiert und dem Rettungsdienst mitgeteilt werden.</p>
+    <p><strong>4. Kreislauf beobachten:</strong>&nbsp;Du beurteilst fortlaufend Bewusstsein, Atmung und Kreislauf. Warnzeichen sind zunehmende Blässe, Kaltschweißigkeit, ausgeprägte Schwäche, Verwirrtheit und Bewusstseinsverlust. Die Lagerung richtet sich nach Zustand und Verletzung. Du hältst den Patienten warm, gibst bei drohender Notfallbehandlung nichts zu essen oder zu trinken und lässt ihn nicht allein.</p>
+    <p><strong>5. Weitere Versorgung:</strong>&nbsp;Du unterstützt die ärztliche Behandlung, bereitest Verbandmaterial vor und achtest darauf, dass lebensrettende Maßnahmen nicht durch eine vollständige Wundversorgung verzögert werden. Bei fehlender normaler Atmung beginnst du unverzüglich die Reanimation und lässt den AED bereitstellen.</p>
+    <p><strong>6. Übergabe und Dokumentation:</strong>&nbsp;Du dokumentierst die beobachtete Blutung, Verletzungsstelle, Symptome, Zeitpunkte, Maßnahmen zur Blutstillung, Verlauf und Alarmierung. Dem Rettungsdienst übergibst du diese Angaben strukturiert und benennst bekannte Medikamente, insbesondere gerinnungshemmende Mittel, sofern diese Informationen verfügbar sind.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Das Handtuch ist vollständig durchblutet. Solltest du zuerst die Wunde reinigen, damit du sie besser beurteilen kannst?</strong>&nbsp;Nein. Bei einer möglicherweise lebensbedrohlichen Blutung hat die sofortige Blutstillung Vorrang vor Reinigung und genauer Wundinspektion. Die weitere Versorgung erfolgt nach Stabilisierung und ärztlicher Beurteilung.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Die Blutstillung für administrative Aufgaben oder eine ausführliche Wundreinigung zu unterbrechen.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Prüfungsfall: Zwei Notfälle gleichzeitig – Prioritäten im Praxisteam</h2>
+    <p><strong>Ausgangssituation:</strong>&nbsp;Montagmorgen, 9:20 Uhr: Im Wartezimmer klagt ein 64-jähriger Patient über starke Atemnot und kann nur einzelne Wörter sprechen. Gleichzeitig meldet eine Kollegin, dass eine 24-jährige Patientin im Laborraum nach einer Blutentnahme kurz bewusstlos geworden ist. In der Praxis sind eine Ärztin, zwei MFA und eine MFA-Auszubildende im zweiten Ausbildungsjahr anwesend. Der Empfang ist voll.</p>
+
+    <h3>Deine Prüfungsaufgaben</h3>
+    <ol>
+      <li>Wie priorisierst du beide Situationen, ohne einen Patienten unversorgt zu lassen?</li>
+      <li>Welche Aufgaben verteilst du an die verfügbaren Teammitglieder?</li>
+      <li>Welche Befunde müssen bei beiden Patienten unverzüglich erhoben werden?</li>
+      <li>Was ändert sich, wenn der Patient mit Atemnot bewusstlos wird?</li>
+      <li>Wie organisierst du Übergabe, Dokumentation und Nachbesprechung?</li>
+    </ol>
+
+    <h3>Musterlösung mit fachlicher Begründung</h3>
+    <p><strong>1. Sofortige Priorisierung:</strong>&nbsp;Beide Ereignisse müssen unverzüglich eingeschätzt werden. Die ausgeprägte Atemnot mit eingeschränkter Sprechfähigkeit ist ein deutliches Warnzeichen einer möglichen lebensbedrohlichen Atemstörung. Der Zustand der kurz bewusstlosen Patientin ist ebenfalls potenziell kritisch, solange Bewusstsein und normale Atmung nicht sicher beurteilt wurden. Eine pauschale Einstufung als harmlose vasovagale Synkope wäre unzulässig.</p>
+    <p><strong>2. Team alarmieren:</strong>&nbsp;Du informierst sofort die Ärztin und benennst beide Notfälle klar. Eine MFA bleibt beim Patienten mit Atemnot, überprüft Bewusstsein und Atmung und unterstützt die unverzügliche Notfallversorgung einschließlich Notruf 112. Die zweite MFA überprüft bei der Patientin im Laborraum sofort Reaktion und normale Atmung, sichert sie gegen Verletzungen und meldet den Befund unmittelbar zurück. Die Auszubildende erhält nur klar abgegrenzte Aufgaben entsprechend ihrem Ausbildungsstand, etwa AED holen, den Zugang für den Rettungsdienst freihalten oder dokumentierte Zeitangaben notieren.</p>
+    <p><strong>3. Ressourcen und Zuständigkeiten:</strong>&nbsp;Die Ärztin übernimmt die medizinische Leitung und entscheidet über die weitere Behandlung. Die Teammitglieder kommunizieren kurz und eindeutig: Wer übernimmt welchen Patienten? Wer setzt den Notruf ab? Wer holt den AED? Wer dokumentiert? Aufgaben werden mit einer kurzen Rückmeldung bestätigt. Niemand darf eine notwendige Erstmaßnahme allein deshalb unterlassen, weil die Ärztin gerade beim anderen Patienten ist.</p>
+    <p><strong>4. Patient mit Atemnot:</strong>&nbsp;Die zuständige MFA beobachtet Atemarbeit, Bewusstsein und Kreislauf, unterstützt eine geeignete Position und bereitet die Notfallausstattung vor. Eine mögliche Sauerstoffgabe und weitere Behandlung richten sich nach der medizinischen Indikation und den geltenden Zuständigkeiten. Wird der Patient bewusstlos, wird sofort die normale Atmung überprüft. Bei fehlender normaler Atmung beginnt die Reanimation mit AED-Einsatz, sobald dieser verfügbar ist.</p>
+    <p><strong>5. Patientin nach Blutentnahme:</strong>&nbsp;Die zweite MFA beurteilt Bewusstsein und normale Atmung. Bei Bewusstlosigkeit mit normaler Atmung sichert sie die Atemwege und überwacht den Zustand fortlaufend. Bei fehlender normaler Atmung beginnt sie unverzüglich die Reanimation und fordert zusätzliche Hilfe an. Erst nach gesicherter Erstbeurteilung kann eine mögliche Kreislaufreaktion als Ursache näher eingeordnet werden.</p>
+    <p><strong>6. Eskalation:</strong>&nbsp;Sollte bei beiden Patienten eine lebensbedrohliche Situation vorliegen, wird dies der Leitstelle ausdrücklich mitgeteilt. Das Team fordert zusätzliche Rettungsmittel an und verteilt die vorhandenen Helfenden so, dass beide Patienten nach Möglichkeit gleichzeitig lebensrettende Maßnahmen erhalten. Eine notwendige Reanimation hat höchste Dringlichkeit; Prioritäten müssen bei jeder Zustandsänderung neu beurteilt werden.</p>
+    <p><strong>7. Übergabe und Nachbereitung:</strong>&nbsp;Für beide Patienten werden getrennte, nachvollziehbare Notfallprotokolle erstellt. Dokumentiert werden Beobachtungen, zeitlicher Verlauf, Zuständigkeiten, Alarmierung, Maßnahmen und Übergaben. Anschließend bespricht das Team sachlich, ob Aufgabenverteilung, Kommunikation, Materialverfügbarkeit und Betreuung der übrigen Patienten funktioniert haben. Erkannte Schwachstellen führen zu konkreten Verbesserungsmaßnahmen.</p>
+
+    <h3>Entscheidende Prüfungsfrage</h3>
+    <p><strong>Die Auszubildende soll die Patientin im Laborraum allein versorgen, während alle anderen zum Patienten mit Atemnot gehen. Ist das sinnvoll?</strong>&nbsp;Nein, nicht ohne unmittelbare fachliche Absicherung. Bei unklarem Bewusstseinszustand muss die Patientin unverzüglich durch ausreichend qualifiziertes Personal beurteilt werden. Die Auszubildende kann entsprechend ihrem Ausbildungsstand unterstützen, darf aber nicht die alleinige Verantwortung für eine potenziell lebensbedrohliche Situation tragen.</p>
+    <p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Sich ausschließlich auf den offensichtlich schwerer erkrankten Patienten zu konzentrieren und beim zweiten Patienten weder Atmung noch Bewusstsein zu prüfen.</p>
+  </section>
+
+<section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Abschlussprüfung: Der Notfall während der Nachmittagssprechstunde</h2>
+    <p><strong>Prüfungsformat:</strong>&nbsp;Bearbeite diesen Fall zunächst ohne die Musterlösung. Begründe deine Entscheidungen so, als würdest du sie in einer mündlichen oder praktischen Prüfung erklären. Für die Selbsteinschätzung stehen insgesamt 100 Punkte zur Verfügung. Das Raster ist eine Lernhilfe und kein offizieller Prüfungsschlüssel.</p>
+
+    <h3>Ausgangssituation</h3>
+    <p>Es ist 15:40 Uhr. Ein 59-jähriger Patient kommt wegen zunehmender Schwäche in die Praxis. Er wirkt blass und schwitzt. Während der Anmeldung klagt er plötzlich über Druck auf der Brust und starke Atemnot. Er kann nur kurze Sätze sprechen. Seine Ehefrau berichtet, dass er wegen einer Herzerkrankung Medikamente einnimmt, kennt aber deren Namen nicht.</p>
+    <p>Du bist MFA-Auszubildende im dritten Ausbildungsjahr. Eine erfahrene MFA arbeitet neben dir am Empfang. Die Ärztin behandelt gerade einen anderen Patienten. Nach wenigen Minuten sackt der Patient zusammen und reagiert nicht mehr auf Ansprache.</p>
+
+    <h3>Teil A: Die ersten Entscheidungen – 20 Punkte</h3>
+    <ol>
+      <li>Welche Warnzeichen erkennst du bereits vor dem Zusammenbruch?</li>
+      <li>Welche Maßnahmen leitest du sofort ein?</li>
+      <li>Welche Aufgaben darfst du entsprechend deinem Ausbildungsstand übernehmen, und wann benötigst du fachliche Unterstützung?</li>
+    </ol>
+
+    <h3>Teil B: Zustandsverschlechterung – 30 Punkte</h3>
+    <ol>
+      <li>Wie überprüfst du nach dem Zusammenbruch Bewusstsein und normale Atmung?</li>
+      <li>Der Patient zeigt nur vereinzelte schnappende Atemzüge. Wie handelst du?</li>
+      <li>Beschreibe Herzdruckmassage, Beatmung und AED-Einsatz.</li>
+      <li>Welche Maßnahmen dürfen den Reanimationsbeginn nicht verzögern?</li>
+    </ol>
+
+    <h3>Teil C: Teamarbeit und Rettungsdienst – 20 Punkte</h3>
+    <ol>
+      <li>Verteile die Aufgaben zwischen dir, der erfahrenen MFA und der Ärztin.</li>
+      <li>Formuliere eine kurze strukturierte Übergabe an den Rettungsdienst.</li>
+    </ol>
+
+    <h3>Teil D: Dokumentation und Nachbereitung – 20 Punkte</h3>
+    <ol>
+      <li>Welche Angaben gehören in die Notfalldokumentation?</li>
+      <li>Welche Themen sollten anschließend im Praxisteam besprochen werden?</li>
+    </ol>
+
+    <h3>Teil E: Fachliche Reflexion – 10 Punkte</h3>
+    <p>Erkläre, warum die richtige Reihenfolge der Maßnahmen in diesem Fall wichtiger ist als eine möglichst vollständige Diagnosestellung in der Arztpraxis.</p>
+
+    <h3>Ausführliche Musterlösung</h3>
+    <p><strong>Teil A – 20 Punkte:</strong>&nbsp;Brustdruck, starke Atemnot, Kaltschweißigkeit und Blässe sind Warnzeichen einer potenziell lebensbedrohlichen Erkrankung, insbesondere eines akuten Koronarsyndroms. Die Untersuchung wird nicht als gewöhnlicher Termin fortgeführt. Du alarmierst sofort die erfahrene MFA und die Ärztin, organisierst die unverzügliche Alarmierung von 112 und sorgst dafür, dass der Patient nicht allein bleibt. Du unterstützt die Erstversorgung entsprechend deinem Ausbildungsstand und übernimmst keine eigenständigen ärztlichen Therapieentscheidungen.</p>
+    <p><strong>Teil B – 30 Punkte:</strong>&nbsp;Nach dem Zusammenbruch sprichst du den Patienten laut an und überprüfst seine Reaktion. Bei fehlender Reaktion öffnest du die Atemwege und kontrollierst die normale Atmung höchstens zehn Sekunden lang. Schnappatmung ist keine normale Atmung. Du lässt 112 alarmieren, beginnst unverzüglich mit Herzdruckmassage und lässt einen AED holen. Die Kompressionen erfolgen mittig auf dem Brustkorb mit 100–120 Kompressionen pro Minute, etwa 5–6 cm Drucktiefe bei Erwachsenen und vollständiger Entlastung. Bei entsprechender Schulung und sicher möglicher Beatmung gilt 30:2; andernfalls wird kontinuierlich gedrückt. Der AED wird eingeschaltet und entsprechend seinen Anweisungen verwendet. Während Rhythmusanalyse und möglicher Schockabgabe berührt niemand den Patienten. Die Reanimation wird anschließend unverzüglich fortgesetzt. Eine ausführliche Anamnese, ein EKG oder eine Pulssuche dürfen die lebensrettenden Maßnahmen nicht verzögern.</p>
+    <p><strong>Teil C – 20 Punkte:</strong>&nbsp;Die erfahrene MFA kann beispielsweise den Notruf koordinieren und die Notfallausstattung organisieren, während du unmittelbar mit den notwendigen Basismaßnahmen beginnst. Die Ärztin übernimmt die medizinische Leitung und weitere Behandlung. Die Aufgabenverteilung wird klar ausgesprochen und bestätigt; sie wird an den tatsächlichen Ausbildungsstand und die verfügbaren Personen angepasst. Die Übergabe enthält den beobachteten Verlauf, Zeitpunkt des Kollapses, fehlende normale Atmung, Beginn der Reanimation, AED-Anweisungen beziehungsweise Schockabgaben, bekannte Vorerkrankungen und alle durchgeführten Maßnahmen. Nicht bekannte Medikamente werden ausdrücklich als unbekannt benannt.</p>
+    <p><strong>Teil D – 20 Punkte:</strong>&nbsp;Dokumentiert werden die beobachteten Symptome, Zeitpunkte, Bewusstseins- und Atembefunde, Alarmierung, beteiligte Personen, Reanimationsbeginn, AED-Ereignisse, ärztliche Anordnungen, tatsächlich durchgeführte Maßnahmen und die Übergabe. In der Nachbesprechung prüft das Team insbesondere Alarmierungswege, Aufgabenverteilung, AED-Verfügbarkeit, Kommunikation, Dokumentation und mögliche Verbesserungen. Die Besprechung erfolgt sachlich und ohne vorschnelle Schuldzuweisung.</p>
+    <p><strong>Teil E – 10 Punkte:</strong>&nbsp;Bei einem Kreislaufstillstand entscheidet schnelles Handeln über die Überlebenschancen. Deshalb haben das Erkennen fehlender normaler Atmung, der Notruf, die sofortige Herzdruckmassage und der frühe AED-Einsatz Vorrang vor einer vollständigen Diagnosestellung. Die medizinische Ursachenklärung und erweiterte Behandlung erfolgen parallel beziehungsweise anschließend durch entsprechend qualifizierte Fachpersonen.</p>
+
+    <h3>Bewertungsraster zur Selbsteinschätzung</h3>
+    <ul>
+      <li><strong>Teil A:</strong>&nbsp;Gefahrenerkennung und erste Maßnahmen – maximal 20 Punkte.</li>
+      <li><strong>Teil B:</strong>&nbsp;Bewusstseins- und Atemprüfung, Reanimation und AED – maximal 30 Punkte.</li>
+      <li><strong>Teil C:</strong>&nbsp;Teamarbeit und strukturierte Übergabe – maximal 20 Punkte.</li>
+      <li><strong>Teil D:</strong>&nbsp;Dokumentation und Nachbereitung – maximal 20 Punkte.</li>
+      <li><strong>Teil E:</strong>&nbsp;Fachliche Begründung der Prioritäten – maximal 10 Punkte.</li>
+    </ul>
+    <p><strong>Orientierung:</strong>&nbsp;90–100 Punkte zeigen eine sehr sichere Bearbeitung, 75–89 Punkte eine gute Grundlage und 60–74 Punkte einen erkennbaren Übungsbedarf. Unter 60 Punkten sollten die Grundlagen gezielt wiederholt werden. Unabhängig von der Gesamtpunktzahl müssen kritische Fehler – etwa das Nichterkennen fehlender normaler Atmung oder das Unterlassen der Reanimation – besonders aufgearbeitet werden. Diese Einteilung ist ausschließlich eine didaktische Orientierung.</p>
+
+    <h3>Prüfungstipp</h3>
+    <p>Begründe deine Antworten immer mit der konkreten Gefahr für den Patienten. Eine überzeugende Prüfungsantwort erklärt nicht nur, <strong>was</strong>&nbsp;du tust, sondern auch, <strong>warum</strong>&nbsp;du es genau in dieser Reihenfolge tust.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Prüfungsstrategie: Komplexe Notfälle sicher bearbeiten</h2>
+    <p>In einer praktischen oder mündlichen Prüfung reicht es nicht aus, einzelne Maßnahmen auswendig aufzuzählen. Entscheidend ist, dass du Gefahren erkennst, Prioritäten begründest und deinen Handlungsablauf verständlich erklärst.</p>
+
+    <h3>Die sechs Schritte deiner Fallbearbeitung</h3>
+    <ol>
+      <li><strong>Situation erfassen:</strong>&nbsp;Was ist passiert? Welche Symptome sind beobachtbar? Besteht eine unmittelbare Gefahr für den Patienten oder andere Personen?</li>
+      <li><strong>Lebensbedrohung erkennen:</strong>&nbsp;Beurteile insbesondere Bewusstsein und normale Atmung. Achte auf schwere Atemnot, Kreislaufversagen, starke Blutungen und akute neurologische Ausfälle.</li>
+      <li><strong>Hilfe organisieren:</strong>&nbsp;Alarmiere die ärztliche Fachperson und veranlasse bei einem lebensbedrohlichen Notfall unverzüglich den Notruf 112. Verteile Aufgaben klar.</li>
+      <li><strong>Sofortmaßnahmen durchführen:</strong>&nbsp;Leite die zur Situation passenden Maßnahmen ohne unnötige Verzögerung ein. Bei fehlender normaler Atmung hat die Reanimation Vorrang.</li>
+      <li><strong>Verlauf neu beurteilen:</strong>&nbsp;Kontrolliere fortlaufend den Zustand. Ändert sich die Atmung oder das Bewusstsein, musst du deine Maßnahmen sofort anpassen.</li>
+      <li><strong>Übergeben und dokumentieren:</strong>&nbsp;Berichte strukturiert über Beobachtungen, Zeitpunkte und Maßnahmen. Dokumentiere sachlich und nachvollziehbar.</li>
+    </ol>
+
+    <h3>So formulierst du eine überzeugende Prüfungsantwort</h3>
+    <p><strong>Schwache Antwort:</strong>&nbsp;„Ich hole die Ärztin und messe den Blutdruck.“</p>
+    <p><strong>Bessere Antwort:</strong>&nbsp;„Ich erkenne die ausgeprägte Atemnot als mögliches Zeichen einer lebensbedrohlichen Situation. Deshalb alarmiere ich sofort die ärztliche Fachperson, lasse 112 verständigen, überprüfe Bewusstsein und Atmung und unterstütze die notwendigen Sofortmaßnahmen. Eine Blutdruckmessung darf die Alarmierung nicht verzögern.“</p>
+
+    <h3>Die Grenzen deiner Verantwortung kennen</h3>
+    <p>Als MFA beziehungsweise MFA-Auszubildende musst du Notfälle erkennen, Hilfe organisieren, Erste Hilfe leisten und die ärztliche Versorgung entsprechend deiner Qualifikation unterstützen. Ärztliche Diagnose- und Therapieentscheidungen darfst du nicht eigenmächtig übernehmen. Lebensrettende Erste-Hilfe-Maßnahmen dürfen aber nicht allein deshalb unterbleiben, weil die Ärztin oder der Arzt noch nicht im Raum ist.</p>
+
+    <h3>Prüfungsfrage zur Selbstreflexion</h3>
+    <p>Kannst du bei jedem der acht Fälle in einem Satz erklären, welche Gefahr zuerst ausgeschlossen oder behandelt werden muss? Wenn dir das gelingt, hast du den wichtigsten Teil der Fallanalyse verstanden.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">11</p>
+    <h2>Kritische Prüfungsfehler erkennen und vermeiden</h2>
+    <p>Nicht jeder Fehler hat die gleiche Bedeutung. In Notfallsituationen sind vor allem solche Entscheidungen gefährlich, die lebensrettende Maßnahmen verzögern oder den Zustand des Patienten verschlechtern.</p>
+
+    <h3>Fehler 1: Schnappatmung falsch beurteilen</h3>
+    <p><strong>Problem:</strong>&nbsp;Ein bewusstloser Patient zeigt vereinzelte schnappende Atemzüge. Diese werden fälschlich als normale Atmung bewertet.</p>
+    <p><strong>Richtig:</strong>&nbsp;Schnappatmung ist keine normale Atmung. Bei fehlender Reaktion und fehlender normaler Atmung müssen unverzüglich Notruf, Herzdruckmassage und AED-Einsatz organisiert werden.</p>
+
+    <h3>Fehler 2: Den Notruf unnötig verzögern</h3>
+    <p><strong>Problem:</strong>&nbsp;Bei Schlaganfallzeichen oder schwerem Brustschmerz werden zunächst weitere Routineuntersuchungen durchgeführt.</p>
+    <p><strong>Richtig:</strong>&nbsp;Bei einem zeitkritischen lebensbedrohlichen Verdacht hat die unverzügliche Alarmierung Vorrang. Untersuchungen dürfen die Notfallversorgung nicht verzögern.</p>
+
+    <h3>Fehler 3: Unsichere orale Gabe</h3>
+    <p><strong>Problem:</strong>&nbsp;Einem deutlich bewusstseinsgestörten Patienten wird wegen vermuteter Unterzuckerung Saft eingeflößt.</p>
+    <p><strong>Richtig:</strong>&nbsp;Bei eingeschränktem Bewusstsein oder unsicherer Schluckfähigkeit wird nichts oral gegeben. Die Aspirationsgefahr muss berücksichtigt werden.</p>
+
+    <h3>Fehler 4: Krampfbewegungen gewaltsam unterdrücken</h3>
+    <p><strong>Problem:</strong>&nbsp;Die Gliedmaßen werden festgehalten oder ein Gegenstand wird zwischen die Zähne geschoben.</p>
+    <p><strong>Richtig:</strong>&nbsp;Schütze vor Verletzungen, beobachte die Dauer des Anfalls und überprüfe danach Bewusstsein und Atmung. Keine Gegenstände in den Mund einführen.</p>
+
+    <h3>Fehler 5: Anaphylaxie unterschätzen</h3>
+    <p><strong>Problem:</strong>&nbsp;Atemnot, Halsenge und Schwindel nach einer Medikamentengabe werden nur als harmlose Hautreaktion betrachtet.</p>
+    <p><strong>Richtig:</strong>&nbsp;Erkenne die mögliche schwere Anaphylaxie, alarmiere sofort ärztliche Hilfe und 112 und unterstütze die unverzügliche Notfallbehandlung.</p>
+
+    <h3>Fehler 6: Starke Blutungen nicht sofort stillen</h3>
+    <p><strong>Problem:</strong>&nbsp;Vor der Blutstillung werden Aufnahmeformalitäten erledigt oder die Wunde ausführlich gereinigt.</p>
+    <p><strong>Richtig:</strong>&nbsp;Die unmittelbare Blutstillung durch festen direkten Druck hat Vorrang. Bei lebensbedrohlicher Blutung wird unverzüglich zusätzliche Notfallhilfe organisiert.</p>
+
+    <h3>Fehler 7: Einen zweiten Patienten übersehen</h3>
+    <p><strong>Problem:</strong>&nbsp;Das gesamte Praxisteam kümmert sich um einen Patienten, während ein weiterer bewusstseinsgestörter Patient unbeurteilt bleibt.</p>
+    <p><strong>Richtig:</strong>&nbsp;Organisiere eine parallele Erstbeurteilung durch ausreichend qualifizierte Personen. Prioritäten müssen bei jeder Zustandsänderung neu festgelegt werden.</p>
+
+    <h3>Fehler 8: Beobachtungen und Vermutungen vermischen</h3>
+    <p><strong>Problem:</strong>&nbsp;In der Dokumentation steht eine ungesicherte Diagnose anstelle der tatsächlich beobachteten Symptome.</p>
+    <p><strong>Richtig:</strong>&nbsp;Dokumentiere beobachtete Befunde, Zeitpunkte, Maßnahmen und ärztliche Anordnungen sachlich. Kennzeichne Verdachtsdiagnosen und unbekannte Angaben eindeutig.</p>
+
+    <h3>Merksatz für deine Prüfung</h3>
+    <p><strong>Erkennen – Alarmieren – Handeln – Kontrollieren – Übergeben – Dokumentieren.</strong>&nbsp;Diese Reihenfolge ist eine Orientierung. Bei unmittelbarer Lebensgefahr können mehrere Schritte gleichzeitig erfolgen, beispielsweise Notruf und Herzdruckmassage durch verschiedene Helfende.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Zehn anspruchsvolle Fragen für deine mündliche Prüfung</h2>
+    <p>Beantworte jede Frage zunächst laut und ohne Hilfsmittel. Öffne erst danach die Musterantwort. Achte darauf, dass du nicht nur eine Maßnahme nennst, sondern deine Entscheidung begründest.</p>
+
+    <details>
+      <summary>Frage 1: Warum darfst du bei Schnappatmung nicht abwarten?</summary>
+      <p>Schnappatmung ist keine normale Atmung und kann bei einem Kreislaufstillstand auftreten. Ist die Person bewusstlos und atmet nicht normal, müssen unverzüglich der Notruf und die Reanimation eingeleitet werden. Ein Abwarten würde die notwendige Versorgung verzögern.</p>
+    </details>
+
+    <details>
+      <summary>Frage 2: Warum reicht ein unauffälliger FAST-Test nicht aus, um einen Schlaganfall auszuschließen?</summary>
+      <p>FAST erfasst wichtige typische Schlaganfallzeichen, aber nicht alle möglichen Symptome. Auch plötzlich auftretende Gleichgewichtsstörungen, Sehstörungen oder andere neurologische Ausfälle können auf einen Schlaganfall hinweisen. Bei begründetem Verdacht ist die sofortige Notfallabklärung erforderlich.</p>
+    </details>
+
+    <details>
+      <summary>Frage 3: Weshalb darf ein deutlich bewusstseinsgestörter Patient keinen Saft bekommen?</summary>
+      <p>Bei eingeschränktem Bewusstsein ist die Schluckfähigkeit möglicherweise gestört. Flüssigkeit kann in die Atemwege gelangen. Deshalb wird bei unsicherer Schluckfähigkeit nichts oral gegeben; stattdessen wird die notwendige Notfallbehandlung organisiert.</p>
+    </details>
+
+    <details>
+      <summary>Frage 4: Welche Anzeichen sprechen nach einer Injektion für eine schwere Anaphylaxie?</summary>
+      <p>Besonders bedrohlich sind Atemnot, Halsenge, Stimmveränderung, Kreislaufprobleme und Bewusstseinsstörungen. Hauterscheinungen können hinzukommen, müssen aber nicht vorhanden sein. Die rasche Entwicklung nach einer möglichen Auslöserexposition erfordert unverzügliches Handeln.</p>
+    </details>
+
+    <details>
+      <summary>Frage 5: Warum ist bei starken Blutungen direkter Druck so wichtig?</summary>
+      <p>Fester direkter Druck auf die Blutungsstelle kann den Blutverlust unmittelbar vermindern. Er hat bei einer lebensbedrohlichen äußeren Blutung Vorrang vor administrativen Aufgaben und einer ausführlichen Wundreinigung. Gleichzeitig wird notwendige Notfallhilfe organisiert.</p>
+    </details>
+
+    <details>
+      <summary>Frage 6: Warum darfst du bei einem Krampfanfall nichts in den Mund stecken?</summary>
+      <p>Gegenstände oder Finger im Mund können Verletzungen verursachen und die Atemwege gefährden. Stattdessen schützt du die Person vor Verletzungen, beobachtest den Anfall und überprüfst anschließend Bewusstsein und Atmung.</p>
+    </details>
+
+    <details>
+      <summary>Frage 7: Was unterscheidet die Aufgaben einer MFA von ärztlichen Therapieentscheidungen?</summary>
+      <p>Die MFA erkennt Warnzeichen, alarmiert Hilfe, leistet Erste Hilfe, beobachtet den Patienten und unterstützt die ärztliche Behandlung entsprechend Qualifikation und zulässiger Aufgabenübertragung. Eigenständige ärztliche Diagnose- und Therapieentscheidungen gehören nicht zu ihren Befugnissen.</p>
+    </details>
+
+    <details>
+      <summary>Frage 8: Warum müssen bei zwei gleichzeitigen Notfällen beide Patienten unmittelbar beurteilt werden?</summary>
+      <p>Auch eine zunächst weniger dramatisch wirkende Situation kann lebensbedrohlich sein. Deshalb müssen Bewusstsein, normale Atmung und wesentliche Warnzeichen bei beiden Patienten unverzüglich durch ausreichend qualifizierte Personen beurteilt werden. Die Prioritäten werden nach tatsächlicher Gefährdung und Zustandsveränderungen festgelegt.</p>
+    </details>
+
+    <details>
+      <summary>Frage 9: Welche Informationen sind bei einer Rettungsdienstübergabe besonders wichtig?</summary>
+      <p>Wichtig sind der Anlass des Notfalls, beobachtete Symptome und Befunde, Zeitpunkt beziehungsweise Verlauf, relevante Vorerkrankungen und Medikamente, durchgeführte Maßnahmen sowie der aktuelle Zustand. Eine strukturierte Übergabe, beispielsweise nach ISBAR, unterstützt die Informationssicherheit.</p>
+    </details>
+
+    <details>
+      <summary>Frage 10: Was ist der Unterschied zwischen Dokumentation und Nachbesprechung?</summary>
+      <p>Die Dokumentation hält den konkreten Notfall mit Beobachtungen, Zeitpunkten, Maßnahmen und Verlauf nachvollziehbar fest. Die Nachbesprechung bewertet zusätzlich die Zusammenarbeit und Abläufe, um Verbesserungsmöglichkeiten zu erkennen. Beides erfüllt unterschiedliche, sich ergänzende Aufgaben.</p>
+    </details>
+
+    <p><strong>Prüfungstipp:</strong>&nbsp;Wenn du bei einer Antwort unsicher bist, beginne mit der unmittelbar erkennbaren Gefahr und erkläre anschließend die passende Priorität. Behaupte keine Befunde, die in der Fallbeschreibung nicht genannt werden.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">13</p>
+    <h2>Deine Vorlage für die strukturierte Fallanalyse</h2>
+    <p>Nutze diese Vorlage für jeden neuen Prüfungsfall. Sie hilft dir, Beobachtungen, Entscheidungen und Begründungen sauber voneinander zu trennen.</p>
+
+    <h3>Schritt 1: Ausgangslage</h3>
+    <p><strong>Was weiß ich sicher?</strong>&nbsp;Notiere Alter, Situation, beobachtete Symptome und bekannte zeitliche Angaben. Ergänze keine erfundenen Befunde.</p>
+
+    <h3>Schritt 2: Kritische Warnzeichen</h3>
+    <p><strong>Was könnte unmittelbar lebensbedrohlich sein?</strong>&nbsp;Prüfe besonders Bewusstsein, normale Atmung, schwere Atemnot, Kreislaufprobleme, starke Blutungen und akute neurologische Veränderungen.</p>
+
+    <h3>Schritt 3: Erste Priorität</h3>
+    <p><strong>Was muss sofort geschehen?</strong>&nbsp;Formuliere die wichtigste Erstmaßnahme und begründe, warum sie Vorrang hat. Beachte, dass Alarmierung und Erste Hilfe durch verschiedene Personen parallel erfolgen können.</p>
+
+    <h3>Schritt 4: Team und Zuständigkeiten</h3>
+    <p><strong>Wer übernimmt welche Aufgabe?</strong>&nbsp;Unterscheide eigene Erste-Hilfe-Maßnahmen, unterstützende MFA-Aufgaben und ärztliche Entscheidungen. Berücksichtige den Ausbildungsstand.</p>
+
+    <h3>Schritt 5: Neubewertung</h3>
+    <p><strong>Was mache ich bei einer Zustandsänderung?</strong>&nbsp;Erkläre mindestens eine mögliche Verschlechterung und die daraus folgende Änderung deiner Maßnahmen.</p>
+
+    <h3>Schritt 6: Übergabe und Nachbereitung</h3>
+    <p><strong>Welche Informationen dürfen nicht verloren gehen?</strong>&nbsp;Halte Beobachtungen, Zeitpunkte, Maßnahmen und den aktuellen Zustand fest. Überlege, was das Team aus dem Ereignis lernen kann.</p>
+
+    <h3>Durchgearbeitetes Beispiel: Plötzliche Atemnot am Empfang</h3>
+    <p><strong>Ausgangslage:</strong>&nbsp;Eine Patientin spricht nur noch einzelne Wörter, atmet sichtbar angestrengt und wirkt zunehmend erschöpft.</p>
+    <p><strong>Warnzeichen:</strong>&nbsp;Die ausgeprägte Atemnot kann auf eine unmittelbar bedrohliche Atemstörung hinweisen. Die genaue Ursache ist noch unbekannt.</p>
+    <p><strong>Erste Priorität:</strong>&nbsp;Du alarmierst unverzüglich die ärztliche Fachperson und veranlasst den Notruf 112. Gleichzeitig beurteilst du Bewusstsein und Atmung und unterstützt eine geeignete, atemerleichternde Position, solange die Patientin wach ist.</p>
+    <p><strong>Team:</strong>&nbsp;Eine qualifizierte Person bleibt bei der Patientin, eine weitere übernimmt Alarmierung und Notfallausstattung. Die Ärztin übernimmt die medizinische Leitung.</p>
+    <p><strong>Neubewertung:</strong>&nbsp;Wird die Patientin bewusstlos, überprüfst du sofort die normale Atmung. Fehlt diese, beginnt unverzüglich die Reanimation mit AED-Einsatz, sobald verfügbar.</p>
+    <p><strong>Übergabe:</strong>&nbsp;Du berichtest über den Symptombeginn, die beobachtete Atemnot, Veränderungen von Bewusstsein und Atmung sowie alle eingeleiteten Maßnahmen.</p>
+
+    <h3>Deine Übungsaufgabe</h3>
+    <p>Wähle einen der acht großen Prüfungsfälle aus. Bearbeite ihn erneut ausschließlich mit diesen sechs Schritten. Vergleiche deine Antwort danach mit der ausführlichen Musterlösung und markiere die Entscheidungen, die du noch nicht sicher begründen kannst.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">14</p>
+    <h2>Dein persönlicher Lernplan für die Notfallprüfung</h2>
+    <p>Eine gute Prüfungsvorbereitung bedeutet nicht, möglichst viele Seiten erneut zu lesen. Entscheidend ist, ob du Notfallsituationen selbstständig einschätzen und deine Maßnahmen fachlich begründen kannst.</p>
+
+    <h3>Phase 1: Ausgangsstand bestimmen</h3>
+    <p>Bearbeite die Abschlussprüfung aus Abschnitt 09 ohne Musterlösung. Vergib anschließend anhand des 100-Punkte-Rasters eine realistische Selbsteinschätzung. Halte zusätzlich fest, bei welchen lebensrettenden Entscheidungen du unsicher warst.</p>
+
+    <h3>Phase 2: Wissenslücken gezielt schließen</h3>
+    <p>Ordne deine Fehler den passenden Lektionen der Fachwelt 07 zu. Wiederhole beispielsweise Bewusstseins- und Atemprüfung, Reanimation und AED, wenn du bei der Versorgung eines bewusstlosen Patienten unsicher bist. Nutze die anderen Lektionen entsprechend für Schlaganfall, Anaphylaxie, Hypoglykämie, Blutungen und weitere Notfälle.</p>
+
+    <h3>Phase 3: Lautes Begründen üben</h3>
+    <p>Beantworte die zehn mündlichen Prüfungsfragen aus Abschnitt 12 laut. Formuliere zu jeder Maßnahme eine kurze Begründung. Übe besonders die Unterscheidung zwischen Beobachtung, Verdachtsdiagnose und gesicherter ärztlicher Diagnose.</p>
+
+    <h3>Phase 4: Neue Varianten durchdenken</h3>
+    <p>Verändere bei jedem Fall eine entscheidende Information: Der Patient atmet plötzlich nicht mehr normal, die Symptome bessern sich unerwartet oder ein zweiter Notfall tritt hinzu. Erkläre, wie sich dadurch deine Prioritäten ändern.</p>
+
+    <h3>Phase 5: Prüfung unter realistischen Bedingungen</h3>
+    <p>Bitte deine Praxisanleitung oder eine fachlich geeignete Person, dir einen unbekannten Notfallfall zu schildern. Erkläre dein Vorgehen ohne Unterlagen. Bitte um Rückmeldung zu Gefahrenerkennung, Prioritäten, Fachbegründung, Kommunikation und Zuständigkeitsgrenzen.</p>
+
+    <h3>Deine persönliche Lernkontrolle</h3>
+    <ul>
+      <li>Ich erkenne fehlende normale Atmung und kann das notwendige Vorgehen erklären.</li>
+      <li>Ich kann lebensbedrohliche Warnzeichen von weniger dringlichen Beschwerden unterscheiden.</li>
+      <li>Ich weiß, wann ich unverzüglich 112 veranlassen muss.</li>
+      <li>Ich kann Aufgaben im Praxisteam sinnvoll verteilen und meine Zuständigkeitsgrenzen benennen.</li>
+      <li>Ich kann meine Maßnahmen fachlich begründen und bei einer Verschlechterung anpassen.</li>
+      <li>Ich kann einen Notfall strukturiert übergeben und sachlich dokumentieren.</li>
+    </ul>
+
+    <h3>Wann bist du gut vorbereitet?</h3>
+    <p>Wenn du einen unbekannten Notfallfall ohne auswendig gelernte Formulierungen bearbeiten kannst, die wichtigsten Gefahren erkennst und deine Prioritäten verständlich begründest, hast du eine tragfähige Grundlage. Kritische Unsicherheiten bei lebensrettenden Maßnahmen müssen unabhängig von deiner Punktzahl gezielt geübt werden.</p>
+
+    <p><strong>Wichtig:</strong>&nbsp;Diese Lektion unterstützt deine Prüfungsvorbereitung, ersetzt aber keine praktische Erste-Hilfe- beziehungsweise Reanimationsschulung und keine Anleitung durch qualifizierte Fachpersonen.</p>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PREMIUM-PRÜFUNGSCHALLENGE</p>
+    <h2>Drei Entscheidungen, die im Notfall zählen</h2>
+    <p>Diese drei Kurzfälle prüfen, ob du bei einer plötzlichen Veränderung des Patientenzustands richtig priorisierst. Formuliere zuerst deine eigene Antwort und öffne danach die Musterlösung.</p>
+
+    <h3>Challenge 1: Bewusstlos nach der Blutentnahme</h3>
+    <p>Ein 35-jähriger Patient verliert nach einer Blutentnahme das Bewusstsein. Eine Kollegin vermutet eine Kreislaufreaktion. Du bemerkst, dass der Patient nicht reagiert und nur vereinzelt nach Luft schnappt.</p>
+    <p><strong>Deine Aufgabe:</strong>&nbsp;Welche Maßnahme hat jetzt Vorrang? Begründe, warum die Vermutung deiner Kollegin nicht ausreicht.</p>
+    <details>
+      <summary>Musterlösung anzeigen</summary>
+      <p>Du prüfst unverzüglich die normale Atmung, höchstens zehn Sekunden lang. Schnappatmung ist keine normale Atmung. Bei fehlender Reaktion und fehlender normaler Atmung veranlasst du den Notruf 112 und beginnst sofort die Herzdruckmassage. Ein AED wird geholt und entsprechend seinen Anweisungen eingesetzt.</p>
+      <p><strong>Begründung:</strong>&nbsp;Die vermutete Ursache darf die Versorgung eines möglichen Kreislaufstillstands nicht verzögern. Die aktuelle Beurteilung von Bewusstsein und Atmung bestimmt das weitere Vorgehen.</p>
+    </details>
+
+    <h3>Challenge 2: Schlaganfallsymptome verschwinden</h3>
+    <p>Eine 70-jährige Patientin entwickelt plötzlich eine Sprachstörung und eine Schwäche des rechten Arms. Nach wenigen Minuten spricht sie wieder normal. Ihr Sohn möchte sie nach Hause fahren und später einen Termin vereinbaren.</p>
+    <p><strong>Deine Aufgabe:</strong>&nbsp;Wie reagierst du? Welche Zeitangabe ist für den Rettungsdienst wichtig?</p>
+    <details>
+      <summary>Musterlösung anzeigen</summary>
+      <p>Du alarmierst unverzüglich die ärztliche Fachperson und veranlasst den Notruf 112. Die vorübergehende Besserung schließt eine ernsthafte Durchblutungsstörung des Gehirns nicht aus. Eine transitorische ischämische Attacke ist ein Warnsignal und muss dringend medizinisch abgeklärt werden.</p>
+      <p><strong>Begründung:</strong>&nbsp;Du dokumentierst möglichst genau, wann die Patientin zuletzt sicher symptomfrei war, wann die Symptome bemerkt wurden und wann sie sich zurückbildeten. Diese Angaben sind für die weitere Akutversorgung wichtig.</p>
+    </details>
+
+    <h3>Challenge 3: Zwei Patienten brauchen gleichzeitig Hilfe</h3>
+    <p>Am Empfang klagt ein Patient über starke Atemnot. Gleichzeitig meldet eine Kollegin eine bewusstlose Patientin im Behandlungszimmer. Die Ärztin ist gerade mit einer Untersuchung beschäftigt.</p>
+    <p><strong>Deine Aufgabe:</strong>&nbsp;Wie organisierst du die Erstversorgung, ohne einen der beiden Patienten zu übersehen?</p>
+    <details>
+      <summary>Musterlösung anzeigen</summary>
+      <p>Du alarmierst sofort die Ärztin und organisierst eine parallele Erstbeurteilung beider Patienten durch ausreichend qualifizierte Personen. Bei beiden werden unverzüglich Reaktion und normale Atmung beurteilt. Die ausgeprägte Atemnot erfordert dringende Notfallversorgung und den Notruf 112. Bei der bewusstlosen Patientin entscheidet der Atembefund über die weiteren lebensrettenden Maßnahmen.</p>
+      <p><strong>Begründung:</strong>&nbsp;Aufgaben werden eindeutig verteilt und bestätigt. Wird bei einem Patienten fehlende normale Atmung festgestellt, beginnt sofort die Reanimation. Die Prioritäten werden fortlaufend an die tatsächliche Gefährdung angepasst.</p>
+    </details>
+
+    <h3>Deine Auswertung</h3>
+    <p>Hast du in allen drei Situationen die unmittelbar lebensbedrohliche Gefahr erkannt, die richtige Priorität gesetzt und deine Entscheidung begründet? Falls nicht, wiederhole gezielt die passenden Grundlagenlektionen und bearbeite die Challenge anschließend erneut.</p>
+  </section>
+
+  <section class="summary">
+    <p class="eyebrow">DAS MUSST DU MITNEHMEN</p>
+    <h2>Notfall-Prüfungsfälle: Das zählt in deiner Prüfung</h2>
+    <p>In dieser Premiumlektion hast du acht komplexe Notfallsituationen bearbeitet und deine Entscheidungen anhand ausführlicher Musterlösungen überprüft. Entscheidend ist nicht, möglichst viele Fachbegriffe zu nennen, sondern Gefahren frühzeitig zu erkennen und sicher zu handeln.</p>
+
+    <ul>
+      <li><strong>Gefahren erkennen:</strong>&nbsp;Bewusstlosigkeit, fehlende normale Atmung, schwere Atemnot, starke Blutungen und akute neurologische Ausfälle verlangen eine sofortige Einschätzung.</li>
+      <li><strong>Prioritäten setzen:</strong>&nbsp;Lebensrettende Maßnahmen und die notwendige Alarmierung dürfen nicht durch Routineuntersuchungen oder Verwaltungsaufgaben verzögert werden.</li>
+      <li><strong>Reanimation beherrschen:</strong>&nbsp;Bei fehlender Reaktion und fehlender normaler Atmung sind unverzügliche Herzdruckmassage, Notruf und früher AED-Einsatz entscheidend.</li>
+      <li><strong>Im Team handeln:</strong>&nbsp;Klare Aufgabenverteilung, eindeutige Rückmeldungen und die Beachtung deiner Zuständigkeitsgrenzen erhöhen die Sicherheit.</li>
+      <li><strong>Veränderungen beachten:</strong>&nbsp;Der Patientenzustand kann sich jederzeit verschlechtern. Jede wesentliche Veränderung erfordert eine erneute Beurteilung.</li>
+      <li><strong>Fachlich begründen:</strong>&nbsp;Erkläre in der Prüfung nicht nur, was du tust, sondern warum diese Maßnahme jetzt Vorrang hat.</li>
+      <li><strong>Sicher übergeben:</strong>&nbsp;Symptome, Zeitpunkte, Befunde, Maßnahmen und der aktuelle Zustand müssen verständlich und strukturiert weitergegeben werden.</li>
+      <li><strong>Aus Fehlern lernen:</strong>&nbsp;Eine sachliche Dokumentation und Nachbesprechung helfen, die Notfallversorgung in der Praxis dauerhaft zu verbessern.</li>
+    </ul>
+
+    <p><strong>Dein wichtigster Merksatz:</strong>&nbsp;Erkenne die Gefahr, organisiere Hilfe, handle entsprechend der Situation und überprüfe den Zustand immer wieder. In der Prüfung zählt die nachvollziehbare Begründung deiner Entscheidungen.</p>
+  </section>
+
+  <section class="self-check">
+    <p class="eyebrow">SELBSTCHECK</p>
+    <h2>Teste dein Prüfungswissen: 15 Entscheidungsfragen</h2>
+    <p>Beantworte jede Frage zunächst selbst. Öffne danach die Musterantwort und überprüfe, ob du die entscheidende Gefahr erkannt und deine Maßnahmen fachlich begründet hast.</p>
+
+    <details>
+      <summary>01. Ein bewusstloser Patient zeigt einzelne schnappende Atemzüge. Wie handelst du?</summary>
+      <p>Schnappatmung ist keine normale Atmung. Bei fehlender Reaktion und fehlender normaler Atmung veranlasst du sofort den Notruf 112, beginnst die Herzdruckmassage und lässt einen AED holen. Die Atemkontrolle darf höchstens zehn Sekunden dauern.</p>
+    </details>
+
+    <details>
+      <summary>02. Ein Patient mit Brustschmerz möchte erst sein EKG abwarten. Was hat Vorrang?</summary>
+      <p>Bei Verdacht auf ein akutes Koronarsyndrom alarmierst du unverzüglich die ärztliche Fachperson und veranlasst 112. Ein EKG kann die Versorgung unterstützen, darf aber die notwendige Alarmierung nicht verzögern.</p>
+    </details>
+
+    <details>
+      <summary>03. Eine Patientin entwickelt nach einer Injektion Halsenge und Atemnot. Was vermutest du?</summary>
+      <p>Du vermutest eine schwere Anaphylaxie. Du alarmierst sofort die ärztliche Fachperson und 112, überwachst Bewusstsein und Atmung und unterstützt die unverzügliche Notfallbehandlung. Intramuskuläres Adrenalin ist bei Anaphylaxie mit Atemwegs- oder Kreislaufbeteiligung die entscheidende medikamentöse Behandlung.</p>
+    </details>
+
+    <details>
+      <summary>04. Eine plötzlich aufgetretene Sprachstörung verschwindet nach wenigen Minuten. Ist der Notfall beendet?</summary>
+      <p>Nein. Vorübergehende neurologische Ausfälle können auf eine transitorische ischämische Attacke hinweisen. Die unverzügliche Notfallabklärung bleibt erforderlich. Dokumentiere den letzten sicher symptomfreien Zeitpunkt und den Verlauf.</p>
+    </details>
+
+    <details>
+      <summary>05. Ein verwirrter Patient mit Diabetes schwitzt stark. Darfst du ihm sofort Saft geben?</summary>
+      <p>Nur wenn er vollständig wach, kooperativ und sicher schluckfähig ist. Bei deutlicher Bewusstseinsstörung oder unsicherer Schluckfähigkeit darf nichts oral gegeben werden. Du organisierst ärztliche Hilfe, überprüfst den Blutzucker, soweit dies die Notfallversorgung nicht verzögert, und beobachtest den Zustand.</p>
+    </details>
+
+    <details>
+      <summary>06. Während eines Krampfanfalls möchte eine Kollegin den Mund der Patientin öffnen. Was sagst du?</summary>
+      <p>Du verhinderst das Einführen von Gegenständen oder Fingern in den Mund. Schütze die Patientin vor Verletzungen, halte ihre Gliedmaßen nicht gewaltsam fest, beobachte die Anfallsdauer und überprüfe danach Bewusstsein und Atmung.</p>
+    </details>
+
+    <details>
+      <summary>07. Eine stark blutende Wunde soll zunächst gereinigt werden. Was ist wichtiger?</summary>
+      <p>Bei einer lebensbedrohlichen äußeren Blutung hat die sofortige Blutstillung durch festen direkten Druck Vorrang. Alarmiere Hilfe und veranlasse 112. Reinigung und weitere Wundversorgung dürfen die Blutstillung nicht verzögern.</p>
+    </details>
+
+    <details>
+      <summary>08. Zwei Patienten benötigen gleichzeitig Notfallhilfe. Wie setzt du Prioritäten?</summary>
+      <p>Beide Patienten benötigen unverzüglich eine Erstbeurteilung durch ausreichend qualifizierte Personen. Bewusstsein, normale Atmung und unmittelbar lebensbedrohliche Warnzeichen bestimmen die Prioritäten. Verteile Aufgaben klar und passe sie bei Zustandsänderungen an.</p>
+    </details>
+
+    <details>
+      <summary>09. Warum darf eine MFA-Auszubildende nicht allein die Verantwortung für einen unklaren lebensbedrohlichen Notfall übernehmen?</summary>
+      <p>Weil Ausbildung, Qualifikation und Zuständigkeiten berücksichtigt werden müssen. Die Auszubildende leistet Erste Hilfe und unterstützt entsprechend ihrem Ausbildungsstand. Eine ausreichend qualifizierte Fachperson muss die notwendige medizinische Beurteilung und Versorgung sicherstellen.</p>
+    </details>
+
+    <details>
+      <summary>10. Ein AED fordert eine Rhythmusanalyse an. Was müssen alle Helfenden beachten?</summary>
+      <p>Während der Rhythmusanalyse darf niemand den Patienten berühren. Bei einer Schockaufforderung wird ebenfalls sichergestellt, dass niemand Kontakt hat. Danach wird die Herzdruckmassage entsprechend den AED-Anweisungen unverzüglich fortgesetzt.</p>
+    </details>
+
+    <details>
+      <summary>11. Welche Informationen gehören in die Übergabe eines Reanimationsereignisses?</summary>
+      <p>Wichtig sind der beobachtete Kollaps, Zeitpunkt und Verlauf, Bewusstseins- und Atembefund, Beginn der Reanimation, AED-Ereignisse, bekannte Vorerkrankungen, durchgeführte Maßnahmen und der aktuelle Zustand. Unbekannte Angaben werden als unbekannt benannt.</p>
+    </details>
+
+    <details>
+      <summary>12. Warum muss der Zustand nach einem Krampfanfall erneut beurteilt werden?</summary>
+      <p>Das Ende der Zuckungen bedeutet nicht automatisch, dass die Gefahr vorbei ist. Bewusstsein und normale Atmung müssen überprüft und weiter überwacht werden. Bei fehlender normaler Atmung beginnt unverzüglich die Reanimation.</p>
+    </details>
+
+    <details>
+      <summary>13. Eine Patientin mit schwerer Atemnot wird plötzlich bewusstlos. Welche Frage entscheidet über dein weiteres Vorgehen?</summary>
+      <p>Entscheidend ist, ob sie normal atmet. Bei fehlender Reaktion und fehlender normaler Atmung sind sofortige Reanimation, Notruf und AED erforderlich. Bei vorhandener normaler Atmung werden die Atemwege gesichert und der Zustand fortlaufend überwacht.</p>
+    </details>
+
+    <details>
+      <summary>14. Warum ist eine Verdachtsdiagnose nicht dasselbe wie ein dokumentierter Befund?</summary>
+      <p>Ein Befund beschreibt, was tatsächlich beobachtet oder gemessen wurde. Eine Verdachtsdiagnose ist eine mögliche Erklärung dafür. In der Dokumentation müssen Beobachtungen, Messwerte und Vermutungen eindeutig unterschieden werden.</p>
+    </details>
+
+    <details>
+      <summary>15. Was macht eine fachlich überzeugende Antwort in einer Notfallprüfung aus?</summary>
+      <p>Du erkennst die unmittelbare Gefahr, benennst die richtige Priorität, organisierst Hilfe, beschreibst die notwendigen Maßnahmen und begründest ihre Reihenfolge. Du berücksichtigst Zuständigkeitsgrenzen, Zustandsveränderungen, Übergabe und Dokumentation.</p>
+    </details>
+
+    <p><strong>Deine Auswertung:</strong>&nbsp;Prüfe nicht nur, wie viele Antworten richtig waren. Achte besonders darauf, ob du lebensbedrohliche Situationen zuverlässig erkennst und notwendige Sofortmaßnahmen ohne Verzögerung benennst. Wiederhole unsichere Themen gezielt in den entsprechenden Grundlagenlektionen.</p>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">FACHWELT 07 ABGESCHLOSSEN</p>
+    <h2>Du hast die Fachwelt Notfälle geschafft!</h2>
+    <p>Von der ersten Einschätzung einer Notfallsituation bis zu komplexen Prüfungsfällen: Du hast alle 20 Lektionen der Fachwelt 07 durchgearbeitet. Jetzt kommt es darauf an, dein Wissen regelmäßig zu wiederholen und die lebensrettenden Maßnahmen praktisch zu trainieren.</p>
+    <p>Nutze die Fachweltübersicht, um einzelne Themen gezielt zu wiederholen und dich auf deine Ausbildung und Prüfung vorzubereiten.</p>
+    <p><a href="/lernen/notfaelle/" style="color: #E67E22; font-weight: 700; text-decoration: none;">← Zurück zur Fachwelt 07 – Notfälle</a></p>
+  </section>
+</main>
+</body>
+</html>

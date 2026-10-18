@@ -1,0 +1,661 @@
+---
+const pageTitle = "Notfallausstattung und Notfallmedikamente | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="Premiumlektion für MFA: Notfallkoffer, ABCDE-Ausstattung, Notfallmedikamente, Funktionskontrollen, Arzneimittelsicherheit und Praxisfälle." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 18 · PREMIUM</p>
+    <h1>Notfallausstattung und Notfallmedikamente</h1>
+    <p class="lead">Ein Patient bricht in der Arztpraxis zusammen. Die Ärztin fordert den Notfallkoffer und den AED an. Du öffnest den Koffer – und bemerkst, dass ein wichtiges Medikament abgelaufen ist. Wie hätte dieser Fehler verhindert werden können? Und wie sorgst du dafür, dass die gesamte Notfallausstattung im entscheidenden Moment funktioniert?</p>
+  </section>
+
+  <section class="goal">
+    <p class="goal-label">DEIN LERNZIEL</p>
+    <p>Du kannst die Notfallausstattung einer Arztpraxis risikoorientiert einordnen, systematisch kontrollieren, typische Sicherheitsprobleme erkennen und im Rahmen deiner MFA-Kompetenzen zur sicheren Notfallversorgung beitragen.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Notfallbereitschaft ist eine Teamaufgabe</h2>
+    <p>Ein medizinischer Notfall beginnt nicht erst, wenn ein Patient zusammenbricht. Gute Notfallversorgung beginnt mit der Vorbereitung: Alle Teammitglieder müssen wissen, wo sich die Ausstattung befindet, wer sie kontrolliert und wie im Ernstfall gehandelt wird.</p>
+<p>Die ärztliche Leitung trägt Verantwortung für eine geeignete Organisation. MFA übernehmen entsprechend ihrer Qualifikation und den festgelegten Zuständigkeiten wichtige Aufgaben bei Kontrolle, Bereitstellung und Dokumentation.</p>
+<div class="remember"><p class="box-label">MERKE</p><p>Ein vollständig bestückter Notfallkoffer ist wertlos, wenn niemand seinen Standort kennt oder Geräte nicht funktionieren.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Welche Ausstattung braucht eine Arztpraxis?</h2>
+    <p>Es gibt keine für jede Arztpraxis gleichermaßen verbindliche universelle Packliste. Entscheidend sind insbesondere Fachrichtung, angebotene Leistungen, Patientengruppen, individuelle Risiken und die Fähigkeiten des Praxisteams.</p>
+<div class="info-grid">
+<div class="info-card"><span>RISIKOANALYSE</span><h3>Welche Notfälle sind denkbar?</h3><p>Beispielsweise Anaphylaxie nach Medikamentengabe, Kreislaufkollaps, Hypoglykämie oder Herz-Kreislauf-Stillstand.</p></div>
+<div class="info-card"><span>VERSORGUNG</span><h3>Was muss überbrückt werden?</h3><p>Die Praxis muss eine sichere Erstversorgung organisieren, bis der Rettungsdienst übernimmt.</p></div>
+<div class="info-card"><span>KOMPETENZ</span><h3>Wer darf was anwenden?</h3><p>Die Ausstattung muss zur Ausbildung, Einweisung und den schriftlich festgelegten Zuständigkeiten passen.</p></div>
+<div class="info-card"><span>ANPASSUNG</span><h3>Welche Patienten kommen?</h3><p>Wer Kinder behandelt, muss beispielsweise geeignete Größen und Besonderheiten berücksichtigen.</p></div>
+</div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Die Ausstattung nach dem ABCDE-Schema</h2>
+    <p>Das ABCDE-Schema hilft, die Notfallausstattung nach lebenswichtigen Funktionen zu ordnen. Nicht jede Praxis benötigt jedes genannte Hilfsmittel; Auswahl und Anwendung richten sich nach der Risikoanalyse und den Kompetenzen des Teams.</p>
+<div class="structure-list">
+<div><span>A</span><p><strong>Airway – Atemweg:</strong> Geeignete Hilfsmittel zur Freihaltung der Atemwege, gegebenenfalls Absaugung und Atemwegshilfen für eingewiesenes Personal.</p></div>
+<div><span>B</span><p><strong>Breathing – Atmung:</strong> Beatmungsbeutel mit passenden Masken, gegebenenfalls Sauerstoffversorgung und Pulsoximeter.</p></div>
+<div><span>C</span><p><strong>Circulation – Kreislauf:</strong> Blutdruckmessgerät, AED, Verbandmaterial und gegebenenfalls EKG sowie Material für ärztlich angeordnete Zugänge.</p></div>
+<div><span>D</span><p><strong>Disability – Neurologie:</strong> Blutzuckermessgerät mit geeigneten Teststreifen, Lichtquelle und Material zur Bewusstseinsbeurteilung.</p></div>
+<div><span>E</span><p><strong>Exposure – Untersuchung:</strong> Handschuhe, Schere, sterile Kompressen, Wärmeerhalt und geeignete Schutzmaterialien.</p></div>
+</div>
+<div class="remember"><p class="box-label">PRAXISTRANSFER</p><p>Ordne die tatsächlich vorhandenen Materialien deiner Praxis diesen fünf Bereichen zu. Welche wichtigen Funktionen wären bei einem Geräteausfall nicht abgedeckt?</p></div>
+  </section>
+
+  <figure class="lesson-graphic">
+    <img
+      src="/images/notfallausstattung-und-notfallmedikamente.png"
+      alt="Notfallausstattung einer Arztpraxis mit AED, Sauerstoffversorgung, Beatmungsbeutel, Notfallmedikamenten und Checkliste zur Materialkontrolle"
+      loading="lazy"
+    />
+    <figcaption>Notfallausstattung: Vollständigkeit, Funktionsfähigkeit, Haltbarkeit und Dokumentation regelmäßig kontrollieren.</figcaption>
+  </figure>
+
+  <section class="content-section">
+    <p class="section-number">04</p>
+    <h2>Notfallkoffer sinnvoll organisieren</h2>
+    <p>Ein Notfallkoffer muss ohne lange Suche erreichbar sein. Ein fester Standort, einheitliche Fächer, eine gut lesbare Bestückungsliste und klare Zuständigkeiten sparen im Notfall wertvolle Zeit.</p>
+<ul>
+<li>Standort für alle Beschäftigten bekannt und jederzeit zugänglich halten.</li>
+<li>Fächer logisch und möglichst einheitlich anordnen.</li>
+<li>Materialien eindeutig kennzeichnen und übersichtlich lagern.</li>
+<li>Für Verbrauchsmaterial einen definierten Mindestbestand festlegen.</li>
+<li>Nach jeder Nutzung den Koffer wieder vollständig bestücken.</li>
+<li>Neue Mitarbeitende und Auszubildende in Standort und Aufbau einweisen.</li>
+</ul>
+<div class="connection"><p class="box-label">DENKWEITER</p><p>Eine abgeschlossene Schranktür kann im Notfall zur Verzögerung führen. Gleichzeitig müssen Medikamente gegen unbefugten Zugriff gesichert werden. Die Praxis braucht dafür ein abgestimmtes, sicheres Zugangskonzept.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Sauerstoffversorgung und Beatmungshilfen</h2>
+    <p>Bei einer vorhandenen Sauerstoffanlage reicht es nicht, nur auf den Standort der Flasche zu achten. Druck beziehungsweise Füllstand, Anschlüsse, geeignete Masken, Schläuche und die sichere Lagerung müssen nach Herstellervorgaben geprüft werden.</p>
+<ul>
+<li>Ist ausreichend Sauerstoff vorhanden?</li>
+<li>Sind Druckminderer und Anschlüsse funktionsfähig?</li>
+<li>Sind geeignete Masken und Schläuche vorhanden?</li>
+<li>Ist der Beatmungsbeutel vollständig und einsatzbereit?</li>
+<li>Ist das Personal in Anwendung und Sicherheitsmaßnahmen eingewiesen?</li>
+</ul>
+<div class="remember"><p class="box-label">WICHTIG</p><p>Sauerstoff ist ein Arzneimittel. Seine Anwendung erfolgt entsprechend der medizinischen Indikation und den geltenden Anordnungen beziehungsweise Notfallstandards. Sauerstoff wird nicht pauschal jedem Notfallpatienten verabreicht. Besondere Brand- und Sicherheitsrisiken sind zu beachten.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>AED und Überwachungsgeräte kontrollieren</h2>
+    <p>Ein AED muss im entscheidenden Moment einsatzbereit sein. Dazu gehören die vom Hersteller vorgesehenen Statuskontrollen, funktionsfähige Batterien beziehungsweise Akkus und passende, haltbare Elektroden.</p>
+<div class="structure-list">
+<div><span>01</span><p><strong>AED:</strong> Bereitschaftsanzeige, Elektrodenverpackung, Haltbarkeit und gegebenenfalls Batteriestatus kontrollieren.</p></div>
+<div><span>02</span><p><strong>Pulsoximeter:</strong> Gerät, Sensor, Batterien und plausible Messwertanzeige prüfen.</p></div>
+<div><span>03</span><p><strong>Blutdruckmessgerät:</strong> Manschetten, Schläuche, Stromversorgung und erforderliche messtechnische Kontrollen berücksichtigen.</p></div>
+<div><span>04</span><p><strong>Blutzuckermessgerät:</strong> Teststreifen, Haltbarkeit, Lagerbedingungen, Qualitätskontrollen und Hygiene prüfen.</p></div>
+</div>
+<p>Prüfintervalle und Wartung richten sich nach Herstellerangaben, gesetzlichen Vorgaben und dem betrieblichen Qualitätsmanagement. Eine Sichtprüfung ersetzt keine vorgeschriebene Wartung.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Notfallmedikamente: Indikation statt Merkliste</h2>
+    <p>Notfallmedikamente werden auf Grundlage der ärztlichen Risikoanalyse und der schriftlichen Praxisstandards ausgewählt. Die folgenden Wirkstoffe sind Beispiele, keine allgemeingültige Pflichtausstattung und keine eigenständige Therapieanweisung.</p>
+<div class="info-grid">
+<div class="info-card"><span>ANAPHYLAXIE</span><h3>Adrenalin</h3><p>Bei schwerer Anaphylaxie zentraler Bestandteil der Notfalltherapie. Geeignete Darreichungsform, Konzentration und Anwendung müssen im Team bekannt sein.</p></div>
+<div class="info-card"><span>BRONCHOSPASMUS</span><h3>Salbutamol</h3><p>Kann bei entsprechender Indikation zur Behandlung einer akuten bronchialen Verengung eingesetzt werden.</p></div>
+<div class="info-card"><span>HYPOGLYKÄMIE</span><h3>Glukose / Glukagon</h3><p>Die geeignete Maßnahme hängt unter anderem von Bewusstseinszustand, Schluckfähigkeit und ärztlicher Anordnung ab.</p></div>
+<div class="info-card"><span>KRAMPFANFALL</span><h3>Notfall-Benzodiazepin</h3><p>Nur nach festgelegtem ärztlichem Behandlungsplan und mit entsprechender Qualifikation beziehungsweise Einweisung.</p></div>
+</div>
+<p>Weitere Medikamente, beispielsweise im Rahmen eines akuten Koronarsyndroms, gehören ausschließlich nach fachlicher Bewertung, Indikations- und Kontraindikationsprüfung sowie ärztlicher Festlegung in das Behandlungskonzept.</p>
+<div class="remember"><p class="box-label">SICHERHEITSGRENZE</p><p>Diese Lektion enthält bewusst keine pauschalen Dosierungsschemata. Dosierung, Konzentration, Applikationsweg und Wiederholung müssen anhand aktueller Fachinformation und gültiger ärztlicher Standards eindeutig festgelegt sein.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Arzneimittelsicherheit und Delegation</h2>
+    <p>Im Notfall steigt das Risiko für Verwechslungen. Hektik, ähnlich aussehende Ampullen und unklare Anweisungen können schwere Folgen haben.</p>
+<div class="structure-list">
+<div><span>1</span><p><strong>Richtiger Patient:</strong> Identität soweit möglich sicherstellen.</p></div>
+<div><span>2</span><p><strong>Richtiges Arzneimittel:</strong> Wirkstoff und Präparat prüfen.</p></div>
+<div><span>3</span><p><strong>Richtige Dosierung:</strong> Konzentration und angeordnete Menge abgleichen.</p></div>
+<div><span>4</span><p><strong>Richtiger Applikationsweg:</strong> Beispielsweise oral, inhalativ oder intramuskulär unterscheiden.</p></div>
+<div><span>5</span><p><strong>Richtiger Zeitpunkt:</strong> Dringlichkeit und gegebenenfalls Wiederholungsintervalle beachten.</p></div>
+<div><span>6</span><p><strong>Richtige Dokumentation:</strong> Arzneimittel, Dosis, Uhrzeit, Weg und Wirkung festhalten.</p></div>
+</div>
+<p>Die MFA darf entsprechend ihrer Qualifikation und den rechtlichen Voraussetzungen vorbereitende oder delegierte Tätigkeiten übernehmen. Ärztliche Entscheidungen und nicht delegierbare Maßnahmen bleiben in ärztlicher Verantwortung. Bei Unsicherheit ist eine Rückfrage erforderlich.</p>
+<div class="connection"><p class="box-label">KOMMUNIKATION</p><p>Geschlossene Kommunikation reduziert Fehler: „Ich bereite das angeordnete Medikament in der genannten Konzentration vor.“ Die anordnende Person bestätigt die Angaben. Die Rückmeldung ersetzt keine fachliche Prüfung.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Lagerung und Haltbarkeit sicherstellen</h2>
+    <p>Notfallmedikamente müssen im Ernstfall wirksam und verwendbar sein. Deshalb sind produktspezifische Lagerbedingungen, Originalverpackung, Lichtschutz und Verfallsdatum entscheidend.</p>
+<ul>
+<li>Arzneimittel nur entsprechend ihrer Fachinformation lagern.</li>
+<li>Erforderliche Kühlung und Temperaturüberwachung sicherstellen.</li>
+<li>Verfallsdaten sowie Haltbarkeit nach Anbruch beachten.</li>
+<li>Unbeschädigte, eindeutig lesbare Verpackungen bevorzugen.</li>
+<li>Chargen und Rückrufinformationen nachvollziehbar halten.</li>
+<li>Abgelaufene oder beschädigte Präparate unverzüglich aus der Notfallausstattung entfernen und fachgerecht ersetzen.</li>
+</ul>
+<div class="remember"><p class="box-label">ACHTUNG</p><p>Nicht jedes Notfallmedikament gehört in den Kühlschrank. Entscheidend sind immer die jeweiligen Herstellerangaben. Eine unterbrochene Kühlkette muss nach den geltenden Vorgaben bewertet werden.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Kontrollplan und Nachweisführung</h2>
+    <p>Eine Kontrolle muss so organisiert sein, dass klar ist, wer was wann prüft und wie Abweichungen behoben werden. Die folgenden Zeitpunkte sind Beispiele für einen betrieblichen Kontrollplan und keine allgemeingültigen gesetzlichen Intervalle.</p>
+<div class="structure-list">
+<div><span>TÄGLICH</span><p><strong>Beispiel:</strong> Zugänglichkeit und gegebenenfalls Statusanzeigen besonders zeitkritischer Geräte prüfen, soweit der Praxisstandard dies vorsieht.</p></div>
+<div><span>REGELMÄSSIG</span><p><strong>Beispiel:</strong> Bestände, Verfallsdaten, Lagerbedingungen, Zubehör und Vollständigkeit anhand einer Checkliste prüfen.</p></div>
+<div><span>NACH NUTZUNG</span><p><strong>Verbindlicher Ablauf:</strong> Verbrauch dokumentieren, reinigen beziehungsweise aufbereiten, nachfüllen und Einsatzbereitschaft wiederherstellen.</p></div>
+<div><span>NACH VORGABE</span><p><strong>Technische Kontrollen:</strong> Herstellervorgaben, Wartungsfristen und rechtlich vorgeschriebene Prüfungen einhalten.</p></div>
+</div>
+<p>Jede Kontrolle sollte mindestens Datum, verantwortliche Person, Prüfumfang, Ergebnis, festgestellte Mängel und deren Behebung nachvollziehbar machen.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">11</p>
+    <h2>Nach einem Notfall wieder einsatzbereit werden</h2>
+    <p>Nach einer erfolgreichen Versorgung ist die Arbeit nicht abgeschlossen. Der nächste Notfall kann unmittelbar folgen.</p>
+<ol>
+<li>Benutzte Materialien und Arzneimittel erfassen.</li>
+<li>Kontaminierte oder beschädigte Materialien sicher entsorgen.</li>
+<li>Wiederverwendbare Geräte nach Vorgaben reinigen und aufbereiten.</li>
+<li>Fehlende Bestände vollständig ergänzen.</li>
+<li>Geräte auf Einsatzbereitschaft prüfen.</li>
+<li>Verbrauch, Nachfüllung und gegebenenfalls technische Probleme dokumentieren.</li>
+<li>Den Notfallkoffer wieder am festgelegten Standort bereitstellen.</li>
+</ol>
+<div class="remember"><p class="box-label">PRAXISFRAGE</p><p>Wer ist verantwortlich, wenn der Notfall am Ende der Sprechstunde stattfindet und das Team danach nach Hause geht? Genau dafür braucht es eine klare Vertretungs- und Abschlussregelung.</p></div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Typische Fehler erkennen und verhindern</h2>
+    <div class="info-grid">
+<div class="info-card"><span>FEHLER 1</span><h3>Abgelaufene Elektroden</h3><p>Ein AED ist vorhanden, aber seine Elektroden sind nicht mehr verwendbar. Lösung: Verfallsdaten in den Kontrollplan aufnehmen.</p></div>
+<div class="info-card"><span>FEHLER 2</span><h3>Leere Sauerstoffflasche</h3><p>Das Gerät steht bereit, liefert aber keinen Sauerstoff. Lösung: Füllstand und Zubehör regelmäßig kontrollieren.</p></div>
+<div class="info-card"><span>FEHLER 3</span><h3>Falsche Konzentration</h3><p>Ähnlich aussehende Ampullen werden verwechselt. Lösung: eindeutige Lagerordnung, aktives Gegenprüfen und klare Kommunikation.</p></div>
+<div class="info-card"><span>FEHLER 4</span><h3>Unklare Zuständigkeit</h3><p>Niemand fühlt sich für die Nachfüllung verantwortlich. Lösung: feste Zuständigkeit, Vertretung und dokumentierter Abschluss.</p></div>
+</div>
+<p>Fehler sollen im Team sachlich ausgewertet werden. Entscheidend ist, Schwachstellen im System zu erkennen und zukünftige Risiken zu reduzieren.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">13</p>
+    <h2>Notfalltraining unter realistischen Bedingungen</h2>
+    <p>Ein Notfalltraining sollte nicht nur die Reanimation üben, sondern auch den Weg vom Erkennen des Notfalls bis zur funktionierenden Materialbereitstellung.</p>
+<div class="structure-list">
+<div><span>START</span><p><strong>Alarm:</strong> Eine Patientin kollabiert im Behandlungszimmer. Wer übernimmt die Erstversorgung, wer alarmiert den Rettungsdienst?</p></div>
+<div><span>WEG</span><p><strong>Material:</strong> Wie schnell findet eine neue MFA den Notfallkoffer, AED und benötigte Geräte?</p></div>
+<div><span>PRÜFUNG</span><p><strong>Funktion:</strong> Sind Material und Geräte tatsächlich einsatzbereit? Können alle Beteiligten sie sicher vorbereiten?</p></div>
+<div><span>ENDE</span><p><strong>Nachbereitung:</strong> Wie werden Fehler dokumentiert, Bestände ergänzt und Verbesserungen umgesetzt?</p></div>
+</div>
+<p>Bei Übungen dürfen keine echten Arzneimittel versehentlich angewendet werden. Trainingsmaterialien sind eindeutig zu kennzeichnen und sicher vom regulären Bestand zu trennen.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">14</p>
+    <h2>Qualitätsmanagement: Aus Kontrollen lernen</h2>
+    <p>Die Notfallausstattung gehört zum Qualitätsmanagement der Praxis. Eine Liste allein schafft noch keine Sicherheit: Entscheidend ist, dass Mängel erkannt, behoben und die Wirksamkeit der Maßnahmen überprüft werden.</p>
+<ul>
+<li><strong>Planen:</strong> Risiken bewerten, Ausstattung und Zuständigkeiten festlegen.</li>
+<li><strong>Umsetzen:</strong> Materialien beschaffen, einweisen und Kontrollen durchführen.</li>
+<li><strong>Überprüfen:</strong> Kontrollnachweise, Trainings und tatsächliche Notfälle auswerten.</li>
+<li><strong>Verbessern:</strong> Fehlende Materialien, unpraktische Abläufe und Schulungsbedarf gezielt bearbeiten.</li>
+</ul>
+<div class="connection"><p class="box-label">PRÜFUNGSWISSEN</p><p>In einer praktischen Prüfung reicht die Aussage „Wir haben einen Notfallkoffer“ nicht. Begründe, warum Standort, Funktion, Haltbarkeit, Einweisung, Dokumentation und Verantwortlichkeiten gemeinsam zur Patientensicherheit beitragen.</p></div>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PREMIUM · PRAXISTRANSFER</p>
+    <h2>Drei anspruchsvolle Praxissituationen</h2>
+    <p>Bearbeite jeden Fall zunächst selbst. Überlege, welche Maßnahmen unmittelbar notwendig sind, welche Aufgaben du übernehmen darfst und wie du die Wiederholung eines Fehlers verhinderst.</p>
+
+    <div class="case">
+      <p class="case-label">Fall 1: Anaphylaxie nach einer Injektion</p>
+      <p>Eine Patientin entwickelt wenige Minuten nach einer Injektion Atemnot, Schwindel und Hautveränderungen. Die Ärztin fordert die Notfallausstattung an. Du findest zwei unterschiedlich konzentrierte Adrenalinpräparate.</p>
+      <p><strong>Deine Aufgabe:</strong> Wie sicherst du eine zügige und fehlerfreie Vorbereitung?</p>
+      <details><summary>Musterlösung anzeigen</summary><p>Sofort das Team alarmieren und den Notruf entsprechend der Notfallsituation veranlassen. Die ärztliche Anordnung eindeutig bestätigen lassen, Präparat, Konzentration, Applikationsweg und Haltbarkeit kontrollieren und bei Unsicherheit ausdrücklich nachfragen. Parallel benötigte Geräte bereitstellen. Keine eigenmächtige Auswahl oder Gabe.</p></details>
+    </div>
+
+    <div class="case">
+      <p class="case-label">Fall 2: Sauerstoffversorgung fällt aus</p>
+      <p>Bei einem Patienten mit schwerer Atemnot stellt das Team fest, dass die bereitgestellte Sauerstoffflasche leer ist. Der letzte Kontrollnachweis ist mehrere Wochen alt.</p>
+      <p><strong>Deine Aufgabe:</strong> Welche Maßnahmen sind akut und organisatorisch erforderlich?</p>
+      <details><summary>Musterlösung anzeigen</summary><p>Patientensicherheit und sofortige medizinische Versorgung haben Vorrang. Das Team alarmiert nach Bedarf den Rettungsdienst, organisiert vorhandene funktionsfähige Alternativen und handelt nach ärztlicher Anweisung. Danach wird der Mangel dokumentiert, die Versorgung wiederhergestellt und der Kontrollprozess mit Zuständigkeit und Vertretung verbessert.</p></details>
+    </div>
+
+    <div class="case">
+      <p class="case-label">Fall 3: Abgelaufene AED-Elektroden</p>
+      <p>Beim monatlichen Materialcheck fällt dir auf, dass die Elektroden des AED seit zwei Monaten abgelaufen sind. Die Bereitschaftsanzeige des Geräts wirkt unauffällig.</p>
+      <p><strong>Deine Aufgabe:</strong> Warum reicht die Bereitschaftsanzeige nicht aus und was tust du?</p>
+      <details><summary>Musterlösung anzeigen</summary><p>Die Anzeige ersetzt nicht die Prüfung von Zubehör und Haltbarkeit. Mangel sofort melden, geeignete Ersatz-Elektroden organisieren, Einsatzfähigkeit nach Herstellervorgaben bewerten, gegebenenfalls Ersatzgerät beziehungsweise sichere Überbrückung organisieren und alles dokumentieren.</p></details>
+    </div>
+
+  </section>
+
+  <section class="summary">
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Notfallausstattung richtet sich nach den Risiken und Leistungen der jeweiligen Praxis.</li>
+      <li>Ein fester Standort, klare Zuständigkeiten und geschultes Personal sind unverzichtbar.</li>
+      <li>Das ABCDE-Schema hilft bei der strukturierten Organisation von Materialien.</li>
+      <li>AED, Sauerstoffversorgung und Messgeräte müssen tatsächlich einsatzbereit sein.</li>
+      <li>Notfallmedikamente erfordern eindeutige Anordnungen, sichere Lagerung und Haltbarkeitskontrollen.</li>
+      <li>Die MFA handelt innerhalb ihrer Qualifikation und der zulässigen Delegation.</li>
+      <li>Kontrollen, Mängelbeseitigung und Nachfüllung müssen nachvollziehbar dokumentiert werden.</li>
+      <li>Notfallübungen und die Auswertung von Fehlern verbessern die Patientensicherheit.</li>
+    </ul>
+  </section>
+
+  <section class="self-check">
+    <h2>Selbstcheck – 15 Prüfungsfragen</h2>
+    <p>Beantworte die Fragen zunächst ohne Hilfe. Öffne anschließend die Lösungen.</p>
+
+    <details><summary>1. Warum gibt es keine allgemeingültige Notfallkoffer-Packliste für jede Arztpraxis?</summary><p>Weil die notwendige Ausstattung unter anderem von Fachrichtung, Leistungen, Patientengruppen, Risiken und Teamkompetenzen abhängt.</p></details>
+
+    <details><summary>2. Welche fünf Bereiche umfasst das ABCDE-Schema?</summary><p>Airway, Breathing, Circulation, Disability und Exposure.</p></details>
+
+    <details><summary>3. Warum muss der Standort des Notfallkoffers allen bekannt sein?</summary><p>Damit benötigtes Material ohne vermeidbare Verzögerung bereitgestellt werden kann.</p></details>
+
+    <details><summary>4. Welche vier Punkte sind bei AED-Elektroden besonders wichtig?</summary><p>Vorhandensein, passende Ausführung, unbeschädigte Verpackung und gültiges Verfallsdatum.</p></details>
+
+    <details><summary>5. Warum genügt eine AED-Bereitschaftsanzeige allein nicht?</summary><p>Weil sie nicht zwingend alle Mängel an Zubehör, beispielsweise abgelaufene Elektroden, abbildet.</p></details>
+
+    <details><summary>6. Welche Sicherheitskontrollen gehören zu einer Sauerstoffversorgung?</summary><p>Unter anderem Füllstand beziehungsweise Druck, Anschlüsse, Zubehör, Lagerung und Einweisung nach Herstellerangaben.</p></details>
+
+    <details><summary>7. Warum darf Sauerstoff nicht pauschal jedem Notfallpatienten gegeben werden?</summary><p>Weil die Anwendung eine medizinische Indikation und eine situationsgerechte Steuerung erfordert.</p></details>
+
+    <details><summary>8. Welche Informationen müssen bei einer Arzneimittelanordnung eindeutig sein?</summary><p>Insbesondere Patient, Arzneimittel, Dosierung beziehungsweise Konzentration, Applikationsweg und Zeitpunkt.</p></details>
+
+    <details><summary>9. Wie reagierst du auf zwei ähnlich aussehende Ampullen mit unterschiedlichen Konzentrationen?</summary><p>Nicht raten, sondern Anordnung und Präparat eindeutig abgleichen und bei Unsicherheit nachfragen.</p></details>
+
+    <details><summary>10. Wer entscheidet über Auswahl und Anwendung von Notfallmedikamenten?</summary><p>Die verantwortliche ärztliche Person auf Grundlage der Indikation und gültiger Standards; MFA handeln nur im zulässigen Kompetenz- und Delegationsrahmen.</p></details>
+
+    <details><summary>11. Welche Faktoren bestimmen die Lagerung eines Notfallmedikaments?</summary><p>Die jeweilige Fachinformation, insbesondere Temperatur, Lichtschutz, Haltbarkeit und Bedingungen nach Anbruch.</p></details>
+
+    <details><summary>12. Welche Angaben gehören in einen Materialkontrollnachweis?</summary><p>Datum, verantwortliche Person, Prüfumfang, Ergebnis, festgestellte Mängel und deren Behebung.</p></details>
+
+    <details><summary>13. Wann muss der Notfallkoffer außerplanmäßig überprüft werden?</summary><p>Insbesondere nach jeder Nutzung und bei Hinweisen auf fehlendes, beschädigtes oder nicht einsatzbereites Material.</p></details>
+
+    <details><summary>14. Was ist bei einem festgestellten Geräteausfall zu tun?</summary><p>Mangel melden, Patientensicherheit und geeignete Alternativen sicherstellen, Einsatzfähigkeit wiederherstellen und den Vorgang dokumentieren.</p></details>
+
+    <details><summary>15. Woran erkennst du ein wirksames Notfall-Qualitätsmanagement?</summary><p>An klaren Verantwortlichkeiten, funktionierenden Kontrollen, regelmäßigen Übungen, nachvollziehbarer Dokumentation und überprüften Verbesserungen.</p></details>
+
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Notfalldokumentation und Nachbereitung</h2>
+    <p>In Lektion 19 vertiefst du im Premiumbereich, wie ein Notfall vollständig, nachvollziehbar und datenschutzgerecht dokumentiert wird und wie das Praxisteam aus kritischen Situationen lernt.</p>
+  </section>
+</main>
+</body>
+</html>

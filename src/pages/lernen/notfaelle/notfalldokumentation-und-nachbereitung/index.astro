@@ -1,0 +1,1210 @@
+---
+const pageTitle = "Notfalldokumentation und Nachbereitung | PraxisMFA";
+---
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="Premiumlektion für MFA: Notfallkoffer, ABCDE-Ausstattung, Notfallmedikamente, Funktionskontrollen, Arzneimittelsicherheit und Praxisfälle." />
+  <style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="brand">PraxisMFA</a>
+  <nav>
+    <a href="/lernen/">Lernen</a>
+    <a href="/lernen/notfaelle/">Notfälle</a>
+    <a class="premium" href="/premium">Premium</a>
+  </nav>
+</header>
+<main>
+  <a class="back-link" href="/lernen/notfaelle/">← Zurück zur Fachwelt Notfälle</a>
+
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 07 · NOTFÄLLE · LEKTION 19 · PREMIUM</p>
+    <h1>Notfalldokumentation und Nachbereitung</h1>
+    <p class="lead">Ein Patient verliert im Wartezimmer plötzlich das Bewusstsein. Das Praxisteam handelt schnell, alarmiert den Rettungsdienst und übergibt den Patienten. Doch anschließend stellt sich heraus: Niemand hat den genauen Zeitpunkt des Ereignisses festgehalten. Welche Informationen müssen dokumentiert werden? Wie formulierst du sachlich und nachvollziehbar? Und wie kann das Team aus dem Ereignis lernen?</p>
+  </section>
+
+  <section class="goal">
+    <p class="goal-label">DEIN LERNZIEL</p>
+    <p>Du kannst einen medizinischen Notfall vollständig, zeitnah, sachlich und nachvollziehbar dokumentieren. Du unterscheidest Beobachtungen von Bewertungen, erstellst eine chronologische Ereignisdarstellung, dokumentierst ärztliche Anordnungen und durchgeführte Maßnahmen und beachtest Datenschutz sowie die rechtlichen Anforderungen an die Behandlungsdokumentation. Außerdem kannst du an einer strukturierten Nachbesprechung mitwirken, Fehlerquellen erkennen und Verbesserungsmaßnahmen für das Praxisteam ableiten.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Warum ist die Notfalldokumentation so wichtig?</h2>
+    <p>Ein medizinischer Notfall verlangt schnelles Handeln. Gleichzeitig müssen die wesentlichen Beobachtungen, Entscheidungen und Maßnahmen nachvollziehbar festgehalten werden. Die Dokumentation unterstützt die weitere Behandlung, die Übergabe an andere Versorgungsbereiche und die Patientensicherheit.</p>
+    <p>Nach § 630f BGB ist die Behandlung in einer Patientenakte in unmittelbarem zeitlichem Zusammenhang zu dokumentieren. Festzuhalten sind die aus fachlicher Sicht für die derzeitige und künftige Behandlung wesentlichen Maßnahmen und deren Ergebnisse.</p>
+    <div class="remember">
+      <p class="box-label">MERKE</p>
+      <p>Im akuten Notfall hat die lebensrettende Versorgung Vorrang. Die Dokumentation erfolgt so zeitnah wie möglich und muss den tatsächlichen Ablauf korrekt wiedergeben.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Die Ereignischronologie: Was geschah wann?</h2>
+    <p>Eine chronologische Dokumentation macht erkennbar, wie sich der Zustand des Patienten entwickelt hat und welche Maßnahmen zu welchem Zeitpunkt durchgeführt wurden.</p>
+    <div class="structure-list">
+      <div><span>10:14</span><p><strong>Erstbeobachtung:</strong> Patient sackt im Wartezimmer auf dem Stuhl zusammen und reagiert nicht auf Ansprache.</p></div>
+      <div><span>10:15</span><p><strong>Ersteinschätzung:</strong> Keine normale Atmung festgestellt. Praxisteam alarmiert, Reanimation begonnen.</p></div>
+      <div><span>10:16</span><p><strong>Notruf:</strong> Rettungsdienst über 112 alarmiert. Standort und Situation übermittelt.</p></div>
+      <div><span>10:18</span><p><strong>AED:</strong> Gerät angeschlossen, Anweisungen befolgt. Ergebnis und gegebenenfalls Schockabgabe gesondert dokumentiert.</p></div>
+      <div><span>10:23</span><p><strong>Übergabe:</strong> Rettungsdienst übernimmt Versorgung. Beobachtungen und Maßnahmen werden strukturiert übergeben.</p></div>
+    </div>
+    <p>Diese Uhrzeiten sind ein fiktives Übungsbeispiel. In der tatsächlichen Dokumentation dürfen keine Zeiten erfunden werden. Sind Angaben nur geschätzt, muss dies erkennbar sein.</p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Sachlich dokumentieren: Beobachtung statt Bewertung</h2>
+    <p>Eine gute Dokumentation beschreibt überprüfbare Tatsachen. Persönliche Vermutungen, Schuldzuweisungen und wertende Formulierungen gehören nicht in ein medizinisches Ereignisprotokoll.</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„Patient war völlig hysterisch.“</h3>
+        <p>Diese Formulierung bewertet den Patienten, ohne konkrete Beobachtungen zu beschreiben.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„Patient sprach laut und wiederholte mehrfach, keine Luft zu bekommen.“</h3>
+        <p>Die Formulierung beschreibt das beobachtete Verhalten und die Äußerung.</p>
+      </div>
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„Vermutlich Herzinfarkt.“</h3>
+        <p>Eine ungesicherte Vermutung darf nicht als feststehende Diagnose dokumentiert werden.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„Patient berichtet über seit etwa 15 Minuten bestehenden Brustdruck und Übelkeit.“</h3>
+        <p>Beschwerden werden konkret wiedergegeben; ärztliche Verdachtsdiagnosen sind als solche zu kennzeichnen.</p>
+      </div>
+    </div>
+    <div class="connection">
+      <p class="box-label">PRÜFUNGSWISSEN</p>
+      <p>Unterscheide konsequent zwischen Patientenaussage, eigener Beobachtung, gemessenem Wert und ärztlicher Beurteilung.</p>
+    </div>
+  </section>
+
+  <figure class="lesson-graphic">
+    <img
+      src="/images/notfalldokumentation-und-nachbereitung.png"
+      alt="Notfalldokumentation: Fünf Schritte zur sicheren Nachbereitung eines medizinischen Notfalls"
+      loading="lazy"
+    />
+    <figcaption>Die fünf Schritte einer strukturierten Notfalldokumentation und Nachbereitung.</figcaption>
+  </figure>
+
+  <section class="content-section">
+    <p class="section-number">04</p>
+    <h2>Welche Angaben gehören in ein Notfallprotokoll?</h2>
+    <p>Ein Notfallprotokoll muss die für Behandlung und Nachvollziehbarkeit wesentlichen Informationen enthalten. Der genaue Umfang richtet sich nach der Situation und den geltenden Dokumentationsvorgaben.</p>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Zuordnung:</strong> Patient, Datum, Ort und beteiligte Fachpersonen.</p></div>
+      <div><span>02</span><p><strong>Ereignis:</strong> Beginn, Beschwerden, beobachtete Veränderungen und relevante Vorerkrankungen, soweit bekannt.</p></div>
+      <div><span>03</span><p><strong>Befunde:</strong> Bewusstsein, Atmung, Vitalwerte und weitere tatsächlich erhobene Befunde.</p></div>
+      <div><span>04</span><p><strong>Maßnahmen:</strong> Durchgeführte Hilfeleistungen, ärztliche Anordnungen, Arzneimittel und deren dokumentationsrelevante Angaben.</p></div>
+      <div><span>05</span><p><strong>Verlauf:</strong> Reaktion auf Maßnahmen, erneute Kontrollen und wesentliche Veränderungen.</p></div>
+      <div><span>06</span><p><strong>Übergabe:</strong> Zeitpunkt, übernehmende Stelle und wesentliche übermittelte Informationen.</p></div>
+    </div>
+    <div class="remember">
+      <p class="box-label">WICHTIG</p>
+      <p>Nicht erhobene Messwerte dürfen niemals nachträglich ergänzt werden, als wären sie tatsächlich gemessen worden. Nachträge müssen als solche nachvollziehbar bleiben.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Muster-Notfallprotokoll: Bewusstlosigkeit im Wartezimmer</h2>
+    <p>Das folgende Beispiel zeigt, wie Beobachtungen, Maßnahmen und Zeitangaben strukturiert dokumentiert werden können. Alle Personen und Ereignisse sind frei erfunden.</p>
+
+    <div class="remember">
+      <p class="box-label">FIKTIVES DOKUMENTATIONSBEISPIEL</p>
+      <p><strong>Patient:</strong> Max Beispiel, 64 Jahre</p>
+      <p><strong>Datum:</strong> 15.10.2026</p>
+      <p><strong>Ort:</strong> Wartezimmer der Arztpraxis</p>
+      <p><strong>Dokumentierende Person:</strong> MFA Anna Muster</p>
+    </div>
+
+    <div class="structure-list">
+      <div><span>10:14</span><p>Patient sackt im Wartezimmer auf dem Stuhl zusammen. Keine Reaktion auf laute Ansprache. Ärztin wird sofort gerufen.</p></div>
+      <div><span>10:15</span><p>Patient reagiert nicht. Keine normale Atmung festgestellt. Patient wird auf dem Boden gelagert. Thoraxkompressionen werden begonnen.</p></div>
+      <div><span>10:16</span><p>Notruf 112 durch MFA Anna Muster abgesetzt. Gemeldet: bewusstloser Patient ohne normale Atmung, laufende Reanimation, vollständige Praxisanschrift.</p></div>
+      <div><span>10:18</span><p>AED angeschlossen. Gerät analysiert den Herzrhythmus. Keine Schockabgabe empfohlen. Thoraxkompressionen entsprechend den Geräteanweisungen fortgesetzt.</p></div>
+      <div><span>10:21</span><p>Patient zeigt weiterhin keine normale Atmung. Reanimation wird fortgeführt. Erneute AED-Analyse nach Geräteaufforderung.</p></div>
+      <div><span>10:23</span><p>Rettungsdienst trifft ein und übernimmt die Versorgung. Mündliche Übergabe der Beobachtungen, Zeitpunkte und durchgeführten Maßnahmen.</p></div>
+    </div>
+
+    <p><strong>Übergabe:</strong> Der Rettungsdienst erhält Informationen zum beobachteten Ereignisbeginn, zur Bewusstlosigkeit, zur fehlenden normalen Atmung, zum Beginn der Reanimation und zum AED-Einsatz.</p>
+
+    <p><strong>Abschluss:</strong> Dokumentation um 10:42 Uhr durch MFA Anna Muster erstellt. Die Einträge beruhen auf den während des Ereignisses festgehaltenen beziehungsweise zuverlässig rekonstruierten Angaben.</p>
+
+    <div class="connection">
+      <p class="box-label">FACHLICHE EINORDNUNG</p>
+      <p>Dieses Protokoll ist ein Lernbeispiel und keine verbindliche Formularvorlage. In der Praxis müssen zusätzlich alle tatsächlich relevanten Befunde, Anordnungen, Medikamentengaben, Veränderungen und Verantwortlichkeiten nachvollziehbar dokumentiert werden. Nur tatsächlich beobachtete oder sicher ermittelte Informationen dürfen als Tatsachen erscheinen.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Ärztliche Anordnungen und Medikamentengaben dokumentieren</h2>
+    <p>In einer Notfallsituation werden häufig mehrere Maßnahmen gleichzeitig durchgeführt. Damit später nachvollziehbar bleibt, wer welche Entscheidung getroffen und welche Maßnahme ausgeführt hat, müssen ärztliche Anordnungen und ihre Umsetzung eindeutig dokumentiert werden.</p>
+
+    <h3>Welche Angaben sind wichtig?</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Anordnende Person:</strong> Wer hat die ärztliche Anordnung erteilt?</p></div>
+      <div><span>02</span><p><strong>Zeitpunkt:</strong> Wann wurde die Anordnung erteilt und wann wurde sie umgesetzt?</p></div>
+      <div><span>03</span><p><strong>Arzneimittel:</strong> Welches Präparat beziehungsweise welcher Wirkstoff wurde verabreicht?</p></div>
+      <div><span>04</span><p><strong>Dosierung:</strong> Welche Menge und Konzentration wurden tatsächlich verabreicht?</p></div>
+      <div><span>05</span><p><strong>Applikationsweg:</strong> Auf welchem Weg wurde das Medikament gegeben?</p></div>
+      <div><span>06</span><p><strong>Durchführung:</strong> Wer hat die Medikamentengabe vorgenommen?</p></div>
+      <div><span>07</span><p><strong>Wirkung:</strong> Welche Reaktionen oder Veränderungen wurden anschließend tatsächlich beobachtet?</p></div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">WICHTIG FÜR DIE PRAXIS</p>
+      <p>Eine Dokumentation wie „Notfallmedikament gegeben“ ist nicht ausreichend nachvollziehbar. Arzneimittel, tatsächlich verabreichte Dosis, Applikationsweg, Zeitpunkt und verantwortliche Personen müssen entsprechend der konkreten Behandlung dokumentiert werden.</p>
+    </div>
+
+    <h3>Beispiel: So wird aus einer ungenauen Angabe ein nachvollziehbarer Eintrag</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„Medikament nach Anweisung gegeben.“</h3>
+        <p>Es fehlen Angaben zur Anordnung, zum Präparat, zur Dosierung, zur Durchführung und zum Zeitpunkt.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„14:08 Uhr: Medikamentengabe gemäß Anordnung von Dr. Beispiel.“</h3>
+        <p>Ergänzend werden das tatsächlich verabreichte Präparat, die Dosis, der Applikationsweg, die ausführende Person und die beobachtete Reaktion konkret eingetragen.</p>
+      </div>
+    </div>
+
+    <p>Das zweite Beispiel zeigt nur den Anfang eines Eintrags. Es ist erst dann vollständig, wenn die tatsächlichen Angaben zur Medikamentengabe ergänzt wurden. Fehlende Informationen dürfen nicht erfunden werden.</p>
+
+    <h3>Mündliche Anordnungen im Notfall</h3>
+    <p>Wenn eine ärztliche Anordnung mündlich erfolgt, muss sie eindeutig verstanden werden. Das Wiederholen der Anordnung zur Bestätigung kann Missverständnisse vermeiden. Die Durchführung und die ärztliche Verantwortung für die Entscheidung müssen anschließend nachvollziehbar dokumentiert werden.</p>
+
+    <div class="connection">
+      <p class="box-label">PRÜFUNGSFRAGE</p>
+      <p>Eine Ärztin ordnet während eines Notfalls eine Medikamentengabe an. Die MFA dokumentiert lediglich „Medikament verabreicht“. Welche Angaben fehlen und weshalb können diese für die weitere Behandlung entscheidend sein?</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Nachträge, Korrekturen und rechtliche Anforderungen</h2>
+
+    <p>Während eines medizinischen Notfalls steht die Versorgung des Patienten im Vordergrund. Deshalb kann es vorkommen, dass die Dokumentation erst nach der akuten Versorgung vervollständigt wird. Entscheidend ist, dass der tatsächliche Ablauf nachvollziehbar bleibt.</p>
+
+    <h3>Was verlangt § 630f BGB?</h3>
+    <p>Die Behandlungsdokumentation muss in unmittelbarem zeitlichem Zusammenhang mit der Behandlung geführt werden. Berichtigungen und Änderungen sind nur zulässig, wenn der ursprüngliche Inhalt erkennbar bleibt und nachvollzogen werden kann, wann die Änderung vorgenommen wurde. Dies gilt auch für elektronische Patientenakten.</p>
+
+    <div class="remember">
+      <p class="box-label">MERKE</p>
+      <p>Eine nachträgliche Ergänzung ist nicht automatisch unzulässig. Sie muss jedoch als Nachtrag erkennbar sein. Ereigniszeitpunkt und Zeitpunkt der Dokumentation dürfen nicht miteinander verwechselt werden.</p>
+    </div>
+
+    <h3>Beispiel: Ein später ergänzter Eintrag</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„10:15 Uhr: Blutdruck 90/60 mmHg.“</h3>
+        <p>Problematisch, wenn dieser Wert tatsächlich erst um 10:25 Uhr gemessen oder gar nicht erhoben wurde.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„Nachtrag, erstellt um 11:05 Uhr“</h3>
+        <p>„Laut handschriftlicher Notiz wurde um 10:25 Uhr ein Blutdruck von 90/60 mmHg gemessen.“ Die Herkunft der Information bleibt erkennbar.</p>
+      </div>
+    </div>
+
+    <h3>Wie werden Fehler richtig korrigiert?</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Fehler erkennen:</strong> Prüfen, welche Angabe falsch oder unvollständig ist.</p></div>
+      <div><span>02</span><p><strong>Original erhalten:</strong> Der ursprüngliche Eintrag muss weiterhin erkennbar bleiben.</p></div>
+      <div><span>03</span><p><strong>Korrektur kennzeichnen:</strong> Die richtige Information mit nachvollziehbarem Änderungszeitpunkt ergänzen.</p></div>
+      <div><span>04</span><p><strong>Verantwortlichkeit sichern:</strong> Die korrigierende Person muss entsprechend dem Dokumentationssystem zugeordnet werden können.</p></div>
+    </div>
+
+    <h3>Wie lange müssen Patientenakten aufbewahrt werden?</h3>
+    <p>Nach § 630f Absatz 3 BGB beträgt die allgemeine Aufbewahrungsfrist zehn Jahre nach Abschluss der Behandlung, sofern nicht andere gesetzliche Vorschriften längere Fristen vorsehen.</p>
+
+    <div class="connection">
+      <p class="box-label">PRAXISBEISPIEL</p>
+      <p>Du bemerkst nach dem Rettungsdiensteinsatz, dass im Protokoll die Uhrzeit des Notrufs fehlt. Eine Kollegin erinnert sich nur ungefähr an den Zeitpunkt. Wie kannst du die Information ergänzen, ohne eine nicht gesicherte Uhrzeit als Tatsache darzustellen?</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Datenschutz und Schweigepflicht nach einem Notfall</h2>
+
+    <p>Nach einem medizinischen Notfall interessieren sich häufig Angehörige, andere Patienten oder Mitarbeitende für den Zustand der betroffenen Person. Doch medizinische Informationen sind besonders schützenswert. Auch in einer Ausnahmesituation gelten Datenschutz und Schweigepflicht.</p>
+
+    <h3>Welche rechtlichen Grundlagen sind wichtig?</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>DSGVO Artikel 9:</strong> Gesundheitsdaten gehören zu den besonders geschützten personenbezogenen Daten. Ihre Verarbeitung benötigt eine geeignete Rechtsgrundlage und die jeweils erforderlichen Schutzmaßnahmen.</p></div>
+      <div><span>02</span><p><strong>§ 203 StGB:</strong> Die unbefugte Offenbarung geschützter Patientengeheimnisse kann strafbar sein. Die Schweigepflicht betrifft auch mitwirkende Beschäftigte einer Arztpraxis.</p></div>
+      <div><span>03</span><p><strong>Zweckbindung und Datenminimierung:</strong> Es dürfen nur solche personenbezogenen Informationen verarbeitet und weitergegeben werden, die für den jeweiligen zulässigen Zweck erforderlich sind.</p></div>
+      <div><span>04</span><p><strong>Zugriffsberechtigung:</strong> Die Patientenakte darf nur von Personen eingesehen werden, die hierzu berechtigt sind und die Informationen für ihre Aufgabe benötigen.</p></div>
+    </div>
+
+    <h3>Weitergabe an den Rettungsdienst</h3>
+    <p>Bei der notwendigen medizinischen Übergabe dürfen die für die weitere Notfallversorgung erforderlichen Patientendaten im rechtlich zulässigen Rahmen übermittelt werden. Dazu gehören beispielsweise beobachtete Symptome, bekannte relevante Vorerkrankungen, tatsächlich erhobene Vitalwerte und durchgeführte Maßnahmen.</p>
+
+    <div class="remember">
+      <p class="box-label">MERKE</p>
+      <p>Schweigepflicht bedeutet nicht, dass notwendige Informationen für eine rechtmäßige Notfallversorgung zurückgehalten werden müssen. Entscheidend sind die Rechtsgrundlage, der Zweck und der erforderliche Umfang der Weitergabe.</p>
+    </div>
+
+    <h3>Was gilt gegenüber Angehörigen?</h3>
+    <p>Die familiäre Beziehung allein berechtigt nicht automatisch dazu, medizinische Einzelheiten zu erfahren. Vor einer Auskunft müssen die Berechtigung und gegebenenfalls eine Einwilligung oder andere rechtliche Grundlage geklärt werden. Bei Unsicherheit entscheidet nicht die MFA eigenständig über die Offenlegung, sondern zieht die zuständige ärztliche Person hinzu.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„Ihr Vater hatte wahrscheinlich einen Herzinfarkt.“</h3>
+        <p>Ohne geklärte Auskunftsberechtigung dürfen solche medizinischen Angaben nicht einfach weitergegeben werden.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„Ich verstehe Ihre Sorge. Ich kläre mit der zuständigen Ärztin, welche Auskunft wir Ihnen geben dürfen.“</h3>
+        <p>Die MFA bleibt zugewandt und respektiert zugleich die Schweigepflicht.</p>
+      </div>
+    </div>
+
+    <h3>Patientenakte und interne Fehleranalyse unterscheiden</h3>
+    <p>Die Patientenakte dokumentiert den tatsächlichen Behandlungsverlauf. Eine interne Ereignismeldung oder ein CIRS-Bericht dient dagegen dazu, Risiken und Fehlerquellen zu erkennen und die Patientensicherheit zu verbessern. Beide Verfahren haben unterschiedliche Zwecke und dürfen einander nicht ersetzen.</p>
+    <p>Interne Meldungen müssen entsprechend den geltenden Datenschutz- und Organisationsvorgaben behandelt werden. Personenbezogene Angaben sind auf das Erforderliche zu begrenzen; wo möglich und sachgerecht, werden Informationen anonymisiert oder pseudonymisiert.</p>
+
+    <div class="connection">
+      <p class="box-label">PRAXISSITUATION</p>
+      <p>Nach einem Rettungsdiensteinsatz fragt eine Patientin im Wartezimmer: „Was war denn mit dem Mann los? Ist er schwer krank?“ Wie antwortest du professionell, ohne die Schweigepflicht zu verletzen?</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Strukturierte Übergabe und Informationssicherung</h2>
+
+    <p>Mit dem Eintreffen des Rettungsdienstes endet die Verantwortung des Praxisteams nicht schlagartig. Für die weitere Behandlung ist entscheidend, dass relevante Informationen vollständig, verständlich und ohne unnötige Verzögerung übergeben werden.</p>
+
+    <p>Die Übergabe selbst und ihre wesentlichen Inhalte müssen anschließend nachvollziehbar dokumentiert sein. Dabei geht es nicht darum, jedes gesprochene Wort aufzuschreiben, sondern die medizinisch wichtigen Informationen und den Versorgungsübergang festzuhalten.</p>
+
+    <h3>ISBAR als Orientierung für die Übergabe</h3>
+    <div class="structure-list">
+      <div><span>I</span><p><strong>Identifikation:</strong> Wer ist der Patient? Wer übergibt die Informationen?</p></div>
+      <div><span>S</span><p><strong>Situation:</strong> Welcher akute Notfall liegt vor? Was ist aktuell besonders kritisch?</p></div>
+      <div><span>B</span><p><strong>Background – Hintergrund:</strong> Welche relevanten Vorerkrankungen, Medikamente oder Allergien sind bekannt?</p></div>
+      <div><span>A</span><p><strong>Assessment – Einschätzung:</strong> Welche Symptome, Vitalwerte und Veränderungen wurden tatsächlich festgestellt?</p></div>
+      <div><span>R</span><p><strong>Recommendation – weiteres Vorgehen:</strong> Welche Maßnahmen wurden bereits durchgeführt und welche offenen Informationen oder Erfordernisse sind für die Weiterbehandlung wichtig?</p></div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">WICHTIG</p>
+      <p>ISBAR ist eine Kommunikationshilfe, kein Ersatz für die Patientenakte. Die strukturierte Übergabe unterstützt die sichere Weiterbehandlung; dokumentiert werden die wesentlichen tatsächlich übermittelten Informationen.</p>
+    </div>
+
+    <h3>Was gehört zur Dokumentation der Übergabe?</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Zeitpunkt:</strong> Wann erfolgte die Übergabe beziehungsweise Übernahme der Versorgung?</p></div>
+      <div><span>02</span><p><strong>Empfänger:</strong> An welche übernehmende Stelle oder welches Rettungsteam wurde übergeben?</p></div>
+      <div><span>03</span><p><strong>Patientenzustand:</strong> Wie war der zuletzt tatsächlich festgestellte Zustand?</p></div>
+      <div><span>04</span><p><strong>Maßnahmen:</strong> Welche relevanten Behandlungen, Arzneimittelgaben und Beobachtungen wurden mitgeteilt?</p></div>
+      <div><span>05</span><p><strong>Unterlagen:</strong> Welche medizinisch erforderlichen Dokumente oder Informationen wurden rechtmäßig übermittelt?</p></div>
+      <div><span>06</span><p><strong>Offene Punkte:</strong> Welche Unsicherheiten oder noch ausstehenden Informationen wurden ausdrücklich benannt?</p></div>
+    </div>
+
+    <h3>Praxisbeispiel: Eine nachvollziehbare Übergabedokumentation</h3>
+    <div class="connection">
+      <p class="box-label">BEISPIELEINTRAG – FIKTIV</p>
+      <p>„11:26 Uhr: Übergabe an das eingetroffene Rettungsteam. Mitgeteilt wurden Ereignisbeginn laut Beobachtung um ca. 11:10 Uhr, initiale Beschwerden mit Brustdruck und Übelkeit, erhobene Vitalwerte mit jeweiligen Messzeiten sowie die bis zur Übergabe durchgeführten Maßnahmen. Medikamentenliste und bekannte Allergien wurden anhand der verfügbaren Patientenunterlagen übergeben. Rettungsdienst übernimmt die weitere Versorgung.“</p>
+    </div>
+
+    <h3>Was passiert, wenn Informationen fehlen?</h3>
+    <p>Unbekannte oder nicht überprüfte Angaben werden ausdrücklich als solche benannt. Wenn beispielsweise keine aktuelle Medikamentenliste vorliegt, darf die MFA nicht behaupten, dass der Patient keine Medikamente einnimmt.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„Patient nimmt keine Medikamente.“</h3>
+        <p>Diese Aussage ist falsch, wenn lediglich keine Angaben vorliegen.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„Aktuelle Medikation zum Übergabezeitpunkt nicht bekannt.“</h3>
+        <p>Der Informationsstand wird korrekt und ohne unbelegte Annahmen wiedergegeben.</p>
+      </div>
+    </div>
+
+    <h3>Informationssicherung nach der Übergabe</h3>
+    <p>Nach der akuten Versorgung werden handschriftliche Zeitnotizen und relevante Beobachtungen zeitnah in die vorgesehene Dokumentation übertragen. Dabei müssen ursprüngliche Angaben, Quellen und gegebenenfalls nachträgliche Ergänzungen nachvollziehbar bleiben.</p>
+
+    <div class="remember">
+      <p class="box-label">PRÜFUNGSWISSEN</p>
+      <p>Eine vollständige Übergabe beantwortet nicht nur die Frage „Was ist passiert?“, sondern auch „Was wurde festgestellt, was wurde getan, wie reagierte der Patient und was ist noch unklar?“</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Nachbesprechung im Praxisteam: Aus Notfällen lernen</h2>
+
+    <p>Ein medizinischer Notfall kann für das gesamte Praxisteam belastend sein. Nach der akuten Versorgung ist es deshalb sinnvoll, den Ablauf strukturiert zu besprechen. Ziel ist es, die Patientensicherheit zu verbessern, funktionierende Abläufe zu erkennen und mögliche Schwachstellen zu beseitigen.</p>
+
+    <h3>Zwei Formen der Nachbesprechung</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <span>KURZBESPRECHUNG</span>
+        <h3>Unmittelbar nach dem Ereignis</h3>
+        <p>Was ist passiert? Sind noch Aufgaben offen? Benötigt jemand Unterstützung? Welche Informationen müssen zeitnah gesichert werden?</p>
+      </div>
+      <div class="info-card">
+        <span>STRUKTURIERTE AUSWERTUNG</span>
+        <h3>Mit zeitlichem Abstand</h3>
+        <p>Wie haben Alarmierung, Aufgabenverteilung, Kommunikation und Übergabe funktioniert? Welche organisatorischen Verbesserungen sind notwendig?</p>
+      </div>
+    </div>
+
+    <h3>Fünf Leitfragen für die Teambesprechung</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Was war geplant?</strong> Welche Notfallabläufe und Zuständigkeiten waren vorgesehen?</p></div>
+      <div><span>02</span><p><strong>Was ist tatsächlich passiert?</strong> Welche Schritte lassen sich anhand der gesicherten Informationen nachvollziehen?</p></div>
+      <div><span>03</span><p><strong>Was hat gut funktioniert?</strong> Welche Handlungen haben die Versorgung unterstützt?</p></div>
+      <div><span>04</span><p><strong>Wo gab es Schwierigkeiten?</strong> Welche Kommunikationsprobleme, Verzögerungen oder organisatorischen Hindernisse traten auf?</p></div>
+      <div><span>05</span><p><strong>Was ändern wir konkret?</strong> Welche Verbesserung wird umgesetzt, wer ist verantwortlich und wann wird die Wirksamkeit überprüft?</p></div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">MERKE</p>
+      <p>Eine gute Nachbesprechung sucht nach Ursachen und Verbesserungsmöglichkeiten, nicht nach Schuldigen. Sie ersetzt weder die Patientenakte noch eine gegebenenfalls notwendige formelle Ereignismeldung.</p>
+    </div>
+
+    <h3>Praxisbeispiel: Verzögerung beim Notruf</h3>
+    <p>Während eines Notfalls ging das Praxisteam zunächst davon aus, dass eine andere Kollegin bereits den Rettungsdienst alarmiert hatte. Erst nach mehreren Minuten wurde bemerkt, dass noch niemand angerufen hatte.</p>
+
+    <div class="connection">
+      <p class="box-label">ANALYSE IM TEAM</p>
+      <p>Statt zu fragen „Wer hat den Notruf vergessen?“, untersucht das Team: War die Zuständigkeit eindeutig? Wurde die Aufgabe ausdrücklich vergeben und bestätigt? Wie kann künftig eine klare Rückmeldung wie „112 ist alarmiert“ sichergestellt werden?</p>
+    </div>
+
+    <h3>Aus Erkenntnissen konkrete Maßnahmen machen</h3>
+    <p>Die Feststellung „Wir müssen besser kommunizieren“ reicht allein nicht aus. Eine wirksame Verbesserung ist konkret und überprüfbar, beispielsweise: „Bei jedem Notfall wird die Person für den Notruf namentlich bestimmt. Sie bestätigt die Übernahme und meldet den erfolgten Anruf zurück.“</p>
+
+    <p>Für vereinbarte Maßnahmen werden eine verantwortliche Person und ein Termin zur Überprüfung festgelegt. So wird aus einer Nachbesprechung eine tatsächliche Verbesserung des Notfallmanagements.</p>
+
+    <h3>Psychische Belastung ernst nehmen</h3>
+    <p>Ein belastender Notfall kann bei Mitarbeitenden Unsicherheit, Anspannung oder anhaltende Gedanken an das Ereignis auslösen. Eine freiwillige, unterstützende Nachbesprechung kann helfen, unmittelbare Bedürfnisse zu erkennen. Niemand sollte gedrängt werden, persönliche Gefühle vor der Gruppe offenzulegen. Bei anhaltender Belastung können geeignete betriebliche oder professionelle Unterstützungsangebote erforderlich sein.</p>
+
+    <div class="remember">
+      <p class="box-label">PRÜFUNGSWISSEN</p>
+      <p>Die Nachbereitung eines Notfalls umfasst nicht nur das Auffüllen der Notfallausstattung. Ebenso wichtig sind Dokumentationsabschluss, strukturierte Ereignisauswertung, konkrete Verbesserungsmaßnahmen und die Unterstützung des Teams.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">11</p>
+    <h2>CIRS, Fehlermeldungen und Ursachenanalyse</h2>
+
+    <p>Nicht jeder Zwischenfall führt zu einem Patientenschaden. Trotzdem können Beinahe-Fehler wichtige Hinweise auf Sicherheitsrisiken geben. Ein Critical Incident Reporting System (CIRS) unterstützt dabei, solche Ereignisse systematisch auszuwerten und daraus zu lernen.</p>
+
+    <h3>Patientenakte und CIRS: Zwei unterschiedliche Aufgaben</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <span>PATIENTENAKTE</span>
+        <h3>Behandlung nachvollziehen</h3>
+        <p>Enthält die für die Versorgung wesentlichen Beobachtungen, Befunde, Entscheidungen, Maßnahmen und Ergebnisse. Sie muss sachlich, korrekt und vollständig geführt werden.</p>
+      </div>
+      <div class="info-card">
+        <span>CIRS-MELDUNG</span>
+        <h3>Aus Risiken lernen</h3>
+        <p>Beschreibt sicherheitsrelevante Ereignisse oder Beinahe-Fehler, um organisatorische und menschliche Einflussfaktoren zu erkennen und Verbesserungen abzuleiten.</p>
+      </div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">WICHTIG</p>
+      <p>Eine CIRS-Meldung ersetzt niemals die medizinisch erforderliche Dokumentation in der Patientenakte. Ebenso ersetzt CIRS keine gesetzlich oder betrieblich vorgeschriebene Meldung, etwa bei einem Arbeitsunfall.</p>
+    </div>
+
+    <h3>Welche Ereignisse eignen sich für eine CIRS-Auswertung?</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Beinahe-Verwechslung:</strong> Ein Notfallmedikament wird vor der Gabe mit einem ähnlich aussehenden Präparat verwechselt; der Fehler wird rechtzeitig erkannt.</p></div>
+      <div><span>02</span><p><strong>Kommunikationsproblem:</strong> Zwei Mitarbeitende gehen davon aus, dass die jeweils andere Person den Notruf übernommen hat.</p></div>
+      <div><span>03</span><p><strong>Informationsverlust:</strong> Eine bekannte Arzneimittelallergie wird bei der Übergabe zunächst nicht erwähnt.</p></div>
+      <div><span>04</span><p><strong>Organisationsmangel:</strong> Ein benötigtes Dokumentationsformular ist während eines Notfalls nicht auffindbar.</p></div>
+    </div>
+
+    <h3>Die 5-Warum-Methode am Praxisbeispiel</h3>
+    <p><strong>Ausgangssituation:</strong> Der Notruf wurde verzögert abgesetzt. Die folgende Analyse ist ein mögliches Beispiel und keine abschließende Feststellung der tatsächlichen Ursache.</p>
+
+    <div class="structure-list">
+      <div><span>1</span><p><strong>Warum</strong> erfolgte der Notruf verspätet? – Niemand hatte den Anruf übernommen.</p></div>
+      <div><span>2</span><p><strong>Warum</strong> hatte niemand die Aufgabe übernommen? – Die Zuständigkeit wurde nicht ausdrücklich zugewiesen.</p></div>
+      <div><span>3</span><p><strong>Warum</strong> fehlte eine klare Zuweisung? – Alle konzentrierten sich gleichzeitig auf die unmittelbare Patientenversorgung.</p></div>
+      <div><span>4</span><p><strong>Warum</strong> wurde die Alarmierung dabei nicht abgesichert? – Eine verbindliche Rückmeldung über erledigte Aufgaben war nicht vorgesehen.</p></div>
+      <div><span>5</span><p><strong>Warum</strong> gab es keine verbindliche Rückmeldung? – Der Notfallablaufplan regelte die Aufgabenbestätigung nicht eindeutig.</p></div>
+    </div>
+
+    <div class="connection">
+      <p class="box-label">MÖGLICHE VERBESSERUNG</p>
+      <p>Der Notfallablaufplan wird ergänzt: Eine Person übernimmt ausdrücklich die Alarmierung, bestätigt den Auftrag und meldet nach dem Telefonat zurück: „Notruf 112 erfolgt.“ Das Team übt diesen Ablauf regelmäßig.</p>
+    </div>
+
+    <h3>Was gehört zu einer guten Verbesserungsmaßnahme?</h3>
+    <p>Eine Maßnahme sollte konkret, umsetzbar und überprüfbar sein. Das Team legt fest, wer verantwortlich ist, bis wann die Änderung umgesetzt wird und wie später überprüft werden kann, ob sie tatsächlich funktioniert.</p>
+
+    <h3>Vertraulichkeit und Fehlerkultur</h3>
+    <p>CIRS soll Lernen ermöglichen und keine vorschnellen Schuldzuweisungen fördern. Meldungen werden nach den Regeln des jeweiligen Systems vertraulich behandelt und soweit vorgesehen anonymisiert oder pseudonymisiert. Eine absolute Anonymität oder rechtliche Vertraulichkeit darf jedoch nicht pauschal versprochen werden.</p>
+
+    <div class="remember">
+      <p class="box-label">PRÜFUNGSWISSEN</p>
+      <p>Patientenakte = Behandlungsverlauf dokumentieren. CIRS = Sicherheitsrisiken analysieren. Ursachenanalyse = Hintergründe verstehen. Verbesserungsmaßnahme = künftige Risiken möglichst verringern.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Besondere Dokumentationssituationen</h2>
+
+    <p>Nicht jeder Notfall endet mit einer unkomplizierten Übergabe an den Rettungsdienst. Manchmal lehnen Patienten Maßnahmen ab, wichtige Informationen fehlen oder es treten besonders belastende Situationen auf. Gerade dann muss die Dokumentation sachlich und nachvollziehbar sein.</p>
+
+    <h3>Situation 1: Ein Patient lehnt den Rettungstransport ab</h3>
+    <p>Ein Patient mit Brustschmerzen möchte die Praxis trotz ärztlicher Empfehlung verlassen. Die zuständige Ärztin muss die medizinische Situation, die Einwilligungsfähigkeit und das weitere Vorgehen beurteilen. Eine MFA entscheidet nicht eigenständig, ob eine solche Ablehnung wirksam ist.</p>
+
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Patientenäußerung:</strong> Was hat der Patient tatsächlich gesagt?</p></div>
+      <div><span>02</span><p><strong>Ärztliche Beurteilung:</strong> Welche Einschätzung und Aufklärung wurden durch die Ärztin dokumentiert?</p></div>
+      <div><span>03</span><p><strong>Verlauf:</strong> Welche Beschwerden, Befunde und Veränderungen wurden beobachtet?</p></div>
+      <div><span>04</span><p><strong>Entscheidung:</strong> Welche Entscheidung wurde getroffen und welches weitere Vorgehen vereinbart?</p></div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">WICHTIG</p>
+      <p>Eine Unterschrift auf einem Formular ersetzt weder eine erforderliche ärztliche Aufklärung noch die Prüfung der Einwilligungsfähigkeit. Bei Zweifeln muss die zuständige ärztliche Person hinzugezogen werden.</p>
+    </div>
+
+    <h3>Situation 2: Der genaue Ereignisbeginn ist unbekannt</h3>
+    <p>Eine Patientin wird bewusstlos aufgefunden. Niemand hat den Zusammenbruch beobachtet. Der tatsächliche Beginn ist daher nicht bekannt.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span>UNGEEIGNET</span>
+        <h3>„09:30 Uhr: Patientin wurde bewusstlos.“</h3>
+        <p>Der Eintrag behauptet einen Ereigniszeitpunkt, den niemand beobachtet hat.</p>
+      </div>
+      <div class="info-card">
+        <span>BESSER</span>
+        <h3>„09:30 Uhr: Patientin bewusstlos aufgefunden.“</h3>
+        <p>„Zeitpunkt des Bewusstseinsverlusts unbekannt.“ So bleibt der Informationsstand korrekt.</p>
+      </div>
+    </div>
+
+    <h3>Situation 3: Ein Patient verstirbt in der Praxis</h3>
+    <p>Ein Todesfall erfordert besondere Sorgfalt. Die MFA dokumentiert ihre eigenen Beobachtungen, durchgeführten Maßnahmen und relevanten Zeitpunkte. Die ärztliche Todesfeststellung und die weiteren ärztlichen Aufgaben dürfen nicht durch eine eigene Schlussfolgerung der MFA ersetzt werden.</p>
+
+    <div class="connection">
+      <p class="box-label">BEISPIEL FÜR EINE SACHLICHE FORMULIERUNG</p>
+      <p>„14:12 Uhr: Patient ohne Reaktion auf Ansprache. Keine normale Atmung festgestellt. Ärztin informiert; Reanimationsmaßnahmen begonnen.“ Eine spätere ärztliche Todesfeststellung wird gesondert durch die zuständige ärztliche Person dokumentiert.</p>
+    </div>
+
+    <h3>Situation 4: Ein medizinischer Notfall bei einem Kind</h3>
+    <p>Bei Minderjährigen können zusätzliche Fragen zur Sorgeberechtigung, Einwilligung und Information der Sorgeberechtigten entstehen. Die medizinisch notwendige Notfallversorgung darf nicht durch vermeidbare organisatorische Verzögerungen gefährdet werden. Die rechtliche und medizinische Entscheidung liegt bei den jeweils zuständigen Personen.</p>
+
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Kind:</strong> Identität und Alter, soweit bekannt und relevant.</p></div>
+      <div><span>02</span><p><strong>Notfall:</strong> Tatsächliche Beobachtungen, Befunde und durchgeführte Maßnahmen.</p></div>
+      <div><span>03</span><p><strong>Kontakt:</strong> Wann und durch wen wurden Sorgeberechtigte kontaktiert?</p></div>
+      <div><span>04</span><p><strong>Ärztliche Entscheidungen:</strong> Welche Entscheidungen und Begründungen wurden durch die zuständige ärztliche Person dokumentiert?</p></div>
+    </div>
+
+    <h3>Was gilt in allen vier Situationen?</h3>
+    <p>Dokumentiere Tatsachen statt Vermutungen. Kennzeichne unbekannte Angaben als unbekannt. Halte deine eigenen Maßnahmen nachvollziehbar fest und unterscheide sie von ärztlichen Entscheidungen. Wenn eine rechtliche oder medizinische Bewertung erforderlich ist, ziehe die zuständige ärztliche Person hinzu.</p>
+
+    <div class="remember">
+      <p class="box-label">PRÜFUNGSWISSEN</p>
+      <p>Eine gute Notfalldokumentation macht auch Unsicherheiten sichtbar. „Nicht bekannt“ ist fachlich korrekter als eine erfundene oder unbelegte Angabe.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">13</p>
+    <h2>Dokumentationsvorlage für den medizinischen Notfall</h2>
+
+    <p>Diese Vorlage hilft dir, bei der Nachbereitung eines Notfalls keine wesentlichen Informationen zu übersehen. Sie dient als Lern- und Arbeitshilfe und ersetzt nicht die Dokumentationsvorgaben deiner Arztpraxis.</p>
+
+    <div class="remember">
+      <p class="box-label">MUSTER – NOTFALLDOKUMENTATION</p>
+      <p><strong>Patient:</strong> ______________________________</p>
+      <p><strong>Datum und Ereignisort:</strong> ______________________________</p>
+      <p><strong>Dokumentierende Person:</strong> ______________________________</p>
+      <p><strong>Beginn des Ereignisses:</strong> __________ / nicht bekannt</p>
+      <p><strong>Zeitpunkt der Dokumentation:</strong> ______________________________</p>
+    </div>
+
+    <h3>Teil A: Ereignis und erste Beobachtungen</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Ausgangssituation:</strong> Wo und unter welchen Umständen wurde der Notfall bemerkt?</p></div>
+      <div><span>02</span><p><strong>Patientenaussagen:</strong> Welche Beschwerden hat der Patient selbst angegeben?</p></div>
+      <div><span>03</span><p><strong>Beobachtungen:</strong> Welche objektiv erkennbaren Symptome lagen vor?</p></div>
+      <div><span>04</span><p><strong>Befunde:</strong> Welche Vitalwerte wurden tatsächlich gemessen und zu welchen Zeitpunkten?</p></div>
+    </div>
+
+    <h3>Teil B: Maßnahmen und zeitlicher Verlauf</h3>
+    <div class="structure-list">
+      <div><span>05</span><p><strong>Alarmierung:</strong> Wer wurde wann informiert? Wann erfolgte gegebenenfalls der Notruf 112?</p></div>
+      <div><span>06</span><p><strong>Erste Hilfe:</strong> Welche Maßnahmen wurden wann und durch wen durchgeführt?</p></div>
+      <div><span>07</span><p><strong>Ärztliche Anordnungen:</strong> Wer ordnete welche Maßnahme zu welchem Zeitpunkt an?</p></div>
+      <div><span>08</span><p><strong>Medikamentengaben:</strong> Präparat, Dosis, Applikationsweg, Zeitpunkt, ausführende Person und beobachtete Reaktion.</p></div>
+      <div><span>09</span><p><strong>Verlaufskontrolle:</strong> Welche Veränderungen oder erneuten Messwerte wurden festgestellt?</p></div>
+    </div>
+
+    <h3>Teil C: Übergabe und Abschluss</h3>
+    <div class="structure-list">
+      <div><span>10</span><p><strong>Übergabezeitpunkt:</strong> Wann wurde die Versorgung an wen übergeben?</p></div>
+      <div><span>11</span><p><strong>Übergabeinformationen:</strong> Welche wesentlichen Angaben und Unterlagen wurden übermittelt?</p></div>
+      <div><span>12</span><p><strong>Letzter dokumentierter Zustand:</strong> Welche Befunde lagen bei der Übergabe tatsächlich vor?</p></div>
+      <div><span>13</span><p><strong>Offene Informationen:</strong> Welche Angaben waren unbekannt oder konnten nicht überprüft werden?</p></div>
+      <div><span>14</span><p><strong>Abschluss:</strong> Wann und durch wen wurde die Dokumentation fertiggestellt?</p></div>
+    </div>
+
+    <div class="connection">
+      <p class="box-label">ANWENDUNG IN DER PRAXIS</p>
+      <p>Nutze die Vorlage als gedankliche Checkliste. Dokumentiere nur tatsächlich bekannte Informationen und kennzeichne Unsicherheiten. Nicht jede Notfallsituation erfordert dieselben Angaben. Entscheidend sind die für die konkrete Behandlung wesentlichen Informationen.</p>
+    </div>
+
+    <h3>Qualitätskontrolle vor dem Abschluss</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <span>VOLLSTÄNDIGKEIT</span>
+        <h3>Fehlen wichtige Angaben?</h3>
+        <p>Prüfe insbesondere Zeitpunkte, Beobachtungen, Maßnahmen, ärztliche Anordnungen und Übergabe.</p>
+      </div>
+      <div class="info-card">
+        <span>NACHVOLLZIEHBARKEIT</span>
+        <h3>Ist der Ablauf verständlich?</h3>
+        <p>Kann eine andere berechtigte Fachperson erkennen, was wann geschehen ist?</p>
+      </div>
+      <div class="info-card">
+        <span>SACHLICHKEIT</span>
+        <h3>Sind Tatsachen und Vermutungen getrennt?</h3>
+        <p>Vermeide wertende Formulierungen und kennzeichne nicht gesicherte Angaben.</p>
+      </div>
+      <div class="info-card">
+        <span>KORREKTUREN</span>
+        <h3>Sind Nachträge erkennbar?</h3>
+        <p>Ergänzungen und Änderungen müssen entsprechend den rechtlichen Vorgaben nachvollziehbar bleiben.</p>
+      </div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">DEIN PRAXIS-TIPP</p>
+      <p>Frage dich nach dem Schreiben: Könnte eine Fachperson, die beim Notfall nicht dabei war, anhand meiner Dokumentation den wesentlichen Behandlungsverlauf verstehen?</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">14</p>
+    <h2>Qualitätsprüfung und verbindliche Verbesserungsmaßnahmen</h2>
+
+    <p>Eine abgeschlossene Notfalldokumentation bedeutet noch nicht, dass die Nachbereitung beendet ist. Das Praxisteam muss prüfen, ob die wesentlichen Informationen vollständig vorliegen und ob aus dem Ereignis konkrete Verbesserungen für zukünftige Notfälle abgeleitet werden können.</p>
+
+    <h3>Die Qualitätsprüfung der Dokumentation</h3>
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Vollständigkeit:</strong> Sind die wesentlichen Beobachtungen, Maßnahmen, Zeitpunkte und Übergabeinformationen enthalten?</p></div>
+      <div><span>02</span><p><strong>Chronologie:</strong> Ist der zeitliche Ablauf nachvollziehbar? Sind Schätzungen als solche gekennzeichnet?</p></div>
+      <div><span>03</span><p><strong>Verantwortlichkeiten:</strong> Ist erkennbar, wer Maßnahmen angeordnet und durchgeführt hat?</p></div>
+      <div><span>04</span><p><strong>Sachlichkeit:</strong> Sind Tatsachen, Patientenaussagen und ärztliche Bewertungen sauber voneinander getrennt?</p></div>
+      <div><span>05</span><p><strong>Nachträge:</strong> Sind spätere Ergänzungen und Korrekturen nachvollziehbar gekennzeichnet?</p></div>
+      <div><span>06</span><p><strong>Datenschutz:</strong> Wurden die Informationen nur im erforderlichen und zulässigen Umfang verarbeitet?</p></div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">WICHTIG</p>
+      <p>Die Qualitätsprüfung darf nicht dazu führen, dass ursprüngliche Einträge heimlich verändert oder nachträglich passende Werte erfunden werden. Fehlende Angaben werden, soweit möglich, korrekt und nachvollziehbar ergänzt.</p>
+    </div>
+
+    <h3>Vom erkannten Problem zur wirksamen Maßnahme</h3>
+    <p>Nach einem Notfall stellt das Team fest, dass wichtige Zeitpunkte nicht zuverlässig festgehalten wurden. Die Aussage „Wir müssen besser dokumentieren“ ist zu ungenau. Eine konkrete Verbesserungsmaßnahme benennt eine Handlung, eine zuständige Person und einen Termin zur Überprüfung.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span>ZU UNGENAU</span>
+        <h3>„Dokumentation verbessern“</h3>
+        <p>Es bleibt offen, was verändert werden soll, wer zuständig ist und wie der Erfolg überprüft wird.</p>
+      </div>
+      <div class="info-card">
+        <span>KONKRET</span>
+        <h3>„Zeitnotizen im Notfallablauf fest verankern“</h3>
+        <p>Eine dafür eingeteilte Person hält wichtige Zeitpunkte fest, sofern die unmittelbare Patientenversorgung dies zulässt. Der Ablauf wird in der nächsten Notfallübung überprüft.</p>
+      </div>
+    </div>
+
+    <h3>Ein Verbesserungsplan für die Arztpraxis</h3>
+    <div class="structure-list">
+      <div><span>1</span><p><strong>Problem benennen:</strong> Welche konkrete Schwachstelle wurde festgestellt?</p></div>
+      <div><span>2</span><p><strong>Ursache untersuchen:</strong> Welche organisatorischen oder kommunikativen Faktoren haben dazu beigetragen?</p></div>
+      <div><span>3</span><p><strong>Maßnahme festlegen:</strong> Welche Änderung soll das Risiko künftig verringern?</p></div>
+      <div><span>4</span><p><strong>Verantwortung zuweisen:</strong> Wer kümmert sich um die Umsetzung?</p></div>
+      <div><span>5</span><p><strong>Termin vereinbaren:</strong> Bis wann wird die Maßnahme umgesetzt und überprüft?</p></div>
+      <div><span>6</span><p><strong>Wirksamkeit kontrollieren:</strong> Hat die Änderung im Alltag oder bei einer Übung tatsächlich funktioniert?</p></div>
+    </div>
+
+    <h3>Praxisbeispiel: Fehlende Dokumentation der Übergabe</h3>
+    <p>Nach einem Notfall ist in der Patientenakte zwar der Rettungsdiensteinsatz erwähnt, aber nicht nachvollziehbar, welche medizinisch wesentlichen Informationen übergeben wurden.</p>
+
+    <div class="connection">
+      <p class="box-label">VERBESSERUNGSMASSNAHME</p>
+      <p>Das Team ergänzt die bestehende Dokumentationsvorlage um einen klar erkennbaren Übergabebereich. Die ausbildungsverantwortliche MFA erläutert dessen Verwendung bei der nächsten Teamschulung. Bei einer späteren Übung wird geprüft, ob die relevanten Übergabeinformationen nachvollziehbar festgehalten werden.</p>
+    </div>
+
+    <h3>Die Rolle der MFA im Qualitätsmanagement</h3>
+    <p>MFA können wesentlich zur Patientensicherheit beitragen: durch sorgfältige Dokumentation, das Ansprechen erkannter Risiken, die Beteiligung an Nachbesprechungen und die zuverlässige Umsetzung vereinbarter Maßnahmen. Medizinische Entscheidungen und die jeweiligen organisatorischen Verantwortlichkeiten bleiben dabei zu beachten.</p>
+
+    <div class="remember">
+      <p class="box-label">DAS MUSST DU MITNEHMEN</p>
+      <p>Ein Notfall ist erst dann systematisch nachbereitet, wenn die Dokumentation abgeschlossen, relevante Risiken ausgewertet und vereinbarte Verbesserungen auf ihre Wirksamkeit überprüft wurden.</p>
+    </div>
+  </section>
+
+  <section class="practice-section">
+    <p class="eyebrow">PREMIUM · PRAXISTRANSFER</p>
+    <h2>Drei anspruchsvolle Prüfungsfälle</h2>
+    <p>Bearbeite zunächst die Aufgaben selbst. Vergleiche deine Überlegungen anschließend mit den Musterlösungen. Entscheidend ist nicht nur das richtige Ergebnis, sondern deine fachliche Begründung.</p>
+
+    <div class="case">
+      <h3>Praxisfall 1: Der lückenhafte Notfallbericht</h3>
+      <p><strong>Ausgangssituation:</strong> Ein 68-jähriger Patient klagt im Wartezimmer über Brustdruck und Übelkeit. Die Ärztin wird hinzugezogen, der Rettungsdienst übernimmt später die Versorgung.</p>
+      <p>In der Patientenakte steht anschließend lediglich:</p>
+      <div class="remember">
+        <p class="box-label">VORHANDENER EINTRAG</p>
+        <p>„Patient hatte wahrscheinlich einen Herzinfarkt. Es ging ihm schlecht. Arzt informiert, Rettungswagen gerufen. Patient wurde mitgenommen.“</p>
+      </div>
+      <h4>Deine Aufgaben</h4>
+      <ol>
+        <li>Erkenne mindestens sechs Schwachstellen in diesem Eintrag.</li>
+        <li>Erkläre den Unterschied zwischen einer Beobachtung und einer Verdachtsdiagnose.</li>
+        <li>Formuliere einen verbesserten Dokumentationseintrag. Erfinde dabei keine fehlenden Angaben.</li>
+        <li>Beschreibe, wie fehlende Zeitpunkte rechtmäßig ergänzt werden können.</li>
+      </ol>
+      <h4>Musterlösung und Begründung</h4>
+      <p><strong>Schwachstellen:</strong> Es fehlen gesicherte Zeitangaben, konkrete Beschwerden, tatsächlich erhobene Vitalwerte, der Zeitpunkt der ärztlichen Information, Angaben zum Notruf, durchgeführte Maßnahmen, Verlauf und Übergabe. Die Formulierung „wahrscheinlich einen Herzinfarkt“ lässt zudem nicht erkennen, ob eine ärztliche Verdachtsdiagnose vorliegt oder eine eigene Vermutung.</p>
+      <p><strong>Verbesserter Eintrag auf Grundlage der bekannten Fakten:</strong> „Patient, 68 Jahre, berichtet im Wartezimmer über Brustdruck und Übelkeit. Ärztin hinzugezogen. Rettungsdienst alarmiert; Patient anschließend durch Rettungsdienst übernommen. Genaue Zeitpunkte, weitere Befunde und Maßnahmen sind anhand der vorhandenen Angaben noch nicht nachvollziehbar.“</p>
+      <p>Für die tatsächliche Patientenakte müssen vorhandene Originalnotizen und verlässliche Angaben geprüft und die wesentlichen fehlenden Informationen, soweit rekonstruierbar, nachvollziehbar ergänzt werden. Nicht bekannte Messwerte oder Uhrzeiten dürfen nicht erfunden werden. Ein späterer Nachtrag ist als solcher kenntlich zu machen; der ursprüngliche Eintrag muss erhalten bleiben.</p>
+      <div class="connection">
+        <p class="box-label">PRÜFUNGSKERN</p>
+        <p>Eine medizinische Dokumentation beschreibt nachvollziehbare Tatsachen. Eine Verdachtsdiagnose muss als ärztliche Einschätzung erkennbar sein, wenn sie entsprechend dokumentiert wird.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <h3>Praxisfall 2: Die unvollständige Medikamentendokumentation</h3>
+      <p><strong>Ausgangssituation:</strong> Während eines akuten allergischen Notfalls ordnet die Ärztin eine Arzneimittelgabe an. Eine MFA führt die Anordnung aus. Nach der Übergabe an den Rettungsdienst findet sich folgender Eintrag:</p>
+      <div class="remember">
+        <p class="box-label">VORHANDENER EINTRAG</p>
+        <p>„14:08 Uhr: Notfallmedikament nach Anweisung gegeben. Danach besser.“</p>
+      </div>
+      <h4>Deine Aufgaben</h4>
+      <ol>
+        <li>Welche konkreten Angaben fehlen zur Medikamentengabe?</li>
+        <li>Warum reicht „Danach besser“ als Verlaufsbeschreibung nicht aus?</li>
+        <li>Wie gehst du vor, wenn du dich an die genaue Dosis nicht sicher erinnerst?</li>
+        <li>Welche Informationen sind für die Übergabe an den Rettungsdienst besonders wichtig?</li>
+      </ol>
+      <h4>Musterlösung und Begründung</h4>
+      <p><strong>Erforderliche Angaben:</strong> Das tatsächlich verabreichte Arzneimittel, die Dosis einschließlich relevanter Konzentrationsangaben, der Applikationsweg, der Zeitpunkt der Gabe, die anordnende ärztliche Person, die ausführende Person sowie beobachtete Wirkungen und mögliche unerwünschte Reaktionen müssen entsprechend ihrer Bedeutung für die Behandlung nachvollziehbar dokumentiert sein.</p>
+      <p><strong>Verlauf:</strong> Statt „Danach besser“ werden konkrete Beobachtungen oder tatsächlich gemessene Veränderungen dokumentiert, beispielsweise eine vom Patienten berichtete Veränderung der Atemnot oder erneut erhobene Vitalwerte mit Messzeitpunkt.</p>
+      <p><strong>Unsichere Dosis:</strong> Niemals eine Dosis aus der Erinnerung erraten. Vorhandene Anordnungen, Arzneimitteldokumentation und andere verlässliche Quellen prüfen, die Ärztin unverzüglich einbeziehen und die verbleibende Unsicherheit ausdrücklich kenntlich machen. Ist die tatsächlich verabreichte Dosis nicht sicher feststellbar, muss dies bei der weiteren Versorgung klar kommuniziert werden.</p>
+      <p><strong>Übergabe:</strong> Der Rettungsdienst benötigt insbesondere die tatsächlich bekannten Angaben zum Präparat, zur Gabe, zum Zeitpunkt, zum Verlauf und zu weiterhin bestehenden Beschwerden. Unbekannte Angaben dürfen nicht als gesichert dargestellt werden.</p>
+      <div class="connection">
+        <p class="box-label">PRÜFUNGSKERN</p>
+        <p>Eine unvollständige Medikamentendokumentation kann die sichere Weiterbehandlung erschweren. Die korrekte Kennzeichnung fehlender Informationen ist sicherer als eine scheinbar vollständige, aber erfundene Angabe.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <h3>Praxisfall 3: Der verzögerte Notruf</h3>
+      <p><strong>Ausgangssituation:</strong> Eine Patientin bricht im Wartezimmer zusammen. Das Praxisteam beginnt mit den notwendigen Sofortmaßnahmen. Mehrere Mitarbeitende gehen davon aus, dass bereits jemand die 112 angerufen hat. Erst später wird festgestellt, dass der Notruf noch nicht erfolgt ist.</p>
+      <p>Nach dem Einsatz sagt ein Teammitglied: „Wir sollten einfach aufschreiben, dass der Notruf sofort erfolgt ist. Sonst bekommen wir Ärger.“</p>
+      <h4>Deine Aufgaben</h4>
+      <ol>
+        <li>Wie muss der tatsächliche Ablauf in der Patientenakte dargestellt werden?</li>
+        <li>Warum wäre eine nachträglich erfundene Notrufzeit unzulässig?</li>
+        <li>Welche zusätzliche Bedeutung kann eine CIRS-Meldung haben?</li>
+        <li>Analysiere mögliche Ursachen der Verzögerung.</li>
+        <li>Entwickle zwei konkrete, überprüfbare Verbesserungsmaßnahmen.</li>
+      </ol>
+      <h4>Musterlösung und Begründung</h4>
+      <p><strong>Patientenakte:</strong> Der tatsächlich bekannte Ablauf wird sachlich dokumentiert: Zeitpunkt des Auffindens beziehungsweise der Erstbeobachtung, relevante Befunde, Sofortmaßnahmen, tatsächliche Alarmierung, Verlauf und Übergabe. Unsichere Uhrzeiten werden als Schätzung gekennzeichnet. Ein fehlender oder verspäteter Notruf darf nicht verschleiert werden.</p>
+      <p><strong>Rechtlicher Hintergrund:</strong> Eine bewusst falsche Eintragung widerspricht den Anforderungen an eine wahrheitsgemäße und nachvollziehbare Behandlungsdokumentation. Nach § 630f BGB müssen Änderungen so erfolgen, dass der ursprüngliche Inhalt und der Änderungszeitpunkt erkennbar bleiben.</p>
+      <p><strong>CIRS:</strong> Zusätzlich zur Patientenakte kann das Ereignis nach den Regeln des eingesetzten Meldesystems zur Sicherheitsanalyse gemeldet werden. Die CIRS-Meldung ersetzt weder die Behandlungsdokumentation noch andere erforderliche Meldungen.</p>
+      <p><strong>Mögliche Ursachen:</strong> Unklare Aufgabenverteilung, fehlende namentliche Beauftragung, keine Rückmeldung über den erfolgten Notruf oder unzureichend geübte Teamabläufe. Diese Ursachen müssen anhand des tatsächlichen Geschehens geprüft werden.</p>
+      <p><strong>Verbesserungsmaßnahme 1:</strong> Bei jedem Notfall wird eine Person ausdrücklich mit dem Notruf beauftragt. Sie bestätigt die Übernahme und meldet nach dem Telefonat „112 alarmiert“ zurück.</p>
+      <p><strong>Verbesserungsmaßnahme 2:</strong> Die Praxis führt eine Notfallübung mit festgelegter Aufgabenverteilung durch. Eine verantwortliche Person prüft anschließend, ob Alarmierung und Rückmeldung zuverlässig funktioniert haben, und dokumentiert das Ergebnis.</p>
+      <div class="remember">
+        <p class="box-label">MERKE</p>
+        <p>Patientensicherheit entsteht durch ehrliche Dokumentation, klare Kommunikation und überprüfbare Verbesserungen – nicht durch das Verbergen von Fehlern.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="summary">
+    <p class="eyebrow">DAS MUSST DU MITNEHMEN</p>
+    <h2>Notfalldokumentation und Nachbereitung auf einen Blick</h2>
+
+    <div class="structure-list">
+      <div><span>01</span><p><strong>Versorgung zuerst:</strong> Im akuten Notfall hat die notwendige Patientenversorgung Vorrang. Dokumentiere die wesentlichen Angaben so zeitnah wie möglich.</p></div>
+      <div><span>02</span><p><strong>Chronologisch arbeiten:</strong> Halte Ereignisse, Befunde, Maßnahmen und Übergabe mit den tatsächlich bekannten Zeitpunkten fest.</p></div>
+      <div><span>03</span><p><strong>Sachlich formulieren:</strong> Unterscheide Beobachtungen, Patientenaussagen, Messwerte und ärztliche Einschätzungen.</p></div>
+      <div><span>04</span><p><strong>Medikamentengaben nachvollziehbar machen:</strong> Dokumentiere insbesondere Arzneimittel, Dosis, Applikationsweg, Zeitpunkt, Anordnung, Durchführung und beobachtete Reaktion.</p></div>
+      <div><span>05</span><p><strong>Keine Angaben erfinden:</strong> Kennzeichne unbekannte Informationen und unsichere Zeitangaben ausdrücklich.</p></div>
+      <div><span>06</span><p><strong>Nachträge korrekt vornehmen:</strong> Der ursprüngliche Eintrag und der Zeitpunkt einer Änderung müssen nachvollziehbar bleiben.</p></div>
+      <div><span>07</span><p><strong>Datenschutz beachten:</strong> Gesundheitsinformationen dürfen nur im rechtlich zulässigen und erforderlichen Umfang weitergegeben werden.</p></div>
+      <div><span>08</span><p><strong>Übergabe sichern:</strong> Dokumentiere die wesentlichen Informationen, die an den Rettungsdienst übermittelt wurden.</p></div>
+      <div><span>09</span><p><strong>Aus Ereignissen lernen:</strong> Nachbesprechungen und CIRS können helfen, Sicherheitsrisiken zu erkennen. Sie ersetzen nicht die Patientenakte.</p></div>
+      <div><span>10</span><p><strong>Verbesserungen überprüfen:</strong> Lege konkrete Maßnahmen, Verantwortlichkeiten und Termine zur Wirksamkeitskontrolle fest.</p></div>
+    </div>
+
+    <div class="remember">
+      <p class="box-label">DEIN MERKSATZ</p>
+      <p>Eine gute Notfalldokumentation zeigt, was tatsächlich passiert ist. Eine gute Nachbereitung sorgt dafür, dass das Praxisteam beim nächsten Notfall noch sicherer handeln kann.</p>
+    </div>
+  </section>
+
+  <section class="self-check">
+    <p class="eyebrow">SELBSTCHECK</p>
+    <h2>Teste dein Wissen: 15 Fragen</h2>
+    <p>Beantworte jede Frage zunächst selbst und vergleiche deine Antwort anschließend mit der Lösung.</p>
+
+    <details>
+      <summary>01. Warum ist eine zeitnahe Notfalldokumentation wichtig?</summary>
+      <p><strong>Musterlösung:</strong> Sie ermöglicht die nachvollziehbare Weiterbehandlung, sichert wesentliche Beobachtungen und Maßnahmen und erfüllt die Anforderungen an die Behandlungsdokumentation.</p>
+    </details>
+
+    <details>
+      <summary>02. Was hat im akuten medizinischen Notfall Vorrang?</summary>
+      <p><strong>Musterlösung:</strong> Die notwendige Versorgung des Patienten. Die Dokumentation wird so zeitnah wie möglich durchgeführt beziehungsweise vervollständigt.</p>
+    </details>
+
+    <details>
+      <summary>03. Welche Angaben sind für eine chronologische Dokumentation wichtig?</summary>
+      <p><strong>Musterlösung:</strong> Insbesondere tatsächliche Ereigniszeiten, Beschwerden, Befunde, Maßnahmen, beteiligte Personen, Verlauf und Übergabe.</p>
+    </details>
+
+    <details>
+      <summary>04. Warum ist die Formulierung 'Patient war hysterisch' ungeeignet?</summary>
+      <p><strong>Musterlösung:</strong> Sie ist wertend. Besser werden konkrete Beobachtungen und Äußerungen des Patienten beschrieben.</p>
+    </details>
+
+    <details>
+      <summary>05. Was unterscheidet eine Beobachtung von einer Verdachtsdiagnose?</summary>
+      <p><strong>Musterlösung:</strong> Eine Beobachtung beschreibt tatsächlich Wahrgenommenes oder Gemessenes. Eine Verdachtsdiagnose ist eine medizinische Einschätzung und muss entsprechend gekennzeichnet werden.</p>
+    </details>
+
+    <details>
+      <summary>06. Welche Angaben gehören zur Dokumentation einer Medikamentengabe?</summary>
+      <p><strong>Musterlösung:</strong> Das tatsächlich verabreichte Arzneimittel, Dosis, Applikationsweg, Zeitpunkt, anordnende und ausführende Person sowie relevante beobachtete Reaktionen.</p>
+    </details>
+
+    <details>
+      <summary>07. Was tust du, wenn du die genaue Uhrzeit eines Ereignisses nicht kennst?</summary>
+      <p><strong>Musterlösung:</strong> Du erfindest keine Uhrzeit. Du kennzeichnest sie als unbekannt oder gibst eine nachvollziehbar begründete Schätzung ausdrücklich als solche an.</p>
+    </details>
+
+    <details>
+      <summary>08. Wie muss ein nachträglicher Eintrag gekennzeichnet werden?</summary>
+      <p><strong>Musterlösung:</strong> Als nachvollziehbarer Nachtrag mit tatsächlichem Dokumentationszeitpunkt. Der ursprüngliche Inhalt muss bei Änderungen erkennbar bleiben.</p>
+    </details>
+
+    <details>
+      <summary>09. Welche allgemeine Aufbewahrungsfrist nennt § 630f BGB?</summary>
+      <p><strong>Musterlösung:</strong> Grundsätzlich zehn Jahre nach Abschluss der Behandlung, sofern andere Vorschriften keine längere Aufbewahrung verlangen.</p>
+    </details>
+
+    <details>
+      <summary>10. Darfst du Angehörigen ohne Weiteres medizinische Einzelheiten mitteilen?</summary>
+      <p><strong>Musterlösung:</strong> Nein. Eine Auskunft benötigt eine rechtliche Grundlage, etwa eine wirksame Einwilligung. Bei Unsicherheit wird die zuständige ärztliche Person hinzugezogen.</p>
+    </details>
+
+    <details>
+      <summary>11. Welche Informationen müssen bei der Rettungsdienstübergabe gesichert werden?</summary>
+      <p><strong>Musterlösung:</strong> Die wesentlichen übermittelten Informationen, der Übergabezeitpunkt, die übernehmende Stelle, der zuletzt bekannte Zustand und relevante offene Angaben.</p>
+    </details>
+
+    <details>
+      <summary>12. Worin unterscheiden sich Patientenakte und CIRS?</summary>
+      <p><strong>Musterlösung:</strong> Die Patientenakte dokumentiert die Behandlung. CIRS dient der Analyse sicherheitsrelevanter Ereignisse und ersetzt die Patientenakte nicht.</p>
+    </details>
+
+    <details>
+      <summary>13. Was ist das Ziel einer strukturierten Nachbesprechung?</summary>
+      <p><strong>Musterlösung:</strong> Den tatsächlichen Ablauf zu verstehen, funktionierende Maßnahmen zu erkennen, Schwachstellen zu analysieren und konkrete Verbesserungen abzuleiten.</p>
+    </details>
+
+    <details>
+      <summary>14. Was ist bei einer verweigerten Notfallbehandlung besonders wichtig?</summary>
+      <p><strong>Musterlösung:</strong> Die ärztliche Beurteilung und Aufklärung, die Einwilligungsfähigkeit, die tatsächlichen Patientenaussagen und das weitere Vorgehen müssen nachvollziehbar dokumentiert werden. Die MFA entscheidet dies nicht eigenständig.</p>
+    </details>
+
+    <details>
+      <summary>15. Woran erkennst du eine wirksame Verbesserungsmaßnahme?</summary>
+      <p><strong>Musterlösung:</strong> Sie ist konkret, hat eine verantwortliche Person, einen Umsetzungstermin und eine geplante Kontrolle ihrer Wirksamkeit.</p>
+    </details>
+  </section>
+
+  <section class="next-lesson">
+    <p class="eyebrow">ALS NÄCHSTES</p>
+    <h2>Praxissituationen und Prüfungsfälle zu Notfällen</h2>
+    <p>In Lektion 20 wendest du dein Wissen aus der Fachwelt Notfälle auf komplexe Praxissituationen an. Du analysierst Notfallverläufe, begründest deine Entscheidungen und trainierst typische Prüfungsaufgaben.</p>
+  </section>
+</main>
+</body>
+</html>
