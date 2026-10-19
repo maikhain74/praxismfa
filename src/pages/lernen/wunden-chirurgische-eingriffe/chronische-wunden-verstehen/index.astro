@@ -1,0 +1,521 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Chronische Wunden verstehen | PraxisMFA">
+  <main>
+    <div class="lesson-container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 12 · Kostenlos</p>
+        <h1>Chronische Wunden verstehen</h1>
+        <p>Warum heilen manche Wunden über Wochen oder Monate nicht ab? Du lernst wichtige Ursachen chronischer Wunden kennen, unterscheidest typische Krankheitsbilder und verstehst, warum eine erfolgreiche Wundbehandlung mehr als den richtigen Verband erfordert.</p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="box-label">Das lernst du</p>
+        <p>Du unterscheidest wichtige chronische Wundarten, erkennst typische Ursachen und Risikofaktoren und verstehst die Bedeutung einer ursachenbezogenen Behandlung sowie deine Aufgaben als MFA.</p>
+      </section>
+
+      <img
+        src="/images/chronische-wunden-verstehen.png"
+        alt="Medizinische Übersicht zu chronischen Wunden mit Ulcus cruris, diabetischem Fußsyndrom und Dekubitus"
+        loading="lazy"
+        style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+      />
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Was chronische Wunden kennzeichnet</h2>
+        <p>Eine chronische Wunde ist eine Wunde, deren Heilung über längere Zeit ausbleibt oder deutlich gestört ist. Häufig wird ein Zeitraum von etwa acht Wochen als Orientierung verwendet. Bei bestimmten Grunderkrankungen kann eine Wunde jedoch bereits früher als chronisch eingeordnet werden.</p>
+        <p>Im Gegensatz zu vielen akuten Verletzungen liegt bei chronischen Wunden häufig eine Erkrankung vor, die den Heilungsprozess dauerhaft beeinträchtigt.</p>
+        <p>Typische Beispiele sind das Ulcus cruris, das diabetische Fußsyndrom und der Dekubitus.</p>
+        <div class="remember"><strong>Merke:</strong> Chronische Wunden sind häufig Ausdruck einer zugrunde liegenden Erkrankung. Deshalb muss auch ihre Ursache behandelt werden.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Ursachen und Risikofaktoren chronischer Wunden</h2>
+        <p>Die Entstehung chronischer Wunden ist häufig multifaktoriell. Durchblutungsstörungen, anhaltender Druck, Sensibilitätsstörungen und bestimmte Grunderkrankungen können die Wundheilung beeinträchtigen.</p>
+        <ul>
+          <li><strong>&nbsp;Venöse Erkrankungen:</strong> Ein gestörter Rücktransport des Blutes kann Ödeme und Hautveränderungen begünstigen.</li>
+          <li><strong>&nbsp;Arterielle Durchblutungsstörungen:</strong> Das Gewebe erhält zu wenig Sauerstoff und Nährstoffe.</li>
+          <li><strong>&nbsp;Diabetes mellitus:</strong> Neuropathie und Durchblutungsstörungen können Verletzungen begünstigen und ihre Heilung erschweren.</li>
+          <li><strong>&nbsp;Druck und Scherkräfte:</strong> Langanhaltende Belastung kann Gewebe schädigen.</li>
+          <li><strong>&nbsp;Weitere Faktoren:</strong> Mangelernährung, eingeschränkte Mobilität, Infektionen und bestimmte Medikamente können eine Rolle spielen.</li>
+        </ul>
+        <p>Für die Behandlung ist entscheidend, welche Ursachen im individuellen Fall tatsächlich vorliegen.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Ulcus cruris venosum und arteriosum unterscheiden</h2>
+        <p>Ein Ulcus cruris ist ein Unterschenkelgeschwür. Es kann durch venöse oder arterielle Erkrankungen verursacht werden; auch Mischformen sind möglich.</p>
+        <p><strong>&nbsp;Ulcus cruris venosum:</strong> Ursache ist häufig eine chronische venöse Insuffizienz. Typische Begleitbefunde sind Ödeme, Hautverfärbungen und Veränderungen im Bereich des Unterschenkels, häufig nahe dem Innenknöchel.</p>
+        <p><strong>&nbsp;Ulcus cruris arteriosum:</strong> Ursache ist eine unzureichende arterielle Durchblutung, beispielsweise bei peripherer arterieller Verschlusskrankheit. Hinweise können kühle Haut, belastungsabhängige oder Ruheschmerzen und schlecht heilende Wunden an Fuß oder Unterschenkel sein.</p>
+        <p>Die Unterscheidung ist für die Behandlung wesentlich. Eine Kompressionstherapie kommt insbesondere bei venösen Erkrankungen infrage, setzt jedoch eine geeignete ärztliche Beurteilung der arteriellen Durchblutung voraus. Bei schwerer arterieller Durchblutungsstörung kann Kompression gefährlich sein.</p>
+        <div class="remember"><strong>Merke:</strong> Nicht jedes Unterschenkelgeschwür ist venös bedingt. Vor einer Kompressionsbehandlung muss die Durchblutung berücksichtigt werden.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Das diabetische Fußsyndrom verstehen</h2>
+        <p>Beim diabetischen Fußsyndrom können Nervenschäden, Durchblutungsstörungen und wiederholte Druckbelastungen zu Fußverletzungen und schlecht heilenden Wunden führen.</p>
+        <p>Durch eine diabetische Neuropathie nehmen Betroffene Schmerzen, Druck oder Temperaturveränderungen teilweise vermindert wahr. Dadurch können kleine Verletzungen unbemerkt bleiben.</p>
+        <p>Besonders gefährdet sind belastete Stellen wie Fußsohle, Zehen und Ferse. Druckentlastung, geeignete Fußversorgung, Stoffwechseleinstellung und gegebenenfalls die Behandlung von Durchblutungsstörungen gehören zu den wichtigen Therapiebausteinen.</p>
+        <p>Neue Wunden, auffällige Verfärbungen, Infektionszeichen oder eine rasche Verschlechterung müssen ärztlich beurteilt werden.</p>
+        <div class="remember"><strong>Merke:</strong> Fehlende Schmerzen bedeuten beim diabetischen Fußsyndrom nicht, dass eine Verletzung harmlos ist.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Dekubitus: Gewebeschäden durch Druck</h2>
+        <p>Ein Dekubitus ist eine lokal begrenzte Schädigung der Haut und/oder des darunterliegenden Gewebes. Er entsteht vor allem durch anhaltenden Druck oder Druck in Verbindung mit Scherkräften.</p>
+        <p>Besonders gefährdet sind Menschen mit eingeschränkter Mobilität oder vermindertem Empfindungsvermögen. Häufig betroffene Körperstellen sind Kreuzbeinregion, Fersen und andere knöcherne Vorsprünge.</p>
+        <p>Ein Dekubitus kann sich zunächst durch eine anhaltende, nicht wegdrückbare Rötung intakter Haut zeigen. Bei dunkler pigmentierter Haut können Farbveränderungen anders aussehen; zusätzlich sind Temperatur, Festigkeit und Beschwerden zu beachten.</p>
+        <p>Wesentliche Maßnahmen sind die individuelle Druckentlastung, Mobilitätsförderung, Hautbeobachtung und eine angemessene Versorgung bestehender Wunden.</p>
+        <div class="remember"><strong>Merke:</strong> Ohne wirksame Druckentlastung kann eine Wunde trotz geeigneter Wundauflage weiter geschädigt werden.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Warum Begleiterkrankungen die Heilung erschweren</h2>
+        <p>Bei chronischen Wunden beeinflusst nicht nur der lokale Wundzustand den Heilungsverlauf. Auch die allgemeine gesundheitliche Situation des Patienten ist wichtig.</p>
+        <ul>
+          <li>Eine eingeschränkte Durchblutung kann die Sauerstoffversorgung des Gewebes vermindern.</li>
+          <li>Ein unzureichend eingestellter Diabetes kann Heilungsprozesse beeinträchtigen.</li>
+          <li>Mangelernährung und Flüssigkeitsmangel können die Regeneration erschweren.</li>
+          <li>Infektionen können die Wunde zusätzlich belasten.</li>
+          <li>Schmerzen, eingeschränkte Mobilität und psychosoziale Belastungen können die Behandlung erschweren.</li>
+        </ul>
+        <p>Chronische Wunden können die Lebensqualität erheblich beeinträchtigen. Deshalb gehören auch ein respektvoller Umgang, verständliche Information und die Berücksichtigung individueller Belastungen zur Versorgung.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Grundprinzipien der ursachenbezogenen Behandlung</h2>
+        <p>Eine moderne Wundbehandlung verfolgt zwei miteinander verbundene Ziele: Die Wunde lokal angemessen versorgen und die zugrunde liegenden Heilungshindernisse erkennen und behandeln.</p>
+        <ul>
+          <li><strong>&nbsp;Bei venöser Ursache:</strong> Geeignete Kompression nach ärztlicher Durchblutungsbeurteilung und entsprechende Behandlung der Venenerkrankung.</li>
+          <li><strong>&nbsp;Bei arterieller Ursache:</strong> Gefäßmedizinische Abklärung und gegebenenfalls Verbesserung der Durchblutung.</li>
+          <li><strong>&nbsp;Beim diabetischen Fuß:</strong> Konsequente Druckentlastung, Diabetesbehandlung und Prüfung der Durchblutung.</li>
+          <li><strong>&nbsp;Beim Dekubitus:</strong> Individuelle Druckentlastung und Maßnahmen zur Vermeidung weiterer Gewebeschäden.</li>
+        </ul>
+        <p>Die Auswahl von Wundauflagen richtet sich zusätzlich nach Wundzustand, Exsudat, Infektionszeichen und ärztlichem Behandlungsplan. Eine Wundauflage kann die Behandlung unterstützen, aber die Ursache nicht allein beseitigen.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Aufgaben und Verantwortungsgrenzen der MFA</h2>
+        <p>MFA unterstützen die Versorgung chronischer Wunden im Rahmen ihrer Ausbildung, der ärztlichen Delegation und der Praxisorganisation.</p>
+        <ul>
+          <li>Behandlungstermine und benötigte Materialien vorbereiten.</li>
+          <li>Patienten freundlich informieren und bei der Lagerung unterstützen.</li>
+          <li>Wundbeobachtungen sachlich dokumentieren und Veränderungen weitergeben.</li>
+          <li>Ärztlich angeordnete Maßnahmen im zulässigen Rahmen durchführen.</li>
+          <li>Auf Warnzeichen wie zunehmende Schmerzen, Infektionszeichen oder Durchblutungsstörungen achten.</li>
+          <li>Patienten bei der Einhaltung vereinbarter Behandlungsschritte unterstützen.</li>
+        </ul>
+        <p>Diagnosestellung, Therapieentscheidung und die Beurteilung komplexer Veränderungen liegen in ärztlicher Verantwortung. Besonders bei rascher Verschlechterung oder Verdacht auf schwere Infektion ist unverzüglich ärztliche Hilfe erforderlich.</p>
+        <div class="remember"><strong>Merke:</strong> Die MFA erkennt Auffälligkeiten, handelt innerhalb ihrer Zuständigkeit und sorgt für die rechtzeitige ärztliche Weitergabe.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">PRAXISSITUATION</p>
+        <h2>„Die Wunde heilt einfach nicht“</h2>
+        <p>Ein 72-jähriger Patient kommt wegen einer seit mehreren Wochen bestehenden Wunde am Unterschenkel in die Arztpraxis. Der Unterschenkel ist geschwollen, die Haut zeigt bräunliche Verfärbungen. Der Patient fragt, ob nicht einfach eine stärkere Wundauflage helfen könnte.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Überlege, welche mögliche Grunderkrankung hinter den Beschwerden stehen könnte. Erkläre, warum die Wundauflage allein möglicherweise nicht ausreicht und welche Beobachtungen du dem Arzt mitteilen solltest.</p>
+        <p><strong>&nbsp;Lernziel:</strong> Chronische Wunden müssen im Zusammenhang mit ihren möglichen Ursachen betrachtet werden. Eine Diagnose darf aus einzelnen Beobachtungen nicht eigenständig abgeleitet werden.</p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <h2>Die Ursache entscheidet über die Behandlung</h2>
+        <p>Chronische Wunden entstehen häufig im Zusammenhang mit venösen oder arteriellen Erkrankungen, Diabetes oder anhaltender Druckbelastung. Entscheidend sind eine sorgfältige ärztliche Abklärung, die Behandlung der Ursache, eine geeignete lokale Wundversorgung und die kontinuierliche Beobachtung des Heilungsverlaufs.</p>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Teste dein Wissen</h2>
+
+        <details>
+          <summary>1. Wodurch unterscheiden sich chronische Wunden häufig von akuten Wunden?</summary>
+          <p>Chronische Wunden zeigen über längere Zeit keine ausreichende Heilung. Häufig liegt eine Grunderkrankung vor, beispielsweise eine Durchblutungsstörung oder Diabetes mellitus, die den Heilungsprozess beeinträchtigt.</p>
+        </details>
+
+        <details>
+          <summary>2. Welche Unterschiede bestehen zwischen einem venösen und einem arteriellen Ulcus cruris?</summary>
+          <p>Beim venösen Ulcus cruris ist der venöse Blutrücktransport gestört. Typisch sind beispielsweise Ödeme und Hautveränderungen am Unterschenkel. Beim arteriellen Ulcus cruris liegt eine unzureichende arterielle Durchblutung vor. Hinweise können kühle Haut, Schmerzen und schlecht heilende Wunden sein. Die ärztliche Abklärung ist entscheidend für die Behandlung.</p>
+        </details>
+
+        <details>
+          <summary>3. Warum können Fußverletzungen bei Menschen mit diabetischer Neuropathie lange unbemerkt bleiben?</summary>
+          <p>Durch Nervenschädigungen kann die Wahrnehmung von Schmerz, Druck und Temperatur vermindert sein. Deshalb werden kleine Verletzungen möglicherweise nicht rechtzeitig bemerkt.</p>
+        </details>
+
+        <details>
+          <summary>4. Welche Rolle spielt die Druckentlastung bei der Behandlung eines Dekubitus?</summary>
+          <p>Die Druckentlastung vermindert die weitere Gewebebelastung und ist eine wesentliche Voraussetzung für die Heilung. Eine Wundauflage allein kann anhaltenden Druck nicht ausgleichen.</p>
+        </details>
+
+        <details>
+          <summary>5. Warum reicht eine geeignete Wundauflage bei chronischen Wunden häufig nicht aus?</summary>
+          <p>Weil die zugrunde liegende Ursache weiterhin bestehen kann. Zusätzlich zur lokalen Wundversorgung müssen beispielsweise Durchblutungsstörungen, Druckbelastungen oder Stoffwechselprobleme ärztlich behandelt werden.</p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Nahtmaterial und Wundverschlussverfahren</h2>
+        <p>In Lektion 13 lernst du die wichtigsten Nahtmaterialien und Wundverschlussverfahren kennen und erfährst, wie du ihre Anwendung in der Arztpraxis vorbereitest und begleitest.</p>
+      </footer>
+    </div>
+  </main>
+</Layout>

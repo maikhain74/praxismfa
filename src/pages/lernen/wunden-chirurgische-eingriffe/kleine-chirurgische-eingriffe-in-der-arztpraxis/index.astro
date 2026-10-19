@@ -1,0 +1,541 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Kleine chirurgische Eingriffe in der Arztpraxis | PraxisMFA">
+  <main>
+    <div class="lesson-container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 15 · Kostenlos</p>
+        <h1>Kleine chirurgische Eingriffe in der Arztpraxis</h1>
+        <p>Viele chirurgische Behandlungen können ambulant in einer entsprechend ausgestatteten Arztpraxis durchgeführt werden. Du lernst typische kleine Eingriffe kennen, verstehst ihre organisatorischen Abläufe und erfährst, wie die MFA zu einer sicheren Durchführung beiträgt.</p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="box-label">Das lernst du</p>
+        <p>Du kannst typische kleine chirurgische Eingriffe benennen, ihre grundlegenden Abläufe unterscheiden und wichtige organisatorische Voraussetzungen erklären. Du erkennst Risiken, verstehst die Aufgaben der MFA und weißt, wann ärztliche Entscheidungen erforderlich sind.</p>
+      </section>
+
+      <img
+        src="/images/kleine-chirurgische-eingriffe-in-der-arztpraxis.png"
+        alt="Lernübersicht zu kleinen chirurgischen Eingriffen in der Arztpraxis"
+        loading="lazy"
+        style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+      />
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Was sind kleine chirurgische Eingriffe?</h2>
+        <p>Kleine chirurgische Eingriffe sind begrenzte operative Maßnahmen, die unter geeigneten Voraussetzungen häufig ambulant erfolgen können. Sie betreffen beispielsweise die Haut, das Unterhautgewebe oder oberflächliche Verletzungen.</p>
+        <p>Ob eine Behandlung tatsächlich in der Arztpraxis durchgeführt werden kann, hängt nicht allein von ihrer Größe ab. Entscheidend sind unter anderem Art und Lokalisation des Eingriffs, Begleiterkrankungen, Blutungsrisiken, notwendige Anästhesie, technische Ausstattung und die Möglichkeit einer sicheren Nachbetreuung.</p>
+        <p>Die ärztliche Entscheidung umfasst die Indikation, die Wahl des Verfahrens und die Beurteilung, ob die ambulante Durchführung medizinisch vertretbar ist.</p>
+        <div class="remember"><strong>Merke:</strong> Ein kleiner Hautschnitt bedeutet nicht automatisch ein geringes Risiko. Auch ambulante Eingriffe benötigen eine sorgfältige Planung.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Typische Eingriffe in der Arztpraxis</h2>
+        <p>Welche Eingriffe angeboten werden, hängt von der fachlichen Qualifikation des ärztlichen Teams und der Ausstattung der Praxis ab.</p>
+        <ul>
+          <li><strong>&nbsp;Entfernung kleiner Hautveränderungen:</strong> Beispielsweise die ärztlich geplante Exzision eines auffälligen Hautbefundes mit gegebenenfalls anschließender histologischer Untersuchung.</li>
+          <li><strong>&nbsp;Entfernung oberflächlicher Unterhautveränderungen:</strong> Etwa bei ausgewählten Lipomen oder Epidermoidzysten, sofern Lage und Risiko eine ambulante Versorgung erlauben.</li>
+          <li><strong>&nbsp;Versorgung geeigneter Schnitt- und Platzwunden:</strong> Nach ärztlicher Untersuchung und Entscheidung über Reinigung, gegebenenfalls Exploration und Wundverschluss.</li>
+          <li><strong>&nbsp;Behandlung ausgewählter Abszesse:</strong> Beispielsweise durch ärztliche Eröffnung und Drainage, wenn eine entsprechende Indikation besteht.</li>
+          <li><strong>&nbsp;Entfernung oberflächlicher Fremdkörper:</strong> Nur nach ärztlicher Einschätzung von Lage, Tiefe und möglichen Verletzungen angrenzender Strukturen.</li>
+          <li><strong>&nbsp;Gewebeprobenentnahme:</strong> Beispielsweise eine Hautbiopsie zur weiteren diagnostischen Untersuchung.</li>
+        </ul>
+        <p>Diese Beispiele sind keine Anleitung zur operativen Durchführung. Die MFA muss die Eingriffe in ihren Grundzügen verstehen, um Termine, Materialbedarf, Patientenwege und Nachbereitung zuverlässig organisieren zu können.</p>
+        <div class="remember"><strong>Merke:</strong> Die Art des Eingriffs bestimmt den organisatorischen Ablauf. Die operative Technik und die medizinische Indikation liegen in ärztlicher Verantwortung.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Den Eingriff organisatorisch planen</h2>
+        <p>Eine sichere Organisation beginnt vor dem eigentlichen Behandlungstermin. Die MFA unterstützt dabei, dass erforderliche Informationen, Räume und personelle Ressourcen verfügbar sind.</p>
+        <ul>
+          <li>Art des geplanten Eingriffs und ärztliche Vorgaben im Terminplan berücksichtigen.</li>
+          <li>Ausreichend Zeit für Vorbereitung, Eingriff, Nachbetreuung und Raumaufbereitung einplanen.</li>
+          <li>Prüfen, ob notwendige Unterlagen, Befunde und organisatorische Voraussetzungen vorliegen.</li>
+          <li>Erforderliche Instrumente, sterile Materialien und gegebenenfalls Probengefäße rechtzeitig verfügbar machen.</li>
+          <li>Klärungsbedarf zu Medikamenten, Allergien oder Begleiterkrankungen an die behandelnde Ärztin oder den behandelnden Arzt weitergeben.</li>
+          <li>Festlegen, wer während des Eingriffs erreichbar ist und welche internen Abläufe bei Komplikationen gelten.</li>
+        </ul>
+        <p>Besonders wichtig ist die Abstimmung zwischen Anmeldung, Behandlungszimmer und ärztlichem Team. Unklare Anordnungen werden vor Beginn geklärt und nicht durch Vermutungen ersetzt.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Eingriffsraum und Materialien bereitstellen</h2>
+        <p>Der Raum muss für den geplanten Eingriff geeignet sein. Die MFA sorgt entsprechend den Praxisstandards dafür, dass der Arbeitsplatz vorbereitet und die benötigten Materialien verfügbar sind.</p>
+        <ul>
+          <li>Arbeitsflächen und Raum nach dem geltenden Hygieneplan vorbereiten.</li>
+          <li>Funktionsfähigkeit und Verfügbarkeit benötigter Geräte kontrollieren.</li>
+          <li>Sterilgutverpackungen auf Unversehrtheit, Kennzeichnung und Verwendbarkeit prüfen.</li>
+          <li>Geeignete Schutzkleidung und Materialien zur Händehygiene bereithalten.</li>
+          <li>Abwurfmöglichkeiten für scharfe und kontaminierte Gegenstände vorbereiten.</li>
+          <li>Bei geplanter Probenentnahme passende, korrekt zuordenbare Probenbehälter und Anforderungen des Labors berücksichtigen.</li>
+        </ul>
+        <p>Die konkrete Instrumentenauswahl richtet sich nach dem ärztlich geplanten Verfahren. Die vertiefte Instrumentenplanung und Vorbereitung eines OP-Arbeitsplatzes behandeln wir gesondert in Lektion 17.</p>
+        <div class="remember"><strong>Merke:</strong> Sterilgut darf nicht allein deshalb verwendet werden, weil die Verpackung noch geschlossen aussieht. Die vollständige Freigabe und Verwendbarkeit müssen gegeben sein.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Hygienische Sicherheit gewährleisten</h2>
+        <p>Bei chirurgischen Eingriffen können Krankheitserreger in Gewebe gelangen. Deshalb müssen die jeweils erforderlichen hygienischen und aseptischen Maßnahmen konsequent eingehalten werden.</p>
+        <p>Die MFA beachtet die hygienische Händedesinfektion, situationsgerechte persönliche Schutzausrüstung und die Trennung von unreinen und sterilen Arbeitsbereichen. Sterile Materialien werden so bereitgestellt, dass ihre Sterilität bis zur Anwendung erhalten bleibt.</p>
+        <p>Die Hautantiseptik des Eingriffsgebiets erfolgt nach ärztlicher Vorgabe, den Produkteigenschaften und dem Hygieneplan. Dabei sind insbesondere die vorgeschriebene Einwirkzeit und die sichere Anwendung zu beachten.</p>
+        <p>Wird ein steriles Material versehentlich kontaminiert oder bestehen Zweifel an seiner Sterilität, darf es nicht weiter als steril eingesetzt werden.</p>
+        <div class="remember"><strong>Merke:</strong> Aseptisches Arbeiten ist eine durchgehende Sicherheitsanforderung und nicht nur ein einzelner Vorbereitungsschritt.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Aufgaben der MFA während des Eingriffs</h2>
+        <p>Während der Behandlung unterstützt die MFA den ärztlichen Ablauf durch vorausschauende Organisation, Beobachtung und geeignete Assistenz im Rahmen ihrer Qualifikation und der ärztlichen Anordnung.</p>
+        <ul>
+          <li>Benötigte Materialien nach Anforderung sicher anreichen.</li>
+          <li>Auf die Einhaltung der vorgesehenen hygienischen Abläufe achten.</li>
+          <li>Patientenreaktionen beobachten und Veränderungen sofort mitteilen.</li>
+          <li>Bei Bedarf die organisatorische Kommunikation mit weiteren Teammitgliedern übernehmen.</li>
+          <li>Bei Probenentnahmen auf eindeutige Zuordnung und korrekten Transport nach Praxisvorgabe achten.</li>
+          <li>Bei unerwarteten Ereignissen die zuständige Ärztin oder den zuständigen Arzt unmittelbar unterstützen.</li>
+        </ul>
+        <p>Die Durchführung des chirurgischen Eingriffs, die Wahl des Operationsverfahrens und medizinische Entscheidungen sind ärztliche Aufgaben. Welche einzelnen Assistenzhandlungen delegiert werden dürfen, hängt von der Tätigkeit, den rechtlichen Rahmenbedingungen und der nachgewiesenen Kompetenz ab.</p>
+        <div class="remember"><strong>Merke:</strong> Gute Assistenz bedeutet, den Ablauf zu verstehen und sicher zu unterstützen, nicht ärztliche Entscheidungen selbst zu treffen.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Nachbereitung und Dokumentation organisieren</h2>
+        <p>Mit dem Ende der eigentlichen Behandlung ist der organisatorische Ablauf noch nicht abgeschlossen. Die MFA unterstützt die sichere Nachbereitung und stellt sicher, dass erforderliche Informationen vollständig weitergegeben werden.</p>
+        <ul>
+          <li>Ärztlich angeordnete Nachversorgung und weitere Termine organisatorisch vorbereiten.</li>
+          <li>Verwendete Materialien und relevante Besonderheiten nach Praxisvorgabe erfassen.</li>
+          <li>Entnommene Gewebeproben eindeutig kennzeichnen und den vorgesehenen Untersuchungsweg sicherstellen.</li>
+          <li>Kontaminierte Materialien sicher entsorgen und Instrumente dem festgelegten Aufbereitungsprozess zuführen.</li>
+          <li>Raum und Arbeitsflächen entsprechend dem Hygieneplan nachbereiten.</li>
+          <li>Ärztliche Anordnungen, Beobachtungen und durchgeführte Maßnahmen nachvollziehbar dokumentieren.</li>
+        </ul>
+        <p>Die Entscheidung über Entlassungsfähigkeit und erforderliche medizinische Nachsorge liegt bei der behandelnden Ärztin oder dem behandelnden Arzt. Wie Patienten vor und nach Eingriffen konkret begleitet werden, vertiefen wir in Lektion 16.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Risiken und Komplikationen erkennen</h2>
+        <p>Auch bei kleinen ambulanten Eingriffen können unerwartete Ereignisse auftreten. Die MFA muss typische Warnzeichen erkennen und unverzüglich weitergeben.</p>
+        <ul>
+          <li><strong>&nbsp;Kreislaufreaktionen:</strong> Beispielsweise Blässe, Schwindel, Kaltschweißigkeit oder Bewusstseinsveränderungen.</li>
+          <li><strong>&nbsp;Blutungen:</strong> Unerwartet starke oder anhaltende Blutungen während oder nach der Behandlung.</li>
+          <li><strong>&nbsp;Allergische Reaktionen:</strong> Beispielsweise Hautreaktionen, Atembeschwerden oder Kreislaufprobleme nach Kontakt mit verwendeten Stoffen.</li>
+          <li><strong>&nbsp;Schmerzen:</strong> Plötzlich zunehmende oder ungewöhnlich starke Beschwerden.</li>
+          <li><strong>&nbsp;Infektionszeichen:</strong> Im weiteren Verlauf zunehmende Rötung, Schwellung, Überwärmung, Sekret oder Fieber.</li>
+        </ul>
+        <p>Bei Auffälligkeiten wird die behandelnde Ärztin oder der behandelnde Arzt sofort informiert. Bei akuten lebensbedrohlichen Situationen werden die vorgesehenen Notfallmaßnahmen und die Rettungskette unverzüglich eingeleitet.</p>
+        <p>Die MFA führt keine eigenständige medizinische Risikoabwägung darüber durch, ob trotz einer relevanten Komplikation weiteroperiert werden kann.</p>
+        <div class="remember"><strong>Merke:</strong> Frühzeitiges Erkennen, klares Weitergeben und konsequentes Handeln nach dem Notfallplan sind wesentliche Sicherheitsaufgaben.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">PRAXISSITUATION</p>
+        <h2>„Die Probe muss doch noch ins Labor!“</h2>
+        <p>In einer hausärztlichen Praxis wird einer Patientin eine auffällige Hautveränderung entfernt. Der Eingriff ist ärztlich abgeschlossen. Während das Behandlungszimmer für den nächsten Termin vorbereitet wird, bemerkst du, dass das entnommene Gewebe noch nicht für den Transport bereitgestellt wurde.</p>
+        <p>Auf dem Arbeitsplatz stehen zwei unterschiedliche Probengefäße. Du bist dir nicht sicher, welches für die angeordnete Untersuchung vorgesehen ist. Gleichzeitig wartet bereits der nächste Patient.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Überlege, welche Schritte jetzt Vorrang haben. Darfst du ein beliebiges Gefäß auswählen, um Zeit zu sparen? Wie sicherst du die korrekte Zuordnung und den weiteren Transport?</p>
+        <p><strong>&nbsp;Lernziel:</strong> Die eindeutige Zuordnung und korrekte Handhabung einer Gewebeprobe haben Vorrang vor dem Zeitdruck. Du klärst die Vorgaben mit dem ärztlichen Team, prüfst die notwendigen Angaben und organisierst den vorgesehenen Transport. Unklare Probengefäße oder Konservierungsbedingungen werden nicht eigenmächtig festgelegt.</p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <h2>Kleine Eingriffe brauchen klare Abläufe</h2>
+        <p>Ambulante chirurgische Eingriffe erfordern eine passende ärztliche Indikation, zuverlässige Organisation, hygienische Sicherheit und eine geregelte Nachbereitung. Die MFA unterstützt den gesamten Ablauf, kennt typische Eingriffe, erkennt Risiken und beachtet ihre Verantwortungsgrenzen. Gute Vorbereitung schützt Patienten und entlastet das Behandlungsteam.</p>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Teste dein Wissen</h2>
+
+        <details>
+          <summary>1. Welche Faktoren entscheiden darüber, ob ein kleiner chirurgischer Eingriff ambulant durchgeführt werden kann?</summary>
+          <p>Unter anderem Art und Lage des Eingriffs, Begleiterkrankungen, Blutungsrisiken, notwendige Anästhesie, Praxisausstattung und sichere Nachbetreuung. Die medizinische Entscheidung trifft die Ärztin oder der Arzt.</p>
+        </details>
+
+        <details>
+          <summary>2. Nenne drei typische kleine chirurgische Eingriffe in einer Arztpraxis.</summary>
+          <p>Beispiele sind die Entfernung geeigneter Hautveränderungen, eine Hautbiopsie und die Versorgung ausgewählter Schnittwunden. Auch bestimmte oberflächliche Abszesse oder Unterhautveränderungen können ambulant behandelt werden.</p>
+        </details>
+
+        <details>
+          <summary>3. Was ist bei der Vorbereitung von Sterilgut besonders wichtig?</summary>
+          <p>Die Materialien müssen für den vorgesehenen Zweck geeignet, ordnungsgemäß aufbereitet beziehungsweise freigegeben und verwendbar sein. Verpackung, Kennzeichnung und Unversehrtheit sind zu prüfen. Bei Zweifeln darf das Material nicht als steril eingesetzt werden.</p>
+        </details>
+
+        <details>
+          <summary>4. Was machst du, wenn während eines Eingriffs plötzlich eine Kreislaufreaktion auftritt?</summary>
+          <p>Du informierst sofort die behandelnde Ärztin oder den behandelnden Arzt, unterstützt die angeordneten Maßnahmen und handelst bei einer akuten Notfallsituation nach dem Notfallplan der Praxis.</p>
+        </details>
+
+        <details>
+          <summary>5. Warum darf eine entnommene Gewebeprobe nicht einfach in irgendein Gefäß gegeben werden?</summary>
+          <p>Weil Probenart, Untersuchung, Kennzeichnung und gegebenenfalls Konservierung zusammenpassen müssen. Eine falsche Handhabung kann die Untersuchung beeinträchtigen. Unklare Vorgaben werden vor der weiteren Bearbeitung geklärt.</p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Patienten vor und nach Eingriffen begleiten</h2>
+        <p>In Lektion 16 lernst du, wie du Patienten vor und nach ambulanten Eingriffen durch gezielte Vorbereitung, Beobachtung und Nachsorge sicher begleitest.</p>
+      </footer>
+    </div>
+  </main>
+</Layout>

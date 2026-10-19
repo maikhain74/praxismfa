@@ -1,0 +1,575 @@
+---
+const title = "Grundlagen der Wundversorgung in der Arztpraxis";
+const description = "Grundlagen der Wundversorgung für MFA: Aufgaben, Hygiene, Beobachtung, Assistenz und Dokumentation.";
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+    <main>
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">
+        ← Zurück zu Wunden &amp; chirurgische Eingriffe
+      </a>
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 01</p>
+        <h1>Grundlagen der Wundversorgung in der Arztpraxis</h1>
+        <p class="intro">
+          Eine kleine Schnittverletzung, eine postoperative Wunde oder
+          eine schlecht heilende Hautstelle: Wunden gehören zum Praxisalltag.
+          Als MFA unterstützt du die Versorgung durch sorgfältige Vorbereitung,
+          sichere Hygiene, genaue Beobachtung und klare Kommunikation.
+          In dieser Lektion lernst du die Grundlagen und deine Verantwortungsgrenzen kennen.
+        </p>
+      </section>
+      <section class="learning-goal">
+        <p class="eyebrow">Dein Lernziel</p>
+        <h2>Das kannst du nach dieser Lektion</h2>
+        <p>
+          Du beschreibst die Ziele der Wundversorgung, erkennst typische
+          Wundsituationen, erklärst wichtige Hygieneregeln und benennst
+          deine Aufgaben bei Vorbereitung, Assistenz, Beobachtung und Dokumentation.
+          Du unterscheidest delegierbare Tätigkeiten von ärztlichen Entscheidungen.
+        </p>
+      </section>
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Was bedeutet Wundversorgung?</h2>
+        <p>Eine Wunde entsteht, wenn die schützende Barriere von Haut oder Schleimhaut geschädigt wird. Dabei können Gewebe verletzt, Blutgefäße eröffnet und Krankheitserreger eingeschleppt werden.</p>
+        <p>Wundversorgung umfasst mehr als das Anlegen eines Verbandes. Sie beginnt mit der Einschätzung der Situation und schließt die Vorbereitung, die ärztlich festgelegte Versorgung, die Beobachtung des Verlaufs und die Dokumentation ein.</p>
+        <p>Ziel ist es, die Heilung zu unterstützen, weitere Gewebeschäden zu vermeiden, Infektionen vorzubeugen und Beschwerden der Patientinnen und Patienten zu berücksichtigen.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Eine Wunde wird nicht allein nach ihrem Aussehen versorgt. Ursache, Allgemeinzustand, Risiken und ärztlicher Behandlungsplan sind entscheidend.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Welche Wunden begegnen dir in der Arztpraxis?</h2>
+        <p>Im Praxisalltag kommen beispielsweise Schnitt-, Schürf-, Riss- und Platzwunden vor. Auch postoperative Wunden und länger bestehende, schlecht heilende Wunden werden betreut.</p>
+        <p>Akute Wunden entstehen meist durch ein zeitlich bestimmbares Ereignis. Chronische Wunden bestehen über längere Zeit und erfordern häufig eine Abklärung der zugrunde liegenden Erkrankung.</p>
+        <p>Die genaue Einordnung und die Entscheidung über die Behandlung erfolgen ärztlich. Als MFA kannst du durch gezielte Beobachtungen und eine strukturierte Weitergabe wichtiger Informationen unterstützen.</p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:</strong> Frage nach Entstehungszeitpunkt, Ursache, Beschwerden und bisherigen Maßnahmen und gib diese Angaben an die behandelnde ärztliche Person weiter.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Die ersten Schritte bei einer Wunde</h2>
+        <p>Zunächst beurteilst du die Situation: Besteht eine starke Blutung, eine Kreislaufbeeinträchtigung oder ein anderer Hinweis auf eine akute Gefährdung? Bei bedrohlichen Anzeichen wird unverzüglich Hilfe organisiert und die erforderliche Erste Hilfe geleistet.</p>
+        <p>Bei nicht lebensbedrohlichen Situationen informierst du die zuständige ärztliche Person und bereitest nach Praxisstandard die benötigten Materialien vor.</p>
+        <p>Du erklärst der betroffenen Person verständlich, was als Nächstes geschieht, achtest auf ihre Privatsphäre und sorgst für eine geeignete Positionierung.</p>
+        <p>Vor jedem Kontakt mit Wunden beachtest du die erforderliche Händehygiene und situationsgerechte Schutzmaßnahmen. Einmalhandschuhe ersetzen die Händedesinfektion nicht.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Bei starken Blutungen, ausgeprägten Durchblutungs- oder Sensibilitätsstörungen und anderen bedrohlichen Zeichen hat die sofortige medizinische Versorgung Vorrang.
+        </div>
+      </section>
+
+      <figure style="margin: 36px 0; text-align: center;">
+        <img
+          src="/images/grundlagen-der-wundversorgung-in-der-arztpraxis.png"
+          alt="PraxisMFA Lernübersicht: Grundlagen der Wundversorgung in der Arztpraxis"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Hygiene und Infektionsschutz</h2>
+        <p>Eine Wunde kann eine Eintrittspforte für Mikroorganismen sein. Deshalb müssen saubere und sterile Arbeitsbereiche entsprechend der geplanten Maßnahme voneinander getrennt werden.</p>
+        <p>Du bereitest eine hygienisch geeignete Arbeitsfläche vor, überprüfst die Verpackungen und Verfallsdaten benötigter Materialien und vermeidest die Kontamination steriler Gegenstände.</p>
+        <p>Die Auswahl von Schutzkleidung und die konkrete aseptische Vorgehensweise richten sich nach der Tätigkeit, dem Infektionsrisiko und dem Hygieneplan der Praxis.</p>
+        <p>Benutzte Materialien werden sicher entsorgt. Anschließend erfolgen die vorgeschriebene Flächenaufbereitung und Händehygiene.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Steril bedeutet nicht einfach nur sauber. Sterile Materialien dürfen beim Öffnen und Anreichen nicht unbemerkt kontaminiert werden.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Wunden beobachten und Veränderungen erkennen</h2>
+        <p>Wichtige Beobachtungsmerkmale sind unter anderem Wundlage, Größe, Wundrand, Wundumgebung, Sekret, Geruch, Schmerzen und erkennbare Veränderungen im Verlauf.</p>
+        <p>Rötung, Überwärmung, Schwellung, zunehmender Schmerz und eitriges Sekret können Hinweise auf eine Infektion sein. Einzelne Zeichen beweisen für sich genommen jedoch keine bestimmte Diagnose.</p>
+        <p>Auch Fieber, eine rasche Ausbreitung der Rötung oder eine deutliche Verschlechterung des Allgemeinzustands sind ernst zu nehmen und müssen zeitnah ärztlich beurteilt werden.</p>
+        <p>Deine Aufgabe ist es, sachlich zu beobachten, Veränderungen unverzüglich weiterzugeben und keine eigenständige medizinische Diagnose abzuleiten.</p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:</strong> Beschreibe konkrete Befunde wie &#x27;Rötung um die Wunde hat sich ausgedehnt&#x27; statt vorschnell &#x27;Wunde ist infiziert&#x27; zu dokumentieren.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Materialien und Verbandwechsel vorbereiten</h2>
+        <p>Vor einer Wundversorgung stellst du nach ärztlicher Anordnung und Praxisstandard geeignete Materialien bereit. Dazu können sterile Kompressen, Wundauflagen, Fixiermaterial, Abwurfmöglichkeiten und persönliche Schutzausrüstung gehören.</p>
+        <p>Du prüfst, ob alle benötigten Materialien vorhanden und unbeschädigt sind, und achtest auf eine sinnvolle Reihenfolge der Arbeitsschritte.</p>
+        <p>Während der Versorgung unterstützt du die ärztliche Person oder führst dir ausdrücklich übertragene Tätigkeiten aus, soweit diese nach Qualifikation, Einweisung und konkreter Situation delegierbar sind.</p>
+        <p>Nach dem Verbandwechsel beobachtest du das Befinden der betroffenen Person, entsorgst verwendetes Material sachgerecht und bereitest den Arbeitsplatz auf.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Die Auswahl einer Wundtherapie und die medizinische Entscheidung über das Vorgehen liegen in ärztlicher Verantwortung.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Aufgaben und Grenzen der MFA</h2>
+        <p>Zu deinen typischen Aufgaben gehören Patientenbetreuung, Materialvorbereitung, hygienisches Arbeiten, Assistenz, Beobachtung, Weitergabe auffälliger Befunde und Dokumentation.</p>
+        <p>Bestimmte Maßnahmen können im Rahmen der Delegation übernommen werden. Voraussetzung sind eine ärztliche Entscheidung, eine geeignete Qualifikation, klare Anweisungen und eine der Situation angemessene Überwachung.</p>
+        <p>Du entscheidest nicht eigenständig über eine Wunddiagnose, die Notwendigkeit eines chirurgischen Eingriffs oder die Auswahl einer medizinischen Wundtherapie.</p>
+        <p>Wenn dir eine Aufgabe fachlich nicht sicher möglich erscheint oder du eine unerwartete Veränderung bemerkst, unterbrichst du die Tätigkeit soweit erforderlich und holst ärztliche Unterstützung.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Eine Delegation bedeutet nicht, dass die ärztliche Behandlungsverantwortung vollständig auf die MFA übergeht.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Dokumentation und Kommunikation</h2>
+        <p>Eine nachvollziehbare Dokumentation unterstützt die Behandlungssicherheit und ermöglicht es, Veränderungen im Wundverlauf zu erkennen.</p>
+        <p>Erfasst werden nach Praxisvorgaben beispielsweise Datum, durchgeführte Maßnahmen, verwendete Materialien, relevante Beobachtungen, Beschwerden und die Information der zuständigen ärztlichen Person.</p>
+        <p>Die Einträge müssen sachlich, zeitnah und verständlich sein. Vermutungen werden nicht als gesicherte Tatsachen festgehalten.</p>
+        <p>Auch die verständliche Information der Patientinnen und Patienten gehört zur Versorgung. Medizinische Aufklärung über Risiken und Eingriffe ist von der allgemeinen organisatorischen und pflegerischen Information zu unterscheiden.</p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:</strong> Eine klare Übergabe beantwortet: Was wurde beobachtet? Seit wann? Was hat sich verändert? Wen hast du informiert?
+        </div>
+      </section>
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>Eine Wunde nach einem kleinen Eingriff</h2>
+        <p>
+          Eine Patientin kommt drei Tage nach der Entfernung einer kleinen
+          Hautveränderung zur vereinbarten Wundkontrolle. Sie berichtet,
+          dass die Stelle seit gestern stärker schmerzt. Du bemerkst,
+          dass die Haut um die Wunde deutlich gerötet ist.
+        </p>
+        <h3>Wie gehst du als MFA vor?</h3>
+        <p>
+          Du nimmst die Beschwerden ernst und fragst nach Beginn und Verlauf.
+          Du informierst die behandelnde ärztliche Person über die Schmerzen
+          und deine Beobachtung. Du bereitest den Arbeitsplatz und die
+          angeordneten Materialien hygienisch vor.
+        </p>
+        <p>
+          Du legst nicht eigenständig eine Infektionsdiagnose fest und
+          entscheidest nicht selbst über antiseptische Mittel oder eine
+          Änderung der Behandlung. Du unterstützt die ärztlich festgelegte
+          Versorgung und dokumentierst Beobachtungen sowie Maßnahmen
+          nach den Praxisvorgaben.
+        </p>
+        <p>
+          So trägst du dazu bei, dass eine mögliche Komplikation frühzeitig
+          beurteilt wird und die Patientin sicher versorgt werden kann.
+        </p>
+      </section>
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <ul>
+          <li>Wundversorgung umfasst Vorbereitung, Versorgung, Beobachtung und Dokumentation.</li>
+          <li>Wundursache, Allgemeinzustand und Risiken beeinflussen das Vorgehen.</li>
+          <li>Hygiene und der Schutz vor Kontamination sind unverzichtbar.</li>
+          <li>Veränderungen und Warnzeichen müssen zeitnah ärztlich weitergegeben werden.</li>
+          <li>Die MFA unterstützt die Behandlung innerhalb ihrer Qualifikation und Delegation.</li>
+          <li>Diagnose und Therapieentscheidung bleiben in ärztlicher Verantwortung.</li>
+          <li>Sachliche Dokumentation und klare Kommunikation erhöhen die Patientensicherheit.</li>
+        </ul>
+      </section>
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Prüfe dein Wissen</h2>
+        <details>
+          <summary>1. Was gehört zur Wundversorgung außer dem Anlegen eines Verbandes?</summary>
+          <p>Dazu gehören die Einschätzung der Situation, Vorbereitung, hygienisches Arbeiten, Beobachtung, Unterstützung der ärztlich festgelegten Versorgung und Dokumentation.</p>
+        </details>
+
+        <details>
+          <summary>2. Welche Veränderungen an einer Wunde solltest du ärztlich weitergeben?</summary>
+          <p>Beispielsweise zunehmende Rötung, Schwellung, Überwärmung, Schmerzen, auffälliges Sekret, Fieber oder eine Verschlechterung des Allgemeinzustands.</p>
+        </details>
+
+        <details>
+          <summary>3. Warum ist die Trennung sauberer und steriler Arbeitsbereiche wichtig?</summary>
+          <p>Sie hilft, eine Kontamination steriler Materialien und die Übertragung von Mikroorganismen auf die Wunde zu vermeiden.</p>
+        </details>
+
+        <details>
+          <summary>4. Darf eine MFA eigenständig über die Wundtherapie entscheiden?</summary>
+          <p>Nein. Medizinische Diagnose und Therapieentscheidung liegen in ärztlicher Verantwortung. Geeignete Tätigkeiten können unter den erforderlichen Voraussetzungen delegiert werden.</p>
+        </details>
+
+        <details>
+          <summary>5. Was gehört zu einer nachvollziehbaren Wunddokumentation?</summary>
+          <p>Nach Praxisvorgaben unter anderem Zeitpunkt, Maßnahmen, verwendete Materialien, relevante Beobachtungen und die Weitergabe auffälliger Befunde.</p>
+        </details>
+      </section>
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Aufbau und Funktion der Haut</h2>
+        <p>
+          In Lektion 02 lernst du die Hautschichten und ihre Aufgaben kennen.
+          Dieses Wissen hilft dir später, Wundarten, Gewebeschäden und
+          Wundheilungsprozesse besser zu verstehen.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

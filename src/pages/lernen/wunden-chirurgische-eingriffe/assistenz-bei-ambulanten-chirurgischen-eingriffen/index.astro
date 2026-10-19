@@ -1,0 +1,557 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Instrumente und OP-Arbeitsplatz vorbereiten | PraxisMFA">
+  <main>
+  <div class="lesson-container">
+    <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+    <section class="lesson-hero">
+      <p class="eyebrow">Fachwelt 08 · Lektion 18 · Premium</p>
+      <h1>Assistenz bei ambulanten chirurgischen Eingriffen</h1>
+      <p>Während eines chirurgischen Eingriffs muss die MFA gleichzeitig den Ablauf beobachten, sicher assistieren, mit dem Behandlungsteam kommunizieren und Veränderungen beim Patienten erkennen. In dieser Premium-Lektion trainierst du anspruchsvolle Entscheidungen, klare Verantwortlichkeiten und professionelles Handeln unter Zeitdruck.</p>
+    </section>
+
+    <section class="learning-goal">
+      <p class="box-label">Das lernst du</p>
+      <p>Du kannst deine Aufgaben während eines ambulanten chirurgischen Eingriffs sicher einordnen, sterile und unsterile Assistenz unterscheiden, situationsgerecht kommunizieren und bei Kontaminationen oder auffälligen Patientenreaktionen angemessen handeln. Du begründest deine Entscheidungen und erkennst die Grenzen deiner Verantwortung.</p>
+    </section>
+
+    <img
+      src="/images/assistenz-bei-ambulanten-chirurgischen-eingriffen.png"
+      alt="Lernübersicht zur Assistenz bei ambulanten chirurgischen Eingriffen"
+      loading="lazy"
+      style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+    />
+
+    <section class="content-section">
+      <p class="section-number">01</p>
+      <h2>Aufgaben und Verantwortungsgrenzen während des Eingriffs</h2>
+      <p>Die ärztliche Person trägt die Verantwortung für die Indikation, die Operationstechnik und die medizinischen Entscheidungen. Die MFA unterstützt den Eingriff entsprechend ihrer Qualifikation, der übertragenen Aufgaben und den verbindlichen Praxisstandards.</p>
+      <p>Zu einer professionellen Assistenz gehört nicht nur das Ausführen einzelner Handgriffe. Die MFA beobachtet den Ablauf, erkennt mögliche Sicherheitsprobleme und informiert die verantwortliche ärztliche Person rechtzeitig.</p>
+      <ul>
+        <li>Den vorgesehenen Eingriff und die eigene Rolle kennen.</li>
+        <li>Übertragene Assistenzaufgaben fachgerecht und innerhalb der eigenen Kompetenz ausführen.</li>
+        <li>Den Patienten beobachten und Veränderungen unverzüglich weitergeben.</li>
+        <li>Unklare Anweisungen nachfragen, statt Vermutungen umzusetzen.</li>
+        <li>Bei erkennbaren Sicherheitsrisiken sofort auf das Problem aufmerksam machen.</li>
+      </ul>
+      <p>Eine Aufforderung durch die Ärztin oder den Arzt ersetzt nicht die erforderliche Qualifikation. Eine MFA darf keine eigenständigen operativen Entscheidungen treffen oder Tätigkeiten übernehmen, für die sie nicht ausreichend qualifiziert ist.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Gute Assistenz bedeutet, innerhalb klarer Verantwortungsgrenzen aufmerksam, vorausschauend und sicher zu handeln.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">02</p>
+      <h2>Sterile und unsterile Assistenz koordinieren</h2>
+      <p>Während eines Eingriffs müssen sterile und unsterile Tätigkeiten eindeutig voneinander getrennt bleiben. Die konkrete Aufgabenverteilung hängt von der Art des Eingriffs, der personellen Besetzung und dem Hygieneplan der Praxis ab.</p>
+      <ul>
+        <li><strong>&nbsp;Sterile Assistenz:</strong> Arbeitet nach entsprechender Vorbereitung im sterilen Bereich und unterstützt die ärztliche Person mit den vorgesehenen sterilen Instrumenten und Materialien.</li>
+        <li><strong>&nbsp;Unsterile Assistenz:</strong> Organisiert benötigte Materialien außerhalb des sterilen Feldes, unterstützt die Kommunikation und übernimmt weitere zugewiesene Aufgaben.</li>
+        <li><strong>&nbsp;Übergaben:</strong> Sterile Materialien werden mit geeigneter aseptischer Technik bereitgestellt, ohne die Sterilbarriere zu gefährden.</li>
+        <li><strong>&nbsp;Rollenwechsel:</strong> Ein Wechsel zwischen unsterilen und sterilen Tätigkeiten erfordert die jeweils vorgeschriebenen Hygieneschritte und gegebenenfalls eine erneute sterile Vorbereitung.</li>
+      </ul>
+      <p>Besonders kritisch sind Situationen, in denen eine Person gleichzeitig mehrere Aufgaben übernehmen soll. Ist die sichere Trennung der Tätigkeiten nicht gewährleistet, muss dies offen angesprochen und die Aufgabenverteilung angepasst werden.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Sterile und unsterile Assistenz sind unterschiedliche Rollen. Ihre sichere Zusammenarbeit erfordert klare Absprachen.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">03</p>
+      <h2>Instrumente während des Eingriffs sicher anreichen</h2>
+      <p>Anders als bei der Vorbereitung des Instrumententisches steht während des Eingriffs die sichere Übergabe im Mittelpunkt. Die MFA muss die vorgesehenen Instrumente erkennen, die Anweisung verstehen und die Übergabe kontrolliert durchführen.</p>
+      <ul>
+        <li>Instrumente nur im Rahmen der übertragenen Aufgabe und nach dem festgelegten Vorgehen anreichen.</li>
+        <li>Auf sichere Griffpositionen und den Schutz vor Schnitt- und Stichverletzungen achten.</li>
+        <li>Scharfe Instrumente nach vereinbarter Übergabetechnik handhaben; gegebenenfalls eine neutrale Übergabezone nutzen.</li>
+        <li>Die sterile Arbeitsweise während jeder Übergabe aufrechterhalten.</li>
+        <li>Bei einer unklaren Instrumentenanforderung nachfragen.</li>
+      </ul>
+      <p>Das eigenmächtige Austauschen eines angeforderten Instruments gegen ein vermeintlich gleichwertiges Instrument kann den Eingriff gefährden. Ist ein Instrument nicht verfügbar oder bestehen Zweifel an seiner Eignung, wird die verantwortliche ärztliche Person informiert.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Eine sichere Instrumentenübergabe ist kontrolliert, eindeutig und auf die vereinbarte Arbeitstechnik abgestimmt.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">04</p>
+      <h2>Vorausschauend assistieren, ohne eigenmächtig zu handeln</h2>
+      <p>Erfahrene Assistenzkräfte erkennen häufig, welche organisatorischen Schritte als Nächstes erforderlich werden. Vorausschauendes Handeln darf jedoch nicht mit eigenständigen medizinischen Entscheidungen verwechselt werden.</p>
+      <p>Die MFA kann beispielsweise rechtzeitig vereinbartes Verbrauchsmaterial nachfordern, auf einen drohenden Engpass hinweisen oder die unsterile Assistenz um Unterstützung bitten. Die Entscheidung über operative Schritte, Blutstillungsmaßnahmen oder eine Änderung des Eingriffs bleibt bei der ärztlichen Person.</p>
+      <ul>
+        <li>Den Ablauf aufmerksam verfolgen und vereinbarte Arbeitsschritte antizipieren.</li>
+        <li>Benötigte Unterstützung frühzeitig anfordern.</li>
+        <li>Veränderungen im Operationsgebiet nicht eigenständig medizinisch bewerten oder behandeln.</li>
+        <li>Bei Abweichungen vom erwarteten Verlauf die Beobachtung sachlich mitteilen.</li>
+        <li>Bei widersprüchlichen Anforderungen Prioritäten mit der verantwortlichen Person klären.</li>
+      </ul>
+      <p>Beispiel: Während einer Hautexzision wird eine stärkere Blutung sichtbar. Die MFA meldet die Beobachtung unverzüglich und unterstützt die ärztlich angeordneten Maßnahmen innerhalb ihrer Kompetenz. Sie entscheidet nicht selbst über die operative Blutstillung.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Vorausschauende Assistenz verbessert den Ablauf. Medizinische Entscheidungen bleiben dort, wo die fachliche Verantwortung liegt.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">05</p>
+      <h2>Klare Kommunikation und sichere Teamabsprachen</h2>
+      <p>Während eines Eingriffs können Missverständnisse erhebliche Folgen haben. Deshalb müssen Anforderungen, Rückmeldungen und Sicherheitsbedenken kurz, eindeutig und rechtzeitig ausgesprochen werden.</p>
+      <ul>
+        <li>Anweisungen aufmerksam aufnehmen und bei Unklarheiten konkret nachfragen.</li>
+        <li>Wichtige Anforderungen durch Wiederholung bestätigen, wenn dies die Sicherheit erhöht.</li>
+        <li>Beobachtungen sachlich beschreiben, statt unbelegte Diagnosen zu äußern.</li>
+        <li>Erkannte Kontaminationen oder andere Risiken ohne Verzögerung benennen.</li>
+        <li>Aufgabenübergaben so gestalten, dass klar ist, wer welche Tätigkeit übernimmt.</li>
+      </ul>
+      <p>Eine geschlossene Kommunikationsschleife kann beispielsweise so aussehen: „Bitte sterile Kompressen.“ – „Sterile Kompressen, verstanden.“ – „Die Kompressen sind bereit.“ Dadurch wird deutlich, dass die Anforderung angekommen ist und umgesetzt wurde.</p>
+      <p>Auch unter Zeitdruck darf die MFA auf Sicherheitsprobleme hinweisen. Eine respektvolle, eindeutige Rückmeldung ist Bestandteil professioneller Teamarbeit.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Ein Sicherheitsproblem muss ausgesprochen werden. Schweigen ist keine Form guter Zusammenarbeit.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">06</p>
+      <h2>Kontaminationen während des Eingriffs bewältigen</h2>
+      <p>Eine Kontamination während eines laufenden Eingriffs unterscheidet sich von einem Materialproblem bei der Vorbereitung: Der sterile Arbeitsbereich ist bereits in Gebrauch und eine Verzögerung oder Unterbrechung kann unmittelbare Auswirkungen auf den Patienten haben.</p>
+      <p>Berührt beispielsweise ein steriler Handschuh einen unsterilen Gegenstand, darf die betroffene Hand nicht weiter als steril eingesetzt werden. Die MFA spricht den Vorfall sofort an und unterstützt die sichere Wiederherstellung der Arbeitsbedingungen nach dem festgelegten Verfahren.</p>
+      <ul>
+        <li>Die mögliche Kontamination unverzüglich und eindeutig melden.</li>
+        <li>Eine weitere Verwendung betroffener Materialien als steril verhindern.</li>
+        <li>Die ärztliche Person informieren und den weiteren Ablauf abstimmen.</li>
+        <li>Geeigneten sterilen Ersatz beziehungsweise einen erforderlichen Handschuhwechsel organisieren.</li>
+        <li>Relevante Abweichungen entsprechend den Praxisvorgaben dokumentieren.</li>
+      </ul>
+      <p>Ob und wie der Eingriff unterbrochen oder fortgesetzt werden kann, richtet sich nach der konkreten Situation und der ärztlichen Entscheidung. Eine bloße Desinfektion ersetzt nicht die erforderliche sterile Aufbereitung eines kontaminierten Instruments.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Bei Kontamination zählt die sofortige, transparente Reaktion – nicht der Versuch, den Fehler unbemerkt auszugleichen.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">07</p>
+      <h2>Kritische Patientenreaktionen erkennen und weitergeben</h2>
+      <p>Auch bei kleinen ambulanten Eingriffen können Patienten unerwartete Beschwerden entwickeln. Die MFA beobachtet deshalb nicht nur den Operationsablauf, sondern achtet im Rahmen ihrer Aufgabe auch auf das Befinden des Patienten.</p>
+      <ul>
+        <li><strong>&nbsp;Kreislaufreaktionen:</strong> beispielsweise auffällige Blässe, kalter Schweiß, Schwindel oder eine drohende Bewusstlosigkeit.</li>
+        <li><strong>&nbsp;Atemprobleme:</strong> beispielsweise plötzlich auftretende Atemnot, auffällige Atmung oder Schwierigkeiten beim Sprechen.</li>
+        <li><strong>&nbsp;Mögliche allergische Reaktionen:</strong> beispielsweise plötzlich auftretende Hautreaktionen, Schwellungen oder Atembeschwerden.</li>
+        <li><strong>&nbsp;Schmerzen und Angst:</strong> deutliche Beschwerden, die der Patient äußert oder durch sein Verhalten erkennen lässt.</li>
+      </ul>
+      <p>Bei auffälligen Veränderungen informiert die MFA unverzüglich die behandelnde ärztliche Person, fordert bei Bedarf nach dem Notfallplan Unterstützung an und übernimmt die ihr zugewiesenen Maßnahmen. Bei akuter Lebensgefahr muss die Notfallversorgung entsprechend dem etablierten Ablauf unverzüglich eingeleitet werden.</p>
+      <p>Die MFA stellt dabei keine eigenständige Diagnose und verabreicht keine Medikamente ohne die erforderliche ärztliche Anordnung und zulässige Aufgabenübertragung.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Eine auffällige Patientenreaktion hat Vorrang vor einem reibungslosen Zeitplan. Frühzeitiges Melden kann entscheidend sein.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">08</p>
+      <h2>Eingriffsabschluss, Übergabe und Nachbereitung</h2>
+      <p>Die Assistenz endet nicht mit dem letzten operativen Handgriff. Gerade der Übergang vom Eingriff zur weiteren Versorgung erfordert klare Informationen und eine sichere Aufgabenverteilung.</p>
+      <ul>
+        <li>Den ärztlich festgelegten Wundverschluss und die anschließende Versorgung entsprechend der eigenen Aufgabe unterstützen.</li>
+        <li>Benutzte scharfe Gegenstände sicher entsorgen beziehungsweise dem vorgesehenen Instrumentenkreislauf zuführen.</li>
+        <li>Bei der eindeutigen Zuordnung und Weitergabe entnommener Proben mitwirken.</li>
+        <li>Beobachtete Zwischenfälle und relevante Abweichungen an die zuständige Person übergeben.</li>
+        <li>Die weitere Patientenbetreuung und notwendige Kontrollen nach ärztlicher Festlegung unterstützen.</li>
+        <li>Die erforderliche Dokumentation innerhalb des eigenen Zuständigkeitsbereichs vollständig und zeitnah durchführen.</li>
+      </ul>
+      <p>Besonders wichtig ist eine nachvollziehbare Übergabe: Was wurde durchgeführt? Welche Auffälligkeiten gab es? Welche ärztlichen Anordnungen gelten für die weitere Betreuung? Welche Aufgaben sind noch offen?</p>
+      <p>Die ausführliche Wunddokumentation und Qualitätssicherung vertiefen wir in Lektion 19. Hier steht die sichere Übergabe aus der laufenden Assistenz im Mittelpunkt.</p>
+      <div class="remember"><strong>&nbsp;Merke:</strong> Ein Eingriff ist für die Assistenz erst dann abgeschlossen, wenn Patient, Informationen und Materialien sicher übergeben sind.</div>
+    </section>
+
+    <section class="content-section">
+      <p class="section-number">PRAXISSITUATION · PREMIUM</p>
+      <h2>„Zwei Probleme gleichzeitig“</h2>
+      <p>Du assistierst in einer chirurgisch tätigen Gemeinschaftspraxis bei der ambulanten Entfernung einer Hautveränderung am Rücken. Die Ärztin führt den Eingriff durch. Du arbeitest nach entsprechender Vorbereitung in der sterilen Assistenz. Eine Kollegin übernimmt die unsterilen Aufgaben.</p>
+      <p>Während die Ärztin mit dem Eingriff beschäftigt ist, bemerkst du, dass dein steriler Handschuh versehentlich den unsterilen Rand einer Ablage berührt hat. Im selben Moment sagt der Patient: „Mir wird plötzlich schwindelig.“ Er wirkt auffällig blass und beginnt zu schwitzen. Die Ärztin fordert gerade ein weiteres Instrument an. Deine Kollegin ist mit der Vorbereitung eines Probengefäßes beschäftigt.</p>
+      <p><strong>&nbsp;Entscheidung 1:</strong> Welche beiden Sicherheitsprobleme liegen vor? Welches erfordert jetzt die höchste Aufmerksamkeit, und warum?</p>
+      <p><strong>&nbsp;Entscheidung 2:</strong> Wie informierst du die Ärztin so, dass sowohl die Patientenreaktion als auch die Kontamination eindeutig verstanden werden?</p>
+      <p><strong>&nbsp;Entscheidung 3:</strong> Welche Aufgaben kannst du unmittelbar übernehmen, welche gibst du an die unsterile Assistenz weiter und welche Entscheidungen bleiben bei der Ärztin?</p>
+      <p><strong>&nbsp;Entscheidung 4:</strong> Welche Informationen müssen nach der Stabilisierung beziehungsweise nach dem Eingriff weitergegeben und dokumentiert werden?</p>
+      <p><strong>&nbsp;Begründete Lösung:</strong> Die auffällige Patientenreaktion kann auf eine akute Kreislaufstörung oder eine andere behandlungsbedürftige Situation hinweisen und muss unverzüglich ärztlich beurteilt werden. Du meldest sofort und deutlich: „Der Patient ist plötzlich blass, schwitzt und berichtet über Schwindel. Außerdem ist mein steriler Handschuh kontaminiert.“ Du reichst mit der betroffenen Hand kein weiteres steriles Instrument an. Die Ärztin entscheidet über die unmittelbaren medizinischen Maßnahmen und das weitere Vorgehen beim Eingriff. Nach klarer Aufgabenabsprache kann die unsterile Kollegin Unterstützung organisieren, erforderliche Hilfsmittel bereitstellen und nach dem Praxisnotfallplan handeln. Die Wiederherstellung der sterilen Assistenz erfolgt nach den geltenden Hygieneregeln, sobald die Versorgungssituation dies zulässt. Beobachtungen, angeordnete Maßnahmen, Verlauf und relevante Abweichungen werden nach den geltenden Vorgaben dokumentiert und übergeben. Die Patientensicherheit hat Vorrang; gleichzeitig darf die Kontamination nicht verschwiegen werden.</p>
+      <div class="remember"><strong>&nbsp;Prüfungsimpuls:</strong> Begründe deine Priorisierung. Erkläre, warum du die ärztliche Person sofort informierst, statt zunächst stillschweigend den Handschuh zu wechseln.</div>
+    </section>
+
+    <section class="summary">
+      <p class="eyebrow">Das musst du mitnehmen</p>
+      <h2>Sichere Assistenz bedeutet Aufmerksamkeit und klare Entscheidungen</h2>
+      <p>Während ambulanter chirurgischer Eingriffe unterstützt die MFA den ärztlich verantworteten Ablauf innerhalb ihrer Qualifikation und Aufgabenübertragung. Entscheidend sind die sichere Trennung steriler und unsteriler Tätigkeiten, kontrollierte Instrumentenübergaben, vorausschauende Organisation und eindeutige Kommunikation. Kontaminationen müssen sofort benannt werden. Auffällige Patientenreaktionen erfordern unverzügliche Aufmerksamkeit und ärztliche Beurteilung. Auch unter Zeitdruck stehen Patientensicherheit, klare Verantwortlichkeiten und nachvollziehbare Übergaben an erster Stelle.</p>
+    </section>
+
+    <section class="self-check">
+      <p class="eyebrow">Selbstcheck · Premium</p>
+      <h2>Prüfe deine Entscheidungen</h2>
+
+      <details>
+        <summary>1. Während eines Eingriffs wird ein Instrument angefordert, das du nicht eindeutig identifizieren kannst. Wie handelst du?</summary>
+        <p>Du fragst unmittelbar nach und lässt die Anforderung eindeutig klären. Du reichst kein Instrument aufgrund einer Vermutung an und ersetzt es nicht eigenmächtig durch ein ähnlich aussehendes Modell. Die sichere Assistenz verlangt, dass Instrument, Anforderung und vorgesehene Anwendung zusammenpassen.</p>
+      </details>
+
+      <details>
+        <summary>2. Du arbeitest steril und sollst gleichzeitig ein unsteriles Gerät bedienen. Warum ist das problematisch?</summary>
+        <p>Die Aufgaben gehören zu unterschiedlichen hygienischen Arbeitsbereichen. Ein unkontrollierter Wechsel kann das sterile Feld gefährden. Du sprichst die Aufgabenüberschneidung an und organisierst eine klare Rollenverteilung. Muss ein Rollenwechsel erfolgen, sind die vorgeschriebenen Hygieneschritte und gegebenenfalls eine erneute sterile Vorbereitung erforderlich.</p>
+      </details>
+
+      <details>
+        <summary>3. Während der Instrumentenübergabe bemerkst du eine Kontamination deines sterilen Handschuhs. Die Ärztin arbeitet weiter. Was ist richtig?</summary>
+        <p>Du meldest die Kontamination sofort und verwendest die betroffene Hand nicht weiter für sterile Tätigkeiten. Die weitere Vorgehensweise wird mit der verantwortlichen ärztlichen Person abgestimmt. Ein erforderlicher Handschuhwechsel erfolgt nach dem festgelegten hygienischen Verfahren. Die Kontamination darf nicht verschwiegen werden, auch wenn eine Unterbrechung entsteht.</p>
+      </details>
+
+      <details>
+        <summary>4. Der Patient wird während einer Hautexzision plötzlich blass und klagt über Schwindel. Welche Priorität setzt du?</summary>
+        <p>Du informierst unverzüglich die Ärztin oder den Arzt über die konkrete Beobachtung. Die mögliche akute Patientenreaktion hat Vorrang vor dem routinemäßigen Instrumentenablauf. Du unterstützt die angeordneten Maßnahmen und die gegebenenfalls erforderliche Notfallorganisation innerhalb deiner Kompetenz. Die medizinische Beurteilung erfolgt ärztlich.</p>
+      </details>
+
+      <details>
+        <summary>5. Im Premium-Praxisfall treten Kontamination und Patientenreaktion gleichzeitig auf. Warum genügt es nicht, einfach den Handschuh zu wechseln?</summary>
+        <p>Weil damit die möglicherweise akute Gefährdung des Patienten nicht beurteilt wäre und die Ärztin wichtige Informationen nicht erhielte. Beide Probleme müssen sofort transparent kommuniziert werden. Die Patientenreaktion erfordert vorrangige medizinische Aufmerksamkeit; gleichzeitig darf mit kontaminiertem Handschuh nicht steril weitergearbeitet werden. Nach klarer Aufgabenverteilung werden die sichere Versorgung, die hygienische Wiederherstellung und die erforderliche Dokumentation organisiert.</p>
+      </details>
+    </section>
+
+    <footer class="next-lesson">
+      <p class="eyebrow">Als Nächstes · Premium</p>
+      <h2>Wunddokumentation und Qualitätssicherung</h2>
+      <p>In Lektion 19 analysierst du komplexe Dokumentationssituationen, sicherst die Nachvollziehbarkeit der Wundversorgung und begründest qualitätsbezogene Entscheidungen anhand realistischer Praxisfälle.</p>
+    </footer>
+  </div>
+</main>
+</Layout>

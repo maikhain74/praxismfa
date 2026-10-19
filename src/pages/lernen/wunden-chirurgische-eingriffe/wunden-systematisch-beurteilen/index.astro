@@ -1,0 +1,587 @@
+---
+const title = "Wunden systematisch beurteilen";
+const description = "Wunden strukturiert beobachten: Wundgröße, Wundgrund, Wundrand, Wundumgebung, Exsudat und Schmerzen für MFA.";
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+    <main>
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">
+        ← Zurück zu Wunden &amp; chirurgische Eingriffe
+      </a>
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 05</p>
+        <h1>Wunden systematisch beurteilen</h1>
+        <p class="intro">
+          Eine Wunde richtig zu beobachten bedeutet mehr,
+          als nur ihre Größe anzusehen. Du lernst,
+          welche Merkmale wichtig sind, wie du Veränderungen
+          erkennst und Beobachtungen strukturiert weitergibst.
+        </p>
+      </section>
+      <section class="learning-goal">
+        <p class="eyebrow">Dein Lernziel</p>
+        <h2>Das kannst du nach dieser Lektion</h2>
+        <p>
+          Du benennst die wichtigsten Kriterien einer
+          strukturierten Wundbeobachtung, beschreibst
+          sichtbare Merkmale sachlich und erkennst,
+          wann eine unverzügliche ärztliche Beurteilung
+          erforderlich ist.
+        </p>
+      </section>
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum Wunden systematisch beobachten?</h2>
+        <p>Bei einer Wunde reicht der erste Blick häufig nicht aus. Verschiedene Merkmale liefern wichtige Informationen über den aktuellen Zustand und mögliche Veränderungen.</p>
+        <p>Eine strukturierte Beobachtung hilft, relevante Angaben vollständig und nachvollziehbar an die ärztliche Person weiterzugeben.</p>
+        <p>Wichtig sind unter anderem Lokalisation, Größe, sichtbare Tiefe, Wundgrund, Wundrand, Wundumgebung, Exsudat und Schmerzen.</p>
+        <p>Die Beobachtung erfolgt unter hygienischen Bedingungen und entsprechend der Zuständigkeit und den Praxisstandards.</p>
+        <p>Die medizinische Bewertung des Befunds und die Entscheidung über die Behandlung erfolgen ärztlich.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Systematisch beobachten bedeutet: immer nach nachvollziehbaren Kriterien vorgehen.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Wundlokalisation und Verletzungsursache</h2>
+        <p>Die Wundlokalisation beschreibt, an welcher Körperstelle sich eine Wunde befindet. Möglichst genaue Angaben erleichtern die weitere Versorgung.</p>
+        <p>Auch die Entstehungsursache ist wichtig: Eine Schnittverletzung, eine Druckschädigung und eine Bisswunde können unterschiedliche Risiken aufweisen.</p>
+        <p>Bei der Aufnahme werden der Zeitpunkt der Entstehung, der geschilderte Hergang und bereits erfolgte Maßnahmen erfragt.</p>
+        <p>Besondere Aufmerksamkeit verdienen Verletzungen in der Nähe von Gelenken, an Händen, Füßen oder in anderen funktionell empfindlichen Regionen.</p>
+        <p>Du gibst relevante Angaben weiter, ohne aus dem Verletzungsmechanismus eigenständig eine gesicherte Diagnose abzuleiten.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Wo und wie eine Wunde entstanden ist, gehört zu den grundlegenden Informationen.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Wundgröße und sichtbare Tiefe</h2>
+        <p>Zur Beschreibung einer Wunde können Länge und Breite in Zentimetern erfasst werden. Die Messmethode sollte innerhalb der Praxis einheitlich sein.</p>
+        <p>Bei unregelmäßigen Wunden muss klar sein, wie die Maße ermittelt wurden. Eine standardisierte Vorgehensweise erleichtert spätere Vergleiche.</p>
+        <p>Die sichtbare Tiefe und mögliche Gewebebeteiligung sind ebenfalls relevant. Eine kleine Hautöffnung schließt eine tiefer reichende Verletzung nicht aus.</p>
+        <p>Die tatsächliche Ausdehnung tiefer Gewebeschäden lässt sich nicht allein anhand der Oberfläche bestimmen.</p>
+        <p>Eine invasive Tiefenmessung, Sondierung oder Manipulation des Wundkanals erfolgt nicht eigenständig durch die MFA.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Messwerte müssen nachvollziehbar sein. Die sichtbare Wundgröße zeigt nicht immer das gesamte Verletzungsausmaß.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Den Wundgrund beobachten</h2>
+        <p>Als Wundgrund wird die sichtbare Fläche innerhalb der Wunde bezeichnet. Ihr Erscheinungsbild kann Hinweise auf vorhandenes Gewebe und den Heilungsverlauf liefern.</p>
+        <p>Rötliches, feuchtes Granulationsgewebe kann bei der Gewebeneubildung auftreten. Neu gebildetes Epithel kann vom Wundrand aus sichtbar werden.</p>
+        <p>Gelbliche Beläge können unterschiedliche Ursachen haben und dürfen nicht allein anhand der Farbe sicher eingeordnet werden.</p>
+        <p>Dunkles oder schwarzes Gewebe kann auf abgestorbenes Gewebe hinweisen und erfordert eine fachliche Beurteilung.</p>
+        <p>Du beschreibst, was sichtbar ist, und gibst Auffälligkeiten weiter. Ob beispielsweise eine Nekrose vorliegt, wird medizinisch beurteilt.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Beschreibe sichtbare Merkmale möglichst sachlich, statt aus einer Farbe sofort eine Diagnose abzuleiten.
+        </div>
+      </section>
+
+      <figure style="margin: 36px 0; text-align: center;">
+        <img
+          src="/images/wunden-systematisch-beurteilen.png"
+          alt="PraxisMFA Lernbild: Wunden anhand wichtiger Beobachtungskriterien systematisch erfassen"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Wundrand und Wundumgebung</h2>
+        <p>Der Wundrand bildet den Übergang zwischen Wunde und angrenzender Haut. Beobachtet werden beispielsweise Form, Beschaffenheit und Veränderungen.</p>
+        <p>Die Wundumgebung umfasst die Haut unmittelbar außerhalb des Wundbereichs.</p>
+        <p>Rötung, Schwellung, Überwärmung, Aufweichung der Haut durch Feuchtigkeit oder andere sichtbare Veränderungen können relevant sein.</p>
+        <p>Eine aufgeweichte Wundumgebung wird als mazeriert bezeichnet. Sie kann unter anderem bei anhaltender Feuchtigkeit entstehen.</p>
+        <p>Zunehmende Rötung oder Schwellung muss im Zusammenhang mit Beschwerden und Verlauf ärztlich beurteilt werden.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Wundrand und Wundumgebung gehören immer zur Beobachtung dazu.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Exsudat und Geruch erfassen</h2>
+        <p>Exsudat ist Flüssigkeit, die aus einer Wunde austritt. Menge und Beschaffenheit können sich im Heilungsverlauf verändern.</p>
+        <p>Beschreibungen wie geringe, mäßige oder starke Sekretmenge müssen sich an den festgelegten Beobachtungskriterien der Praxis orientieren.</p>
+        <p>Wundsekret kann beispielsweise klar, blutig oder trüb erscheinen. Das Aussehen allein beweist keine bestimmte Ursache.</p>
+        <p>Auch ein auffälliger Geruch kann ein wichtiger Hinweis sein. Er ist jedoch für sich genommen kein sicherer Nachweis einer Infektion.</p>
+        <p>Plötzlich verändertes Sekret, eine deutliche Zunahme oder weitere Beschwerden werden der ärztlichen Person mitgeteilt.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Exsudat und Geruch immer gemeinsam mit dem gesamten Wundbefund betrachten.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Schmerzen und Beschwerden erfragen</h2>
+        <p>Zur Wundbeobachtung gehört auch die Sicht des Patienten. Schmerzen, Spannungsgefühl, Juckreiz oder Bewegungseinschränkungen können wichtige Hinweise liefern.</p>
+        <p>Schmerzen lassen sich beispielsweise mit einer numerischen Ratingskala von 0 bis 10 erfassen, sofern dies für den Patienten geeignet ist.</p>
+        <p>Dabei bedeutet 0 kein Schmerz und 10 der stärkste vorstellbare Schmerz.</p>
+        <p>Wichtig sind neben der Stärke auch Verlauf, Lokalisation und Veränderungen der Beschwerden.</p>
+        <p>Plötzlich starke oder zunehmende Schmerzen, Sensibilitätsstörungen oder andere auffällige Beschwerden müssen zeitnah ärztlich abgeklärt werden.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Die Angaben des Patienten sind ein wichtiger Bestandteil der strukturierten Wundbeobachtung.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Beobachtungen strukturiert weitergeben</h2>
+        <p>Eine gute Übergabe enthält die wesentlichen Informationen zum Verletzungshergang, zur Wundlokalisation und zu den beobachteten Merkmalen.</p>
+        <p>Du beschreibst Veränderungen konkret: beispielsweise eine zunehmende Rötung, mehr Wundsekret oder neu aufgetretene Schmerzen.</p>
+        <p>Vergleiche mit früheren Beobachtungen können hilfreich sein, wenn sie unter vergleichbaren Bedingungen erfolgt sind.</p>
+        <p>Starke Blutung, rasch zunehmende Beschwerden, ausbreitende Rötung, Fieber oder eine deutliche Verschlechterung des Allgemeinzustands erfordern unverzügliche ärztliche Aufmerksamkeit.</p>
+        <p>Die ausführliche standardisierte Wunddokumentation und Qualitätssicherung behandeln wir später in Lektion 19.</p>
+        <div class="remember">
+          <strong>Merke:</strong> Sachlich beobachten, verständlich weitergeben und bei Warnzeichen sofort handeln.
+        </div>
+      </section>
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>Die Wunde sieht heute anders aus</h2>
+        <p>
+          Ein 67-jähriger Patient kommt zur ärztlich
+          angeordneten Wundkontrolle am Unterschenkel.
+          Er berichtet, dass die Wunde seit gestern
+          stärker schmerzt und der Verband deutlich
+          feuchter geworden ist.
+        </p>
+        <h3>Wie gehst du als MFA vor?</h3>
+        <p>
+          Du erfragst den Verlauf und die aktuellen
+          Beschwerden. Im Rahmen deiner Zuständigkeit
+          beobachtest du die sichtbaren Veränderungen
+          und beachtest die hygienischen Praxisstandards.
+        </p>
+        <p>
+          Du gibst die Angaben zu Schmerzen,
+          Sekretmenge und möglichen Veränderungen
+          der Wundumgebung zeitnah an die ärztliche
+          Person weiter.
+        </p>
+        <p>
+          Du stellst keine eigenständige Diagnose
+          und veränderst die Wundtherapie nicht
+          ohne entsprechende Anordnung.
+        </p>
+        <p>
+          Der Fall zeigt, wie wichtig eine strukturierte
+          Beobachtung und die Berücksichtigung
+          der Patientenangaben sind.
+        </p>
+      </section>
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <ul>
+          <li>Wunden werden anhand festgelegter Kriterien beobachtet.</li>
+          <li>Lokalisation, Größe und sichtbare Tiefe sind wichtige Angaben.</li>
+          <li>Wundgrund, Wundrand und Wundumgebung werden getrennt betrachtet.</li>
+          <li>Exsudat und Geruch sind Hinweise, aber keine alleinigen Diagnosen.</li>
+          <li>Schmerzen und andere Patientenangaben gehören zur Beobachtung.</li>
+          <li>Veränderungen im Verlauf sind besonders wichtig.</li>
+          <li>Die MFA beobachtet und informiert; medizinische Entscheidungen erfolgen ärztlich.</li>
+        </ul>
+      </section>
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Prüfe dein Wissen</h2>
+        <details>
+          <summary>1. Welche Merkmale gehören zu einer strukturierten Wundbeobachtung?</summary>
+          <p>Unter anderem Lokalisation, Größe, sichtbare Tiefe, Wundgrund, Wundrand, Wundumgebung, Exsudat, Geruch und Schmerzen.</p>
+        </details>
+        <details>
+          <summary>2. Warum sollte die Wundgröße nach einer einheitlichen Methode gemessen werden?</summary>
+          <p>Damit Angaben nachvollziehbar sind und sich Veränderungen im Verlauf besser vergleichen lassen.</p>
+        </details>
+        <details>
+          <summary>3. Was bedeutet Mazeration?</summary>
+          <p>Eine Aufweichung der Haut durch länger anhaltende Feuchtigkeit.</p>
+        </details>
+        <details>
+          <summary>4. Beweist unangenehmer Wundgeruch allein eine Infektion?</summary>
+          <p>Nein. Geruch ist ein Beobachtungsmerkmal, muss aber zusammen mit weiteren Befunden ärztlich beurteilt werden.</p>
+        </details>
+        <details>
+          <summary>5. Welche Aufgabe hat die MFA bei auffälligen Wundveränderungen?</summary>
+          <p>Die Veränderungen sachlich erfassen, unverzüglich weitergeben und die angeordnete Versorgung unterstützen.</p>
+        </details>
+      </section>
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Wundheilungsstörungen und Infektionszeichen erkennen</h2>
+        <p>
+          In Lektion 06 lernst du, welche Veränderungen
+          auf eine gestörte Wundheilung oder eine
+          mögliche Wundinfektion hinweisen können.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

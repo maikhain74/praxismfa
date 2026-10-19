@@ -1,0 +1,541 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Fäden und Klammern entfernen | PraxisMFA">
+  <main>
+    <div class="lesson-container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 14 · Kostenlos</p>
+        <h1>Fäden und Klammern entfernen</h1>
+        <p>Nach einer chirurgischen Wundversorgung müssen äußere Hautfäden oder Hautklammern häufig wieder entfernt werden. Du lernst, welche Voraussetzungen erfüllt sein müssen, wie die Entfernung vorbereitet und durchgeführt wird und worauf du bei der Nachversorgung und Beobachtung achten musst.</p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="box-label">Das lernst du</p>
+        <p>Du beurteilst wichtige Beobachtungsmerkmale einer verschlossenen Wunde, kennst die Voraussetzungen für das Entfernen von Fäden und Hautklammern, unterscheidest die grundlegenden Vorgehensweisen und erkennst Komplikationen. Außerdem verstehst du die Aufgaben und Verantwortungsgrenzen der MFA.</p>
+      </section>
+
+      <img
+        src="/images/faeden-und-klammern-entfernen.png"
+        alt="Lernübersicht zum sicheren Entfernen von Fäden und Hautklammern"
+        loading="lazy"
+        style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+      />
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum Fäden und Klammern entfernt werden</h2>
+        <p>Äußere Hautfäden und Hautklammern halten die Wundränder während der frühen Heilungsphase zusammen. Sobald das Gewebe ausreichend stabil ist, werden sie bei entsprechender ärztlicher Entscheidung entfernt.</p>
+        <p>Bleibt nicht resorbierbares Hautnahtmaterial unnötig lange liegen, können beispielsweise lokale Reizungen oder sichtbare Stichkanalmarkierungen entstehen. Eine zu frühe Entfernung kann dagegen dazu führen, dass die Wundränder auseinanderweichen.</p>
+        <p>Nicht jedes Nahtmaterial muss entfernt werden. Resorbierbare Fäden werden vom Körper im Laufe der Zeit abgebaut. Auch bestimmte nicht resorbierbare Fäden können bei inneren Nähten dauerhaft verbleiben.</p>
+        <div class="remember"><strong>Merke:</strong> Entscheidend ist nicht allein, wie viele Tage seit dem Eingriff vergangen sind, sondern ob die Wunde ausreichend verheilt ist und eine ärztliche Freigabe vorliegt.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Den richtigen Zeitpunkt erkennen</h2>
+        <p>Der Zeitpunkt der Entfernung hängt von der Körperregion, der Art der Wunde, der Spannung auf den Wundrändern und individuellen Heilungsfaktoren ab.</p>
+        <p>Als grobe Orientierung können bei unkomplizierten Hautnähten folgende Zeiträume vorkommen:</p>
+        <ul>
+          <li><strong>&nbsp;Gesicht:</strong> häufig etwa 4 bis 7 Tage.</li>
+          <li><strong>&nbsp;Kopfhaut:</strong> häufig etwa 7 bis 10 Tage.</li>
+          <li><strong>&nbsp;Rumpf und obere Extremitäten:</strong> häufig etwa 7 bis 14 Tage.</li>
+          <li><strong>&nbsp;Untere Extremitäten und Bereiche mit hoher Spannung:</strong> häufig etwa 10 bis 14 Tage oder länger.</li>
+        </ul>
+        <p>Diese Angaben sind keine verbindlichen Entfernungstermine. Bei verzögerter Wundheilung, Diabetes mellitus, Durchblutungsstörungen, Infektionen oder hoher mechanischer Belastung kann eine längere Stabilisierung notwendig sein.</p>
+        <p>Die konkrete Entscheidung über Zeitpunkt und gegebenenfalls schrittweise Entfernung trifft die behandelnde Ärztin oder der behandelnde Arzt.</p>
+        <div class="remember"><strong>Merke:</strong> Ein Termin im Kalender ersetzt keine Wundbeurteilung. Bei Unsicherheit wird vor der Entfernung ärztlich Rücksprache gehalten.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Wunde vor der Entfernung beurteilen</h2>
+        <p>Vor dem Entfernen wird geprüft, ob die Wunde unauffällig erscheint und die ärztliche Anordnung vorliegt. Die MFA achtet dabei auf beobachtbare Veränderungen und gibt Auffälligkeiten weiter.</p>
+        <ul>
+          <li><strong>&nbsp;Wundränder:</strong> Liegen sie aneinander oder zeigen sich offene Stellen?</li>
+          <li><strong>&nbsp;Rötung und Schwellung:</strong> Sind sie gering und rückläufig oder nehmen sie zu?</li>
+          <li><strong>&nbsp;Sekret:</strong> Ist die Wunde trocken oder tritt Flüssigkeit aus?</li>
+          <li><strong>&nbsp;Schmerzen:</strong> Sind die Beschwerden rückläufig oder haben sie zugenommen?</li>
+          <li><strong>&nbsp;Wundumgebung:</strong> Bestehen Überwärmung, Hautveränderungen oder Hinweise auf eine lokale Reizung?</li>
+          <li><strong>&nbsp;Allgemeinzustand:</strong> Liegen Fieber oder andere Hinweise auf eine mögliche Infektion vor?</li>
+        </ul>
+        <p>Eine oberflächlich geschlossene Wunde muss nicht in allen Gewebeschichten bereits vollständig belastbar sein. Deshalb darf die Stabilität nicht allein nach dem äußeren Eindruck beurteilt werden.</p>
+        <div class="remember"><strong>Merke:</strong> Klaffende Wundränder, zunehmende Entzündungszeichen oder ungewöhnliche Schmerzen müssen vor der Entfernung ärztlich beurteilt werden.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Materialien und hygienische Vorbereitung</h2>
+        <p>Eine sorgfältige Vorbereitung unterstützt einen sicheren und ruhigen Ablauf. Welche Materialien benötigt werden, richtet sich nach dem Verfahren und dem Hygieneplan der Praxis.</p>
+        <ul>
+          <li>Ärztliche Anordnung und Patientenidentität prüfen.</li>
+          <li>Patientin oder Patienten über den vorgesehenen Ablauf informieren und bequem lagern.</li>
+          <li>Händehygiene entsprechend dem Hygieneplan durchführen.</li>
+          <li>Geeignete Einmalhandschuhe und bei Bedarf weitere Schutzausrüstung bereitlegen.</li>
+          <li>Für Fäden sterile Fadenentfernungsschere beziehungsweise geeignetes Schneideinstrument und Pinzette vorbereiten.</li>
+          <li>Für Hautklammern einen dafür vorgesehenen Klammerentferner bereitlegen.</li>
+          <li>Geeignete Materialien zur Wundreinigung nach Anordnung, sterile Kompressen und gegebenenfalls Wundverschlussstreifen vorbereiten.</li>
+          <li>Abwurfbehälter und Dokumentationsmöglichkeit bereitstellen.</li>
+        </ul>
+        <p>Die Wunde wird entsprechend der ärztlichen Anordnung und den geltenden Hygienestandards versorgt. Instrumente und Materialien müssen für den vorgesehenen Zweck geeignet sein. Scharfe Gegenstände werden unmittelbar sicher entsorgt.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Fäden entfernen: grundlegendes Vorgehen</h2>
+        <p>Das Entfernen äußerer Hautfäden erfolgt nur nach ärztlicher Anordnung und im Rahmen einer zulässigen Delegation an eine entsprechend qualifizierte MFA.</p>
+        <p>Bei einer üblichen Einzelknopfnaht wird der Knoten mit einer geeigneten Pinzette vorsichtig angehoben. Der Faden wird möglichst dicht an der Haut auf einer Seite des Knotens durchtrennt und anschließend behutsam herausgezogen. Dabei soll der außerhalb der Haut gelegene Fadenabschnitt möglichst nicht durch den Stichkanal gezogen werden.</p>
+        <p>Während der Entfernung werden Wundränder, Schmerzen und mögliche Blutungen beobachtet. Bei Widerstand, unklarer Fadenführung, eingewachsenem Material oder beginnendem Auseinanderweichen der Wunde wird die Maßnahme unterbrochen und ärztlich Rücksprache gehalten.</p>
+        <p>Bei fortlaufenden Nähten oder besonderen Nahttechniken kann das Vorgehen abweichen. Deshalb müssen Nahtart und ärztliche Vorgaben vor Beginn geklärt sein.</p>
+        <div class="remember"><strong>Merke:</strong> Fäden niemals mit Kraft herausziehen. Bei Widerstand oder einer auffälligen Wunde wird die Entfernung gestoppt.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Hautklammern sicher entfernen</h2>
+        <p>Hautklammern werden mit einem speziell dafür vorgesehenen Klammerentferner entfernt. Das Instrument verformt die Klammer kontrolliert, sodass ihre Enden aus der Haut gelöst werden können.</p>
+        <p>Vor Beginn werden Wunde und Klammern beurteilt, die ärztliche Anordnung geprüft und das passende Instrument vorbereitet.</p>
+        <p>Bei der Entfernung wird der Klammerentferner entsprechend seiner Gebrauchsanweisung angesetzt und betätigt. Die Klammer wird anschließend vorsichtig herausgenommen. Dabei ist darauf zu achten, die Haut nicht unnötig zu belasten.</p>
+        <p>Je nach Wundsituation kann die Ärztin oder der Arzt eine schrittweise Entfernung anordnen, beispielsweise zunächst jede zweite Klammer. Ob dies sinnvoll ist, hängt von der Stabilität der Wunde ab.</p>
+        <p>Bei Schmerzen, Widerstand, Blutung oder sich öffnenden Wundrändern wird die Entfernung unterbrochen und ärztliche Unterstützung eingeholt.</p>
+        <div class="remember"><strong>Merke:</strong> Hautklammern werden nicht mit einer gewöhnlichen Pinzette herausgezogen. Dafür ist ein geeigneter Klammerentferner erforderlich.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Nachversorgung und mögliche Komplikationen</h2>
+        <p>Nach der Entfernung wird die Wunde erneut betrachtet. Dabei wird geprüft, ob die Wundränder weiterhin aneinanderliegen und ob Blutungen oder andere Auffälligkeiten auftreten.</p>
+        <p>Je nach ärztlicher Anordnung können Wundverschlussstreifen zur zusätzlichen Stabilisierung angebracht oder ein geeigneter Verband angelegt werden.</p>
+        <p>Wichtige mögliche Komplikationen sind:</p>
+        <ul>
+          <li><strong>&nbsp;Wunddehiszenz:</strong> Die Wundränder weichen auseinander.</li>
+          <li><strong>&nbsp;Nachblutung:</strong> Nach der Entfernung tritt Blut aus der Wunde aus.</li>
+          <li><strong>&nbsp;Infektionszeichen:</strong> Zunehmende Rötung, Schwellung, Überwärmung, Schmerzen, eitriges Sekret oder Fieber.</li>
+          <li><strong>&nbsp;Materialreste:</strong> Ein Faden- oder Klammeranteil lässt sich nicht vollständig entfernen.</li>
+          <li><strong>&nbsp;Hautreizung:</strong> Die Wundumgebung reagiert empfindlich oder zeigt lokale Veränderungen.</li>
+        </ul>
+        <p>Die Patientin oder der Patient erhält die vorgesehenen Hinweise zur Wundschonung, Körperpflege und Beobachtung von Warnzeichen. Eine frisch verschlossene beziehungsweise gerade von Fäden oder Klammern befreite Wunde kann trotz äußerlich gutem Aussehen noch mechanisch empfindlich sein.</p>
+        <div class="remember"><strong>Merke:</strong> Öffnet sich die Wunde oder treten deutliche Komplikationen auf, ist eine zeitnahe ärztliche Beurteilung erforderlich. Die MFA versucht nicht eigenständig, die Wunde erneut zu verschließen.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Aufgaben und Verantwortungsgrenzen der MFA</h2>
+        <p>Die MFA kann bei der Faden- und Klammerentfernung wichtige Aufgaben übernehmen. Voraussetzung für eine eigenständige Durchführung im delegierten Rahmen sind eine ärztliche Anordnung, die entsprechende Qualifikation und eine geeignete Wundsituation.</p>
+        <ul>
+          <li>Patientenidentität und ärztlichen Auftrag prüfen.</li>
+          <li>Materialien und Arbeitsplatz hygienisch vorbereiten.</li>
+          <li>Wunde beobachten und Auffälligkeiten vor Beginn mitteilen.</li>
+          <li>Die angeordnete Maßnahme im zulässigen delegierten Rahmen durchführen oder dabei assistieren.</li>
+          <li>Bei Komplikationen die Maßnahme unterbrechen und ärztliche Hilfe hinzuziehen.</li>
+          <li>Die Wunde nach ärztlicher Vorgabe versorgen und Patientenhinweise weitergeben.</li>
+          <li>Datum, Lokalisation, entfernte Fäden oder Klammern, Wundzustand, Besonderheiten und Nachversorgung sachlich dokumentieren.</li>
+        </ul>
+        <p>Die ärztliche Entscheidung über den richtigen Zeitpunkt, die Eignung der Wunde und das weitere Vorgehen bei Komplikationen bleibt in ärztlicher Verantwortung. Eine MFA darf eine auffällige Wunde nicht eigenmächtig als ausreichend verheilt einstufen.</p>
+        <div class="remember"><strong>Merke:</strong> Eine delegierte Tätigkeit bedeutet nicht, dass die ärztliche Verantwortung für Indikation und Anordnung entfällt. Die MFA muss ihre eigenen fachlichen Grenzen kennen.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">PRAXISSITUATION</p>
+        <h2>„Die Fäden können doch heute raus, oder?“</h2>
+        <p>Eine 58-jährige Patientin erscheint zehn Tage nach einer chirurgischen Versorgung am Unterschenkel zur geplanten Fadenentfernung. Sie berichtet, dass die Wunde seit gestern stärker schmerzt. Beim Betrachten fällt dir eine deutliche Rötung auf. An einer Stelle tritt gelbliches Sekret aus.</p>
+        <p>Die Patientin sagt: „Der Termin steht doch schon seit einer Woche fest. Dann können Sie die Fäden jetzt einfach entfernen.“</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Überlege, welche Warnzeichen du erkennst, wie du gegenüber der Patientin reagierst und welche Schritte vor einer möglichen Fadenentfernung notwendig sind.</p>
+        <p><strong>&nbsp;Lernziel:</strong> Ein geplanter Termin allein rechtfertigt keine Entfernung. Zunehmende Schmerzen, Rötung und Sekret können auf eine Wundkomplikation hinweisen. Du unterbrichst die geplante Routine, informierst die behandelnde Ärztin oder den behandelnden Arzt und dokumentierst die Beobachtungen. Über das weitere Vorgehen wird ärztlich entschieden.</p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <h2>Erst die Wunde beurteilen, dann entfernen</h2>
+        <p>Fäden und Hautklammern dürfen erst entfernt werden, wenn die Wunde dafür geeignet ist und eine ärztliche Anordnung vorliegt. Entscheidend sind Wundzustand, Lokalisation, Heilungsverlauf und individuelle Risiken. Die MFA bereitet hygienisch vor, arbeitet bei zulässiger Delegation sorgfältig, erkennt Warnzeichen und sorgt für eine sichere Nachversorgung und Dokumentation.</p>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Teste dein Wissen</h2>
+
+        <details>
+          <summary>1. Warum dürfen Fäden nicht ausschließlich nach einem festen Zeitplan entfernt werden?</summary>
+          <p>Weil die Wundheilung von der Körperregion, der Belastung, der Wundart und individuellen Faktoren abhängt. Vor der Entfernung muss die Wunde ausreichend stabil sein. Der konkrete Zeitpunkt wird ärztlich festgelegt.</p>
+        </details>
+
+        <details>
+          <summary>2. Welche Warnzeichen musst du vor einer Fadenentfernung beachten?</summary>
+          <p>Insbesondere klaffende Wundränder, zunehmende Rötung, Überwärmung, Schwellung, Schmerzen, auffälliges Sekret, Blutung oder Fieber. Solche Beobachtungen müssen vor der Entfernung ärztlich abgeklärt werden.</p>
+        </details>
+
+        <details>
+          <summary>3. Warum wird bei einer Einzelknopfnaht möglichst dicht an der Haut geschnitten?</summary>
+          <p>Damit möglichst wenig von dem zuvor außerhalb der Haut gelegenen Fadenabschnitt durch den Stichkanal gezogen wird. Der Knoten wird vorsichtig angehoben, der Faden an geeigneter Stelle durchtrennt und ohne Kraft entfernt.</p>
+        </details>
+
+        <details>
+          <summary>4. Welches Instrument wird zum Entfernen von Hautklammern verwendet?</summary>
+          <p>Ein dafür vorgesehener Klammerentferner. Er verformt die Klammer kontrolliert, sodass ihre Enden aus der Haut gelöst werden können. Das Instrument wird entsprechend seiner Gebrauchsanweisung eingesetzt.</p>
+        </details>
+
+        <details>
+          <summary>5. Was machst du, wenn die Wundränder während der Entfernung auseinanderweichen?</summary>
+          <p>Du unterbrichst die Entfernung sofort, vermeidest zusätzliche Belastung und informierst die behandelnde Ärztin oder den behandelnden Arzt. Die weitere Versorgung erfolgt nach ärztlicher Entscheidung. Die Beobachtung und die eingeleiteten Schritte werden dokumentiert.</p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Kleine chirurgische Eingriffe in der Arztpraxis</h2>
+        <p>In Lektion 15 lernst du typische ambulante chirurgische Eingriffe und ihre organisatorischen Abläufe kennen.</p>
+      </footer>
+    </div>
+  </main>
+</Layout>

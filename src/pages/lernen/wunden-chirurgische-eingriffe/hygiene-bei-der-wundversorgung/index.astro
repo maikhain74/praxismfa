@@ -1,0 +1,501 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Hygiene bei der Wundversorgung | PraxisMFA">
+  <main>
+    <div class="lesson-container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 08 · Kostenlos</p>
+        <h1>Hygiene bei der Wundversorgung</h1>
+        <p>Bei der Wundversorgung können Krankheitserreger in eine Wunde gelangen oder von einer Wunde auf andere Menschen und Oberflächen übertragen werden. Du lernst, wie du hygienische Risiken im Praxisalltag erkennst und vermeidest.</p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="box-label">Das lernst du</p>
+        <p>Du bereitest den Arbeitsplatz hygienisch vor, setzt Händehygiene und Schutzausrüstung situationsgerecht ein, schützt sterile Materialien und vermeidest Kontaminationen während und nach der Wundversorgung.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum Wundversorgung besondere Hygiene erfordert</h2>
+        <p>Die unverletzte Haut bildet eine wichtige Schutzbarriere gegen Mikroorganismen. Bei einer offenen Wunde ist diese Barriere unterbrochen.</p>
+        <p>Deshalb müssen sowohl die Wunde als auch die beteiligten Personen vor vermeidbaren Infektionsrisiken geschützt werden. Gleichzeitig darf vorhandenes Wundsekret nicht auf andere Patienten, Materialien oder Arbeitsflächen übertragen werden.</p>
+        <div class="remember"><strong>Merke:</strong> Wundhygiene schützt in beide Richtungen: vor dem Eintrag von Erregern in die Wunde und vor ihrer Weiterverbreitung.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Infektionsrisiken bei offenen und postoperativen Wunden</h2>
+        <p>Offene Wunden können durch direkten Kontakt, kontaminierte Materialien oder unsachgemäße Arbeitsabläufe mit Mikroorganismen in Berührung kommen.</p>
+        <p>Auch eine frisch verschlossene Operationswunde muss vor unnötiger Kontamination geschützt werden. Besondere Aufmerksamkeit erfordern unter anderem nässende Wunden, infizierte Wunden und Patienten mit erhöhtem Infektionsrisiko.</p>
+        <p>Welche Schutzmaßnahmen notwendig sind, hängt von der konkreten Wundsituation, der geplanten Tätigkeit und dem Hygieneplan der Praxis ab.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Den Behandlungsplatz für die Wundversorgung vorbereiten</h2>
+        <p>Vor Beginn der Wundversorgung wird der Arbeitsplatz so vorbereitet, dass saubere Materialien geschützt und kontaminierte Materialien sicher abgelegt werden können.</p>
+        <ul>
+          <li>Geeignete, hygienisch aufbereitete Arbeitsfläche bereitstellen</li>
+          <li>Benötigte Verbandmaterialien und Hilfsmittel vollständig vorbereiten</li>
+          <li>Sterile Verpackungen auf Unversehrtheit und Verwendbarkeit prüfen</li>
+          <li>Entsorgungsmöglichkeiten für gebrauchte Materialien bereitstellen</li>
+          <li>Saubere und kontaminierte Arbeitsbereiche klar trennen</li>
+        </ul>
+        <p>Die konkrete Vorbereitung richtet sich nach dem vorgesehenen Eingriff und dem geltenden Praxisstandard.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Händehygiene und Handschuhwechsel im Wundversorgungsablauf</h2>
+        <p>Die hygienische Händedesinfektion ist insbesondere vor einer aseptischen Tätigkeit und nach möglichem Kontakt mit infektiösem Material erforderlich. Weitere Indikationen ergeben sich aus den etablierten Händehygieneregeln.</p>
+        <p>Bei möglichem Kontakt mit Blut, Wundsekret oder kontaminierten Materialien werden geeignete Einmalhandschuhe getragen.</p>
+        <p>Ein häufiger Fehler ist es, mit denselben kontaminierten Handschuhen anschließend saubere Verbandmaterialien anzufassen.</p>
+        <div class="remember"><strong>Merke:</strong> Handschuhe bei einem Wechsel der Tätigkeit erforderlichenfalls ausziehen, Händedesinfektion durchführen und passende neue Handschuhe anlegen. Handschuhe ersetzen keine Händedesinfektion.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Schutzkleidung und situationsgerechte Schutzausrüstung</h2>
+        <p>Welche persönliche Schutzausrüstung benötigt wird, hängt von der Gefährdungsbeurteilung und der jeweiligen Tätigkeit ab.</p>
+        <ul>
+          <li>Schutzhandschuhe bei möglichem Kontakt mit Blut oder Wundsekret</li>
+          <li>Schutzkittel oder geeignete Schutzkleidung bei erwartbarer Kontamination der Arbeitskleidung</li>
+          <li>Mund-Nasen-Schutz sowie Augen- oder Gesichtsschutz bei möglicher Spritzgefährdung entsprechend dem Praxisstandard</li>
+        </ul>
+        <p>Nicht jede Wundversorgung erfordert dieselbe Ausrüstung. Entscheidend ist die tatsächliche Gefährdung und nicht eine pauschale Regel für alle Wunden.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Sterile Materialien und Non-Touch-Technik an der Wunde</h2>
+        <p>Die Non-Touch-Technik bedeutet, dass besonders schützenswerte Bereiche möglichst nicht direkt berührt werden. Dazu gehören beispielsweise die wundberührende Seite einer sterilen Wundauflage und sterile Instrumentenspitzen.</p>
+        <p>Je nach Tätigkeit können sterile Instrumente oder andere geeignete aseptische Techniken verwendet werden. Sterile Handschuhe sind nicht bei jeder Wundversorgung grundsätzlich erforderlich; maßgeblich sind Tätigkeit, Verfahren und Praxisstandard.</p>
+        <p>Wird ein steriler Gegenstand unbeabsichtigt kontaminiert, darf er nicht einfach weiterverwendet werden.</p>
+
+        <img
+          src="/images/hygiene-bei-der-wundversorgung.png"
+          alt="Lernübersicht zu hygienischem Arbeiten bei der Wundversorgung"
+          loading="lazy"
+          style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+        />
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Kontaminierte Materialien sicher entsorgen und Flächen aufbereiten</h2>
+        <p>Nach der Wundversorgung werden gebrauchte Verbandmaterialien und andere Abfälle entsprechend ihrer Art und dem geltenden Entsorgungskonzept beseitigt.</p>
+        <p>Spitze oder scharfe Gegenstände gehören unmittelbar nach Gebrauch in geeignete, durchstichsichere Abwurfbehälter. Benutzte Kanülen dürfen nicht ungeschützt abgelegt werden.</p>
+        <p>Kontaminierte Flächen werden nach Hygieneplan gereinigt beziehungsweise desinfiziert. Wiederverwendbare Medizinprodukte werden entsprechend ihrer vorgesehenen Aufbereitung behandelt.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Hygienefehler erkennen und im Praxisalltag vermeiden</h2>
+        <p>Typische Fehler sind das Berühren steriler Wundauflagen an ihrer Kontaktfläche, das Ablegen sauberer Instrumente auf kontaminierten Flächen oder das Anfassen von Schubladen mit verschmutzten Handschuhen.</p>
+        <p>Wenn eine Kontamination bemerkt wird, muss der Arbeitsablauf sicher unterbrochen und korrigiert werden. Betroffene Materialien werden gegebenenfalls ersetzt und erforderliche Hygienemaßnahmen erneut durchgeführt.</p>
+        <p>Eine gute Sicherheitskultur bedeutet, Fehler offen anzusprechen, statt sie zu übergehen.</p>
+      </section>
+
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>Mit kontaminierten Handschuhen an die Materialschublade?</h2>
+        <p>Du unterstützt bei der Versorgung einer nässenden Wunde. Nach dem Entfernen des alten Verbandes stellt die Ärztin fest, dass eine zusätzliche sterile Wundauflage benötigt wird.</p>
+        <p>Du trägst Handschuhe, die bereits mit Wundsekret in Kontakt gekommen sind. Die benötigten Materialien befinden sich in einer Schublade am Behandlungsplatz.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Du öffnest die Schublade nicht mit den kontaminierten Handschuhen. Du organisierst die Materialbeschaffung hygienisch sicher, beispielsweise durch eine nicht kontaminierte Person oder nach sachgerechtem Handschuhwechsel und erforderlicher Händedesinfektion.</p>
+        <div class="remember"><strong>Praxisgedanke:</strong> Nicht nur die Wunde selbst, sondern jeder Kontakt zwischen kontaminierten und sauberen Bereichen entscheidet über einen sicheren Arbeitsablauf.</div>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <h2>Hygiene ist Teil jeder Wundversorgung</h2>
+        <p>Eine sichere Wundversorgung erfordert einen vorbereiteten Arbeitsplatz, situationsgerechte Schutzausrüstung, konsequente Händehygiene und den Schutz steriler Materialien. Kontaminierte und saubere Bereiche müssen getrennt bleiben. Erkannte Hygienefehler werden sofort berücksichtigt und korrigiert.</p>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Teste dein Wissen</h2>
+
+        <details>
+          <summary>1. Warum besteht bei offenen Wunden ein besonderes Infektionsrisiko?</summary>
+          <p>Weil die natürliche Schutzbarriere der Haut unterbrochen ist und Mikroorganismen leichter in das Gewebe gelangen können.</p>
+        </details>
+
+        <details>
+          <summary>2. Was ist bei der Vorbereitung des Arbeitsplatzes besonders wichtig?</summary>
+          <p>Alle benötigten Materialien werden bereitgestellt und saubere sowie kontaminierte Bereiche konsequent getrennt.</p>
+        </details>
+
+        <details>
+          <summary>3. Darfst du mit kontaminierten Handschuhen saubere Verbandmaterialien anfassen?</summary>
+          <p>Nein. Dadurch könnten Mikroorganismen auf die Materialien übertragen werden. Ein hygienisch sicherer Tätigkeitswechsel ist erforderlich.</p>
+        </details>
+
+        <details>
+          <summary>4. Was bedeutet Non-Touch-Technik?</summary>
+          <p>Besonders schützenswerte Bereiche und sterile Kontaktflächen werden möglichst nicht direkt berührt, um Kontaminationen zu vermeiden.</p>
+        </details>
+
+        <details>
+          <summary>5. Wie reagierst du, wenn eine sterile Wundauflage unbeabsichtigt kontaminiert wurde?</summary>
+          <p>Ich verwende sie nicht weiter, sondern ersetze sie durch geeignetes, unkontaminiertes Material und stelle den sicheren Arbeitsablauf wieder her.</p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Wundreinigung und Antiseptik</h2>
+        <p>In Lektion 09 lernst du, welche Ziele Wundreinigung und Antiseptik verfolgen und warum die Auswahl der Maßnahmen von der jeweiligen Wundsituation abhängt.</p>
+      </footer>
+    </div>
+  </main>
+</Layout>

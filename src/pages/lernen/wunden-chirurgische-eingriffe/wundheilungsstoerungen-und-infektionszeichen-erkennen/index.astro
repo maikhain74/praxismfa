@@ -1,0 +1,475 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Wundheilungsstörungen und Infektionszeichen erkennen | PraxisMFA">
+  <main>
+    <div class="lesson-container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 06 · Kostenlos</p>
+        <h1>Wundheilungsstörungen und Infektionszeichen erkennen</h1>
+        <p>Eine Wunde verändert sich während der Heilung. Als MFA lernst du, normale Heilungsreaktionen von Warnzeichen zu unterscheiden und Auffälligkeiten rechtzeitig ärztlich weiterzugeben.</p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="box-label">Das lernst du</p>
+        <p>Du erkennst typische Anzeichen einer gestörten Wundheilung, benennst wichtige Risikofaktoren und weißt, wie du bei möglichen Komplikationen im Praxisalltag sicher handelst.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Normale Wundheilung und auffällige Veränderungen unterscheiden</h2>
+        <p>In der frühen Heilungsphase können eine begrenzte Rötung, leichte Schwellung, Wärme und Schmerzen auftreten. Diese Reaktionen sind nicht automatisch Zeichen einer Infektion.</p>
+        <p>Wichtig ist der Verlauf: Beschwerden sollten sich bei unkomplizierter Heilung insgesamt bessern. Nehmen Schmerzen, Rötung oder Schwellung deutlich zu, muss die Wunde ärztlich beurteilt werden.</p>
+        <div class="remember"><strong>Merke:</strong> Eine einzelne Beobachtung reicht oft nicht aus. Veränderungen im zeitlichen Verlauf sind besonders aussagekräftig.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Ursachen und Risikofaktoren von Wundheilungsstörungen</h2>
+        <p>Eine Wundheilungsstörung liegt vor, wenn der Heilungsprozess verzögert oder beeinträchtigt ist. Unterschiedliche Faktoren können dazu beitragen.</p>
+        <ul>
+          <li>Diabetes mellitus und ungünstig eingestellte Blutzuckerwerte</li>
+          <li>Durchblutungsstörungen und unzureichende Sauerstoffversorgung</li>
+          <li>Druck, wiederholte Reibung oder starke Zugbelastung</li>
+          <li>Infektionen oder verbliebene Fremdkörper</li>
+          <li>Mangelernährung, Rauchen und bestimmte Medikamente</li>
+        </ul>
+        <p>Mehrere Risikofaktoren können gleichzeitig bestehen. Ihre Bewertung und die Behandlungsplanung erfolgen ärztlich.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Lokale Infektionszeichen erkennen</h2>
+        <p>Eine mögliche Wundinfektion kann sich durch zunehmende Rötung, Überwärmung, Schwellung und Schmerzen zeigen. Auch eitriges Sekret oder ein auffälliger Geruch können Hinweise sein.</p>
+        <p>Diese Merkmale sind nicht für sich allein beweisend. Besonders wichtig sind eine neu auftretende Verschlechterung und die Kombination mehrerer Warnzeichen.</p>
+        <div class="remember"><strong>Merke:</strong> Beobachten, beschreiben und weitergeben – eine Infektion wird nicht allein anhand des Wundaussehens diagnostiziert.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Allgemeine Warnzeichen und mögliche systemische Infektionen</h2>
+        <p>Fieber, Schüttelfrost und ein deutlich verschlechterter Allgemeinzustand können auf eine über die Wunde hinausgehende Infektion hinweisen.</p>
+        <p>Bei Verwirrtheit, Atemnot, Kreislaufproblemen oder ausgeprägter Schwäche muss unverzüglich ärztliche Hilfe organisiert werden. Bei Verdacht auf eine Sepsis ist eine sofortige Notfallreaktion nach Praxisstandard erforderlich.</p>
+        <p>Eine Sepsis kann auch ohne Fieber auftreten. Entscheidend ist die Gesamtsituation der betroffenen Person.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Wunddehiszenz und andere Heilungskomplikationen</h2>
+        <p>Von einer Wunddehiszenz spricht man, wenn die Ränder einer zuvor verschlossenen Wunde wieder auseinanderweichen. Dies kann beispielsweise nach einem chirurgischen Eingriff auftreten.</p>
+        <p>Auch Nachblutungen, Hämatome oder zunehmende Flüssigkeitsansammlungen können die Heilung beeinträchtigen.</p>
+        <p>Eine aufgegangene Operationswunde darf nicht eigenständig wieder verschlossen werden. Die MFA schützt die Wunde nach Praxisstandard und veranlasst die umgehende ärztliche Beurteilung.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Nekrosen und verzögerte Wundheilung</h2>
+        <p>Eine Nekrose bezeichnet abgestorbenes Gewebe. Dunkle oder schwarze Bereiche können darauf hinweisen, müssen aber fachlich eingeordnet werden. Nicht jeder dunkle Belag ist automatisch eine Nekrose.</p>
+        <p>Heilt eine Wunde über längere Zeit nicht wie erwartet, müssen mögliche Ursachen untersucht werden. Dazu gehören beispielsweise Durchblutungsstörungen, Druckbelastung oder eine Infektion.</p>
+        <p>Die Entscheidung über Diagnostik, Debridement und weitere Wundtherapie liegt bei entsprechend qualifizierten Behandelnden.</p>
+
+        <img src="/images/wundheilungsstoerungen-und-infektionszeichen-erkennen.png" alt="Lernübersicht zu Wundheilungsstörungen und Infektionszeichen" loading="lazy" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;" />
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Richtig handeln bei Verdacht auf Komplikationen</h2>
+        <p>Wenn dir Warnzeichen auffallen, informierst du die zuständige Ärztin oder den zuständigen Arzt zeitnah. Bei akuten Allgemeinsymptomen oder rascher Verschlechterung hat die Notfallversorgung Vorrang.</p>
+        <ul>
+          <li>Veränderungen und Beschwerden sachlich erfassen</li>
+          <li>Hygieneregeln einhalten und unnötige Manipulation vermeiden</li>
+          <li>Dringlichkeit erkennen und ärztliche Hilfe organisieren</li>
+          <li>Beobachtungen und eingeleitete Schritte dokumentieren</li>
+        </ul>
+        <div class="remember"><strong>Merke:</strong> Auffällige Wunden nicht eigenständig behandeln oder eine ärztliche Entscheidung vorwegnehmen.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Patienten informieren und Beobachtungen weitergeben</h2>
+        <p>Patientinnen und Patienten sollen wissen, welche Veränderungen sie nach einem Eingriff beobachten und wann sie sich erneut melden müssen.</p>
+        <p>Erkläre verständlich, dass zunehmende Schmerzen, sich ausbreitende Rötungen, Eiter, Fieber oder eine aufgegangene Naht ärztlich abgeklärt werden müssen. Bei schweren Allgemeinsymptomen ist sofortige Hilfe notwendig.</p>
+        <p>Verwende bei der Übergabe konkrete Angaben: Was hat sich verändert? Seit wann? Welche Beschwerden bestehen? Welche Maßnahmen wurden bereits veranlasst?</p>
+      </section>
+
+      <section class="practice-section">
+        <p class="eyebrow">Praxissituation</p>
+        <h2>Die Operationswunde sieht plötzlich anders aus</h2>
+        <p>Ein Patient erscheint fünf Tage nach der Entfernung einer Hautveränderung zur Wundkontrolle. Er berichtet, dass die Schmerzen seit gestern zugenommen haben. Die Umgebung der Naht ist deutlich gerötet und überwärmt. Außerdem fühlt er sich krank.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Du beschreibst die Veränderungen, erkundigst dich nach zusätzlichen Beschwerden und informierst unverzüglich die zuständige Ärztin oder den zuständigen Arzt. Du stellst keine eigenständige Infektionsdiagnose und beginnst keine Therapie ohne entsprechende Anordnung.</p>
+        <div class="remember"><strong>Praxisgedanke:</strong> Entscheidend ist nicht nur, wie eine Wunde aussieht, sondern auch, wie sich ihr Zustand verändert und wie es dem Patienten insgesamt geht.</div>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <h2>Warnzeichen früh erkennen</h2>
+        <p>Wundheilungsstörungen können verschiedene Ursachen haben. Zunehmende lokale Beschwerden, auffälliges Sekret, Wunddehiszenz und eine Verschlechterung des Allgemeinzustands erfordern Aufmerksamkeit. Deine Aufgabe als MFA ist es, Veränderungen zu erkennen, sicher weiterzugeben und nach Praxisstandard zu handeln.</p>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Teste dein Wissen</h2>
+        <details><summary>1. Warum ist eine leichte Rötung unmittelbar nach einer Verletzung nicht automatisch ein Infektionszeichen?</summary><p>Weil eine begrenzte Rötung Teil der normalen frühen Entzündungsphase der Wundheilung sein kann. Entscheidend sind Ausprägung, Begleitsymptome und Verlauf.</p></details>
+        <details><summary>2. Nenne drei Risikofaktoren für Wundheilungsstörungen.</summary><p>Beispielsweise Diabetes mellitus, Durchblutungsstörungen und anhaltende Druckbelastung.</p></details>
+        <details><summary>3. Welche lokalen Veränderungen können auf eine Wundinfektion hinweisen?</summary><p>Unter anderem zunehmende Rötung, Überwärmung, Schwellung, Schmerzen und eitriges Sekret.</p></details>
+        <details><summary>4. Was bedeutet Wunddehiszenz?</summary><p>Die Ränder einer zuvor verschlossenen Wunde weichen wieder auseinander.</p></details>
+        <details><summary>5. Was tust du bei Fieber, Schüttelfrost und deutlicher Verschlechterung des Allgemeinzustands nach einer Wundbehandlung?</summary><p>Ich veranlasse unverzüglich eine ärztliche Beurteilung und bei Verdacht auf eine schwere systemische Infektion die sofortige Notfallreaktion nach Praxisstandard.</p></details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Aseptische und septische Wunden versorgen</h2>
+        <p>In Lektion 07 lernst du, warum die Unterscheidung zwischen aseptischen und septischen Wunden für die Wundversorgung und die hygienischen Arbeitsabläufe wichtig ist.</p>
+      </footer>
+    </div>
+  </main>
+</Layout>

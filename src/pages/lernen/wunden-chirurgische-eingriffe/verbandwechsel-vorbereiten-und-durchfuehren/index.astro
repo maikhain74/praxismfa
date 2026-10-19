@@ -1,0 +1,488 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Verbandwechsel vorbereiten und durchführen | PraxisMFA">
+  <main>
+    <div class="container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <div class="lesson-header">
+        <p class="eyebrow">Fachwelt 08 · Lektion 11 · Kostenlos</p>
+        <h1>Verbandwechsel vorbereiten und durchführen</h1>
+        <p class="lead">Ein sicherer Verbandwechsel folgt einem klaren Ablauf. Du lernst, wie du Patienten vorbereitest, Materialien organisierst, Veränderungen erkennst und den Verbandwechsel im Rahmen deiner Aufgaben als MFA fachgerecht begleitest.</p>
+      </div>
+
+      <img
+        src="/images/verbandwechsel-vorbereiten-und-durchfuehren.png"
+        alt="Schematische Darstellung eines hygienisch vorbereiteten Verbandwechsels in der Arztpraxis"
+        loading="lazy"
+        style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+      />
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum ein strukturierter Verbandwechsel wichtig ist</h2>
+        <p>Ein Verband schützt die Wunde und unterstützt die vorgesehene Behandlung. Beim Wechsel wird nicht nur altes Material entfernt und neues angebracht: Die Wundsituation wird beobachtet, der bisherige Verband beurteilt und die weitere Versorgung vorbereitet.</p>
+        <p>Ein fester Ablauf hilft, Verwechslungen, Kontaminationen und unnötige Schmerzen zu vermeiden. Besonders wichtig sind die ärztliche Anordnung, die individuellen Bedürfnisse des Patienten und die geltenden Hygienevorgaben der Praxis.</p>
+        <div class="remember"><strong>Merke:</strong> Ein Verbandwechsel ist immer auch eine Gelegenheit, Veränderungen der Wunde frühzeitig zu erkennen.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Den Verbandwechsel sorgfältig vorbereiten</h2>
+        <p>Vor Beginn werden die ärztliche Anordnung, die geplante Versorgung und mögliche Besonderheiten geprüft. Dazu gehören beispielsweise bekannte Allergien, Schmerzen, Bewegungseinschränkungen und bisherige Probleme beim Verbandwechsel.</p>
+        <ul>
+          <li>Geeigneten Behandlungsplatz vorbereiten und Privatsphäre sicherstellen.</li>
+          <li>Benötigte Materialien vollständig und übersichtlich bereitstellen.</li>
+          <li>Verpackungen, Sterilität und Verfallsdaten kontrollieren.</li>
+          <li>Abwurf- und Entsorgungsmöglichkeiten vorbereiten.</li>
+          <li>Händehygiene und erforderliche Schutzmaßnahmen einplanen.</li>
+        </ul>
+        <p>Die konkreten Materialien richten sich nach Wundart, Behandlungsplan und Herstellerangaben. Fehlende Materialien sollten möglichst vor Beginn ergänzt werden.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Patienten informieren und richtig lagern</h2>
+        <p>Erkläre dem Patienten verständlich, was gemacht wird und welche Empfindungen auftreten können. Frage nach aktuellen Beschwerden und Schmerzen. Bei Bedarf wird vor Beginn ärztlich geklärt, ob eine geeignete Schmerzbehandlung erforderlich ist.</p>
+        <p>Die Lagerung soll bequem, sicher und für die Wundversorgung geeignet sein. Die betroffene Körperregion wird gut zugänglich gemacht, während andere Körperbereiche möglichst bedeckt bleiben.</p>
+        <p>Achte während der gesamten Versorgung auf Schmerzen, Unwohlsein, Schwindel oder Kreislaufreaktionen und informiere bei Auffälligkeiten die verantwortliche Fachperson beziehungsweise den Arzt.</p>
+        <div class="remember"><strong>Praxisgedanke:</strong> Eine ruhige Erklärung und eine angenehme Lagerung können Angst und Abwehrbewegungen reduzieren.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Den alten Verband sicher entfernen</h2>
+        <p>Der gebrauchte Verband wird entsprechend den Hygienevorgaben vorsichtig entfernt. Dabei wird auf Durchfeuchtung, Geruch, sichtbares Sekret, Blutspuren und den Zustand der Wundumgebung geachtet.</p>
+        <p>Haftet eine Auflage an der Wunde, darf sie nicht gewaltsam abgezogen werden. Das weitere Vorgehen richtet sich nach dem Produkt, dem Wundzustand und der ärztlich festgelegten Versorgung.</p>
+        <p>Nach dem Entfernen werden kontaminierte Materialien sachgerecht entsorgt. Vor dem Umgang mit sauberen beziehungsweise sterilen Materialien erfolgt die situationsgerechte Händehygiene mit erforderlichem Handschuhwechsel.</p>
+        <div class="remember"><strong>Merke:</strong> Der Wechsel von der unreinen zur reinen Arbeitsphase muss bewusst und hygienisch sicher erfolgen.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Wunde und Wundumgebung beobachten</h2>
+        <p>Vor dem Anlegen des neuen Verbandes wird die Wunde entsprechend den Zuständigkeiten und dem Behandlungsplan beurteilt. Beobachtungen werden nachvollziehbar weitergegeben und dokumentiert.</p>
+        <ul>
+          <li>Veränderungen von Größe, Tiefe und Wundoberfläche.</li>
+          <li>Art und Menge des Wundexsudats.</li>
+          <li>Rötung, Schwellung, Überwärmung oder auffälliger Geruch.</li>
+          <li>Schmerzen und Veränderungen der Wundumgebung.</li>
+          <li>Blutungen oder andere unerwartete Auffälligkeiten.</li>
+        </ul>
+        <p>Bei neuen Infektionszeichen, zunehmenden Schmerzen, auffälligen Blutungen oder einer deutlichen Verschlechterung muss die ärztliche Beurteilung zeitnah veranlasst werden. Eine eigenständige Änderung der verordneten Wundtherapie gehört nicht zu den Aufgaben der MFA.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Wundversorgung und neuen Verband anlegen</h2>
+        <p>Ob und wie die Wunde gereinigt oder antiseptisch behandelt wird, ergibt sich aus der ärztlichen Anordnung und den geltenden Standards. Nicht jede Wunde benötigt bei jedem Verbandwechsel ein Antiseptikum.</p>
+        <p>Die vorgesehene Wundauflage wird entsprechend ihrer Funktion, den Herstellerangaben und der erforderlichen hygienischen Arbeitstechnik angewendet. Sterile Kontaktflächen dürfen nicht unbeabsichtigt kontaminiert werden.</p>
+        <p>Der Verband wird so befestigt, dass er ausreichend hält, aber keinen unnötigen Druck verursacht. Beweglichkeit, Hautverträglichkeit und Patientenkomfort werden berücksichtigt.</p>
+        <div class="remember"><strong>Merke:</strong> Die passende Auflage allein genügt nicht. Auch die hygienische Anwendung und eine geeignete Fixierung sind entscheidend.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Nachbereitung und Dokumentation</h2>
+        <p>Nach dem Verbandwechsel werden gebrauchte Materialien entsprechend den Praxisvorgaben entsorgt, wiederverwendbare Arbeitsmittel fachgerecht aufbereitet und der Behandlungsplatz gereinigt beziehungsweise desinfiziert.</p>
+        <p>Der Patient erhält die vorgesehenen Informationen zum weiteren Verhalten. Dazu gehören beispielsweise Hinweise, wann der Verband kontrolliert werden soll und bei welchen Beschwerden die Praxis kontaktiert werden muss.</p>
+        <p>Dokumentiert werden unter anderem Datum und Zeitpunkt, relevante Wundbeobachtungen, durchgeführte Maßnahmen, verwendete Materialien, Besonderheiten und die erforderliche Weitergabe auffälliger Befunde.</p>
+        <p>Die Dokumentation muss sachlich, nachvollziehbar und entsprechend den Praxisvorgaben erfolgen.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Häufige Fehler beim Verbandwechsel vermeiden</h2>
+        <ul>
+          <li><strong>&nbsp;Unvollständige Vorbereitung:</strong> Während der Versorgung müssen zusätzliche Materialien gesucht werden.</li>
+          <li><strong>&nbsp;Unbeachtete Schmerzen:</strong> Der Verband wird trotz deutlicher Beschwerden ohne Rücksprache weiter entfernt.</li>
+          <li><strong>&nbsp;Kontaminationsfehler:</strong> Nach Kontakt mit dem alten Verband werden saubere Materialien berührt.</li>
+          <li><strong>&nbsp;Fehlende Beobachtung:</strong> Auffälligkeiten der Wunde bleiben unerkannt oder werden nicht weitergegeben.</li>
+          <li><strong>&nbsp;Ungeeignete Fixierung:</strong> Der Verband sitzt zu locker oder verursacht Druckstellen.</li>
+          <li><strong>&nbsp;Lückenhafte Dokumentation:</strong> Wichtige Befunde und Maßnahmen sind später nicht nachvollziehbar.</li>
+        </ul>
+        <div class="remember"><strong>Merke:</strong> Gute Vorbereitung, ein hygienisch klarer Ablauf und sorgfältige Beobachtung machen den Verbandwechsel sicherer.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">PRAXISSITUATION</p>
+        <h2>„Der Verband klebt fest“</h2>
+        <p>Eine Patientin kommt drei Tage nach einem kleinen chirurgischen Eingriff zum vereinbarten Verbandwechsel. Beim vorsichtigen Lösen bemerkst du, dass die Wundauflage an einer Stelle festhaftet. Die Patientin zuckt zurück und berichtet über Schmerzen.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Erkläre, warum du die Auflage nicht gewaltsam entfernen darfst. Beschreibe, wie du die Situation absicherst, die Schmerzen ernst nimmst und das weitere Vorgehen mit der verantwortlichen Fachperson beziehungsweise dem Arzt abstimmst.</p>
+        <p><strong>&nbsp;Lernziel:</strong> Patientensicherheit und Wundschutz haben Vorrang vor einem möglichst schnellen Verbandwechsel.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">DAS MUSST DU MITNEHMEN</p>
+        <h2>Ein guter Verbandwechsel folgt einem klaren Ablauf</h2>
+        <p>Bereite Arbeitsplatz, Material und Patient sorgfältig vor. Entferne den alten Verband schonend, beachte den Wechsel zwischen unreiner und reiner Arbeitsphase, beobachte die Wunde und lege die verordnete Versorgung hygienisch korrekt an. Abschließend folgen Nachbereitung, Patienteninformation und Dokumentation.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">SELBSTCHECK</p>
+        <h2>Teste dein Wissen</h2>
+        <ol>
+          <li>Welche Informationen und Materialien prüfst du vor einem Verbandwechsel?</li>
+          <li>Warum darf eine festhaftende Wundauflage nicht gewaltsam entfernt werden?</li>
+          <li>Was ist beim Übergang von der unreinen zur reinen Arbeitsphase zu beachten?</li>
+          <li>Welche Veränderungen an Wunde und Wundumgebung müssen ärztlich abgeklärt werden?</li>
+          <li>Welche Angaben gehören zur nachvollziehbaren Dokumentation eines Verbandwechsels?</li>
+        </ol>
+      </section>
+
+      <footer class="next-lesson">
+        <p>Als Nächstes</p>
+        <h2>Chronische Wunden verstehen</h2>
+        <a href="/lernen/wunden-chirurgische-eingriffe/">Zur Fachwelt 08 →</a>
+      </footer>
+    </div>
+  </main>
+</Layout>

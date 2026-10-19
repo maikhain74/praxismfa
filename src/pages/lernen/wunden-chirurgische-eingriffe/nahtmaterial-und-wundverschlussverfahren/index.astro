@@ -1,0 +1,526 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+<Layout title="Nahtmaterial und Wundverschlussverfahren | PraxisMFA">
+  <main>
+    <div class="lesson-container">
+      <a class="back-link" href="/lernen/wunden-chirurgische-eingriffe/">← Zurück zur Fachwelt 08</a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 08 · Lektion 13 · Kostenlos</p>
+        <h1>Nahtmaterial und Wundverschlussverfahren</h1>
+        <p>Eine Wunde muss nicht immer genäht werden. Du lernst verschiedene Materialien und Verfahren kennen, verstehst ihre Vor- und Nachteile und erfährst, wie du einen Wundverschluss in der Arztpraxis sicher vorbereitest und begleitest.</p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="box-label">Das lernst du</p>
+        <p>Du unterscheidest resorbierbares und nicht resorbierbares sowie monofiles und multifiles Nahtmaterial. Du kennst grundlegende Naht- und alternative Verschlussverfahren, erkennst wichtige Risiken und beschreibst die Aufgaben und Verantwortungsgrenzen der MFA.</p>
+      </section>
+
+      <img
+        src="/images/nahtmaterial-und-wundverschlussverfahren.png"
+        alt="Übersicht zu Nahtmaterial, chirurgischen Nahttechniken und alternativen Wundverschlussverfahren"
+        loading="lazy"
+        style="display: block; width: 100%; max-width: 100%; height: auto; margin: 24px auto; border-radius: 12px;"
+      />
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum und wann Wunden verschlossen werden</h2>
+        <p>Ein Wundverschluss bringt geeignete Wundränder zusammen. Dadurch können die Heilung unterstützt, die Wunde stabilisiert und unter Umständen ein günstigeres funktionelles und kosmetisches Ergebnis erreicht werden.</p>
+        <p>Ob eine Wunde unmittelbar verschlossen werden kann, hängt unter anderem von Wundart, Tiefe, Lokalisation, Durchblutung, Verschmutzung, Infektionsrisiko und dem Zeitpunkt der Verletzung ab. Auch Begleitverletzungen, etwa an Nerven, Gefäßen oder Sehnen, müssen berücksichtigt werden.</p>
+        <p>Bei einer sauberen, geeigneten Wunde kommt häufig ein primärer Wundverschluss infrage. Bei stark verschmutzten, infizierten oder anderweitig ungeeigneten Wunden kann dagegen ein offenes Vorgehen oder ein verzögerter Verschluss erforderlich sein. Die Entscheidung trifft die behandelnde Ärztin oder der behandelnde Arzt.</p>
+        <div class="remember"><strong>Merke:</strong> Nicht jede Wunde darf sofort verschlossen werden. Vor dem Verschluss müssen insbesondere Infektionsrisiko, Durchblutung und mögliche tiefere Verletzungen ärztlich beurteilt werden.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Grundlagen chirurgischer Nahtmaterialien</h2>
+        <p>Chirurgisches Nahtmaterial dient dazu, Gewebe für eine bestimmte Zeit zusammenzuhalten. Je nach Eingriff werden unterschiedliche Fäden und Nadeln eingesetzt.</p>
+        <ul>
+          <li><strong>&nbsp;Fadenmaterial:</strong> Es unterscheidet sich hinsichtlich Abbaubarkeit, Aufbau, Reißfestigkeit, Elastizität und Gewebeverträglichkeit.</li>
+          <li><strong>&nbsp;Fadenstärke:</strong> Sie wird mit genormten Größen bezeichnet. Die passende Stärke richtet sich nach Gewebe und Belastung.</li>
+          <li><strong>&nbsp;Chirurgische Nadeln:</strong> Sie unterscheiden sich beispielsweise in Krümmung, Größe und Spitzenform.</li>
+          <li><strong>&nbsp;Atraumatische Nadel-Faden-Kombination:</strong> Der Faden ist bereits fest mit der Nadel verbunden und verursacht am Übergang vergleichsweise wenig zusätzliche Gewebebelastung.</li>
+        </ul>
+        <p>Für die MFA ist wichtig, die Bezeichnungen auf der sterilen Verpackung zu lesen, die angeforderte Ausführung bereitzustellen und die Unversehrtheit sowie das Verfallsdatum der Verpackung zu kontrollieren.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Resorbierbares und nicht resorbierbares Nahtmaterial</h2>
+        <p><strong>&nbsp;Resorbierbare Fäden</strong> verlieren im Körper mit der Zeit ihre Festigkeit und werden durch biologische Prozesse abgebaut. Je nach Material geschieht dies unterschiedlich schnell. Sie werden beispielsweise bei bestimmten Nähten in tieferen Gewebeschichten verwendet.</p>
+        <p><strong>&nbsp;Nicht resorbierbare Fäden</strong> bleiben länger bestehen. Werden sie als äußere Hautnaht verwendet, müssen sie in der Regel zu einem ärztlich festgelegten Zeitpunkt entfernt werden. Bei bestimmten inneren Anwendungen können sie dauerhaft im Körper verbleiben.</p>
+        <p>Die Begriffe beschreiben nicht automatisch, welches Material besser ist. Entscheidend sind das zu versorgende Gewebe, die notwendige Stützdauer, das Infektionsrisiko und die ärztliche Entscheidung.</p>
+        <div class="remember"><strong>Merke:</strong> Resorbierbar bedeutet abbaubar, nicht sofort verschwunden. Nicht resorbierbare Fäden müssen nicht grundsätzlich entfernt werden; das hängt von ihrem Einsatzort ab.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Monofile und multifile Fäden unterscheiden</h2>
+        <p>Die Fadenstruktur beeinflusst die Handhabung und das Verhalten im Gewebe.</p>
+        <ul>
+          <li><strong>&nbsp;Monofil:</strong> Der Faden besteht aus einem einzelnen Strang. Seine glatte Oberfläche kann das Durchgleiten durch Gewebe erleichtern und bietet vergleichsweise wenig Raum für das Anhaften von Flüssigkeit und Mikroorganismen.</li>
+          <li><strong>&nbsp;Multifil:</strong> Der Faden besteht aus mehreren miteinander verflochtenen oder verdrehten Fasern. Solche Fäden sind häufig geschmeidig und gut zu handhaben, können jedoch durch ihre Struktur Flüssigkeit aufnehmen oder transportieren.</li>
+        </ul>
+        <p>Weitere Unterschiede betreffen Knotensicherheit, Elastizität, Reibung und Gewebereaktion. Kein Material eignet sich gleichermaßen für jede Wunde. Bei erhöhtem Infektionsrisiko ist die Auswahl besonders sorgfältig abzuwägen.</p>
+        <div class="remember"><strong>Merke:</strong> Monofil und multifil beschreiben den Aufbau des Fadens. Resorbierbar und nicht resorbierbar beschreiben dagegen sein Verhalten im Körper.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Chirurgische Nahttechniken und ihre Einsatzgebiete</h2>
+        <p>Bei einer chirurgischen Naht werden Wundränder mit Faden und Nadel aneinandergeführt. Welche Technik geeignet ist, hängt unter anderem von Gewebe, Wundverlauf und Zugspannung ab.</p>
+        <ul>
+          <li><strong>&nbsp;Einzelknopfnaht:</strong> Jede Naht wird einzeln geknotet. Einzelne Fäden lassen sich unabhängig voneinander beurteilen und gegebenenfalls entfernen.</li>
+          <li><strong>&nbsp;Fortlaufende Naht:</strong> Ein Faden verbindet mehrere aufeinanderfolgende Einstiche. Sie kann bei geeigneten Wunden einen zügigen Verschluss ermöglichen.</li>
+          <li><strong>&nbsp;Matratzennaht:</strong> Bestimmte Varianten können helfen, Wundränder unter besonderen Spannungsverhältnissen anzupassen.</li>
+          <li><strong>&nbsp;Intrakutannaht:</strong> Der Faden verläuft innerhalb der Hautschicht und kann bei geeigneter Indikation ein günstiges kosmetisches Ergebnis unterstützen.</li>
+        </ul>
+        <p>Eine gute Wundrandanpassung soll die Durchblutung erhalten und übermäßige Spannung vermeiden. Zu fest angelegte Nähte können Gewebe schädigen. Die Durchführung und Wahl der Technik gehören zur ärztlichen Behandlung.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Alternative Wundverschlussverfahren</h2>
+        <p>Neben chirurgischen Fäden gibt es weitere Möglichkeiten, geeignete Wunden zu verschließen.</p>
+        <ul>
+          <li><strong>&nbsp;Hautklammern:</strong> Sie ermöglichen bei geeigneten Wunden einen schnellen mechanischen Verschluss. Zum Entfernen wird ein dafür vorgesehenes Instrument verwendet.</li>
+          <li><strong>&nbsp;Gewebekleber:</strong> Medizinische Hautkleber können bei ausgewählten oberflächlichen, spannungsarmen Wunden eingesetzt werden. Sie sind nicht für jede Wundtiefe oder Lokalisation geeignet.</li>
+          <li><strong>&nbsp;Wundverschlussstreifen:</strong> Sterile Klebestreifen können bei kleinen, oberflächlichen und wenig gespannten Wunden oder ergänzend zur Stabilisierung verwendet werden.</li>
+        </ul>
+        <p>Auch bei scheinbar einfachen Verfahren müssen Wundtiefe, Infektionsrisiko und Zugspannung ärztlich beurteilt werden. Gewöhnlicher Haushaltskleber ist kein Ersatz für medizinischen Gewebekleber.</p>
+        <div class="remember"><strong>Merke:</strong> Klammern, Gewebekleber und Wundverschlussstreifen sind keine beliebig austauschbaren Alternativen zur Naht.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Auswahl des Verschlussverfahrens und mögliche Komplikationen</h2>
+        <p>Die ärztliche Auswahl berücksichtigt die Eigenschaften der Wunde, den Zustand des umliegenden Gewebes, die zu erwartende Belastung und patientenbezogene Risiken.</p>
+        <p>Nach einem Wundverschluss sind unter anderem folgende Komplikationen möglich:</p>
+        <ul>
+          <li><strong>&nbsp;Wundinfektion:</strong> Mögliche Warnzeichen sind zunehmende Rötung, Überwärmung, Schwellung, Schmerzen, eitriges Sekret oder Fieber.</li>
+          <li><strong>&nbsp;Wunddehiszenz:</strong> Die Wundränder weichen nach dem Verschluss wieder auseinander.</li>
+          <li><strong>&nbsp;Nachblutung oder Hämatom:</strong> Blut kann aus der Wunde austreten oder sich im Gewebe ansammeln.</li>
+          <li><strong>&nbsp;Gewebeschädigung:</strong> Zu hohe Spannung oder eine gestörte Durchblutung können die Heilung beeinträchtigen.</li>
+          <li><strong>&nbsp;Fremdkörper- oder Materialreaktion:</strong> Das Gewebe kann auf eingebrachtes Material reagieren.</li>
+        </ul>
+        <p>Bei auffälligen Befunden informiert die MFA unverzüglich die zuständige Ärztin oder den zuständigen Arzt. Eine klaffende Wunde, starke Blutung oder Zeichen einer schweren Infektion erfordern eine besonders dringliche Beurteilung.</p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Aufgaben und Verantwortungsgrenzen der MFA</h2>
+        <p>Die MFA unterstützt chirurgische Wundversorgungen durch sorgfältige Vorbereitung, hygienisches Arbeiten, Patientenbetreuung und Assistenz.</p>
+        <ul>
+          <li>Patientenidentität, Behandlungsauftrag und benötigte Unterlagen nach Praxisstandard prüfen.</li>
+          <li>Patientinnen und Patienten über den organisatorischen Ablauf informieren und bei der Lagerung unterstützen.</li>
+          <li>Sterile Instrumente, angefordertes Nahtmaterial und geeignete Verbandmaterialien bereitstellen.</li>
+          <li>Verpackungsintegrität, Verfallsdatum und Materialbezeichnung kontrollieren.</li>
+          <li>Bei der Behandlung im Rahmen der eigenen Qualifikation und der ärztlichen Anweisungen assistieren.</li>
+          <li>Auf sterile und unsterile Arbeitsbereiche achten sowie sichere Entsorgung spitzer Gegenstände gewährleisten.</li>
+          <li>Auffälligkeiten weitergeben, die Nachversorgung organisieren und die Dokumentation nach Vorgabe unterstützen.</li>
+        </ul>
+        <p>Die ärztliche Aufklärung, die Entscheidung über den Wundverschluss und die Durchführung einer chirurgischen Wundnaht sind keine eigenverantwortlichen Routineaufgaben der MFA. Welche unterstützenden Tätigkeiten delegiert werden dürfen, richtet sich nach rechtlichen Vorgaben, Qualifikation, Einweisung und ärztlicher Verantwortung.</p>
+        <div class="remember"><strong>Merke:</strong> Die MFA bereitet vor, assistiert, beobachtet und dokumentiert im vorgesehenen Rahmen. Sie entscheidet nicht selbstständig, ob und wie eine Wunde chirurgisch verschlossen wird.</div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">PRAXISSITUATION</p>
+        <h2>„Kann man die Wunde nicht einfach zukleben?“</h2>
+        <p>Ein 34-jähriger Patient kommt nach einer Verletzung bei der Gartenarbeit in die Praxis. An seinem Unterarm befindet sich eine mehrere Zentimeter lange, verschmutzte Wunde. Er möchte möglichst schnell wieder nach Hause und fragt, ob ein Wundverschlussstreifen oder etwas Gewebekleber ausreichen würde.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Überlege, warum vor der Auswahl eines Verschlussverfahrens eine ärztliche Wundbeurteilung notwendig ist. Welche Materialien kannst du vorbereiten? Welche Informationen sind für die Ärztin oder den Arzt wichtig?</p>
+        <p><strong>&nbsp;Lernziel:</strong> Eine verschmutzte Verletzung darf nicht allein nach ihrem äußeren Erscheinungsbild versorgt werden. Die MFA erfragt und dokumentiert relevante Angaben nach Praxisstandard, bereitet die angeordneten Materialien vor und unterstützt die ärztliche Untersuchung. Dazu gehört auch, den Tetanusimpfschutz im Rahmen der Anamnese zu klären und die Information weiterzugeben.</p>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <h2>Das passende Material hängt von der Wunde ab</h2>
+        <p>Nahtmaterial unterscheidet sich nach Abbaubarkeit, Fadenstruktur und weiteren Eigenschaften. Neben chirurgischen Nähten stehen Hautklammern, medizinische Gewebekleber und Wundverschlussstreifen zur Verfügung. Die Wahl des Verfahrens erfolgt nach ärztlicher Beurteilung. Die MFA trägt durch gute Vorbereitung, hygienische Assistenz und rechtzeitiges Erkennen von Auffälligkeiten wesentlich zur sicheren Versorgung bei.</p>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Teste dein Wissen</h2>
+
+        <details>
+          <summary>1. Was unterscheidet resorbierbares von nicht resorbierbarem Nahtmaterial?</summary>
+          <p>Resorbierbares Nahtmaterial wird im Körper im Laufe der Zeit abgebaut und verliert dabei seine Festigkeit. Nicht resorbierbares Material bleibt bestehen. Äußere Hautfäden aus nicht resorbierbarem Material werden in der Regel später entfernt; bei bestimmten inneren Nähten kann das Material dauerhaft verbleiben.</p>
+        </details>
+
+        <details>
+          <summary>2. Worin unterscheiden sich monofile und multifile Fäden?</summary>
+          <p>Monofile Fäden bestehen aus einem einzelnen Strang und haben eine vergleichsweise glatte Oberfläche. Multifile Fäden bestehen aus mehreren Fasern und sind häufig geschmeidiger. Ihre Struktur kann jedoch die Aufnahme oder den Transport von Flüssigkeit begünstigen. Die Auswahl hängt von der jeweiligen Wundsituation ab.</p>
+        </details>
+
+        <details>
+          <summary>3. Welche drei Alternativen zur klassischen Fadennaht kennst du?</summary>
+          <p>Hautklammern, medizinische Gewebekleber und Wundverschlussstreifen. Sie eignen sich für unterschiedliche Wundsituationen und ersetzen eine Naht nicht grundsätzlich. Die Auswahl trifft die Ärztin oder der Arzt.</p>
+        </details>
+
+        <details>
+          <summary>4. Welche Warnzeichen nach einem Wundverschluss musst du weitergeben?</summary>
+          <p>Insbesondere zunehmende Schmerzen, Rötung, Überwärmung, Schwellung, eitriges Sekret, Fieber, starke Blutung oder das Auseinanderweichen der Wundränder. Bei schweren oder rasch zunehmenden Auffälligkeiten muss unverzüglich eine ärztliche Beurteilung erfolgen.</p>
+        </details>
+
+        <details>
+          <summary>5. Welche Aufgaben übernimmt die MFA bei einem chirurgischen Wundverschluss?</summary>
+          <p>Sie bereitet den Arbeitsplatz, die angeforderten sterilen Materialien und die Patientenbetreuung vor, assistiert innerhalb ihrer Qualifikation und ärztlichen Anweisungen, achtet auf Hygiene, gibt Auffälligkeiten weiter und unterstützt die Dokumentation. Die eigenständige Entscheidung über das Verschlussverfahren und die Durchführung der chirurgischen Naht gehören nicht zu ihren regulären eigenverantwortlichen Aufgaben.</p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Fäden und Klammern entfernen</h2>
+        <p>In Lektion 14 erfährst du, wann Fäden und Hautklammern entfernt werden, wie die Vorbereitung abläuft und worauf du bei der sicheren Assistenz achten musst.</p>
+      </footer>
+    </div>
+  </main>
+</Layout>

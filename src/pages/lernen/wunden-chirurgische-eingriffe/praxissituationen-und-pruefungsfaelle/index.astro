@@ -1,0 +1,722 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+---
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+
+
+<Layout title="Praxissituationen und Prüfungsfälle | PraxisMFA">
+<main>
+  <section class="lesson-hero">
+    <p class="eyebrow">FACHWELT 08 · LEKTION 20 · PREMIUM</p>
+    <h1>Praxissituationen und Prüfungsfälle</h1>
+    <p>Wunden &amp; chirurgische Eingriffe – komplexe Fälle erkennen, sicher entscheiden und die Prüfung bestehen.</p>
+  </section>
+
+  <section class="learning-goal">
+    <h2>Dein Lernziel</h2>
+    <p>Du analysierst anspruchsvolle Situationen aus der Wundversorgung und chirurgischen Assistenz, erkennst Risiken, setzt begründete Prioritäten und handelst innerhalb deiner Kompetenzen als MFA. Du trainierst strukturierte Prüfungsantworten, fachliche Reflexion und sichere Zusammenarbeit mit dem ärztlichen Team.</p>
+  </section>
+
+  <img
+    src="/images/praxissituationen-und-pruefungsfaelle.png"
+    alt="PraxisMFA Lektion 20: Praxissituationen und Prüfungsfälle"
+    loading="lazy"
+    style="display:block;width:100%;height:auto;border-radius:16px;margin:28px 0;"
+  />
+
+
+<section class="content-section">
+  <p class="section-number">01</p>
+  <h2>Prüfungsfall: Tiefe Schnittverletzung mit unklarem Tetanusschutz</h2>
+  <h3>Ausgangssituation</h3><p>Ein 42-jähriger Patient erscheint nach einer Verletzung mit einem verschmutzten Metallgegenstand. Am Unterarm besteht eine tiefe, klaffende Wunde. Er hält ein blutdurchtränktes Tuch darauf. Den Zeitpunkt seiner letzten Tetanusimpfung kennt er nicht. Die Ärztin ist gerade in einem anderen Behandlungszimmer.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Welche Informationen und Warnzeichen erfasst du zuerst?</li>
+<li>Wie gehst du mit der Blutung um?</li>
+<li>Wie bereitest du die ärztliche Wundbeurteilung vor?</li>
+<li>Wer entscheidet über Wundverschluss und Tetanusprophylaxe?</li>
+<li>Was muss dokumentiert werden?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Du beurteilst zunächst den Allgemeinzustand und das Ausmaß der Blutung. Du fragst nach Verletzungszeitpunkt, Mechanismus, möglichen Fremdkörpern, Schmerzen, Allergien, Medikamenten einschließlich Antikoagulanzien und bekanntem Impfstatus. Hinweise auf Durchblutungs-, Sensibilitäts- oder Bewegungsstörungen meldest du sofort.</p><p><strong>2.</strong>&nbsp;Bei relevanter Blutung hat die Blutstillung Vorrang. Du übst mit geeignetem Material direkten Druck aus, organisierst ärztliche Hilfe und beobachtest den Kreislauf. Bei lebensbedrohlicher Blutung ist die sofortige Notfallversorgung einschließlich 112 erforderlich. Eine ausführliche Reinigung darf die Blutstillung nicht verzögern.</p><p><strong>3.</strong>&nbsp;Du bereitest nach Praxisstandard einen geeigneten Behandlungsplatz, persönliche Schutzausrüstung, sterile Materialien und die benötigten Instrumente vor. Die Wunde wird nicht eigenmächtig sondiert; mögliche Fremdkörper bleiben zur ärztlichen Beurteilung.</p><p><strong>4.</strong>&nbsp;Die Ärztin entscheidet nach Untersuchung über Diagnostik, Reinigung, gegebenenfalls Wundverschluss und die Tetanusprophylaxe. Bei unbekanntem Impfstatus sind Wundart und Impfempfehlungen ärztlich abzuklären. Die MFA trifft keine eigenständige Impf- oder Therapieentscheidung.</p><p><strong>5.</strong>&nbsp;Dokumentiert werden Unfallhergang, Zeitpunkt, Wundbefund, relevante Beobachtungen, erhobene Angaben, ärztliche Entscheidungen, tatsächlich durchgeführte Maßnahmen und Patienteninformationen. Unbekannte Angaben bleiben ausdrücklich als unbekannt gekennzeichnet.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was ändert sich bei zunehmender, nicht kontrollierbarer Blutung?</strong>&nbsp;Die Situation wird zum zeitkritischen Notfall. Blutstillung, Hilfe und gegebenenfalls Rettungsdienst haben Vorrang vor routinemäßiger Wunddokumentation.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Die unbekannte Tetanusimpfung als automatisch vollständigen Impfschutz behandeln oder selbst über eine Impfmaßnahme entscheiden.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">02</p>
+  <h2>Prüfungsfall: Entzündungszeichen nach einer ambulanten Operation</h2>
+  <h3>Ausgangssituation</h3><p>Eine 67-jährige Patientin kommt vier Tage nach der Entfernung einer Hautveränderung zur Kontrolle. Sie berichtet über zunehmende Schmerzen. Die Umgebung der Naht ist gerötet, überwärmt und geschwollen. Die Patientin fühlt sich abgeschlagen und gibt an, in der Nacht gefroren zu haben.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Welche Befunde erhebst du strukturiert?</li>
+<li>Welche Veränderungen sind besonders bedenklich?</li>
+<li>Wie organisierst du die weitere Versorgung?</li>
+<li>Was darfst du nicht eigenständig entscheiden?</li>
+<li>Wie informierst und dokumentierst du?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Du erhebst Beginn und Verlauf der Beschwerden, Schmerzstärke, Temperatur, Allgemeinzustand, Wundsekret und lokale Veränderungen. Du vergleichst die Beobachtungen mit vorhandenen Vorbefunden, ohne eine Infektionsdiagnose vorwegzunehmen.</p><p><strong>2.</strong>&nbsp;Zunehmende Rötung, Überwärmung, Schwellung, Schmerz, eitriges Sekret, Fieber oder ein verschlechterter Allgemeinzustand sind Warnzeichen. Bei Zeichen schwerer systemischer Erkrankung, etwa Verwirrtheit, Atemnot oder Kreislaufinstabilität, ist unverzügliche Notfallversorgung notwendig.</p><p><strong>3.</strong>&nbsp;Du informierst zeitnah die Ärztin, bereitest die Untersuchung hygienisch korrekt vor und unterstützt die angeordnete Versorgung. Bei dringlichen Warnzeichen wird nicht auf einen regulären Kontrolltermin verwiesen.</p><p><strong>4.</strong>&nbsp;Die Entscheidung über Diagnostik, mikrobiologische Proben, Nahtöffnung, Antibiotika oder weitere Behandlung liegt bei der Ärztin. Die MFA verändert eine bestehende Therapie nicht selbstständig.</p><p><strong>5.</strong>&nbsp;Du dokumentierst objektive Befunde, Patientenaussagen als solche, die Information der Ärztin, Anordnungen, durchgeführte Maßnahmen und vereinbarte Wiedervorstellung. Die Patientin erhält verständliche Hinweise, bei welchen Veränderungen sie sofort Hilfe suchen muss.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was bedeutet eine rasch zunehmende Rötung zusammen mit Kreislaufproblemen?</strong>&nbsp;Die Dringlichkeit steigt erheblich. Sofortige ärztliche Einschätzung und gegebenenfalls Alarmierung von 112 haben Vorrang.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Eine mögliche postoperative Infektion lediglich mit einem neuen Verband versorgen und ohne ärztliche Rücksprache nach Hause schicken.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">03</p>
+  <h2>Prüfungsfall: Sterilitätsbruch unmittelbar vor dem Eingriff</h2>
+  <h3>Ausgangssituation</h3><p>Eine kleine chirurgische Behandlung ist vorbereitet. Beim Öffnen einer sterilen Verpackung berührt ein Instrument versehentlich eine nicht sterile Arbeitsfläche. Gleichzeitig wartet der nächste Patient bereits im Flur. Eine Kollegin meint, das Instrument könne trotzdem verwendet werden, weil der Kontakt nur kurz gewesen sei.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Wie beurteilst du den Vorfall?</li>
+<li>Welche Maßnahme hat Vorrang?</li>
+<li>Wie kommunizierst du unter Zeitdruck?</li>
+<li>Welche Materialien müssen geprüft werden?</li>
+<li>Welche Konsequenzen ergeben sich für das Qualitätsmanagement?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Ein steriles Instrument gilt nach Kontakt mit einer nicht sterilen Fläche als kontaminiert. Die kurze Kontaktdauer stellt die Sterilität nicht wieder her.</p><p><strong>2.</strong>&nbsp;Du verwendest das betroffene Instrument nicht und sorgst für sterilen Ersatz. Falls weiterer Materialkontakt stattgefunden hat, wird auch dessen Sterilität geprüft. Patientensicherheit geht vor Terminplanung.</p><p><strong>3.</strong>&nbsp;Du benennst den Vorfall sachlich und eindeutig: Das Instrument ist nicht mehr steril und wird ersetzt. Du informierst die verantwortliche Fachperson und organisierst gemeinsam mit dem Team den sicheren Ablauf.</p><p><strong>4.</strong>&nbsp;Du kontrollierst die Unversehrtheit der Verpackungen, die korrekte Bereitstellung und gegebenenfalls weitere betroffene Gegenstände. Die Aufbereitung erfolgt nur nach den dafür geltenden validierten Verfahren; ein einfaches Abwischen genügt nicht.</p><p><strong>5.</strong>&nbsp;Der Vorfall wird entsprechend dem internen Qualitätsmanagement aufgearbeitet. Sinnvoll sind die Prüfung von Arbeitsflächen, Materialanordnung, Öffnungstechnik und Zeitdruck. Ziel ist eine wirksame Verbesserung statt vorschneller Schuldzuweisung.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was gilt, wenn die Kontamination erst während des Eingriffs bemerkt wird?</strong>&nbsp;Du weist sofort darauf hin. Die ärztliche Fachperson beurteilt das weitere Vorgehen; kontaminiertes Material darf nicht stillschweigend weiterverwendet werden.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Einen Sterilitätsbruch verschweigen, weil die Behandlung sonst länger dauert.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">04</p>
+  <h2>Prüfungsfall: Chronische Wunde mit widersprüchlichen Verlaufsdaten</h2>
+  <h3>Ausgangssituation</h3><p>Ein 74-jähriger Patient mit einer chronischen Unterschenkelwunde erscheint zur Kontrolle. Im letzten Eintrag steht eine Wundgröße von 2 × 3 cm, im vorherigen von 4 × 5 cm. Das zugehörige Foto zeigt jedoch eine deutlich größere Wunde. Heute berichtet der Patient über stärkere Schmerzen und mehr Sekret. Eine Kollegin schlägt vor, die alten Maße nachträglich anzupassen.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Welche Informationen überprüfst du?</li>
+<li>Wie dokumentierst du den aktuellen Befund?</li>
+<li>Wie gehst du mit widersprüchlichen Einträgen um?</li>
+<li>Welche Veränderungen erfordern ärztliche Rücksprache?</li>
+<li>Welche Qualitätsmaßnahme leitest du ab?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Du prüfst Datum, Patientenzuordnung, Messmethode, Maßeinheit, Fotodatensatz, verantwortliche Person und dokumentierte Maßnahmen. Unterschiedliche Werte können verschiedene Ursachen haben; die tatsächliche Ursache muss geklärt werden.</p><p><strong>2.</strong>&nbsp;Du erfasst den aktuellen Befund nach einheitlicher Methode mit Lokalisation, Länge, Breite, gegebenenfalls Tiefe nach Vorgabe, Wundumgebung, Exsudat, Schmerzen und weiteren beobachtbaren Merkmalen. Beobachtungen und Patientenaussagen werden getrennt.</p><p><strong>3.</strong>&nbsp;Alte Einträge werden nicht unkenntlich überschrieben. Eine notwendige Korrektur muss nachvollziehbar mit Zeitpunkt, verantwortlicher Person und Korrekturgrund erfolgen, entsprechend dem eingesetzten Dokumentationssystem.</p><p><strong>4.</strong>&nbsp;Zunehmende Schmerzen, verändertes Sekret, Ausbreitung der Rötung, auffälliger Geruch oder eine Verschlechterung des Allgemeinzustands werden zeitnah ärztlich beurteilt. Du stellst keine eigenständige Diagnose und änderst die Therapie nicht selbst.</p><p><strong>5.</strong>&nbsp;Das Team überprüft Messstandards, Fotodokumentation, Zuordnung und Übergaben. Eine verbindliche Dokumentationsroutine hilft, Verlaufsbeurteilungen vergleichbar und sicher zu machen.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was machst du, wenn das Foto möglicherweise zu einem anderen Patienten gehört?</strong>&nbsp;Du verwendest es nicht als gesicherten Verlaufsbeleg, meldest den Zuordnungsfehler und lässt die Korrektur datenschutzkonform klären.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Alte Messwerte ohne nachvollziehbaren Korrekturvermerk ändern, damit der Verlauf plausibler erscheint.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">05</p>
+  <h2>Prüfungsfall: Blutung nach einem ambulanten Eingriff</h2>
+  <h3>Ausgangssituation</h3><p>Nach einer kleinen ambulanten Operation meldet sich ein Patient am Empfang. Sein Verband ist zunehmend blutdurchtränkt. Er wirkt blass und berichtet über Schwindel. Er nimmt nach eigenen Angaben ein gerinnungshemmendes Medikament, dessen Namen er nicht sicher kennt.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Welche Priorität hat die Situation?</li>
+<li>Was unternimmst du unmittelbar?</li>
+<li>Welche Informationen sind für die Ärztin wichtig?</li>
+<li>Welche Maßnahmen dürfen nicht verzögern?</li>
+<li>Wie dokumentierst du den Verlauf?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Eine zunehmende Blutung zusammen mit Blässe und Schwindel kann auf eine relevante Kreislaufbelastung hinweisen. Du behandelst die Situation als dringlich und informierst unverzüglich die Ärztin.</p><p><strong>2.</strong>&nbsp;Du sorgst für eine sichere Position des Patienten, lässt ihn nicht allein, organisierst Unterstützung und unterstützt die Blutstillung durch geeigneten direkten Druck. Bei schwerer oder nicht beherrschbarer Blutung beziehungsweise Kreislaufinstabilität wird 112 alarmiert.</p><p><strong>3.</strong>&nbsp;Du übermittelst Eingriffsart, Zeitpunkt, Blutungsverlauf, beobachtete Symptome, Vitalwerte soweit ohne Verzögerung erhebbar und die Angabe zur Antikoagulation. Ein unbekannter Medikamentenname wird nicht geraten.</p><p><strong>4.</strong>&nbsp;Aufwendige Routineaufgaben, die Suche nach vollständigen Unterlagen oder eine kosmetisch saubere Neuversorgung des Verbandes dürfen dringende Maßnahmen nicht verzögern. Medikamente werden nicht eigenmächtig abgesetzt oder dosiert.</p><p><strong>5.</strong>&nbsp;Du hältst Beginn und Entwicklung der Blutung, Beobachtungen, alarmierte Personen, ärztliche Anordnungen, durchgeführte Maßnahmen, Zeitpunkte und gegebenenfalls die Übergabe an den Rettungsdienst fest.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was ändert sich bei Bewusstlosigkeit?</strong>&nbsp;Du prüfst unverzüglich Reaktion und normale Atmung und leitest abhängig vom Befund die notwendigen lebensrettenden Basismaßnahmen ein.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Einen blassen, schwindeligen Patienten allein im Wartezimmer auf eine reguläre Kontrolle warten lassen.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">06</p>
+  <h2>Prüfungsfall: Unklare ärztliche Anordnung bei der Wundversorgung</h2>
+  <h3>Ausgangssituation</h3><p>Bei einer Patientin mit einer chronischen Wunde steht in der Dokumentation lediglich: „Verband wie besprochen“. Die behandelnde Ärztin ist gerade nicht erreichbar. Ein neuer Kollege fragt dich, welches Wundprodukt er verwenden soll. Die Patientin berichtet außerdem, dass ein bisheriges Produkt stark gebrannt habe.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Warum ist die Anordnung problematisch?</li>
+<li>Wie handelst du vor einer Maßnahme?</li>
+<li>Welche Aufgaben können MFA übernehmen?</li>
+<li>Wie gehst du mit der Beschwerde der Patientin um?</li>
+<li>Wie lässt sich der Fehler künftig vermeiden?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Die Formulierung ist für eine eindeutige Durchführung möglicherweise nicht ausreichend. Produkt, Vorgehensweise, Besonderheiten und Verantwortlichkeiten müssen nachvollziehbar sein.</p><p><strong>2.</strong>&nbsp;Du prüfst, ob eine gültige, eindeutige Anordnung an anderer Stelle dokumentiert ist. Bei verbleibender Unklarheit holst du ärztliche Klärung ein und führst keine eigenmächtige Therapieänderung durch.</p><p><strong>3.</strong>&nbsp;MFA unterstützen ärztlich verantwortete Maßnahmen entsprechend Ausbildungsstand, Kompetenz, Delegation und Praxisvorgaben. Ärztliche Diagnostik und Therapieentscheidungen bleiben ärztliche Aufgaben.</p><p><strong>4.</strong>&nbsp;Du nimmst das Brennen ernst, erfasst Zeitpunkt, Ausmaß und Zusammenhang mit dem Produkt und informierst die Ärztin. Bei einer akuten schweren Reaktion ist sofortige Hilfe erforderlich.</p><p><strong>5.</strong>&nbsp;Das Team entwickelt einen verbindlichen Standard für vollständige Anordnungen, Rückfragen und Übergaben. Unklare Formulierungen werden künftig vor der Durchführung geklärt.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was sagst du, wenn die Patientin ausdrücklich ein anderes Produkt verlangt?</strong>&nbsp;Du erklärst respektvoll, dass Beschwerden ärztlich bewertet werden müssen und eine Therapieänderung nicht eigenständig vorgenommen werden darf.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Eine unklare Anordnung durch persönliche Gewohnheiten ersetzen und dies als ärztliche Entscheidung dokumentieren.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">07</p>
+  <h2>Prüfungsfall: Mehrere Patienten und konkurrierende Aufgaben</h2>
+  <h3>Ausgangssituation</h3><p>Am Montagmorgen warten drei Personen: Ein Patient hat eine stark blutende Handverletzung und wirkt benommen. Eine Patientin kommt zur geplanten Fadenentfernung. Ein weiterer Patient mit einer chronischen Wunde berichtet über seit gestern zunehmende Rötung und Fieber. Du bist zunächst allein am Empfang.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Wie setzt du die Prioritäten?</li>
+<li>Wie organisierst du Unterstützung?</li>
+<li>Welche Informationen erhebst du zuerst?</li>
+<li>Wie gehst du mit den wartenden Patienten um?</li>
+<li>Wie begründest du deine Reihenfolge?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Die starke Blutung mit Benommenheit hat höchste unmittelbare Priorität. Du organisierst sofort Hilfe, unterstützt die Blutstillung und veranlasst bei Verdacht auf eine schwere Blutung oder Kreislaufinstabilität den Rettungsdienst.</p><p><strong>2.</strong>&nbsp;Du alarmierst die Ärztin und weitere verfügbare Teammitglieder. Aufgaben werden klar verteilt, damit der dringliche zweite Patient nicht übersehen wird.</p><p><strong>3.</strong>&nbsp;Beim blutenden Patienten sind Blutung, Bewusstsein, Atmung und Kreislaufzeichen entscheidend. Beim Patienten mit Fieber und zunehmender Wundrötung muss zeitnah eine ärztliche Einschätzung erfolgen, insbesondere bei Zeichen systemischer Verschlechterung.</p><p><strong>4.</strong>&nbsp;Die geplante Fadenentfernung kann warten. Du kommunizierst ruhig und datensparsam, ohne medizinische Details anderer Patienten offenzulegen.</p><p><strong>5.</strong>&nbsp;Du begründest die Reihenfolge mit der möglichen unmittelbaren Lebensgefahr, der Dringlichkeit einer Infektionsabklärung und dem planbaren Charakter einer Routineleistung. Priorisierung ist keine starre Reihenfolge; neue Befunde können sie verändern.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was geschieht, wenn der Patient mit Fieber plötzlich verwirrt wirkt?</strong>&nbsp;Seine Dringlichkeit steigt sofort. Du organisierst zusätzliche Hilfe und eine unverzügliche Notfallbeurteilung.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Patienten ausschließlich nach Ankunftszeit versorgen, obwohl Warnzeichen vorliegen.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">08</p>
+  <h2>Prüfungsfall: Komplikation bei der Fadenentfernung</h2>
+  <h3>Ausgangssituation</h3><p>Zehn Tage nach einem ambulanten Eingriff erscheint ein Patient zur Fadenentfernung. Die Wundränder sind an einer Stelle gerötet und leicht auseinandergewichen. Der Patient berichtet, dass die Stelle beim Bewegen zieht. In der Dokumentation steht lediglich der ursprünglich geplante Termin zur Fadenentfernung.</p><h3>Deine Prüfungsaufgaben</h3><ol>
+<li>Was prüfst du vor Beginn?</li>
+<li>Welche Bedeutung hat die Wundrandtrennung?</li>
+<li>Wie gehst du mit dem geplanten Ablauf um?</li>
+<li>Wer entscheidet über das weitere Vorgehen?</li>
+<li>Welche Hinweise und Einträge sind notwendig?</li>
+</ol><h3>Musterlösung mit fachlicher Begründung</h3><p><strong>1.</strong>&nbsp;Du prüfst die eindeutige Patientenzuordnung, den Eingriff, vorhandene Anordnungen und den aktuellen Wundzustand. Ein geplanter Termin ersetzt keine aktuelle fachliche Beurteilung.</p><p><strong>2.</strong>&nbsp;Auseinanderweichende Wundränder können auf eine gestörte Wundheilung hinweisen. Zusammen mit Rötung oder Schmerzen ist eine ärztliche Einschätzung erforderlich.</p><p><strong>3.</strong>&nbsp;Du beginnst nicht eigenmächtig mit der vollständigen Fadenentfernung. Du schützt die Wunde vor zusätzlicher Belastung und informierst die verantwortliche Ärztin.</p><p><strong>4.</strong>&nbsp;Die Ärztin entscheidet nach Untersuchung, ob und in welchem Umfang Fäden entfernt werden, ob zusätzliche Sicherungsmaßnahmen notwendig sind und wie die weitere Versorgung erfolgt.</p><p><strong>5.</strong>&nbsp;Du dokumentierst den vorgefundenen Befund, Patientenaussagen, ärztliche Entscheidung, tatsächlich durchgeführte Maßnahmen und die vereinbarte Nachkontrolle. Hinweise zur Wundbeobachtung werden verständlich vermittelt.</p><h3>Entscheidende Prüfungsfrage</h3><p><strong>Was gilt, wenn die Wunde bereits deutlich klafft?</strong>&nbsp;Du unterbrichst den Routineablauf, schützt die Wunde und veranlasst unverzüglich die ärztliche Beurteilung.</p><p><strong>Typischer Prüfungsfehler:</strong>&nbsp;Alle Fäden entfernen, nur weil der vorgesehene Zeitpunkt erreicht ist.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">09</p>
+  <h2>Abschlussprüfung: Ein schwieriger Nachmittag in der chirurgischen Sprechstunde</h2>
+  
+<h3>Prüfungsformat</h3>
+<p>Bearbeite den folgenden Fall zunächst ohne Musterlösung. Begründe deine Entscheidungen so, als würdest du in einer mündlichen oder praktischen Prüfung antworten. Die 100 Punkte dienen ausschließlich deiner Selbsteinschätzung und sind kein offizieller Prüfungsschlüssel.</p>
+
+<h3>Ausgangssituation</h3>
+<p>Es ist 16:10 Uhr in einer hausärztlichen Gemeinschaftspraxis. Eine 69-jährige Patientin kommt drei Tage nach einem ambulanten Eingriff zur außerplanmäßigen Kontrolle. Der Verband ist feucht, die Wundumgebung gerötet und schmerzhaft. Sie fühlt sich seit dem Morgen krank. In der elektronischen Akte fehlen eindeutige Angaben zum letzten Verbandwechsel. Die Patientin berichtet, dass sie ein blutverdünnendes Medikament einnimmt, kann den Namen aber nicht nennen.</p>
+<p>Während du die Patientin betreust, meldet ein Kollege, dass die sterile Instrumentenablage für den nächsten Eingriff versehentlich berührt wurde. Gleichzeitig wird am Empfang ein weiterer Patient mit einer frisch blutenden Verletzung angekündigt. Die Ärztin untersucht gerade einen Patienten im Nachbarzimmer.</p>
+
+<h3>Teil A: Ersteinschätzung und Prioritäten – 20 Punkte</h3>
+<ol>
+<li>Welche Warnzeichen erkennst du bei der Patientin?</li>
+<li>Welche Angaben und Beobachtungen sind jetzt wichtig?</li>
+<li>Wie organisierst du eine zeitnahe ärztliche Beurteilung?</li>
+</ol>
+
+<h3>Teil B: Sichere Wundversorgung und Hygiene – 25 Punkte</h3>
+<ol>
+<li>Wie bereitest du die Untersuchung hygienisch sicher vor?</li>
+<li>Wie gehst du mit der möglicherweise kontaminierten Instrumentenablage um?</li>
+<li>Welche Maßnahmen dürfen nur nach ärztlicher Entscheidung erfolgen?</li>
+</ol>
+
+<h3>Teil C: Teamarbeit und konkurrierende Aufgaben – 20 Punkte</h3>
+<ol>
+<li>Wie verteilst du die Aufgaben im Team?</li>
+<li>Wie verändert sich die Priorität, wenn die angekündigte Verletzung stark blutet?</li>
+<li>Welche Maßnahmen sind bei Kreislaufinstabilität erforderlich?</li>
+</ol>
+
+<h3>Teil D: Dokumentation und Qualitätssicherung – 25 Punkte</h3>
+<ol>
+<li>Wie dokumentierst du die aktuellen Wundbefunde objektiv?</li>
+<li>Wie behandelst du die fehlenden Angaben zum letzten Verbandwechsel?</li>
+<li>Welche Verbesserungsmaßnahmen leitest du aus den Ereignissen ab?</li>
+</ol>
+
+<h3>Teil E: Fachliche Reflexion – 10 Punkte</h3>
+<p>Erkläre, warum Patientensicherheit, hygienisches Arbeiten und klare Zuständigkeitsgrenzen wichtiger sind als die möglichst schnelle Erledigung aller Termine.</p>
+
+<h3>Ausführliche Musterlösung</h3>
+<p><strong>Teil A – 20 Punkte:</strong>&nbsp;Die Kombination aus zunehmenden Schmerzen, Rötung, feuchtem Verband und Krankheitsgefühl verlangt eine zeitnahe ärztliche Einschätzung. Du erhebst Beginn und Verlauf der Beschwerden, Allgemeinzustand, Temperatur und weitere beobachtbare Warnzeichen. Bei schwerer systemischer Verschlechterung wird sofortige Notfallversorgung organisiert. Eine Infektionsdiagnose stellst du nicht selbst.</p>
+<p><strong>Teil B – 25 Punkte:</strong>&nbsp;Du bereitest einen hygienisch geeigneten Behandlungsplatz und das notwendige Material vor, beachtest Händehygiene und situationsgerechte Schutzausrüstung. Die berührte sterile Ablage wird als potenziell kontaminiert behandelt; betroffenes Material wird nicht weiterverwendet. Diagnostik, Wundtherapie und gegebenenfalls Arzneimittelanordnungen bleiben ärztliche Entscheidungen.</p>
+<p><strong>Teil C – 20 Punkte:</strong>&nbsp;Du informierst die Ärztin und organisierst Unterstützung durch erfahrene Teammitglieder. Die Patientin wird nicht ohne angemessene Beobachtung allein gelassen. Bei einer stark blutenden Verletzung mit Warnzeichen einer Kreislaufgefährdung haben unmittelbare Blutstillung, Hilfe und gegebenenfalls 112 Vorrang. Aufgaben werden klar zugewiesen und bei neuen Informationen neu priorisiert.</p>
+<p><strong>Teil D – 25 Punkte:</strong>&nbsp;Du dokumentierst die aktuellen Beobachtungen mit Zeitpunkt, Patientenaussagen, ärztlicher Information, Anordnungen und tatsächlich durchgeführten Maßnahmen. Fehlende historische Angaben werden nicht erfunden oder stillschweigend ergänzt. Das Team überprüft Dokumentationsstandards, Übergaben und den sicheren Aufbau steriler Arbeitsplätze.</p>
+<p><strong>Teil E – 10 Punkte:</strong>&nbsp;Eine schnelle Terminabwicklung rechtfertigt weder die Verwendung kontaminierter Instrumente noch eigenständige Therapieentscheidungen oder das Übersehen kritischer Warnzeichen. Fachlich richtiges Handeln erkennt Risiken, setzt Prioritäten, organisiert Unterstützung und sichert die Nachvollziehbarkeit.</p>
+
+<h3>Bewertungsraster zur Selbsteinschätzung</h3>
+<ul>
+<li>Teil A: Gefahrenerkennung und Ersteinschätzung – maximal 20 Punkte.</li>
+<li>Teil B: Hygiene und sichere Assistenz – maximal 25 Punkte.</li>
+<li>Teil C: Priorisierung und Teamarbeit – maximal 20 Punkte.</li>
+<li>Teil D: Dokumentation und Qualitätsmanagement – maximal 25 Punkte.</li>
+<li>Teil E: Fachliche Reflexion – maximal 10 Punkte.</li>
+</ul>
+<p><strong>Orientierung:</strong>&nbsp;90–100 Punkte: sehr sichere Bearbeitung; 75–89 Punkte: gute Grundlage; 60–74 Punkte: gezielter Übungsbedarf; unter 60 Punkte: Grundlagen systematisch wiederholen. Kritische Sicherheitsfehler müssen unabhängig von der Punktzahl aufgearbeitet werden. Dies ist eine didaktische Orientierung.</p>
+<p><strong>Prüfungstipp:</strong>&nbsp;Eine überzeugende Antwort beschreibt nicht nur, was du tust, sondern begründet, warum genau diese Maßnahme in dieser Situation Vorrang hat.</p>
+
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">10</p>
+  <h2>Prüfungsstrategie: Komplexe Wundsituationen sicher bearbeiten</h2>
+  <p>Komplexe Prüfungsfälle werden übersichtlich, wenn du sie in einer festen Reihenfolge bearbeitest.</p><ol>
+<li><strong>Situation erfassen:</strong>&nbsp;Was ist passiert, welche Beschwerden bestehen, welche Informationen fehlen?</li>
+<li><strong>Gefahren erkennen:</strong>&nbsp;Gibt es eine starke Blutung, Kreislaufprobleme oder Hinweise auf eine schwere Infektion?</li>
+<li><strong>Prioritäten begründen:</strong>&nbsp;Welche Maßnahme darf nicht warten?</li>
+<li><strong>Zuständigkeiten klären:</strong>&nbsp;Was kannst du entsprechend deiner Kompetenz übernehmen, was muss ärztlich entschieden werden?</li>
+<li><strong>Hygiene sichern:</strong>&nbsp;Welche Schutzmaßnahmen und sterilen Materialien sind erforderlich?</li>
+<li><strong>Kommunizieren:</strong>&nbsp;Wen informierst du, und welche Angaben sind entscheidend?</li>
+<li><strong>Dokumentieren:</strong>&nbsp;Welche Beobachtungen, Anordnungen und Maßnahmen müssen nachvollziehbar festgehalten werden?</li>
+</ol><p>Trainiere deine Antworten laut. Formuliere kurze, vollständige Sätze und erkläre den Zusammenhang zwischen Beobachtung, Risiko und Handlung.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">11</p>
+  <h2>Kritische Prüfungsfehler erkennen und vermeiden</h2>
+  <p>Nicht jeder Fehler hat dieselbe Bedeutung. Besonders schwer wiegen Fehler, die Patientinnen und Patienten unmittelbar gefährden.</p><ul>
+<li>Eine starke Blutung oder Kreislaufverschlechterung nicht als dringlich erkennen.</li>
+<li>Hinweise auf eine schwere Wundinfektion oder systemische Verschlechterung übersehen.</li>
+<li>Kontaminierte Instrumente oder Materialien trotzdem verwenden.</li>
+<li>Ärztliche Therapieentscheidungen eigenständig treffen.</li>
+<li>Eine unklare Anordnung ohne Rückfrage ausführen.</li>
+<li>Eine auffällige Wunde ohne Beurteilung routinemäßig weiterbehandeln.</li>
+<li>Fehlende oder falsche Dokumentation unbemerkt überschreiben.</li>
+<li>Patienten- oder Fotodaten falsch zuordnen.</li>
+<li>Warnzeichen nicht rechtzeitig weitergeben.</li>
+<li>Patienten ohne verständliche Hinweise zur Wiedervorstellung entlassen.</li>
+</ul><p><strong>Merksatz:</strong>&nbsp;Ein guter Prüfungsablauf beginnt mit der Patientensicherheit, nicht mit der Materialliste.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">12</p>
+  <h2>Zehn anspruchsvolle Fragen für deine mündliche Prüfung</h2>
+  <p>Beantworte jede Frage zunächst ohne Hilfe und vergleiche deine Begründung danach mit der Musterantwort.</p><h3>01. Warum darf ein Sterilitätsbruch nicht ignoriert werden?</h3><p>Weil ein kontaminierter Gegenstand das Risiko einer Keimübertragung erhöht. Betroffenes Material wird ersetzt und der sichere Ablauf wiederhergestellt.</p><h3>02. Wann ist eine Wundversorgung besonders dringlich?</h3><p>Bei starker Blutung, Kreislaufproblemen, rascher Verschlechterung oder Hinweisen auf eine schwere Infektion.</p><h3>03. Warum müssen Wundmaße vergleichbar erhoben werden?</h3><p>Nur mit einheitlicher Messmethode und eindeutiger Zuordnung lassen sich Veränderungen verlässlich beurteilen.</p><h3>04. Wie reagierst du auf eine unklare ärztliche Anordnung?</h3><p>Du klärst die Anordnung vor der Durchführung und triffst keine eigenständige Therapieentscheidung.</p><h3>05. Was unterscheidet Beobachtung und Diagnose?</h3><p>Beobachtungen beschreiben konkrete Befunde. Eine medizinische Diagnose ist eine ärztliche Bewertung dieser Befunde.</p><h3>06. Warum kann ein geplanter Fadenentfernungstermin nicht automatisch ausgeführt werden?</h3><p>Weil der aktuelle Wundzustand entscheidend ist. Bei auffälligen Wundrändern ist eine ärztliche Beurteilung notwendig.</p><h3>07. Was ist bei einer Fotodokumentation wichtig?</h3><p>Rechtmäßige Verarbeitung, geeignete Einwilligungs- beziehungsweise Rechtsgrundlage, eindeutige Zuordnung und geschützte Speicherung nach Praxisvorgaben.</p><h3>08. Welche Rolle hat die MFA beim Erkennen von Komplikationen?</h3><p>Sie beobachtet, erkennt Warnzeichen, organisiert Unterstützung und führt zulässige Maßnahmen entsprechend Kompetenz und Anordnung aus.</p><h3>09. Warum ist die Übergabe wichtig?</h3><p>Sie stellt sicher, dass relevante Beobachtungen, Maßnahmen und offene Fragen bei der nächsten verantwortlichen Person ankommen.</p><h3>10. Wie gehst du mit einem eigenen Fehler um?</h3><p>Du sicherst zuerst die Patientensicherheit, meldest den Fehler unverzüglich, dokumentierst sachlich und unterstützt die Ursachenanalyse.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">13</p>
+  <h2>Deine Vorlage für die strukturierte Fallanalyse</h2>
+  <p>Nutze diese Struktur für jeden neuen chirurgischen Prüfungsfall.</p><ol>
+<li><strong>Ausgangssituation:</strong>&nbsp;Wer ist betroffen, was ist passiert, welche Vorgeschichte ist relevant?</li>
+<li><strong>Aktuelle Beobachtungen:</strong>&nbsp;Welche Beschwerden und objektiven Befunde liegen vor?</li>
+<li><strong>Warnzeichen:</strong>&nbsp;Welche Risiken müssen sofort erkannt werden?</li>
+<li><strong>Erste Priorität:</strong>&nbsp;Welche Handlung ist jetzt am wichtigsten und warum?</li>
+<li><strong>Ärztliche Zusammenarbeit:</strong>&nbsp;Welche Informationen und Entscheidungen sind notwendig?</li>
+<li><strong>Hygiene und Material:</strong>&nbsp;Wie wird die Maßnahme sicher vorbereitet?</li>
+<li><strong>Kommunikation:</strong>&nbsp;Wie informierst du Patient und Team?</li>
+<li><strong>Dokumentation:</strong>&nbsp;Was muss eindeutig und nachvollziehbar festgehalten werden?</li>
+<li><strong>Reflexion:</strong>&nbsp;Welche Fehler lassen sich künftig vermeiden?</li>
+</ol><p>Achte darauf, dass du keine unbelegten Diagnosen, erfundenen Messwerte oder nicht erteilten Anordnungen in deine Fallanalyse übernimmst.</p>
+</section>
+
+
+<section class="content-section">
+  <p class="section-number">14</p>
+  <h2>Dein persönlicher Lernplan für die chirurgische Prüfung</h2>
+  <p>Verteile dein Training auf mehrere kurze Lerneinheiten. Entscheidend ist, dass du fachliche Entscheidungen selbst erklären kannst.</p><ul>
+<li><strong>Einheit 1:</strong>&nbsp;Wundbeurteilung, Heilungsverlauf und Warnzeichen wiederholen.</li>
+<li><strong>Einheit 2:</strong>&nbsp;Hygiene, sterile Arbeitsweise und Instrumentenvorbereitung trainieren.</li>
+<li><strong>Einheit 3:</strong>&nbsp;Assistenz, Zuständigkeiten und sichere Kommunikation durchgehen.</li>
+<li><strong>Einheit 4:</strong>&nbsp;Dokumentation und Qualitätsmanagement an Beispielen üben.</li>
+<li><strong>Einheit 5:</strong>&nbsp;Vier Prüfungsfälle ohne Musterlösung bearbeiten.</li>
+<li><strong>Einheit 6:</strong>&nbsp;Die übrigen Fälle und die mündlichen Fragen laut beantworten.</li>
+<li><strong>Einheit 7:</strong>&nbsp;Die 100-Punkte-Abschlussprüfung unter selbst gewählter Zeitbegrenzung lösen und Fehler gezielt nacharbeiten.</li>
+</ul><p>Wiederhole besonders die Situationen, in denen du eine Gefahr, die Zuständigkeitsgrenze oder die Reihenfolge der Maßnahmen nicht sicher begründen konntest.</p>
+</section>
+
+<section class="content-section">
+  <h2>Drei Entscheidungen, die in der chirurgischen Praxis zählen</h2>
+  
+<h3>Entscheidung 1: Sicherheit vor Zeitdruck</h3>
+<p>Eine Kollegin möchte ein möglicherweise kontaminiertes Instrument weiterverwenden. Du stoppst die Verwendung und organisierst sterilen Ersatz. Die Patientensicherheit hat Vorrang.</p>
+<h3>Entscheidung 2: Warnzeichen vor Routine</h3>
+<p>Ein Patient kommt zur geplanten Fadenentfernung, zeigt aber auffällige Wundränder und zunehmende Schmerzen. Du veranlasst zuerst eine ärztliche Beurteilung, statt den Routineablauf fortzusetzen.</p>
+<h3>Entscheidung 3: Nachvollziehbarkeit vor scheinbarer Vollständigkeit</h3>
+<p>Ein alter Dokumentationseintrag ist widersprüchlich. Du klärst den Sachverhalt und sorgst für eine nachvollziehbare Korrektur. Du veränderst den ursprünglichen Verlauf nicht stillschweigend.</p>
+
+</section>
+
+<section class="summary">
+  <p class="eyebrow">DAS MUSST DU MITNEHMEN</p>
+  <h2>Sichere Entscheidungen sind der Kern deiner Prüfung</h2>
+  <p>Erkenne zuerst die Gefahr. Begründe deine Priorität. Arbeite hygienisch sicher, beachte ärztliche Zuständigkeiten und kommuniziere klar. Dokumentiere Beobachtungen und Maßnahmen so, dass der Verlauf nachvollziehbar bleibt.</p>
+  <p>Die Fälle und Bewertungspunkte dieser Lektion sind didaktische Übungen und keine offiziellen Prüfungsaufgaben.</p>
+</section>
+
+<section class="self-check">
+  <p class="eyebrow">SELBSTCHECK</p>
+  <h2>Teste dein Prüfungswissen: 15 Entscheidungsfragen</h2>
+  <p>Beantworte jede Frage zuerst selbst. Öffne danach die Musterantwort und überprüfe besonders deine fachliche Begründung.</p>
+
+  <details>
+    <summary>01. Ein Verband ist stark blutdurchtränkt, der Patient wirkt blass. Was hat Vorrang?</summary>
+    <p>Du erkennst die mögliche Kreislaufgefährdung, organisierst sofort ärztliche Hilfe, unterstützt die Blutstillung und veranlasst bei schwerer Blutung oder Instabilität 112.</p>
+  </details>
+
+  <details>
+    <summary>02. Ein steriles Instrument berührt die unsterile Tischkante. Darf es weiterverwendet werden?</summary>
+    <p>Nein. Es gilt als kontaminiert und muss durch steriles Material ersetzt werden.</p>
+  </details>
+
+  <details>
+    <summary>03. Eine Wunde ist zunehmend gerötet, schmerzhaft und überwärmt. Wie handelst du?</summary>
+    <p>Du erhebst und dokumentierst die Beobachtungen und veranlasst zeitnah die ärztliche Beurteilung. Bei schwerer Allgemeinverschlechterung ist sofortige Notfallhilfe erforderlich.</p>
+  </details>
+
+  <details>
+    <summary>04. Die Patientin kennt ihren Tetanusimpfstatus nicht. Was dokumentierst du?</summary>
+    <p>Du dokumentierst den Status als unbekannt und lässt die erforderliche Prophylaxe ärztlich beurteilen.</p>
+  </details>
+
+  <details>
+    <summary>05. Ein Foto scheint zum falschen Patienten zu gehören. Was tust du?</summary>
+    <p>Du verwendest es nicht als gesicherten Befund, meldest den Zuordnungsfehler und lässt die Korrektur nach Datenschutz- und Dokumentationsvorgaben klären.</p>
+  </details>
+
+  <details>
+    <summary>06. Eine Wundanordnung lautet nur „wie besprochen“. Reicht das aus?</summary>
+    <p>Wenn die Maßnahme dadurch nicht eindeutig ist, muss die Anordnung vor Durchführung geklärt werden.</p>
+  </details>
+
+  <details>
+    <summary>07. Bei der Fadenentfernung klaffen die Wundränder. Was ist richtig?</summary>
+    <p>Du setzt die Routine nicht eigenständig fort und veranlasst eine ärztliche Beurteilung.</p>
+  </details>
+
+  <details>
+    <summary>08. Ein Patient nimmt ein Blutverdünnungsmittel, kennt aber den Namen nicht. Was schreibst du auf?</summary>
+    <p>Du dokumentierst seine Angabe und dass der genaue Wirkstoff unbekannt ist. Du erfindest keine Medikamentenbezeichnung.</p>
+  </details>
+
+  <details>
+    <summary>09. Darf eine MFA eigenständig ein Antibiotikum für eine Wundinfektion auswählen?</summary>
+    <p>Nein. Die Diagnose und medikamentöse Therapieentscheidung liegen bei der Ärztin beziehungsweise dem Arzt.</p>
+  </details>
+
+  <details>
+    <summary>10. Was gehört zu einem objektiven Wundbefund?</summary>
+    <p>Beispielsweise Lokalisation, Maße nach einheitlicher Methode, Wundumgebung, Exsudat, Schmerzen und beobachtbare Veränderungen.</p>
+  </details>
+
+  <details>
+    <summary>11. Warum darf eine alte Wundmessung nicht unbemerkt überschrieben werden?</summary>
+    <p>Weil der Verlauf nachvollziehbar bleiben muss. Korrekturen benötigen eine erkennbare Zuordnung und einen dokumentierten Zeitpunkt.</p>
+  </details>
+
+  <details>
+    <summary>12. Zwei Patienten brauchen Hilfe, einer blutet stark. Wie priorisierst du?</summary>
+    <p>Du orientierst dich an der unmittelbaren Gefährdung, organisierst Unterstützung und passt die Reihenfolge bei neuen Warnzeichen an.</p>
+  </details>
+
+  <details>
+    <summary>13. Was machst du bei einem Fehler während der sterilen Vorbereitung?</summary>
+    <p>Du sicherst den Ablauf, meldest den Vorfall und ersetzt betroffenes Material. Anschließend wird die Ursache sachlich aufgearbeitet.</p>
+  </details>
+
+  <details>
+    <summary>14. Welche Informationen gehören in eine strukturierte Übergabe?</summary>
+    <p>Ausgangssituation, relevante Beobachtungen, Verlauf, bereits erfolgte Maßnahmen, ärztliche Anordnungen und offene Aufgaben.</p>
+  </details>
+
+  <details>
+    <summary>15. Was macht eine überzeugende Prüfungsantwort aus?</summary>
+    <p>Du erkennst Risiken, begründest die Prioritäten, beschreibst sichere Maßnahmen, beachtest Zuständigkeitsgrenzen und sicherst Kommunikation sowie Dokumentation.</p>
+  </details>
+
+  <p><strong>Deine Auswertung:</strong>&nbsp;Zähle nicht nur richtige Antworten. Achte besonders darauf, ob du gefährliche Situationen zuverlässig erkennst und sicher zwischen MFA-Aufgaben und ärztlichen Entscheidungen unterscheidest.</p>
+</section>
+
+<footer class="next-lesson">
+  <p class="eyebrow">FACHWELT 08 ABGESCHLOSSEN</p>
+  <h2>Du hast die Fachwelt Wunden &amp; chirurgische Eingriffe geschafft!</h2>
+  <p>Von der Wundbeurteilung und hygienischen Vorbereitung bis zu komplexen Prüfungsfällen hast du alle 20 Lektionen dieser Fachwelt durchgearbeitet. Wiederhole unsichere Themen und trainiere praktische Handlungen unter fachlicher Anleitung.</p>
+  <p><a href="/lernen/wunden-chirurgische-eingriffe/" style="color: #E67E22; font-weight: 700; text-decoration: none;">← Zurück zur Fachwelt 08 – Wunden &amp; chirurgische Eingriffe</a></p>
+</footer>
+</main>
+</Layout>
