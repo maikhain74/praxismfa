@@ -1,0 +1,6272 @@
+---
+const title = "Plötzlicher Schwindel und Kreislaufbeschwerden in der Hausarztpraxis";
+const description = "Interaktiver PraxisMFA-Patientenfall zur Erkennung und Versorgung eines möglichen neurologischen Notfalls.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+
+    <style>
+      :global(*) {
+        box-sizing: border-box;
+      }
+
+      :global(html) {
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #fffaf5;
+        color: #222;
+      }
+
+      :global(body) {
+        margin: 0;
+      }
+
+      .site-header {
+        width: min(1440px, calc(100% - 48px));
+        margin: 0 auto;
+        min-height: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .brand {
+        color: #222;
+        text-decoration: none;
+        font-size: 1.45rem;
+        font-weight: 800;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 38px;
+      }
+
+      nav a {
+        color: #333;
+        text-decoration: none;
+        font-weight: 650;
+      }
+
+      nav a:hover {
+        color: #e67e22;
+      }
+
+      .premium {
+        padding: 11px 20px;
+        border: 1px solid #e67e22;
+        border-radius: 999px;
+        background: #e67e22;
+        color: #fff;
+      }
+
+      main {
+        width: min(900px, calc(100% - 40px));
+        margin: 0 auto;
+        padding-bottom: 120px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 48px;
+        color: #555;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .eyebrow {
+        color: #e67e22;
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        padding: 65px 0 45px;
+      }
+
+      h1 {
+        margin: 20px 0 30px;
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        line-height: 1.08;
+        letter-spacing: -0.045em;
+      }
+
+      .lead {
+        max-width: 760px;
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .hero-content .lead {
+        margin: 0;
+      }
+
+      .hero-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border: 1px solid #ded8d2;
+        border-radius: 20px;
+      }
+
+      @media (max-width: 650px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .answer-options {
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .answer-option {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 18px;
+        border: 1px solid #ded8d2;
+        border-radius: 14px;
+        background: #fff;
+        line-height: 1.65;
+        cursor: pointer;
+      }
+
+      .answer-option:has(input:checked) {
+        border-color: #e67e22;
+        background: #fff4e9;
+      }
+
+      .answer-option input {
+        margin-top: 6px;
+        accent-color: #e67e22;
+      }
+
+      .task-message {
+        margin-top: 22px;
+        font-weight: 700;
+        line-height: 1.7;
+      }
+
+      .task-complete {
+        margin-top: 26px;
+        padding: 24px;
+        border-radius: 18px;
+        background: #fff4e9;
+        line-height: 1.75;
+      }
+
+      .task-complete[hidden],
+      #task-1-form[hidden] {
+        display: none;
+      }
+
+      .case-card {
+        margin-top: 35px;
+        padding: 36px;
+        border: 1px solid #ded8d2;
+        border-radius: 24px;
+        background: #fff;
+      }
+
+      .case-card h2 {
+        margin-top: 0;
+        font-size: 1.8rem;
+      }
+
+      .case-card p {
+        line-height: 1.75;
+      }
+
+      .case-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin: 30px 0;
+      }
+
+      .detail {
+        padding: 18px;
+        border-radius: 14px;
+        background: #fff4e9;
+      }
+
+      .detail span {
+        display: block;
+        color: #666;
+        font-size: 0.8rem;
+        margin-bottom: 7px;
+      }
+
+      .detail strong {
+        font-size: 1.1rem;
+      }
+
+      .notice {
+        margin-top: 30px;
+        padding: 24px;
+        border: 1px solid #eadbcf;
+        border-radius: 18px;
+        background: #fff4e9;
+        line-height: 1.7;
+      }
+
+      .start-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 17px 30px;
+        border: 0;
+        border-radius: 999px;
+        background: #e67e22;
+        color: white;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .start-button:hover {
+        background: #c96b17;
+      }
+
+      .simulation {
+        margin-top: 45px;
+        padding: 36px;
+        border: 1px solid #ded8d2;
+        border-radius: 24px;
+        background: #fff;
+      }
+
+      .simulation[hidden],
+      .case-intro[hidden] {
+        display: none;
+      }
+
+      .progress-track {
+        height: 10px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #f0e5da;
+      }
+
+      .progress-fill {
+        width: 0;
+        height: 100%;
+        background: #e67e22;
+      }
+
+      .placeholder {
+        margin-top: 30px;
+        padding: 25px;
+        border-radius: 18px;
+        background: #fff4e9;
+        line-height: 1.75;
+      }
+
+      @media (max-width: 850px) {
+        .site-header {
+          min-height: 80px;
+        }
+
+        nav {
+          display: none;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .case-details {
+          grid-template-columns: 1fr;
+        }
+
+        .case-card,
+        .simulation {
+          padding: 25px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/praxis">← Zurück zu Praxis</a>
+
+      <section class="hero">
+        <p class="eyebrow">PraxisMFA · Interaktiver Patientenfall 01</p>
+
+        <h1>Plötzlicher Schwindel und Kreislaufbeschwerden</h1>
+
+        <div class="hero-content">
+          <p class="lead">
+            Du arbeitest als MFA-Auszubildende oder MFA-Auszubildender
+            im zweiten Ausbildungsjahr in einer Hausarztpraxis.
+            Eine Patientin kommt mit plötzlich aufgetretenen Beschwerden
+            in die Praxis. Du musst die Situation einschätzen,
+            Entscheidungen treffen und im Team richtig handeln.
+          </p>
+
+          <img
+            class="hero-image"
+            src="/images/praxisfall-01-schwindel.png"
+            alt="Frau Schneider mit Schwindel wird von einer MFA unterstützt"
+            width="900"
+            height="600"
+            loading="eager"
+          />
+        </div>
+      </section>
+
+      <section class="case-intro" id="case-intro">
+        <div class="case-card">
+          <p class="eyebrow">Deine Fallsimulation</p>
+          <h2>Ein gewöhnlicher Vormittag?</h2>
+
+          <p>
+            Es ist 09:15 Uhr. Du unterstützt eine erfahrene MFA
+            in der Hausarztpraxis. Eine 68-jährige Patientin,
+            Frau Schneider, benötigt dringend Hilfe.
+          </p>
+
+          <div class="case-details">
+            <div class="detail">
+              <span>Patientin</span>
+              <strong>Frau Schneider</strong>
+            </div>
+
+            <div class="detail">
+              <span>Alter</span>
+              <strong>68 Jahre</strong>
+            </div>
+
+            <div class="detail">
+              <span>Ausbildungsstand</span>
+              <strong>2. Ausbildungsjahr</strong>
+            </div>
+          </div>
+
+          <p>
+            Du erhältst die Informationen schrittweise.
+            Nicht alle Befunde sind von Anfang an bekannt.
+            Deine Entscheidungen beeinflussen deine Bewertung.
+          </p>
+
+          <div class="notice">
+            <strong>So funktioniert der Fall:&nbsp;</strong>
+            Du bearbeitest 15 Aufgaben in sieben Phasen.
+            Insgesamt kannst du 100 Punkte erreichen.
+            Die erste verbindlich abgegebene Antwort zählt
+            für die Bewertung. Fehler müssen anschließend
+            korrigiert werden, bevor du fortfahren kannst.
+            Sicherheitskritische Entscheidungen werden
+            zusätzlich bewertet.
+          </div>
+
+          <button class="start-button" id="start-case" type="button">
+            Patientenfall starten
+          </button>
+        </div>
+      </section>
+
+      <section class="simulation" id="simulation" hidden aria-live="polite">
+        <p class="eyebrow">Phase 1 · Ersteinschätzung</p>
+        <h2>Dein Patientenfall beginnt</h2>
+
+        <p id="progress-label">Aufgabe 1 von 15</p>
+
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="placeholder">
+          <strong>09:15 Uhr · Anmeldung der Hausarztpraxis</strong>
+
+          <p>
+            Frau Schneider berichtet über plötzlich aufgetretenen,
+            starken Schwindel. Sie kann kaum sicher stehen oder gehen.
+            Sie ist wach, ansprechbar und atmet normal.
+          </p>
+
+          <h3>Aufgabe 1 · Was unternimmst du zuerst?</h3>
+
+          <p>
+            Frau Schneider kann kaum sicher stehen. Sie wirkt
+            deutlich beeinträchtigt. Welche Vorgehensweise
+            ist jetzt richtig?
+          </p>
+
+          <form id="task-1-form">
+            <div class="answer-options">
+              <label class="answer-option">
+                <input type="radio" name="task-1" value="A" />
+                <span>
+                  A. Ich bitte Frau Schneider, zunächst im Wartezimmer
+                  Platz zu nehmen, und kümmere mich um die Anmeldung.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-1" value="B" />
+                <span>
+                  B. Ich sichere Frau Schneider gegen einen Sturz,
+                  organisiere sofort Unterstützung und beginne
+                  unverzüglich mit der Einschätzung ihres Zustands.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-1" value="C" />
+                <span>
+                  C. Ich lasse Frau Schneider selbstständig
+                  zum Behandlungszimmer gehen, damit sie sich
+                  dort hinlegen kann.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-1" value="D" />
+                <span>
+                  D. Ich empfehle ihr, zunächst etwas zu trinken,
+                  und warte ab, ob der Schwindel nachlässt.
+                </span>
+              </label>
+            </div>
+
+            <p id="task-1-message" class="task-message" role="status"></p>
+
+            <button class="start-button" type="submit">
+              Antwort verbindlich abgeben
+            </button>
+          </form>
+
+          <div id="task-1-complete" class="task-complete" hidden>
+            <h3>Aufgabe 1 abgeschlossen</h3>
+            <p>
+              Frau Schneider muss vor einem Sturz geschützt werden.
+              Gleichzeitig werden Unterstützung organisiert und
+              Bewusstsein, Atmung sowie weitere Warnzeichen beurteilt.
+              Bei Verdacht auf einen akuten neurologischen Notfall
+              darf die Alarmierung nicht verzögert werden.
+            </p>
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-1-score">0</span> von 6
+            </p>
+            <p>
+              Die nächste Aufgabe behandelt die neurologischen
+              Warnzeichen und die mögliche Schlaganfallsymptomatik.
+            </p>
+                      <button
+              class="start-button"
+              id="task-1-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 2
+            </button>
+</div>
+        </div>
+      
+        <div class="placeholder" id="task-2-panel" hidden>
+
+          <strong>09:15 Uhr · Neurologische Ersteinschätzung</strong>
+
+          <p>
+            Frau Schneider berichtet weiterhin über plötzlich
+            aufgetretenen starken Schwindel und ausgeprägte
+            Gangunsicherheit. Sie ist wach und atmet normal.
+            Eine Gesichtslähmung, Armschwäche oder Sprachstörung
+            ist bislang nicht aufgefallen.
+          </p>
+
+          <h3>Aufgabe 2 · Neurologische Warnzeichen erkennen</h3>
+
+          <p>
+            Welche Aussagen sind richtig?
+            Wähle alle zutreffenden Antworten aus.
+          </p>
+
+          <form id="task-2-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-2" value="A" />
+                <span>
+                  A. Plötzlich auftretender starker Schwindel
+                  mit ausgeprägter Gangunsicherheit kann
+                  auf einen Schlaganfall hinweisen.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-2" value="B" />
+                <span>
+                  B. Ohne typische FAST-Zeichen ist
+                  ein Schlaganfall ausgeschlossen.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-2" value="C" />
+                <span>
+                  C. Ein Schlaganfall im hinteren Hirnkreislauf
+                  kann Schwindel und Koordinationsstörungen
+                  verursachen.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-2" value="D" />
+                <span>
+                  D. Solange die Patientin wach ist,
+                  besteht kein dringender Handlungsbedarf.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-2" value="E" />
+                <span>
+                  E. Ein unauffälliger FAST-Test
+                  schließt einen Schlaganfall nicht
+                  zuverlässig aus.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-2" value="F" />
+                <span>
+                  F. Man sollte zunächst abwarten,
+                  ob die Beschwerden von selbst verschwinden.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-2-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Antworten verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-2-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 2 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, C und E.
+              Ein Schlaganfall im hinteren Hirnkreislauf
+              kann auch ohne typische FAST-Zeichen auftreten.
+              Plötzlicher starker Schwindel mit erheblicher
+              Gangunsicherheit ist deshalb ein ernstes
+              neurologisches Warnzeichen.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-2-score">0</span> von 6
+            </p>
+
+            <p>
+              Als Nächstes entscheidest du,
+              wie die Notfallalarmierung erfolgen muss.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-2-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 3
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-3-panel" hidden>
+
+          <strong>09:15 Uhr · Entscheidung über die Alarmierung</strong>
+
+          <p>
+            Frau Schneider ist weiterhin wach und atmet normal.
+            Sie hat plötzlich aufgetretenen starken Schwindel
+            und eine ausgeprägte Gangunsicherheit.
+            Ein Schlaganfall ist möglich, auch wenn bislang
+            keine typischen FAST-Zeichen aufgefallen sind.
+          </p>
+
+          <h3>Aufgabe 3 · Wie handelst du jetzt?</h3>
+
+          <p>
+            Welche Entscheidung ist in dieser Situation richtig?
+            Wähle eine Antwort aus.
+          </p>
+
+          <form id="task-3-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input type="radio" name="task-3" value="A" />
+                <span>
+                  A. Ich messe zunächst Blutdruck und Blutzucker.
+                  Erst danach entscheide ich gemeinsam mit
+                  der Ärztin oder dem Arzt über den Notruf.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-3" value="B" />
+                <span>
+                  B. Ich veranlasse sofort den Notruf 112
+                  wegen des Verdachts auf einen akuten
+                  neurologischen Notfall und informiere
+                  parallel die Ärztin oder den Arzt.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-3" value="C" />
+                <span>
+                  C. Ich organisiere einen regulären
+                  Arzttermin und bitte Frau Schneider,
+                  bis dahin im Wartezimmer zu bleiben.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-3" value="D" />
+                <span>
+                  D. Ich beobachte die Beschwerden zunächst
+                  einige Minuten. Wenn sie nicht besser werden,
+                  rufe ich den Rettungsdienst.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-3-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Antwort verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-3-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 3 abgeschlossen</h3>
+
+            <p>
+              Richtig ist Antwort B.
+              Der Verdacht auf einen akuten Schlaganfall
+              erfordert die unverzügliche Alarmierung
+              des Rettungsdienstes über 112.
+              Die Ärztin oder der Arzt wird parallel informiert.
+              Blutdruck- oder Blutzuckermessungen dürfen
+              den Notruf nicht verzögern.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-3-score">0</span> von 8
+            </p>
+
+            <p>
+              <strong>Phase 1 abgeschlossen:&nbsp;</strong>
+              Du hast die Ersteinschätzung, neurologische
+              Warnzeichen und die Notfallalarmierung bearbeitet.
+            </p>
+
+            <p>
+              Als Nächstes beginnt Phase 2.
+              Um 09:17 Uhr tritt eine neue neurologische
+              Auffälligkeit auf.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-3-next"
+              type="button"
+            >
+              Phase 2 starten
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-4-panel" hidden>
+
+          <p class="eyebrow">Phase 2 · Dynamische Notfallsituation</p>
+
+          <strong>09:17 Uhr · Neue neurologische Auffälligkeit</strong>
+
+          <p>
+            Während du Frau Schneider gemeinsam mit einer
+            erfahrenen MFA betreust, fällt dir auf,
+            dass sie ihren rechten Arm deutlich
+            schlechter bewegen kann.
+          </p>
+
+          <p>
+            Diese Schwäche wurde um 09:17 Uhr erstmals
+            beobachtet. Wann sie tatsächlich begonnen hat,
+            ist nicht bekannt.
+          </p>
+
+          <p>
+            Der Rettungsdienst wurde bereits alarmiert.
+            Die Ärztin oder der Arzt ist informiert.
+          </p>
+
+          <h3>Aufgabe 4 · Wie reagierst du?</h3>
+
+          <p>
+            Welche Entscheidung ist jetzt richtig?
+            Wähle eine Antwort aus.
+          </p>
+
+          <form id="task-4-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input type="radio" name="task-4" value="A" />
+                <span>
+                  A. Ich warte auf den Rettungsdienst.
+                  Die neue Armschwäche muss nicht
+                  zusätzlich gemeldet werden,
+                  weil der Notruf bereits erfolgt ist.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-4" value="B" />
+                <span>
+                  B. Ich informiere sofort die Ärztin
+                  oder den Arzt und veranlasse eine
+                  unverzügliche Aktualisierung der
+                  Informationen an die Leitstelle.
+                  Ich dokumentiere 09:17 Uhr als
+                  Zeitpunkt der ersten Beobachtung.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-4" value="C" />
+                <span>
+                  C. Ich lasse Frau Schneider zunächst
+                  mehrfach beide Arme kräftig heben
+                  und wiederhole die Prüfung,
+                  bis die Schwäche eindeutig
+                  bestätigt ist. Erst danach
+                  informiere ich das Team.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="radio" name="task-4" value="D" />
+                <span>
+                  D. Da nun ein typisches Schlaganfallzeichen
+                  vorliegt, ist die Diagnose gesichert.
+                  Eine weitere Rückmeldung an die
+                  Leitstelle ist nicht erforderlich.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-4-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Antwort verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-4-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 4 abgeschlossen</h3>
+
+            <p>
+              Richtig ist Antwort B.
+              Eine neu beobachtete Armschwäche
+              ist eine relevante Veränderung
+              des neurologischen Zustands.
+              Sie muss sofort an die behandelnde
+              Ärztin oder den behandelnden Arzt
+              und an die Rettungsleitstelle
+              weitergegeben werden.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              09:17 Uhr bezeichnet die erste
+              Beobachtung der Armschwäche.
+              Der tatsächliche Beginn dieser
+              Auffälligkeit ist nicht bekannt.
+              Die Diagnose Schlaganfall ist
+              weiterhin ein Verdacht.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-4-score">0</span> von 10
+            </p>
+
+            <p>
+              Als Nächstes geht es um die
+              kontinuierliche Überwachung und
+              Sicherheit der Patientin.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-4-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 5
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-5-panel" hidden>
+
+          <p class="eyebrow">Phase 2 · Dynamische Notfallsituation</p>
+
+          <strong>09:17 Uhr · Betreuung bis zum Rettungsdienst</strong>
+
+          <p>
+            Frau Schneider ist wach und atmet normal.
+            Sie leidet weiterhin unter starkem Schwindel
+            und ausgeprägter Gangunsicherheit.
+            Zusätzlich wurde eine Schwäche des rechten Arms
+            beobachtet.
+          </p>
+
+          <p>
+            Der Rettungsdienst ist alarmiert.
+            Die neue neurologische Auffälligkeit
+            wurde an die Leitstelle weitergegeben.
+            Du unterstützt die erfahrene MFA
+            bei der weiteren Betreuung.
+          </p>
+
+          <h3>Aufgabe 5 · Welche Maßnahmen sind richtig?</h3>
+
+          <p>
+            Beurteile die folgenden Aussagen.
+            Wähle alle richtigen Maßnahmen aus.
+          </p>
+
+          <form id="task-5-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-5" value="A" />
+                <span>
+                  A. Ich beobachte Bewusstsein, Atmung
+                  und neurologische Auffälligkeiten
+                  kontinuierlich und achte auf Veränderungen.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-5" value="B" />
+                <span>
+                  B. Ich sorge dafür, dass Frau Schneider
+                  sicher und möglichst ruhig betreut wird
+                  und keine unnötigen Bewegungen ausführen muss.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-5" value="C" />
+                <span>
+                  C. Wenn die Beschwerden kurzzeitig
+                  nachlassen, kann der bereits alarmierte
+                  Rettungsdienst wieder abbestellt werden.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-5" value="D" />
+                <span>
+                  D. Ich lasse Frau Schneider einige Schritte
+                  gehen, um festzustellen, ob sich ihre
+                  Gangunsicherheit verbessert hat.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-5" value="E" />
+                <span>
+                  E. Ich informiere das Praxisteam sofort,
+                  wenn neue Symptome auftreten oder sich
+                  der Zustand der Patientin verändert.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-5" value="F" />
+                <span>
+                  F. Da der Rettungsdienst unterwegs ist,
+                  kann Frau Schneider kurz allein bleiben,
+                  während ich andere Aufgaben erledige.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-5-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Antworten verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-5-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 5 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B und E.
+              Bis zum Eintreffen des Rettungsdienstes
+              muss Frau Schneider sicher betreut werden.
+              Bewusstsein, Atmung und neurologische
+              Auffälligkeiten werden fortlaufend beobachtet.
+              Neue Veränderungen müssen unverzüglich
+              weitergegeben werden.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Eine vorübergehende Besserung schließt
+              einen Schlaganfall nicht aus.
+              Die Patientin darf wegen der erheblichen
+              Gangunsicherheit nicht zum Gehen
+              aufgefordert oder allein gelassen werden.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-5-score">0</span> von 10
+            </p>
+
+            <p>
+              In Aufgabe 6 geht es darum,
+              welche Informationen nach der
+              neu beobachteten Armschwäche
+              an die Leitstelle weitergegeben werden.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-5-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 6
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-6-panel" hidden>
+
+          <p class="eyebrow">Phase 2 · Dynamische Notfallsituation</p>
+
+          <strong>09:17 Uhr · Aktualisierung des Notrufs</strong>
+
+          <p>
+            Der Rettungsdienst ist bereits alarmiert.
+            Bei Frau Schneider wurde jetzt erstmals
+            eine deutliche Schwäche des rechten Arms
+            beobachtet.
+          </p>
+
+          <p>
+            Du unterstützt die erfahrene MFA dabei,
+            die Rettungsleitstelle über die
+            Veränderung zu informieren.
+          </p>
+
+          <h3>Aufgabe 6 · Welche Informationen gibst du weiter?</h3>
+
+          <p>
+            Wähle genau fünf Informationsbausteine aus,
+            die für die Aktualisierung des Notrufs
+            fachlich richtig und relevant sind.
+          </p>
+
+          <form id="task-6-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="A" />
+                <span>
+                  A. Bei der 68-jährigen Patientin besteht
+                  weiterhin der Verdacht auf einen
+                  akuten neurologischen Notfall.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="B" />
+                <span>
+                  B. Um 09:17 Uhr wurde erstmals
+                  eine deutliche Schwäche des
+                  rechten Arms beobachtet.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="C" />
+                <span>
+                  C. Die Armschwäche hat nachweislich
+                  exakt um 09:17 Uhr begonnen.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="D" />
+                <span>
+                  D. Frau Schneider leidet weiterhin
+                  unter plötzlich aufgetretenem
+                  starkem Schwindel und erheblicher
+                  Gangunsicherheit.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="E" />
+                <span>
+                  E. Die Patientin ist derzeit wach,
+                  ansprechbar und atmet normal.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="F" />
+                <span>
+                  F. Ein Hirninfarkt wurde bereits
+                  eindeutig diagnostiziert.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="G" />
+                <span>
+                  G. Der tatsächliche Beginn
+                  der neu beobachteten Armschwäche
+                  ist nicht bekannt.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-6" value="H" />
+                <span>
+                  H. Die Leitstelle muss erst
+                  nach einer vollständigen
+                  neurologischen Untersuchung
+                  erneut informiert werden.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-6-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Informationen verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-6-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 6 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, D, E und G.
+              Die Leitstelle benötigt die aktuelle
+              Situation, die neu beobachtete
+              Armschwäche, die bisherigen Beschwerden
+              und den gegenwärtigen Zustand.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Die erste Beobachtung um 09:17 Uhr
+              darf nicht als gesicherter
+              Symptombeginn ausgegeben werden.
+              Auch die Diagnose Schlaganfall
+              ist zu diesem Zeitpunkt
+              noch nicht bestätigt.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-6-score">0</span> von 10
+            </p>
+
+            <p>
+              <strong>Phase 2 abgeschlossen:&nbsp;</strong>
+              Du hast auf die neu auftretende
+              neurologische Auffälligkeit reagiert,
+              die Patientensicherheit beurteilt
+              und die Informationsweitergabe
+              an die Leitstelle trainiert.
+            </p>
+
+            <p>
+              Als Nächstes beginnt Phase 3:
+              Zeitangaben, digitale Patientenakte
+              und strukturierte Übergabe.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-6-next"
+              type="button"
+            >
+              Phase 3 starten
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-7-panel" hidden>
+
+          <p class="eyebrow">Phase 3 · Dokumentation und Übergabe</p>
+
+          <strong>09:19 Uhr · Eine weitere Veränderung</strong>
+
+          <p>
+            Während der weiteren Betreuung fällt der MFA
+            erstmals auf, dass Frau Schneider
+            verwaschen spricht.
+            Die Patientin ist weiterhin wach
+            und atmet normal.
+          </p>
+
+          <p>
+            Die neue Sprachauffälligkeit wird sofort
+            an die Ärztin oder den Arzt und
+            an die Rettungsleitstelle weitergegeben.
+          </p>
+
+          <p>
+            Die erfahrene MFA fragt Frau Schneider,
+            wann sie zuletzt ohne Beschwerden war
+            und wann der Schwindel begonnen hat.
+          </p>
+
+          <p>
+            Frau Schneider berichtet:
+            „Um 08:00 Uhr ging es mir noch gut.
+            Kurz vor 09:00 Uhr wurde mir plötzlich
+            sehr schwindelig.“
+          </p>
+
+          <p>
+            Für die anschließende Dokumentation
+            müssen die Zeitangaben genau
+            voneinander unterschieden werden.
+          </p>
+
+          <h3>Aufgabe 7 · Was geschah wann?</h3>
+
+          <p>
+            Ordne jedem Ereignis den richtigen
+            Zeitpunkt und die richtige
+            Informationsquelle zu.
+          </p>
+
+          <p>
+            Beachte: Der Zeitpunkt einer ersten
+            Beobachtung ist nicht automatisch
+            der tatsächliche Symptombeginn.
+          </p>
+
+          <form id="task-7-form">
+
+            <div class="answer-options">
+
+              <div class="answer-option">
+                <div>
+                  <strong>A. Zuletzt ohne Beschwerden</strong>
+                  <p>
+                    Wann war Frau Schneider nach
+                    ihrer eigenen Aussage zuletzt
+                    ohne Beschwerden?
+                  </p>
+                  <label for="task-7-a-time">
+                    Zeitpunkt
+                  </label>
+                  <select id="task-7-a-time" name="a-time">
+                    <option value="">Bitte auswählen</option>
+                    <option value="0800">08:00 Uhr</option>
+                    <option value="0900">Kurz vor 09:00 Uhr</option>
+                    <option value="0917">09:17 Uhr</option>
+                    <option value="0919">09:19 Uhr</option>
+                  </select>
+                  <label for="task-7-a-source">
+                    Informationsquelle
+                  </label>
+                  <select id="task-7-a-source" name="a-source">
+                    <option value="">Bitte auswählen</option>
+                    <option value="patient">Angabe der Patientin</option>
+                    <option value="mfa">Beobachtung durch MFA</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>B. Plötzlich einsetzender Schwindel</strong>
+                  <p>
+                    Wann begann der Schwindel
+                    nach Aussage der Patientin?
+                  </p>
+                  <label for="task-7-b-time">
+                    Zeitpunkt
+                  </label>
+                  <select id="task-7-b-time" name="b-time">
+                    <option value="">Bitte auswählen</option>
+                    <option value="0800">08:00 Uhr</option>
+                    <option value="0900">Kurz vor 09:00 Uhr</option>
+                    <option value="0917">09:17 Uhr</option>
+                    <option value="0919">09:19 Uhr</option>
+                  </select>
+                  <label for="task-7-b-source">
+                    Informationsquelle
+                  </label>
+                  <select id="task-7-b-source" name="b-source">
+                    <option value="">Bitte auswählen</option>
+                    <option value="patient">Angabe der Patientin</option>
+                    <option value="mfa">Beobachtung durch MFA</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>C. Schwäche des rechten Arms</strong>
+                  <p>
+                    Wann wurde die Armschwäche
+                    erstmals beobachtet?
+                  </p>
+                  <label for="task-7-c-time">
+                    Zeitpunkt
+                  </label>
+                  <select id="task-7-c-time" name="c-time">
+                    <option value="">Bitte auswählen</option>
+                    <option value="0800">08:00 Uhr</option>
+                    <option value="0900">Kurz vor 09:00 Uhr</option>
+                    <option value="0917">09:17 Uhr</option>
+                    <option value="0919">09:19 Uhr</option>
+                  </select>
+                  <label for="task-7-c-source">
+                    Informationsquelle
+                  </label>
+                  <select id="task-7-c-source" name="c-source">
+                    <option value="">Bitte auswählen</option>
+                    <option value="patient">Angabe der Patientin</option>
+                    <option value="mfa">Beobachtung durch MFA</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>D. Verwaschene Sprache</strong>
+                  <p>
+                    Wann wurde die Sprachauffälligkeit
+                    erstmals beobachtet?
+                  </p>
+                  <label for="task-7-d-time">
+                    Zeitpunkt
+                  </label>
+                  <select id="task-7-d-time" name="d-time">
+                    <option value="">Bitte auswählen</option>
+                    <option value="0800">08:00 Uhr</option>
+                    <option value="0900">Kurz vor 09:00 Uhr</option>
+                    <option value="0917">09:17 Uhr</option>
+                    <option value="0919">09:19 Uhr</option>
+                  </select>
+                  <label for="task-7-d-source">
+                    Informationsquelle
+                  </label>
+                  <select id="task-7-d-source" name="d-source">
+                    <option value="">Bitte auswählen</option>
+                    <option value="patient">Angabe der Patientin</option>
+                    <option value="mfa">Beobachtung durch MFA</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <p
+              id="task-7-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Zuordnung verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-7-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 7 abgeschlossen</h3>
+
+            <p>
+              Die korrekte zeitliche Einordnung lautet:
+              08:00 Uhr zuletzt beschwerdefrei
+              laut Patientin, kurz vor 09:00 Uhr
+              Schwindelbeginn laut Patientin,
+              09:17 Uhr erste Beobachtung der
+              Armschwäche durch MFA und
+              09:19 Uhr erste Beobachtung der
+              verwaschenen Sprache durch MFA.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Der tatsächliche Beginn der
+              Armschwäche und der Sprachauffälligkeit
+              ist nicht bekannt. Diese Zeiten dürfen
+              nicht als gesicherter Symptombeginn
+              dokumentiert werden.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-7-score">0</span> von 6
+            </p>
+
+            <p>
+              Als Nächstes prüfen wir die
+              digitale Patientenakte und
+              unterscheiden dokumentierte
+              Informationen von ungeklärten Angaben.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-7-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 8
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-8-panel" hidden>
+
+          <p class="eyebrow">Phase 3 · Dokumentation und Übergabe</p>
+
+          <strong>09:19 Uhr · Digitale Patientenakte</strong>
+
+          <p>
+            Die Notfallversorgung von Frau Schneider läuft weiter.
+            Der Rettungsdienst ist unterwegs.
+            Die Patientin ist wach und atmet normal.
+          </p>
+
+          <p>
+            Parallel zur Betreuung öffnet eine erfahrene MFA
+            die digitale Patientenakte.
+            Dort ist Vorhofflimmern als Vorerkrankung dokumentiert.
+          </p>
+
+          <p>
+            Der aktuelle Medikamentenplan ist nicht bestätigt.
+            Ob Frau Schneider gerinnungshemmende Medikamente
+            einnimmt und wann eine mögliche letzte Einnahme
+            erfolgte, ist unbekannt.
+            Auch die Allergieanamnese ist ungeklärt.
+          </p>
+
+          <h3>Aufgabe 8 · Was ist jetzt wichtig?</h3>
+
+          <p>
+            Beurteile alle sieben Aussagen.
+            Entscheide jeweils, ob die Aussage
+            fachlich richtig oder falsch ist.
+          </p>
+
+          <form id="task-8-form">
+
+            <div class="answer-options">
+
+              <div class="answer-option">
+                <div>
+                  <strong>A. Dokumentiertes Vorhofflimmern</strong>
+                  <p>
+                    Die dokumentierte Vorerkrankung wird
+                    der Ärztin oder dem Arzt und dem
+                    Rettungsdienst mitgeteilt.
+                  </p>
+                  <label for="task-8-a">Bewertung</label>
+                  <select id="task-8-a" name="a">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>B. Ungeklärte Antikoagulation</strong>
+                  <p>
+                    Eine mögliche Einnahme gerinnungshemmender
+                    Medikamente und der Zeitpunkt der letzten
+                    Dosis sollen, soweit ohne Verzögerung
+                    möglich, geklärt werden.
+                  </p>
+                  <label for="task-8-b">Bewertung</label>
+                  <select id="task-8-b" name="b">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>C. Nicht bestätigte Medikamenteneinnahme</strong>
+                  <p>
+                    Weil Vorhofflimmern dokumentiert ist,
+                    kann eine regelmäßige Einnahme
+                    von Antikoagulanzien als gesichert
+                    gemeldet werden.
+                  </p>
+                  <label for="task-8-c">Bewertung</label>
+                  <select id="task-8-c" name="c">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>D. Medikamentenplan</strong>
+                  <p>
+                    Der aktuelle Medikamentenplan wird,
+                    falls verfügbar, überprüft und
+                    für die Übergabe bereitgestellt,
+                    ohne die Notfallversorgung zu verzögern.
+                  </p>
+                  <label for="task-8-d">Bewertung</label>
+                  <select id="task-8-d" name="d">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>E. Allergien</strong>
+                  <p>
+                    Bekannte Allergien werden, soweit ohne
+                    Verzögerung möglich, erfragt oder überprüft.
+                    Ungeklärte Angaben bleiben als ungeklärt
+                    gekennzeichnet.
+                  </p>
+                  <label for="task-8-e">Bewertung</label>
+                  <select id="task-8-e" name="e">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>F. Versicherungsdaten</strong>
+                  <p>
+                    Die vollständige Prüfung der
+                    Versicherungsdaten hat Vorrang
+                    vor der medizinischen Übergabe.
+                  </p>
+                  <label for="task-8-f">Bewertung</label>
+                  <select id="task-8-f" name="f">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>G. Familienanamnese</strong>
+                  <p>
+                    Die Notfallversorgung wird unterbrochen,
+                    bis die Familienanamnese vollständig
+                    dokumentiert wurde.
+                  </p>
+                  <label for="task-8-g">Bewertung</label>
+                  <select id="task-8-g" name="g">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <p
+              id="task-8-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Bewertungen verbindlich abgeben
+            </button>
+
+          </form>
+
+          <div id="task-8-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 8 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, D und E.
+              Falsch sind C, F und G.
+            </p>
+
+            <p>
+              Das dokumentierte Vorhofflimmern ist
+              eine wichtige Information.
+              Daraus darf jedoch keine bestätigte
+              Einnahme von Antikoagulanzien
+              abgeleitet werden.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Ungeklärte Medikamente, letzte Einnahmen
+              und Allergien müssen als ungeklärt
+              gekennzeichnet werden.
+              Die Durchsicht der Patientenakte darf
+              die Notfallversorgung nicht verzögern.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-8-score">0</span> von 5
+            </p>
+
+            <p>
+              Als Nächstes folgt die strukturierte
+              Informationsweitergabe an die
+              behandelnde Ärztin oder den Arzt.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-8-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 9
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-9-panel" hidden>
+
+          <p class="eyebrow">Phase 3 · Dokumentation und Übergabe</p>
+
+          <strong>09:19 Uhr · Strukturierte ärztliche Übergabe</strong>
+
+          <p>
+            Die behandelnde Ärztin oder der behandelnde Arzt
+            benötigt eine kurze, strukturierte
+            Zusammenfassung der bisherigen Ereignisse.
+          </p>
+
+          <p>
+            Frau Schneider ist weiterhin wach
+            und atmet normal.
+            Der Rettungsdienst ist bereits alarmiert.
+            Die neu beobachteten neurologischen
+            Veränderungen wurden an die Leitstelle gemeldet.
+          </p>
+
+          <h3>Aufgabe 9 · Welche Informationen gehören in die Übergabe?</h3>
+
+          <p>
+            Wähle genau vier fachlich richtige
+            Informationsbausteine aus.
+          </p>
+
+          <form id="task-9-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-9" value="A" />
+                <span>
+                  A. Frau Schneider ist 68 Jahre alt.
+                  Sie ist aktuell wach, ansprechbar
+                  und atmet normal.
+                  Es besteht der Verdacht auf einen
+                  akuten neurologischen Notfall.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-9" value="B" />
+                <span>
+                  B. Nach eigener Aussage war die Patientin
+                  um 08:00 Uhr zuletzt beschwerdefrei.
+                  Kurz vor 09:00 Uhr begann plötzlich
+                  starker Schwindel.
+                  Es besteht eine erhebliche Gangunsicherheit.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-9" value="C" />
+                <span>
+                  C. Der Schlaganfall hat nachweislich
+                  um 09:17 Uhr begonnen.
+                  Die Diagnose ist damit gesichert.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-9" value="D" />
+                <span>
+                  D. Um 09:17 Uhr wurde erstmals
+                  eine Schwäche des rechten Arms
+                  und um 09:19 Uhr erstmals
+                  eine verwaschene Sprache beobachtet.
+                  Der tatsächliche Beginn dieser
+                  Auffälligkeiten ist unbekannt.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-9" value="E" />
+                <span>
+                  E. Vorhofflimmern ist in der digitalen
+                  Patientenakte dokumentiert.
+                  Eine aktuelle Antikoagulation,
+                  die letzte Medikamenteneinnahme
+                  und Allergien sind noch ungeklärt.
+                  Die Notfallversorgung läuft weiter.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input type="checkbox" name="task-9" value="F" />
+                <span>
+                  F. Bis die gesamte digitale Patientenakte
+                  einschließlich aller administrativen
+                  Angaben vollständig geprüft wurde,
+                  sollte die laufende Notfallversorgung
+                  unterbrochen werden.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-9-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Übergabe verbindlich zusammenstellen
+            </button>
+
+          </form>
+
+          <div id="task-9-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 9 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, D und E.
+              Eine strukturierte Übergabe enthält
+              den aktuellen Zustand, die bisherige
+              Entwicklung, genaue Zeitangaben
+              mit ihrer jeweiligen Quelle sowie
+              relevante Vorerkrankungen.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Ein erstmals beobachtetes Symptom
+              darf nicht mit seinem tatsächlichen
+              Beginn gleichgesetzt werden.
+              Unbestätigte Diagnosen und
+              Medikamenteneinnahmen dürfen
+              nicht als gesichert dargestellt werden.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-9-score">0</span> von 4
+            </p>
+
+            <p>
+              <strong>Phase 3 abgeschlossen:&nbsp;</strong>
+              Du hast die zeitliche Einordnung
+              der Symptome, die Bewertung
+              der digitalen Patientenakte
+              und die strukturierte ärztliche
+              Informationsweitergabe trainiert.
+            </p>
+
+            <p>
+              Als Nächstes beginnt Phase 4.
+              Frau Schneiders Zustand verändert sich
+              erneut. Jetzt stehen Übelkeit,
+              Erbrechen und die Sicherung
+              der Atemwege im Mittelpunkt.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-9-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 10
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-10-panel" hidden>
+
+          <p class="eyebrow">Phase 4 · Akute Zustandsverschlechterung</p>
+
+          <strong>09:22 Uhr · Plötzliche Übelkeit</strong>
+
+          <p>
+            Frau Schneider klagt plötzlich über starke
+            Übelkeit und beginnt zu würgen.
+            Sie ist weiterhin wach, reagiert auf Ansprache
+            und atmet normal.
+          </p>
+
+          <p>
+            Der Verdacht auf einen akuten Schlaganfall
+            besteht weiterhin.
+            Der Rettungsdienst ist bereits alarmiert.
+            Eine MFA bleibt bei der Patientin.
+          </p>
+
+          <h3>Aufgabe 10 · Welche Maßnahmen sind richtig?</h3>
+
+          <p>
+            Beurteile alle sieben Aussagen.
+            Entscheide jeweils, ob die Maßnahme
+            richtig oder falsch ist.
+          </p>
+
+          <form id="task-10-form">
+
+            <div class="answer-options">
+
+              <div class="answer-option">
+                <div>
+                  <strong>A. Aspirationsgefahr erkennen</strong>
+                  <p>
+                    Das Würgen wird als mögliches Zeichen
+                    einer Aspirationsgefahr erkannt.
+                    Die Patientin bleibt unter unmittelbarer
+                    Beobachtung.
+                  </p>
+                  <label for="task-10-a">Bewertung</label>
+                  <select id="task-10-a" name="a">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>B. Sichere Positionierung</strong>
+                  <p>
+                    Die Patientin wird entsprechend ihrem
+                    Bewusstseinszustand und ihrer Atmung
+                    so positioniert, dass Erbrochenes
+                    möglichst frei abfließen kann.
+                    Ein Sturz wird verhindert.
+                  </p>
+                  <label for="task-10-b">Bewertung</label>
+                  <select id="task-10-b" name="b">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>C. Getränke anbieten</strong>
+                  <p>
+                    Zur Beruhigung des Magens erhält
+                    Frau Schneider ein Glas Wasser,
+                    obwohl sie würgt und ein
+                    Schlaganfallverdacht besteht.
+                  </p>
+                  <label for="task-10-c">Bewertung</label>
+                  <select id="task-10-c" name="c">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>D. Atmung kontrollieren</strong>
+                  <p>
+                    Atmung, Bewusstseinszustand und
+                    mögliche Zeichen einer Aspiration
+                    werden fortlaufend beobachtet.
+                    Veränderungen werden sofort weitergegeben.
+                  </p>
+                  <label for="task-10-d">Bewertung</label>
+                  <select id="task-10-d" name="d">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>E. Hilfsmittel vorbereiten</strong>
+                  <p>
+                    Eine geeignete Absaugmöglichkeit
+                    wird, sofern verfügbar, vorbereitet.
+                    Eine Absaugung erfolgt nur bei
+                    entsprechender Indikation und
+                    innerhalb der eigenen Kompetenz.
+                  </p>
+                  <label for="task-10-e">Bewertung</label>
+                  <select id="task-10-e" name="e">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>F. Patientin allein lassen</strong>
+                  <p>
+                    Da Frau Schneider noch wach ist,
+                    kann sie unbeaufsichtigt bleiben,
+                    während das Team andere Aufgaben erledigt.
+                  </p>
+                  <label for="task-10-f">Bewertung</label>
+                  <select id="task-10-f" name="f">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>G. Erbrechen auslösen</strong>
+                  <p>
+                    Um den Magen rasch zu entleeren,
+                    soll bei Frau Schneider aktiv
+                    Erbrechen ausgelöst werden.
+                  </p>
+                  <label for="task-10-g">Bewertung</label>
+                  <select id="task-10-g" name="g">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <p
+              id="task-10-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Maßnahmen verbindlich bewerten
+            </button>
+
+          </form>
+
+          <div id="task-10-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 10 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, D und E.
+              Falsch sind C, F und G.
+            </p>
+
+            <p>
+              <strong>Aspirationsschutz:&nbsp;</strong>
+              Bei Würgen und Erbrechen muss die
+              Atemwegssicherheit besonders beachtet werden.
+              Die Positionierung richtet sich nach
+              Bewusstsein, Atmung und konkreter Situation.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Bei Schlaganfallverdacht werden
+              keine Getränke, Speisen oder
+              oralen Medikamente verabreicht,
+              solange die Schlucksicherheit
+              nicht fachgerecht geklärt ist.
+              Die Patientin bleibt beaufsichtigt.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-10-score">0</span> von 6
+            </p>
+
+            <p>
+              Als Nächstes verschlechtert sich
+              Frau Schneiders Zustand weiter.
+              Sie erbricht und reagiert
+              nur noch auf laute Ansprache.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-10-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 11
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-11-panel" hidden>
+
+          <p class="eyebrow">Phase 4 · Akute Zustandsverschlechterung</p>
+
+          <strong>09:23 Uhr · Erbrechen und Bewusstseinsveränderung</strong>
+
+          <p>
+            Frau Schneider erbricht plötzlich.
+            Sie reagiert nicht mehr zuverlässig
+            auf normale Ansprache.
+            Erst bei lauter Ansprache öffnet sie
+            die Augen.
+          </p>
+
+          <p>
+            Die Atmung ist weiterhin normal.
+            Der Rettungsdienst ist unterwegs.
+            Eine MFA befindet sich unmittelbar
+            bei der Patientin.
+          </p>
+
+          <h3>Aufgabe 11 · Entscheidungen bei akuter Verschlechterung</h3>
+
+          <p>
+            Triff vier Entscheidungen zur Versorgung.
+            Situation 3 ist hypothetisch.
+            Im tatsächlichen Verlauf atmet Frau Schneider normal.
+          </p>
+
+          <form id="task-11-form">
+            <div class="answer-options">
+
+              <div class="answer-option">
+                <div>
+                  <strong>1. Was hat unmittelbar Priorität?</strong>
+                  <p>
+                    Frau Schneider hat erbrochen und reagiert
+                    nur auf laute Ansprache. Sie atmet normal.
+                  </p>
+                  <label for="task-11-a">Deine Entscheidung</label>
+                  <select id="task-11-a" name="a">
+                    <option value="">Bitte auswählen</option>
+                    <option value="A">A. Wasser anbieten.</option>
+                    <option value="B">B. Atemwege freihalten, Erbrochenes abfließen lassen und bei normaler Atmung sicher in Seitenlage bringen.</option>
+                    <option value="C">C. Zuerst den Blutdruck messen.</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>2. Wie betreust du die Patientin weiter?</strong>
+                  <p>Ihre Atmung ist weiterhin normal.</p>
+                  <label for="task-11-b">Deine Entscheidung</label>
+                  <select id="task-11-b" name="b">
+                    <option value="">Bitte auswählen</option>
+                    <option value="A">A. Bei ihr bleiben, Atmung und Bewusstsein fortlaufend kontrollieren.</option>
+                    <option value="B">B. Sofort mit der Herzdruckmassage beginnen, obwohl sie normal atmet.</option>
+                    <option value="C">C. Sie bis zum Eintreffen des Rettungsdienstes allein lassen.</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>3. Was wäre bei weiterer Verschlechterung richtig?</strong>
+                  <p>
+                    Nur hypothetisch: Frau Schneider reagiert
+                    nicht mehr und zeigt ausschließlich
+                    einzelne schnappende Atemzüge.
+                  </p>
+                  <label for="task-11-c">Deine Entscheidung</label>
+                  <select id="task-11-c" name="c">
+                    <option value="">Bitte auswählen</option>
+                    <option value="A">A. Abwarten, weil noch Atembewegungen vorhanden sind.</option>
+                    <option value="B">B. Nur den Puls kontrollieren und auf den Rettungsdienst warten.</option>
+                    <option value="C">C. Sofort Hilfe hinzuziehen, Reanimation beginnen und einen AED organisieren.</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>4. Was muss sofort weitergegeben werden?</strong>
+                  <p>
+                    Tatsächlich atmet Frau Schneider weiterhin normal.
+                    Nach dem Erbrechen ist sie deutlich schlechter
+                    ansprechbar.
+                  </p>
+                  <label for="task-11-d">Deine Entscheidung</label>
+                  <select id="task-11-d" name="d">
+                    <option value="">Bitte auswählen</option>
+                    <option value="A">A. Nur den zuletzt gemessenen Blutdruck.</option>
+                    <option value="B">B. Erbrechen um 09:23 Uhr, verminderte Ansprechbarkeit und aktuellen Atemzustand unverzüglich an Arztteam und Leitstelle melden.</option>
+                    <option value="C">C. Keine weitere Meldung, weil der Rettungsdienst unterwegs ist.</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <p id="task-11-message" class="task-message" role="status"></p>
+
+            <button class="start-button" type="submit">
+              Entscheidungen verbindlich abgeben
+            </button>
+          </form>
+
+          <div id="task-11-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 11 abgeschlossen</h3>
+
+            <p>
+              Richtige Entscheidungen: 1 B, 2 A, 3 C und 4 B.
+            </p>
+
+            <p>
+              <strong>Priorität:&nbsp;</strong>
+              Nach dem Erbrechen müssen die Atemwege
+              geschützt werden. Bei normaler Atmung
+              wird Frau Schneider sicher gelagert
+              und fortlaufend überwacht.
+            </p>
+
+            <p>
+              <strong>Wichtig:&nbsp;</strong>
+              Situation 3 ist ausschließlich hypothetisch.
+              Bei fehlender Reaktion und fehlender normaler
+              Atmung muss sofort reanimiert werden.
+              Im tatsächlichen Verlauf atmet Frau Schneider
+              weiterhin normal. Die Verschlechterung
+              muss unverzüglich gemeldet werden.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-11-score">0</span> von 9
+            </p>
+
+            <p>
+              Als Nächstes werden die
+              aktuellen Vitalwerte erhoben
+              und fachlich eingeordnet.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-11-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 12
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-12-panel" hidden>
+
+          <p class="eyebrow">Phase 4 · Akute Zustandsverschlechterung</p>
+
+          <strong>09:24 Uhr · Vitalwerte und klinische Einschätzung</strong>
+
+          <p>
+            Frau Schneider befindet sich nach dem Erbrechen
+            weiterhin unter unmittelbarer Beobachtung.
+            Sie reagiert nur auf laute Ansprache,
+            atmet aber weiterhin normal.
+          </p>
+
+          <p>
+            Das Praxisteam hat folgende Werte erhoben:
+          </p>
+
+          <ul>
+            <li>Blutdruck: 168/94 mmHg</li>
+            <li>Puls: 96/min, regelmäßig tastbar</li>
+            <li>Sauerstoffsättigung: 97 % unter Raumluft</li>
+            <li>Blutzucker: 118 mg/dl</li>
+          </ul>
+
+          <h3>Aufgabe 12 · Wie beurteilst du die Befunde?</h3>
+
+          <p>
+            Beurteile alle sieben Aussagen.
+            Entscheide jeweils, ob die Aussage
+            fachlich richtig oder falsch ist.
+          </p>
+
+          <form id="task-12-form">
+
+            <div class="answer-options">
+
+              <div class="answer-option">
+                <div>
+                  <strong>A. Blutdruck</strong>
+                  <p>
+                    Der Blutdruck ist erhöht.
+                    Der Wert wird mit Messzeitpunkt
+                    dokumentiert und bei der
+                    medizinischen Übergabe mitgeteilt.
+                  </p>
+                  <label for="task-12-a">Bewertung</label>
+                  <select id="task-12-a" name="a">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>B. Blutzucker</strong>
+                  <p>
+                    Ein Blutzuckerwert von 118 mg/dl
+                    spricht aktuell nicht für eine
+                    Hypoglykämie als Ursache der
+                    neurologischen Auffälligkeiten.
+                    Ein Schlaganfall wird dadurch
+                    aber nicht ausgeschlossen.
+                  </p>
+                  <label for="task-12-b">Bewertung</label>
+                  <select id="task-12-b" name="b">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>C. Sauerstoffsättigung</strong>
+                  <p>
+                    Die Sauerstoffsättigung von 97 %
+                    unter Raumluft ist aktuell
+                    unauffällig. Sie schließt jedoch
+                    eine akute neurologische
+                    Erkrankung nicht aus.
+                  </p>
+                  <label for="task-12-c">Bewertung</label>
+                  <select id="task-12-c" name="c">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>D. Eigenmächtige Blutdrucksenkung</strong>
+                  <p>
+                    Wegen des erhöhten Blutdrucks
+                    soll die MFA ohne ärztliche
+                    Anordnung sofort ein
+                    blutdrucksenkendes Medikament
+                    verabreichen.
+                  </p>
+                  <label for="task-12-d">Bewertung</label>
+                  <select id="task-12-d" name="d">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>E. Verlaufskontrolle</strong>
+                  <p>
+                    Die Vitalwerte werden zusammen
+                    mit Bewusstseinszustand, Atmung
+                    und neurologischen Auffälligkeiten
+                    im Verlauf beurteilt.
+                    Relevante Veränderungen werden
+                    unverzüglich weitergegeben.
+                  </p>
+                  <label for="task-12-e">Bewertung</label>
+                  <select id="task-12-e" name="e">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>F. Entwarnung</strong>
+                  <p>
+                    Da Blutzucker und Sauerstoffsättigung
+                    unauffällig sind, kann der
+                    Schlaganfallverdacht aufgehoben
+                    und der Rettungsdiensteinsatz
+                    abgesagt werden.
+                  </p>
+                  <label for="task-12-f">Bewertung</label>
+                  <select id="task-12-f" name="f">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="answer-option">
+                <div>
+                  <strong>G. Orale Medikamentengabe</strong>
+                  <p>
+                    Trotz eingeschränkter Ansprechbarkeit
+                    und Erbrechen können Medikamente
+                    vorsorglich mit Wasser
+                    verabreicht werden.
+                  </p>
+                  <label for="task-12-g">Bewertung</label>
+                  <select id="task-12-g" name="g">
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <p
+              id="task-12-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Befunde verbindlich bewerten
+            </button>
+
+          </form>
+
+          <div id="task-12-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 12 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, C und E.
+              Falsch sind D, F und G.
+            </p>
+
+            <p>
+              <strong>Fachliche Einordnung:&nbsp;</strong>
+              Die gemessenen Vitalwerte sind wichtige
+              Informationen für die weitere
+              Notfallversorgung. Einzelne
+              unauffällige Werte schließen
+              einen Schlaganfall nicht aus.
+            </p>
+
+            <p>
+              <strong>Patientensicherheit:&nbsp;</strong>
+              Eine eigenmächtige Blutdrucksenkung
+              ist nicht angezeigt.
+              Bei eingeschränkter Ansprechbarkeit
+              und Aspirationsgefahr dürfen
+              keine Getränke oder oralen
+              Medikamente gegeben werden.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-12-score">0</span> von 5
+            </p>
+
+            <p>
+              Als Nächstes trifft der Rettungsdienst
+              ein. Du musst die wichtigsten
+              Informationen strukturiert übergeben.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-12-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 13
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-13-panel" hidden>
+
+          <p class="eyebrow">Phase 5 · Rettungsdienst und Übergabe</p>
+
+          <strong>09:28 Uhr · Der Rettungsdienst trifft ein</strong>
+
+          <p>
+            Der Rettungsdienst übernimmt die Versorgung
+            von Frau Schneider.
+            Die Patientin ist nach dem Erbrechen
+            weiterhin eingeschränkt ansprechbar,
+            atmet aber normal.
+          </p>
+
+          <p>
+            Du unterstützt die strukturierte Übergabe.
+            Entscheidend sind gesicherte Beobachtungen,
+            der zeitliche Verlauf, die aktuelle
+            Gefährdung und noch ungeklärte Angaben.
+          </p>
+
+          <h3>Aufgabe 13 · Welche Informationen übergibst du?</h3>
+
+          <p>
+            Wähle genau sieben fachlich richtige
+            Informationsbausteine aus.
+            Unbestätigte Angaben dürfen nicht
+            als gesicherte Tatsachen weitergegeben werden.
+          </p>
+
+          <form id="task-13-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="A"
+                />
+                <span>
+                  <strong>A. Aktueller Zustand&nbsp;</strong>
+                  Frau Schneider ist nach Erbrechen und einer deutlichen Verschlechterung der Ansprechbarkeit nur noch auf laute Ansprache mit Augenöffnen reaktionsfähig. Sie atmet aktuell normal.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="B"
+                />
+                <span>
+                  <strong>B. Letzter bekannter beschwerdefreier Zeitpunkt&nbsp;</strong>
+                  Nach eigener Aussage war Frau Schneider um 08:00 Uhr zuletzt beschwerdefrei. Kurz vor 09:00 Uhr bemerkte sie plötzlich starken Schwindel.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="C"
+                />
+                <span>
+                  <strong>C. Gesicherter Symptombeginn&nbsp;</strong>
+                  Die Armschwäche begann nachweislich um 09:17 Uhr und die Sprachstörung nachweislich um 09:19 Uhr.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="D"
+                />
+                <span>
+                  <strong>D. Neurologische Beobachtungen&nbsp;</strong>
+                  Es bestehen starker Schwindel und Gangunsicherheit. Eine Schwäche des rechten Arms wurde um 09:17 Uhr erstmals beobachtet, eine verwaschene Sprache um 09:19 Uhr. Der tatsächliche Beginn dieser beiden Auffälligkeiten ist unbekannt.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="E"
+                />
+                <span>
+                  <strong>E. Verlauf der Zustandsverschlechterung&nbsp;</strong>
+                  Um 09:22 Uhr traten starke Übelkeit und Würgen auf. Um 09:23 Uhr erbrach die Patientin und ihre Ansprechbarkeit nahm deutlich ab.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="F"
+                />
+                <span>
+                  <strong>F. Vitalwerte&nbsp;</strong>
+                  Um 09:24 Uhr wurden 168/94 mmHg Blutdruck, 96/min regelmäßig tastbarer Puls, 97 % Sauerstoffsättigung unter Raumluft und 118 mg/dl Blutzucker gemessen.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="G"
+                />
+                <span>
+                  <strong>G. Vorerkrankungen und Medikamente&nbsp;</strong>
+                  Vorhofflimmern ist in der digitalen Patientenakte dokumentiert. Eine aktuelle Antikoagulation, der Zeitpunkt einer möglichen letzten Einnahme und Allergien sind nicht bestätigt.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="H"
+                />
+                <span>
+                  <strong>H. Bereits eingeleitete Maßnahmen&nbsp;</strong>
+                  Der Rettungsdienst wurde alarmiert und über die neurologischen Veränderungen informiert. Die Patientin wurde fortlaufend betreut, beobachtet und vor Aspiration geschützt.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="I"
+                />
+                <span>
+                  <strong>I. Unbestätigte Antikoagulation&nbsp;</strong>
+                  Aufgrund des dokumentierten Vorhofflimmerns ist die regelmäßige Einnahme eines Antikoagulans als gesichert zu übergeben.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="J"
+                />
+                <span>
+                  <strong>J. Entwarnung durch Messwerte&nbsp;</strong>
+                  Da Sauerstoffsättigung und Blutzucker unauffällig sind, besteht kein Schlaganfallverdacht mehr.
+                </span>
+              </label>
+
+
+              <label class="answer-option">
+                <input
+                  type="checkbox"
+                  name="task-13"
+                  value="K"
+                />
+                <span>
+                  <strong>K. Verzögerte Übergabe&nbsp;</strong>
+                  Die Übergabe soll zurückgestellt werden, bis sämtliche administrativen Angaben vollständig erfasst sind.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-13-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Übergabe verbindlich zusammenstellen
+            </button>
+
+          </form>
+
+          <div id="task-13-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 13 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, D, E, F, G und H.
+              Falsch sind C, I, J und K.
+            </p>
+
+            <p>
+              <strong>Strukturierte Übergabe:&nbsp;</strong>
+              Der Rettungsdienst benötigt den aktuellen
+              Zustand, den zeitlichen Verlauf,
+              neurologische Beobachtungen,
+              relevante Messwerte, Vorerkrankungen,
+              Medikamenteninformationen und
+              bereits durchgeführte Maßnahmen.
+            </p>
+
+            <p>
+              <strong>Besonders wichtig:&nbsp;</strong>
+              Der letzte bekannte beschwerdefreie
+              Zeitpunkt ist nicht automatisch
+              der Symptombeginn.
+              Ebenso ist der Zeitpunkt einer
+              ersten Beobachtung nicht zwingend
+              der tatsächliche Beginn eines Symptoms.
+            </p>
+
+            <p>
+              <strong>Patientensicherheit:&nbsp;</strong>
+              Ungeklärte Antikoagulation und
+              Allergien bleiben ausdrücklich ungeklärt.
+              Die Übergabe darf nicht durch
+              administrative Aufgaben verzögert werden.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-13-score">0</span> von 7
+            </p>
+
+            <p>
+              Als Nächstes dokumentierst du
+              den Notfallverlauf fachlich korrekt.
+              Dabei unterscheidest du Beobachtungen,
+              Patientenaussagen und Informationen
+              aus der digitalen Patientenakte.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-13-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 14
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-14-panel" hidden>
+
+          <p class="eyebrow">Phase 6 · Dokumentation</p>
+
+          <strong>Nach der Übergabe · Notfallverlauf dokumentieren</strong>
+
+          <p>
+            Der Rettungsdienst hat Frau Schneider übernommen.
+            Nun muss der Notfallverlauf in der digitalen
+            Patientenakte nachvollziehbar dokumentiert werden.
+          </p>
+
+          <p>
+            Entscheidend sind sachliche Formulierungen,
+            die zeitliche Reihenfolge und die eindeutige
+            Herkunft der Informationen.
+          </p>
+
+          <h3>Aufgabe 14 · Was gehört in die Dokumentation?</h3>
+
+          <p>
+            Beurteile alle sieben Aussagen als richtig
+            oder falsch.
+          </p>
+
+          <form id="task-14-form">
+
+            <div class="answer-options">
+
+              <div class="answer-option">
+                <div>
+                  <strong>A. Zeitliche Zuordnung&nbsp;</strong>
+                  <p>
+                    Die Aussage der Patientin, sie sei um 08:00 Uhr zuletzt beschwerdefrei gewesen, wird als Patientenaussage dokumentiert. Der plötzlich aufgetretene Schwindel kurz vor 09:00 Uhr wird ebenfalls mit dieser Quelle festgehalten.
+                  </p>
+                  <label for="task-14-a">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-a"
+                    name="a"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="answer-option">
+                <div>
+                  <strong>B. Beobachtung und Symptombeginn&nbsp;</strong>
+                  <p>
+                    Die um 09:17 Uhr erstmals beobachtete Armschwäche und die um 09:19 Uhr erstmals beobachtete verwaschene Sprache werden mit diesen Beobachtungszeiten dokumentiert. Der tatsächliche Beginn bleibt unbekannt.
+                  </p>
+                  <label for="task-14-b">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-b"
+                    name="b"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="answer-option">
+                <div>
+                  <strong>C. Gesicherte Diagnose&nbsp;</strong>
+                  <p>
+                    Da mehrere neurologische Auffälligkeiten vorliegen, wird in der Praxisdokumentation die Diagnose eines bestätigten ischämischen Schlaganfalls eingetragen.
+                  </p>
+                  <label for="task-14-c">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-c"
+                    name="c"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="answer-option">
+                <div>
+                  <strong>D. Zustandsverschlechterung&nbsp;</strong>
+                  <p>
+                    Erbrechen, abnehmende Ansprechbarkeit, aktuelle Atmung und die um 09:24 Uhr erhobenen Vitalwerte werden mit entsprechenden Zeitangaben dokumentiert.
+                  </p>
+                  <label for="task-14-d">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-d"
+                    name="d"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="answer-option">
+                <div>
+                  <strong>E. Ungeklärte Informationen&nbsp;</strong>
+                  <p>
+                    Das dokumentierte Vorhofflimmern wird als Information aus der Patientenakte gekennzeichnet. Unbestätigte Antikoagulation, unbekannter letzter Einnahmezeitpunkt und ungeklärte Allergien werden nicht als gesicherte Tatsachen dargestellt.
+                  </p>
+                  <label for="task-14-e">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-e"
+                    name="e"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="answer-option">
+                <div>
+                  <strong>F. Nachträgliche Korrekturen&nbsp;</strong>
+                  <p>
+                    Falls ein Dokumentationsfehler auffällt, darf der ursprüngliche Eintrag unbemerkt überschrieben werden, damit die Patientenakte einheitlich aussieht.
+                  </p>
+                  <label for="task-14-f">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-f"
+                    name="f"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="answer-option">
+                <div>
+                  <strong>G. Notfallmaßnahmen&nbsp;</strong>
+                  <p>
+                    Die Alarmierung des Rettungsdienstes, wesentliche weitergegebene Informationen, durchgeführte Maßnahmen und die Übergabe werden nachvollziehbar dokumentiert. Unbekannte Uhrzeiten dürfen dabei nicht nachträglich erfunden werden.
+                  </p>
+                  <label for="task-14-g">
+                    Bewertung
+                  </label>
+                  <select
+                    id="task-14-g"
+                    name="g"
+                  >
+                    <option value="">Bitte auswählen</option>
+                    <option value="yes">Richtig</option>
+                    <option value="no">Falsch</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <p
+              id="task-14-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Dokumentation verbindlich bewerten
+            </button>
+
+          </form>
+
+          <div id="task-14-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 14 abgeschlossen</h3>
+
+            <p>
+              Richtig sind A, B, D, E und G.
+              Falsch sind C und F.
+            </p>
+
+            <p>
+              <strong>Dokumentationsqualität:&nbsp;</strong>
+              Patientenaussagen, eigene Beobachtungen
+              und Informationen aus der digitalen
+              Patientenakte müssen unterscheidbar bleiben.
+            </p>
+
+            <p>
+              <strong>Zeitliche Genauigkeit:&nbsp;</strong>
+              Der Zeitpunkt der ersten Beobachtung
+              eines Symptoms ist nicht automatisch
+              dessen tatsächlicher Beginn.
+            </p>
+
+            <p>
+              <strong>Rechtliche Nachvollziehbarkeit:&nbsp;</strong>
+              Unbekannte Informationen dürfen nicht
+              erfunden werden. Nachträgliche Korrekturen
+              müssen erkennbar bleiben, statt
+              ursprüngliche Einträge unbemerkt zu ersetzen.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-14-score">0</span> von 5
+            </p>
+
+            <p>
+              In der letzten Aufgabe überprüfst du
+              eine fehlerhafte Übergabe und
+              korrigierst die entscheidenden Angaben.
+            </p>
+
+          
+            <button
+              class="start-button"
+              id="task-14-next"
+              type="button"
+            >
+              Weiter zu Aufgabe 15
+            </button>
+</div>
+
+        </div>
+
+
+        <div class="placeholder" id="task-15-panel" hidden>
+
+          <p class="eyebrow">Phase 7 · Abschluss und Patientensicherheit</p>
+
+          <strong>Abschlussaufgabe · Fehler erkennen und korrigieren</strong>
+
+          <p>
+            Bei der Nachbesprechung des Notfalls wird
+            eine fehlerhafte Zusammenfassung der
+            Rettungsdienstübergabe vorgelegt.
+          </p>
+
+          <h3>Aufgabe 15 · Welche Korrektur ist fachlich richtig?</h3>
+
+          <p>
+            Lies die folgende Übergabe aufmerksam.
+            Sie enthält mehrere gefährliche
+            Ungenauigkeiten.
+          </p>
+
+          <blockquote>
+            Frau Schneider hatte ihren Schlaganfall
+            um 09:17 Uhr. Wegen ihres Vorhofflimmerns
+            nimmt sie sicher Blutverdünner.
+            Ihr Zustand war stabil, weil die
+            Sauerstoffsättigung und der Blutzucker
+            unauffällig waren.
+          </blockquote>
+
+          <p>
+            Welche der folgenden Antworten korrigiert
+            die Übergabe vollständig und fachlich richtig?
+            Wähle genau eine Antwort aus.
+          </p>
+
+          <form id="task-15-form">
+
+            <div class="answer-options">
+
+              <label class="answer-option">
+                <input
+                  type="radio"
+                  name="task-15"
+                  value="A"
+                />
+                <span>
+                  <strong>A. Diagnose bestätigen&nbsp;</strong>
+                  Die Übergabe ist weitgehend korrekt.
+                  Der beobachtete Zeitpunkt der Armschwäche
+                  bestätigt den Beginn des Schlaganfalls.
+                  Das Vorhofflimmern belegt außerdem
+                  die Einnahme eines Antikoagulans.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input
+                  type="radio"
+                  name="task-15"
+                  value="B"
+                />
+                <span>
+                  <strong>B. Gesicherte Fakten übergeben&nbsp;</strong>
+                  Es besteht ein Schlaganfallverdacht.
+                  Laut Patientin war sie um 08:00 Uhr
+                  zuletzt beschwerdefrei. Der Schwindel
+                  begann nach ihrer Aussage kurz vor
+                  09:00 Uhr. Die Armschwäche wurde
+                  erstmals um 09:17 Uhr, die verwaschene
+                  Sprache um 09:19 Uhr beobachtet.
+                  Deren tatsächlicher Beginn ist unbekannt.
+                  Vorhofflimmern ist dokumentiert,
+                  eine Antikoagulation aber nicht bestätigt.
+                  Nach Erbrechen verschlechterte sich
+                  die Ansprechbarkeit deutlich.
+                  Die Patientin atmete zuletzt normal.
+                  Die Vitalwerte schließen einen
+                  Schlaganfall nicht aus.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input
+                  type="radio"
+                  name="task-15"
+                  value="C"
+                />
+                <span>
+                  <strong>C. Unauffällige Werte priorisieren&nbsp;</strong>
+                  Die neurologischen Auffälligkeiten
+                  sind weniger relevant, weil der
+                  Blutzucker 118 mg/dl und die
+                  Sauerstoffsättigung 97 % betrugen.
+                  Die eingeschränkte Ansprechbarkeit
+                  muss deshalb nicht besonders
+                  hervorgehoben werden.
+                </span>
+              </label>
+
+              <label class="answer-option">
+                <input
+                  type="radio"
+                  name="task-15"
+                  value="D"
+                />
+                <span>
+                  <strong>D. Unbekannte Angaben ergänzen&nbsp;</strong>
+                  Um eine vollständige Übergabe
+                  sicherzustellen, werden die
+                  Antikoagulation und der genaue
+                  Symptombeginn aus dem bisherigen
+                  Verlauf geschätzt und anschließend
+                  als gesicherte Informationen
+                  dokumentiert.
+                </span>
+              </label>
+
+            </div>
+
+            <p
+              id="task-15-message"
+              class="task-message"
+              role="status"
+            ></p>
+
+            <button class="start-button" type="submit">
+              Abschlussentscheidung verbindlich bewerten
+            </button>
+
+          </form>
+
+          <div id="task-15-complete" class="task-complete" hidden>
+
+            <h3>Aufgabe 15 abgeschlossen</h3>
+
+            <p>
+              <strong>Richtige Antwort:&nbsp;</strong>
+              B. Gesicherte Fakten übergeben.
+            </p>
+
+            <p>
+              <strong>Symptombeginn:&nbsp;</strong>
+              Der letzte bekannte beschwerdefreie
+              Zeitpunkt und die Beobachtungszeiten
+              sind voneinander zu unterscheiden.
+              Eine gesicherte Schlaganfalldiagnose
+              liegt in diesem Praxisfall nicht vor.
+            </p>
+
+            <p>
+              <strong>Medikamentensicherheit:&nbsp;</strong>
+              Vorhofflimmern bedeutet nicht,
+              dass eine aktuelle Antikoagulation
+              ohne weitere Prüfung als gesichert
+              angegeben werden darf.
+            </p>
+
+            <p>
+              <strong>Akute Gefährdung:&nbsp;</strong>
+              Die Verschlechterung der Ansprechbarkeit
+              und das Erbrechen sind wichtige
+              Übergabeinformationen.
+              Unauffällige Einzelwerte dürfen
+              nicht zur Entwarnung führen.
+            </p>
+
+            <p>
+              <strong>Deine Punkte:&nbsp;</strong>
+              <span id="task-15-score">0</span> von 3
+            </p>
+
+            <p>
+              Du hast alle 15 Aufgaben dieses
+              interaktiven Praxisfalls bearbeitet.
+            </p>
+
+            <p>
+              Im nächsten Schritt wird die
+              Gesamtbewertung des Praxisfalls
+              zusammengeführt und geprüft.
+            </p>
+
+          
+            <div id="final-result" class="task-complete" hidden>
+
+              <h3>Dein Prüfungsergebnis</h3>
+
+              <p>
+                Du hast den interaktiven Praxisfall
+                zum Schlaganfallverdacht abgeschlossen.
+              </p>
+
+              <p>
+                <strong>Erreichte Gesamtpunktzahl:&nbsp;</strong>
+                <span id="final-total-score">0</span>&nbsp;
+                von 100 Punkten
+              </p>
+
+              <p>
+                <strong>Abgeschlossene Aufgaben:&nbsp;</strong>
+                <span id="final-completed-count">0</span>&nbsp;
+                von 15
+              </p>
+
+              <p>
+                <strong>Aufgaben mit sicherheitskritischen
+                Fehlentscheidungen:&nbsp;</strong>
+                <span id="final-critical-count">0</span>
+              </p>
+
+              <div class="progress-track">
+                <div
+                  class="progress-fill"
+                  id="final-score-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+
+              <h3>Deine fachliche Rückmeldung</h3>
+
+              <p id="final-feedback"></p>
+
+              <p>
+                <strong>Wichtig:&nbsp;</strong>
+                Die Punktzahl basiert auf deinen
+                ersten bewerteten Antworten.
+                Spätere Korrekturen dienen dem
+                Lernfortschritt und verändern
+                die ursprüngliche Bewertung nicht.
+              </p>
+
+              <p>
+                Diese Auswertung ist eine
+                Lernstandsrückmeldung von PraxisMFA.
+                Sie ist keine offizielle
+                Prüfungsnote oder Bestehensentscheidung.
+              </p>
+
+              <div id="attempt-history-section">
+                <h3>Meine letzten 5 Versuche</h3>
+                <p>
+                  Hier siehst du deine letzten fünf
+                  abgeschlossenen Durchläufe.
+                </p>
+                <ol id="attempt-history-list"></ol>
+              </div>
+
+              <p>
+                <button type="button" id="restart-case" class="start-button">
+                  Praxisfall erneut bearbeiten
+                </button>
+              </p>
+
+
+            </div>
+</div>
+
+        </div>
+
+</section>
+    </main>
+
+    <script>
+      const startButton = document.getElementById("start-case");
+      const intro = document.getElementById("case-intro");
+      const simulation = document.getElementById("simulation");
+
+      startButton?.addEventListener("click", () => {
+        if (!intro || !simulation) return;
+
+        intro.hidden = true;
+        simulation.hidden = false;
+        simulation.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      const task1Form = document.getElementById("task-1-form");
+      const task1Message = document.getElementById("task-1-message");
+      const task1Complete = document.getElementById("task-1-complete");
+      const task1Score = document.getElementById("task-1-score");
+
+      const storageKey = "praxismfa-schwindel-fall01-task1-v1";
+
+      let task1State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            ["A", "B", "C", "D"].includes(parsed.firstAnswer) &&
+            typeof parsed.points === "number" &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task1State = parsed;
+            task1State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe bleibt auch ohne lokalen Speicher nutzbar.
+      }
+
+      function saveTask1() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(task1State));
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Browserspeicher.
+        }
+      }
+
+      function finishTask1() {
+        if (!task1State.completed) return;
+
+        if (task1Form) task1Form.hidden = true;
+        if (task1Complete) task1Complete.hidden = false;
+        if (task1Score) {
+          task1Score.textContent = String(task1State.points);
+        }
+      }
+
+      if (task1State.completed) {
+        finishTask1();
+      } else if (task1State.firstAnswer !== null && task1Message) {
+        task1Message.textContent =
+          "Deine erste Antwort wurde bereits bewertet. " +
+          "Wähle jetzt die sichere Vorgehensweise, um fortzufahren.";
+      }
+
+      task1Form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(task1Form);
+        const answer = formData.get("task-1");
+
+        if (typeof answer !== "string" ||
+            !["A", "B", "C", "D"].includes(answer)) {
+          if (task1Message) {
+            task1Message.textContent =
+              "Bitte wähle zuerst eine Antwort aus.";
+          }
+          return;
+        }
+
+        if (task1State.firstAnswer === null) {
+          task1State.firstAnswer = answer;
+          task1State.points = answer === "B" ? 6 : 0;
+          task1State.critical = ["C", "D"].includes(answer);
+          saveTask1();
+        }
+
+        if (answer === "B") {
+          task1State.completed = true;
+          saveTask1();
+          finishTask1();
+        
+        } else {
+          task1State.wrongAttempts += 1;
+          saveTask1();
+
+          if (task1Message) {
+            const basicHint =
+              "Diese Entscheidung ist nicht ausreichend sicher. " +
+              "Denke zuerst an die unmittelbare Sturzgefahr, " +
+              "die Unterstützung durch das Praxisteam und " +
+              "die unverzügliche Beurteilung des Zustands. " +
+              "Überprüfe deine Entscheidung.";
+
+            const additionalHint =
+              " Zusätzlicher Hinweis: Überlege, welche " +
+              "Maßnahmen die Patientin unmittelbar schützen " +
+              "und wie du gleichzeitig eine schnelle " +
+              "medizinische Einschätzung organisierst.";
+
+            task1Message.textContent =
+              basicHint +
+              (task1State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+    
+      const task1Next = document.getElementById("task-1-next");
+      const task2Panel = document.getElementById("task-2-panel");
+      const task2Form = document.getElementById("task-2-form");
+      const task2Message = document.getElementById("task-2-message");
+      const task2Complete = document.getElementById("task-2-complete");
+      const task2Score = document.getElementById("task-2-score");
+      const progressLabel = document.getElementById("progress-label");
+      const progressFill = document.getElementById("progress-fill");
+
+      const task2StorageKey =
+        "praxismfa-schwindel-fall01-task2-v1";
+
+      const task2Correct = ["A", "C", "E"];
+      const task2All = ["A", "B", "C", "D", "E", "F"];
+
+      let task2State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task2StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            (
+              parsed.firstAnswer === null ||
+              (
+                Array.isArray(parsed.firstAnswer) &&
+                parsed.firstAnswer.every(
+                  value => task2All.includes(value)
+                )
+              )
+            ) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 6 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task2State = parsed;
+            task2State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Ohne lokalen Speicher bleibt die Aufgabe nutzbar.
+      }
+
+      function saveTask2() {
+        try {
+          localStorage.setItem(
+            task2StorageKey,
+            JSON.stringify(task2State)
+          );
+        } catch {
+          // Speicherung ist nicht zwingend erforderlich.
+        }
+      }
+
+      function finishTask2() {
+        if (!task2State.completed) return;
+
+        if (task2Form) task2Form.hidden = true;
+        if (task2Complete) task2Complete.hidden = false;
+
+        if (task2Score) {
+          task2Score.textContent = String(task2State.points);
+        }
+      }
+
+      function showTask2() {
+        if (!task1State.completed || !task2Panel) return;
+
+        const task1Panel = document.querySelector(
+          ".simulation > .placeholder"
+        );
+
+        if (task1Panel) task1Panel.hidden = true;
+
+        task2Panel.hidden = false;
+
+        updateCasePhase(2);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 2 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "13.33%";
+        }
+
+        task2Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task1Next?.addEventListener("click", showTask2);
+
+      if (task2State.completed) {
+        finishTask2();
+      } else if (
+        task2State.firstAnswer !== null &&
+        task2Message
+      ) {
+        task2Message.textContent =
+          "Die erste Antwort wurde bereits bewertet. " +
+          "Bitte korrigiere deine Auswahl.";
+      }
+
+      task2Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task2Form);
+
+        const selected = task2All.filter(
+          value => formData.getAll("task-2").includes(value)
+        );
+
+        if (selected.length === 0) {
+          if (task2Message) {
+            task2Message.textContent =
+              "Bitte wähle mindestens eine Aussage aus.";
+          }
+          return;
+        }
+
+        if (task2State.firstAnswer === null) {
+          task2State.firstAnswer = [...selected];
+
+          task2State.points = task2All.reduce(
+            (points, value) => {
+              const selectedByUser = selected.includes(value);
+              const correct = task2Correct.includes(value);
+
+              return points + (selectedByUser === correct ? 1 : 0);
+            },
+            0
+          );
+
+          task2State.critical = selected.some(
+            value => ["B", "D", "F"].includes(value)
+          );
+
+          saveTask2();
+        }
+
+        const fullyCorrect =
+          selected.length === task2Correct.length &&
+          selected.every(value => task2Correct.includes(value));
+
+        if (fullyCorrect) {
+          task2State.completed = true;
+          saveTask2();
+          finishTask2();
+        
+        } else {
+          task2State.wrongAttempts += 1;
+          saveTask2();
+
+          if (task2Message) {
+            const basicHint =
+              "Deine Auswahl ist noch nicht vollständig richtig. " +
+              "Denke an Schlaganfälle, die auch ohne typische " +
+              "FAST-Zeichen auftreten können. " +
+              "Überprüfe deine Entscheidung.";
+
+            const additionalHint =
+              " Zusätzlicher Hinweis: Prüfe jede Aussage " +
+              "einzeln. Plötzlich auftretender starker " +
+              "Schwindel und Gangunsicherheit können " +
+              "neurologische Warnzeichen sein. " +
+              "Achte darauf, welche Aussagen eine " +
+              "gefährliche Verzögerung begünstigen würden.";
+
+            task2Message.textContent =
+              basicHint +
+              (task2State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task2Next = document.getElementById("task-2-next");
+      const task3Panel = document.getElementById("task-3-panel");
+      const task3Form = document.getElementById("task-3-form");
+      const task3Message = document.getElementById("task-3-message");
+      const task3Complete = document.getElementById("task-3-complete");
+      const task3Score = document.getElementById("task-3-score");
+
+      const task3StorageKey =
+        "praxismfa-schwindel-fall01-task3-v1";
+
+      let task3State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task3StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            ["A", "B", "C", "D"].includes(parsed.firstAnswer) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 8 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task3State = parsed;
+            task3State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe bleibt ohne lokalen Speicher nutzbar.
+      }
+
+      function saveTask3() {
+        try {
+          localStorage.setItem(
+            task3StorageKey,
+            JSON.stringify(task3State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask3() {
+        if (!task3State.completed) return;
+
+        if (task3Form) task3Form.hidden = true;
+        if (task3Complete) task3Complete.hidden = false;
+
+        if (task3Score) {
+          task3Score.textContent = String(task3State.points);
+        }
+      }
+
+      function showTask3() {
+        if (!task2State.completed || !task3Panel) return;
+
+        if (task2Panel) task2Panel.hidden = true;
+
+        task3Panel.hidden = false;
+
+        updateCasePhase(3);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 3 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "20%";
+        }
+
+        task3Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task2Next?.addEventListener("click", showTask3);
+
+      if (task3State.completed) {
+        finishTask3();
+      } else if (
+        task3State.firstAnswer !== null &&
+        task3Message
+      ) {
+        task3Message.textContent =
+          "Deine erste Antwort wurde bereits bewertet. " +
+          "Wähle jetzt die sichere Vorgehensweise.";
+      }
+
+      task3Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task3Form);
+        const answer = formData.get("task-3");
+
+        if (
+          typeof answer !== "string" ||
+          !["A", "B", "C", "D"].includes(answer)
+        ) {
+          if (task3Message) {
+            task3Message.textContent =
+              "Bitte wähle eine Antwort aus.";
+          }
+          return;
+        }
+
+        if (task3State.firstAnswer === null) {
+          task3State.firstAnswer = answer;
+          task3State.points = answer === "B" ? 8 : 0;
+          task3State.critical = answer !== "B";
+          saveTask3();
+        }
+
+        if (answer === "B") {
+          task3State.completed = true;
+          saveTask3();
+          finishTask3();
+        } else {
+          task3State.wrongAttempts += 1;
+          saveTask3();
+
+          if (task3Message) {
+            const basicHint =
+              "Diese Entscheidung verzögert die notwendige " +
+            "Notfallversorgung. Denke daran, dass bei " +
+            "einem möglichen Schlaganfall jede Minute zählt. " +
+            "Zusätzliche Untersuchungen dürfen den Notruf " +
+            "nicht aufhalten. Überprüfe deine Entscheidung.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Prüfe die Reihenfolge: Welche Maßnahme muss bei begründetem Schlaganfallverdacht sofort erfolgen, auch wenn noch keine Messwerte vorliegen?';
+
+            task3Message.textContent =
+              basicHint +
+              (task3State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task3Next = document.getElementById("task-3-next");
+      const task4Panel = document.getElementById("task-4-panel");
+      const task4Form = document.getElementById("task-4-form");
+      const task4Message = document.getElementById("task-4-message");
+      const task4Complete = document.getElementById("task-4-complete");
+      const task4Score = document.getElementById("task-4-score");
+
+      const task4StorageKey =
+        "praxismfa-schwindel-fall01-task4-v1";
+
+      let task4State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task4StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            ["A", "B", "C", "D"].includes(parsed.firstAnswer) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 10 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task4State = parsed;
+            task4State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe bleibt ohne lokalen Speicher nutzbar.
+      }
+
+      function saveTask4() {
+        try {
+          localStorage.setItem(
+            task4StorageKey,
+            JSON.stringify(task4State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask4() {
+        if (!task4State.completed) return;
+
+        if (task4Form) task4Form.hidden = true;
+        if (task4Complete) task4Complete.hidden = false;
+
+        if (task4Score) {
+          task4Score.textContent = String(task4State.points);
+        }
+      }
+
+      function showTask4() {
+        if (!task3State.completed || !task4Panel) return;
+
+        if (task3Panel) task3Panel.hidden = true;
+
+        task4Panel.hidden = false;
+
+        const phaseLabel = simulation?.querySelector(
+          ".eyebrow"
+        );
+
+        if (phaseLabel) {
+          phaseLabel.textContent =
+            "Phase 2 · Dynamische Notfallsituation";
+        }
+
+        updateCasePhase(4);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 4 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "26.67%";
+        }
+
+        task4Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task3Next?.addEventListener("click", showTask4);
+
+      if (task4State.completed) {
+        finishTask4();
+      } else if (
+        task4State.firstAnswer !== null &&
+        task4Message
+      ) {
+        task4Message.textContent =
+          "Deine erste Antwort wurde bereits bewertet. " +
+          "Wähle jetzt die sichere Vorgehensweise.";
+      }
+
+      task4Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task4Form);
+        const answer = formData.get("task-4");
+
+        if (
+          typeof answer !== "string" ||
+          !["A", "B", "C", "D"].includes(answer)
+        ) {
+          if (task4Message) {
+            task4Message.textContent =
+              "Bitte wähle eine Antwort aus.";
+          }
+          return;
+        }
+
+        if (task4State.firstAnswer === null) {
+          task4State.firstAnswer = answer;
+          task4State.points = answer === "B" ? 10 : 0;
+          task4State.critical = ["A", "D"].includes(answer);
+          saveTask4();
+        }
+
+        if (answer === "B") {
+          task4State.completed = true;
+          saveTask4();
+          finishTask4();
+        } else {
+          task4State.wrongAttempts += 1;
+          saveTask4();
+
+          if (task4Message) {
+            const basicHint =
+              "Diese Vorgehensweise ist nicht ausreichend. " +
+            "Überlege, welche Bedeutung eine neu " +
+            "beobachtete neurologische Auffälligkeit " +
+            "für die bereits laufende Notfallversorgung " +
+            "hat. Unterscheide außerdem zwischen " +
+            "Beobachtungszeitpunkt und tatsächlichem " +
+            "Symptombeginn. Überprüfe deine Entscheidung.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Eine neue Armschwäche verändert die Dringlichkeit der bereits gemeldeten Situation. Überlege, wer diese Information sofort erhalten muss und welcher Zeitpunkt tatsächlich bekannt ist.';
+
+            task4Message.textContent =
+              basicHint +
+              (task4State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task4Next = document.getElementById("task-4-next");
+      const task5Panel = document.getElementById("task-5-panel");
+      const task5Form = document.getElementById("task-5-form");
+      const task5Message = document.getElementById("task-5-message");
+      const task5Complete = document.getElementById("task-5-complete");
+      const task5Score = document.getElementById("task-5-score");
+
+      const task5StorageKey =
+        "praxismfa-schwindel-fall01-task5-v1";
+
+      const task5Correct = ["A", "B", "E"];
+      const task5All = ["A", "B", "C", "D", "E", "F"];
+
+      const task5Weights = {
+        A: 2,
+        B: 2,
+        C: 2,
+        D: 2,
+        E: 1,
+        F: 1
+      };
+
+      let task5State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task5StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            Array.isArray(parsed.firstAnswer) &&
+            parsed.firstAnswer.every(
+              value => task5All.includes(value)
+            ) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 10 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task5State = parsed;
+            task5State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Aufgabe bleibt ohne Browserspeicher nutzbar.
+      }
+
+      function saveTask5() {
+        try {
+          localStorage.setItem(
+            task5StorageKey,
+            JSON.stringify(task5State)
+          );
+        } catch {
+          // Kein Abbruch bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask5() {
+        if (!task5State.completed) return;
+
+        if (task5Form) task5Form.hidden = true;
+        if (task5Complete) task5Complete.hidden = false;
+
+        if (task5Score) {
+          task5Score.textContent = String(task5State.points);
+        }
+      }
+
+      function showTask5() {
+        if (!task4State.completed || !task5Panel) return;
+
+        if (task4Panel) task4Panel.hidden = true;
+
+        task5Panel.hidden = false;
+
+        updateCasePhase(5);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 5 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "33.33%";
+        }
+
+        task5Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task4Next?.addEventListener("click", showTask5);
+
+      if (task5State.completed) {
+        finishTask5();
+      } else if (
+        task5State.firstAnswer !== null &&
+        task5Message
+      ) {
+        task5Message.textContent =
+          "Deine erste Antwort wurde bereits bewertet. " +
+          "Bitte korrigiere deine Auswahl.";
+      }
+
+      task5Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task5Form);
+
+        const selected = task5All.filter(
+          value => formData.getAll("task-5").includes(value)
+        );
+
+        if (selected.length === 0) {
+          if (task5Message) {
+            task5Message.textContent =
+              "Bitte wähle mindestens eine Maßnahme aus.";
+          }
+          return;
+        }
+
+        if (task5State.firstAnswer === null) {
+          task5State.firstAnswer = [...selected];
+
+          task5State.points = task5All.reduce(
+            (points, value) => {
+              const chosen = selected.includes(value);
+              const correct = task5Correct.includes(value);
+
+              return points +
+                (chosen === correct ? task5Weights[value] : 0);
+            },
+            0
+          );
+
+          task5State.critical = selected.some(
+            value => ["C", "D", "F"].includes(value)
+          );
+
+          saveTask5();
+        }
+
+        const fullyCorrect =
+          selected.length === task5Correct.length &&
+          selected.every(
+            value => task5Correct.includes(value)
+          );
+
+        if (fullyCorrect) {
+          task5State.completed = true;
+          saveTask5();
+          finishTask5();
+        } else {
+          task5State.wrongAttempts += 1;
+          saveTask5();
+
+          if (task5Message) {
+            const basicHint =
+              "Deine Auswahl ist noch nicht vollständig richtig. " +
+            "Denke an die Sturzgefahr, die kontinuierliche " +
+            "Beobachtung und den Umgang mit neu auftretenden " +
+            "Symptomen. Auch eine kurzfristige Besserung " +
+            "bedeutet keine Entwarnung. " +
+            "Überprüfe deine Auswahl.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Betrachte jede Maßnahme einzeln: Schützt sie die Patientin, ermöglicht sie die Beobachtung oder könnte sie einen Sturz beziehungsweise eine gefährliche Verzögerung verursachen?';
+
+            task5Message.textContent =
+              basicHint +
+              (task5State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task5Next = document.getElementById("task-5-next");
+      const task6Panel = document.getElementById("task-6-panel");
+      const task6Form = document.getElementById("task-6-form");
+      const task6Message = document.getElementById("task-6-message");
+      const task6Complete = document.getElementById("task-6-complete");
+      const task6Score = document.getElementById("task-6-score");
+
+      const task6StorageKey =
+        "praxismfa-schwindel-fall01-task6-v1";
+
+      const task6Correct = ["A", "B", "D", "E", "G"];
+      const task6All = ["A", "B", "C", "D", "E", "F", "G", "H"];
+
+      let task6State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task6StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            Array.isArray(parsed.firstAnswer) &&
+            parsed.firstAnswer.every(
+              value => task6All.includes(value)
+            ) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 10 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task6State = parsed;
+            task6State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe bleibt ohne Browserspeicher nutzbar.
+      }
+
+      function saveTask6() {
+        try {
+          localStorage.setItem(
+            task6StorageKey,
+            JSON.stringify(task6State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask6() {
+        if (!task6State.completed) return;
+
+        if (task6Form) task6Form.hidden = true;
+        if (task6Complete) task6Complete.hidden = false;
+
+        if (task6Score) {
+          task6Score.textContent = String(task6State.points);
+        }
+      }
+
+      function showTask6() {
+        if (!task5State.completed || !task6Panel) return;
+
+        if (task5Panel) task5Panel.hidden = true;
+
+        task6Panel.hidden = false;
+
+        updateCasePhase(6);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 6 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "40%";
+        }
+
+        task6Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task5Next?.addEventListener("click", showTask6);
+
+      if (task6State.completed) {
+        finishTask6();
+      } else if (
+        task6State.firstAnswer !== null &&
+        task6Message
+      ) {
+        task6Message.textContent =
+          "Deine erste Antwort wurde bereits bewertet. " +
+          "Bitte korrigiere deine Auswahl.";
+      }
+
+      task6Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task6Form);
+
+        const selected = task6All.filter(
+          value => formData.getAll("task-6").includes(value)
+        );
+
+        if (selected.length !== 5) {
+          if (task6Message) {
+            task6Message.textContent =
+              "Bitte wähle genau fünf Informationsbausteine aus.";
+          }
+          return;
+        }
+
+        if (task6State.firstAnswer === null) {
+          task6State.firstAnswer = [...selected];
+
+          task6State.points = selected.reduce(
+            (points, value) =>
+              points + (task6Correct.includes(value) ? 2 : 0),
+            0
+          );
+
+          task6State.critical = selected.some(
+            value => ["C", "F", "H"].includes(value)
+          );
+
+          saveTask6();
+        }
+
+        const fullyCorrect =
+          selected.length === task6Correct.length &&
+          selected.every(
+            value => task6Correct.includes(value)
+          );
+
+        if (fullyCorrect) {
+          task6State.completed = true;
+          saveTask6();
+          finishTask6();
+        } else {
+          task6State.wrongAttempts += 1;
+          saveTask6();
+
+          if (task6Message) {
+            const basicHint =
+              "Deine Auswahl ist noch nicht vollständig richtig. " +
+            "Unterscheide gesicherte Beobachtungen " +
+            "von Vermutungen und Diagnosen. " +
+            "Die Leitstelle muss über relevante " +
+            "Veränderungen unverzüglich informiert werden. " +
+            "Überprüfe deine Auswahl.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Unterscheide bei jedem Informationsbaustein zwischen beobachteten Tatsachen, unbekannten Zeitpunkten und unbestätigten Diagnosen. Welche Angaben helfen der Leitstelle jetzt?';
+
+            task6Message.textContent =
+              basicHint +
+              (task6State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task6Next = document.getElementById("task-6-next");
+      const task7Panel = document.getElementById("task-7-panel");
+      const task7Form = document.getElementById("task-7-form");
+      const task7Message = document.getElementById("task-7-message");
+      const task7Complete = document.getElementById("task-7-complete");
+      const task7Score = document.getElementById("task-7-score");
+
+      const task7StorageKey =
+        "praxismfa-schwindel-fall01-task7-v1";
+
+      const task7Correct = {
+        a: { time: "0800", source: "patient" },
+        b: { time: "0900", source: "patient" },
+        c: { time: "0917", source: "mfa" },
+        d: { time: "0919", source: "mfa" }
+      };
+
+      let task7State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task7StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.firstAnswer !== null &&
+            typeof parsed.firstAnswer === "object" &&
+            Number.isFinite(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 6 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task7State = parsed;
+            task7State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Browserspeicher ist optional.
+      }
+
+      function saveTask7() {
+        try {
+          localStorage.setItem(
+            task7StorageKey,
+            JSON.stringify(task7State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask7() {
+        if (!task7State.completed) return;
+
+        if (task7Form) task7Form.hidden = true;
+        if (task7Complete) task7Complete.hidden = false;
+
+        if (task7Score) {
+          task7Score.textContent =
+            String(task7State.points).replace(".", ",");
+        }
+      }
+
+      function showTask7() {
+        if (!task6State.completed || !task7Panel) return;
+
+        if (task6Panel) task6Panel.hidden = true;
+
+        task7Panel.hidden = false;
+
+        const eyebrow = document.querySelector(
+          ".simulation > .eyebrow"
+        );
+
+        if (eyebrow) {
+          eyebrow.textContent =
+            "Phase 3 · Dokumentation und Übergabe";
+        }
+
+        updateCasePhase(7);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 7 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "46.67%";
+        }
+
+        task7Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task6Next?.addEventListener("click", showTask7);
+
+      if (task7State.completed) {
+        finishTask7();
+      } else if (
+        task7State.firstAnswer !== null &&
+        task7Message
+      ) {
+        task7Message.textContent =
+          "Deine erste Zuordnung wurde bereits bewertet. " +
+          "Bitte korrigiere deine Angaben.";
+      }
+
+      task7Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task7Form);
+        const selected = {};
+
+        for (const key of ["a", "b", "c", "d"]) {
+          selected[key] = {
+            time: String(formData.get(key + "-time") || ""),
+            source: String(formData.get(key + "-source") || "")
+          };
+        }
+
+        const incomplete = Object.values(selected).some(
+          entry => !entry.time || !entry.source
+        );
+
+        if (incomplete) {
+          if (task7Message) {
+            task7Message.textContent =
+              "Bitte ordne allen vier Ereignissen " +
+              "einen Zeitpunkt und eine Quelle zu.";
+          }
+          return;
+        }
+
+        if (task7State.firstAnswer === null) {
+          task7State.firstAnswer = selected;
+
+          let points = 0;
+
+          for (const key of ["a", "b", "c", "d"]) {
+            if (
+              selected[key].time ===
+              task7Correct[key].time
+            ) {
+              points += 1;
+            }
+
+            if (
+              selected[key].source ===
+              task7Correct[key].source
+            ) {
+              points += 0.5;
+            }
+          }
+
+          task7State.points = points;
+          saveTask7();
+        }
+
+        const fullyCorrect = ["a", "b", "c", "d"].every(
+          key =>
+            selected[key].time === task7Correct[key].time &&
+            selected[key].source === task7Correct[key].source
+        );
+
+        if (fullyCorrect) {
+          task7State.completed = true;
+          saveTask7();
+          finishTask7();
+        } else {
+          task7State.wrongAttempts += 1;
+          saveTask7();
+
+          if (task7Message) {
+            const basicHint =
+              "Die zeitliche Zuordnung ist noch nicht " +
+            "vollständig richtig. Unterscheide die " +
+            "Angaben der Patientin von den ersten " +
+            "Beobachtungen durch das Praxisteam. " +
+            "Überprüfe deine Zuordnung.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Ordne zuerst die beiden Angaben der Patientin zu. Danach betrachte die Beobachtungen des Praxisteams. Der Beobachtungszeitpunkt ist nicht automatisch der Symptombeginn.';
+
+            task7Message.textContent =
+              basicHint +
+              (task7State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task7Next = document.getElementById("task-7-next");
+      const task8Panel = document.getElementById("task-8-panel");
+      const task8Form = document.getElementById("task-8-form");
+      const task8Message = document.getElementById("task-8-message");
+      const task8Complete = document.getElementById("task-8-complete");
+      const task8Score = document.getElementById("task-8-score");
+
+      const task8StorageKey =
+        "praxismfa-schwindel-fall01-task8-v1";
+
+      const task8Correct = {
+        a: "yes",
+        b: "yes",
+        c: "no",
+        d: "yes",
+        e: "yes",
+        f: "no",
+        g: "no"
+      };
+
+      const task8Keys = ["a", "b", "c", "d", "e", "f", "g"];
+
+      let task8State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task8StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.firstAnswer !== null &&
+            typeof parsed.firstAnswer === "object" &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 5 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task8State = parsed;
+            task8State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe funktioniert auch ohne Browserspeicher.
+      }
+
+      function saveTask8() {
+        try {
+          localStorage.setItem(
+            task8StorageKey,
+            JSON.stringify(task8State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask8() {
+        if (!task8State.completed) return;
+
+        if (task8Form) task8Form.hidden = true;
+        if (task8Complete) task8Complete.hidden = false;
+
+        if (task8Score) {
+          task8Score.textContent = String(task8State.points);
+        }
+      }
+
+      function showTask8() {
+        if (!task7State.completed || !task8Panel) return;
+
+        if (task7Panel) task7Panel.hidden = true;
+
+        task8Panel.hidden = false;
+
+        updateCasePhase(8);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 8 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "53.33%";
+        }
+
+        task8Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task7Next?.addEventListener("click", showTask8);
+
+      if (task8State.completed) {
+        finishTask8();
+      } else if (
+        task8State.firstAnswer !== null &&
+        task8Message
+      ) {
+        task8Message.textContent =
+          "Deine erste Bewertung wurde bereits gespeichert. " +
+          "Bitte korrigiere deine Bewertungen.";
+      }
+
+      task8Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task8Form);
+        const selected = {};
+
+        for (const key of task8Keys) {
+          selected[key] = String(formData.get(key) || "");
+        }
+
+        if (task8Keys.some(key => !selected[key])) {
+          if (task8Message) {
+            task8Message.textContent =
+              "Bitte bewerte alle sieben Aussagen.";
+          }
+          return;
+        }
+
+        if (task8State.firstAnswer === null) {
+          task8State.firstAnswer = { ...selected };
+
+          const correctCount = task8Keys.filter(
+            key => selected[key] === task8Correct[key]
+          ).length;
+
+          task8State.points =
+            correctCount === 7 ? 5 :
+            correctCount === 6 ? 4 :
+            correctCount === 5 ? 3 :
+            correctCount === 4 ? 2 :
+            correctCount === 3 ? 1 : 0;
+
+          task8State.critical =
+            selected.c === "yes" ||
+            selected.f === "yes" ||
+            selected.g === "yes";
+
+          saveTask8();
+        }
+
+        const fullyCorrect = task8Keys.every(
+          key => selected[key] === task8Correct[key]
+        );
+
+        if (fullyCorrect) {
+          task8State.completed = true;
+          saveTask8();
+          finishTask8();
+        } else {
+          task8State.wrongAttempts += 1;
+          saveTask8();
+
+          if (task8Message) {
+            const basicHint =
+              "Noch nicht alle Bewertungen sind richtig. " +
+            "Unterscheide dokumentierte Befunde von " +
+            "ungeklärten Angaben. Die Notfallversorgung " +
+            "hat Vorrang vor administrativen Aufgaben. " +
+            "Überprüfe deine Entscheidungen.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Frage bei jeder Aussage: Ist die Information dokumentiert, nur vermutet oder noch ungeklärt? Prüfe außerdem, ob die Maßnahme die akute Notfallversorgung verzögern würde.';
+
+            task8Message.textContent =
+              basicHint +
+              (task8State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task8Next = document.getElementById("task-8-next");
+      const task9Panel = document.getElementById("task-9-panel");
+      const task9Form = document.getElementById("task-9-form");
+      const task9Message = document.getElementById("task-9-message");
+      const task9Complete = document.getElementById("task-9-complete");
+      const task9Score = document.getElementById("task-9-score");
+
+      const task9StorageKey =
+        "praxismfa-schwindel-fall01-task9-v1";
+
+      const task9Correct = ["A", "B", "D", "E"];
+      const task9All = ["A", "B", "C", "D", "E", "F"];
+
+      let task9State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task9StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            Array.isArray(parsed.firstAnswer) &&
+            parsed.firstAnswer.every(
+              value => task9All.includes(value)
+            ) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 4 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task9State = parsed;
+            task9State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe bleibt ohne Browserspeicher nutzbar.
+      }
+
+      function saveTask9() {
+        try {
+          localStorage.setItem(
+            task9StorageKey,
+            JSON.stringify(task9State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask9() {
+        if (!task9State.completed) return;
+
+        if (task9Form) task9Form.hidden = true;
+        if (task9Complete) task9Complete.hidden = false;
+
+        if (task9Score) {
+          task9Score.textContent = String(task9State.points);
+        }
+      }
+
+      function showTask9() {
+        if (!task8State.completed || !task9Panel) return;
+
+        if (task8Panel) task8Panel.hidden = true;
+
+        task9Panel.hidden = false;
+
+        updateCasePhase(9);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 9 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "60%";
+        }
+
+        task9Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task8Next?.addEventListener("click", showTask9);
+
+      if (task9State.completed) {
+        finishTask9();
+      } else if (
+        task9State.firstAnswer !== null &&
+        task9Message
+      ) {
+        task9Message.textContent =
+          "Deine erste Auswahl wurde bereits bewertet. " +
+          "Bitte korrigiere deine Übergabe.";
+      }
+
+      task9Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task9Form);
+
+        const selected = task9All.filter(
+          value => formData.getAll("task-9").includes(value)
+        );
+
+        if (selected.length !== 4) {
+          if (task9Message) {
+            task9Message.textContent =
+              "Bitte wähle genau vier Informationsbausteine aus.";
+          }
+          return;
+        }
+
+        if (task9State.firstAnswer === null) {
+          task9State.firstAnswer = [...selected];
+
+          task9State.points = selected.filter(
+            value => task9Correct.includes(value)
+          ).length;
+
+          task9State.critical = selected.some(
+            value => ["C", "F"].includes(value)
+          );
+
+          saveTask9();
+        }
+
+        const fullyCorrect =
+          selected.length === task9Correct.length &&
+          selected.every(
+            value => task9Correct.includes(value)
+          );
+
+        if (fullyCorrect) {
+          task9State.completed = true;
+          saveTask9();
+          finishTask9();
+        } else {
+          task9State.wrongAttempts += 1;
+          saveTask9();
+
+          if (task9Message) {
+            const basicHint =
+              "Die Übergabe enthält noch unzutreffende " +
+            "oder fehlende Informationen. " +
+            "Achte auf den aktuellen Zustand, " +
+            "die zeitliche Entwicklung, " +
+            "gesicherte Beobachtungen und " +
+            "ungeklärte Medikamentenangaben. " +
+            "Überprüfe deine Auswahl.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Eine sichere Übergabe unterscheidet den aktuellen Zustand, den zeitlichen Verlauf und relevante Vorerkrankungen. Vermutungen dürfen dabei nicht als Fakten erscheinen.';
+
+            task9Message.textContent =
+              basicHint +
+              (task9State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task9Next = document.getElementById("task-9-next");
+      const task10Panel = document.getElementById("task-10-panel");
+      const task10Form = document.getElementById("task-10-form");
+      const task10Message = document.getElementById("task-10-message");
+      const task10Complete = document.getElementById("task-10-complete");
+      const task10Score = document.getElementById("task-10-score");
+
+      const task10StorageKey =
+        "praxismfa-schwindel-fall01-task10-v1";
+
+      const task10Correct = {
+        a: "yes",
+        b: "yes",
+        c: "no",
+        d: "yes",
+        e: "yes",
+        f: "no",
+        g: "no"
+      };
+
+      const task10Keys = ["a", "b", "c", "d", "e", "f", "g"];
+
+      let task10State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task10StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.firstAnswer !== null &&
+            typeof parsed.firstAnswer === "object" &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 6 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task10State = parsed;
+            task10State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Aufgabe funktioniert auch ohne Browserspeicher.
+      }
+
+      function saveTask10() {
+        try {
+          localStorage.setItem(
+            task10StorageKey,
+            JSON.stringify(task10State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask10() {
+        if (!task10State.completed) return;
+
+        if (task10Form) task10Form.hidden = true;
+        if (task10Complete) task10Complete.hidden = false;
+
+        if (task10Score) {
+          task10Score.textContent = String(task10State.points);
+        }
+      }
+
+      function showTask10() {
+        if (!task9State.completed || !task10Panel) return;
+
+        if (task9Panel) task9Panel.hidden = true;
+
+        task10Panel.hidden = false;
+
+        updateCasePhase(10);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 10 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "66.67%";
+        }
+
+        task10Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task9Next?.addEventListener("click", showTask10);
+
+      if (task10State.completed) {
+        finishTask10();
+      } else if (
+        task10State.firstAnswer !== null &&
+        task10Message
+      ) {
+        task10Message.textContent =
+          "Deine erste Bewertung wurde bereits gespeichert. " +
+          "Bitte korrigiere deine Bewertungen.";
+      }
+
+      task10Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task10Form);
+        const selected = {};
+
+        for (const key of task10Keys) {
+          selected[key] = String(formData.get(key) || "");
+        }
+
+        if (task10Keys.some(key => !selected[key])) {
+          if (task10Message) {
+            task10Message.textContent =
+              "Bitte bewerte alle sieben Aussagen.";
+          }
+          return;
+        }
+
+        if (task10State.firstAnswer === null) {
+          task10State.firstAnswer = { ...selected };
+
+          const correctCount = task10Keys.filter(
+            key => selected[key] === task10Correct[key]
+          ).length;
+
+          task10State.points =
+            correctCount === 7 ? 6 :
+            correctCount === 6 ? 5 :
+            correctCount === 5 ? 4 :
+            correctCount === 4 ? 3 :
+            correctCount === 3 ? 2 :
+            correctCount === 2 ? 1 : 0;
+
+          task10State.critical =
+            selected.c === "yes" ||
+            selected.f === "yes" ||
+            selected.g === "yes";
+
+          saveTask10();
+        }
+
+        const fullyCorrect = task10Keys.every(
+          key => selected[key] === task10Correct[key]
+        );
+
+        if (fullyCorrect) {
+          task10State.completed = true;
+          saveTask10();
+          finishTask10();
+        } else {
+          task10State.wrongAttempts += 1;
+          saveTask10();
+
+          if (task10Message) {
+            const basicHint =
+              "Noch nicht alle Maßnahmen sind richtig bewertet. " +
+            "Achte auf Aspirationsschutz, Atmung, " +
+            "Beaufsichtigung und sichere Positionierung. " +
+            "Überprüfe deine Entscheidungen.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Beurteile jede Maßnahme hinsichtlich Aspirationsgefahr, Atmung und Sturzschutz. Was schützt die Patientin bei Übelkeit, ohne die Notfallversorgung zu verzögern?';
+
+            task10Message.textContent =
+              basicHint +
+              (task10State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task10Next = document.getElementById("task-10-next");
+      const task11Panel = document.getElementById("task-11-panel");
+      const task11Form = document.getElementById("task-11-form");
+      const task11Message = document.getElementById("task-11-message");
+      const task11Complete = document.getElementById("task-11-complete");
+      const task11Score = document.getElementById("task-11-score");
+
+      const task11StorageKey =
+        "praxismfa-schwindel-fall01-task11-v2";
+
+      const task11Correct = {
+        a: "B",
+        b: "A",
+        c: "C",
+        d: "B"
+      };
+
+      const task11Keys = ["a", "b", "c", "d"];
+
+      const task11Weights = {
+        a: 3,
+        b: 2,
+        c: 2,
+        d: 2
+      };
+
+      let task11State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task11StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.firstAnswer !== null &&
+            typeof parsed.firstAnswer === "object" &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 9 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task11State = parsed;
+            task11State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Die Aufgabe funktioniert auch ohne Browserspeicher.
+      }
+
+      function saveTask11() {
+        try {
+          localStorage.setItem(
+            task11StorageKey,
+            JSON.stringify(task11State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask11() {
+        if (!task11State.completed) return;
+
+        if (task11Form) task11Form.hidden = true;
+        if (task11Complete) task11Complete.hidden = false;
+
+        if (task11Score) {
+          task11Score.textContent = String(task11State.points);
+        }
+      }
+
+      function showTask11() {
+        if (!task10State.completed || !task11Panel) return;
+
+        if (task10Panel) task10Panel.hidden = true;
+
+        task11Panel.hidden = false;
+
+        updateCasePhase(11);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 11 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "73.33%";
+        }
+
+        task11Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task10Next?.addEventListener("click", showTask11);
+
+      if (task11State.completed) {
+        finishTask11();
+      } else if (
+        task11State.firstAnswer !== null &&
+        task11Message
+      ) {
+        task11Message.textContent =
+          "Deine erste Antwort wurde bereits gespeichert. " +
+          "Bitte korrigiere deine Entscheidungen.";
+      }
+
+      task11Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task11Form);
+        const selected = {};
+
+        for (const key of task11Keys) {
+          selected[key] = String(formData.get(key) || "");
+        }
+
+        if (task11Keys.some(key => !selected[key])) {
+          if (task11Message) {
+            task11Message.textContent =
+              "Bitte triff alle vier Entscheidungen.";
+          }
+          return;
+        }
+
+        if (task11State.firstAnswer === null) {
+          task11State.firstAnswer = { ...selected };
+
+          task11State.points = task11Keys.reduce(
+            (sum, key) =>
+              sum + (
+                selected[key] === task11Correct[key]
+                  ? task11Weights[key]
+                  : 0
+              ),
+            0
+          );
+
+          task11State.critical =
+            selected.a !== "B" ||
+            selected.b === "C" ||
+            selected.c !== "C" ||
+            selected.d !== "B";
+
+          saveTask11();
+        }
+
+        const fullyCorrect = task11Keys.every(
+          key => selected[key] === task11Correct[key]
+        );
+
+        if (fullyCorrect) {
+          task11State.completed = true;
+          saveTask11();
+          finishTask11();
+        } else {
+          task11State.wrongAttempts += 1;
+          saveTask11();
+
+          if (task11Message) {
+            const basicHint =
+              "Noch nicht alle Entscheidungen sind richtig. " +
+              "Prüfe Atemwegsschutz, Überwachung und Meldung.";
+
+            const additionalHint =
+              " Zusätzlicher Hinweis: Schnappatmung ist " +
+              "keine normale Atmung. Situation 3 ist " +
+              "hypothetisch. Frau Schneider atmet normal.";
+
+            task11Message.textContent =
+              basicHint +
+              (task11State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task11Next = document.getElementById("task-11-next");
+      const task12Panel = document.getElementById("task-12-panel");
+      const task12Form = document.getElementById("task-12-form");
+      const task12Message = document.getElementById("task-12-message");
+      const task12Complete = document.getElementById("task-12-complete");
+      const task12Score = document.getElementById("task-12-score");
+
+      const task12StorageKey =
+        "praxismfa-schwindel-fall01-task12-v1";
+
+      const task12Correct = {
+        a: "yes",
+        b: "yes",
+        c: "yes",
+        d: "no",
+        e: "yes",
+        f: "no",
+        g: "no"
+      };
+
+      const task12Keys = ["a", "b", "c", "d", "e", "f", "g"];
+
+      let task12State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task12StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.firstAnswer !== null &&
+            typeof parsed.firstAnswer === "object" &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 5 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task12State = parsed;
+            task12State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Aufgabe funktioniert auch ohne Browserspeicher.
+      }
+
+      function saveTask12() {
+        try {
+          localStorage.setItem(
+            task12StorageKey,
+            JSON.stringify(task12State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask12() {
+        if (!task12State.completed) return;
+
+        if (task12Form) task12Form.hidden = true;
+        if (task12Complete) task12Complete.hidden = false;
+
+        if (task12Score) {
+          task12Score.textContent = String(task12State.points);
+        }
+      }
+
+      function showTask12() {
+        if (!task11State.completed || !task12Panel) return;
+
+        if (task11Panel) task11Panel.hidden = true;
+
+        task12Panel.hidden = false;
+
+        updateCasePhase(12);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 12 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "80%";
+        }
+
+        task12Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task11Next?.addEventListener("click", showTask12);
+
+      if (task12State.completed) {
+        finishTask12();
+      } else if (
+        task12State.firstAnswer !== null &&
+        task12Message
+      ) {
+        task12Message.textContent =
+          "Deine erste Bewertung wurde bereits gespeichert. " +
+          "Bitte korrigiere deine Bewertungen.";
+      }
+
+      task12Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task12Form);
+        const selected = {};
+
+        for (const key of task12Keys) {
+          selected[key] = String(formData.get(key) || "");
+        }
+
+        if (task12Keys.some(key => !selected[key])) {
+          if (task12Message) {
+            task12Message.textContent =
+              "Bitte bewerte alle sieben Aussagen.";
+          }
+          return;
+        }
+
+        if (task12State.firstAnswer === null) {
+          task12State.firstAnswer = { ...selected };
+
+          const correctCount = task12Keys.filter(
+            key => selected[key] === task12Correct[key]
+          ).length;
+
+          task12State.points =
+            correctCount === 7 ? 5 :
+            correctCount === 6 ? 4 :
+            correctCount === 5 ? 3 :
+            correctCount === 4 ? 2 :
+            correctCount === 3 ? 1 : 0;
+
+          task12State.critical =
+            selected.d === "yes" ||
+            selected.f === "yes" ||
+            selected.g === "yes";
+
+          saveTask12();
+        }
+
+        const fullyCorrect = task12Keys.every(
+          key => selected[key] === task12Correct[key]
+        );
+
+        if (fullyCorrect) {
+          task12State.completed = true;
+          saveTask12();
+          finishTask12();
+        } else {
+          task12State.wrongAttempts += 1;
+          saveTask12();
+
+          if (task12Message) {
+            const basicHint =
+              "Noch nicht alle Befunde sind richtig bewertet. " +
+            "Achte auf die Bedeutung der Einzelwerte, " +
+            "die fortlaufende Beobachtung und " +
+            "die Grenzen eigenständiger Maßnahmen.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Ein einzelner Messwert darf nicht isoliert bewertet werden. Prüfe den klinischen Zustand, die zeitliche Zuordnung der Werte und die Grenzen eigenständiger MFA-Maßnahmen.';
+
+            task12Message.textContent =
+              basicHint +
+              (task12State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task12Next = document.getElementById("task-12-next");
+      const task13Panel = document.getElementById("task-13-panel");
+      const task13Form = document.getElementById("task-13-form");
+      const task13Message = document.getElementById("task-13-message");
+      const task13Complete = document.getElementById("task-13-complete");
+      const task13Score = document.getElementById("task-13-score");
+
+      const task13StorageKey =
+        "praxismfa-schwindel-fall01-task13-v1";
+
+      const task13Correct = ["A", "B", "D", "E", "F", "G", "H"];
+      const task13All = [
+        "A", "B", "C", "D", "E", "F",
+        "G", "H", "I", "J", "K"
+      ];
+
+      let task13State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task13StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            Array.isArray(parsed.firstAnswer) &&
+            parsed.firstAnswer.every(
+              value => task13All.includes(value)
+            ) &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 7 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task13State = parsed;
+            task13State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Aufgabe bleibt ohne Browserspeicher nutzbar.
+      }
+
+      function saveTask13() {
+        try {
+          localStorage.setItem(
+            task13StorageKey,
+            JSON.stringify(task13State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask13() {
+        if (!task13State.completed) return;
+
+        if (task13Form) task13Form.hidden = true;
+        if (task13Complete) task13Complete.hidden = false;
+
+        if (task13Score) {
+          task13Score.textContent = String(task13State.points);
+        }
+      }
+
+      function showTask13() {
+        if (!task12State.completed || !task13Panel) return;
+
+        if (task12Panel) task12Panel.hidden = true;
+
+        task13Panel.hidden = false;
+
+        updateCasePhase(13);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 13 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "86.67%";
+        }
+
+        task13Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task12Next?.addEventListener("click", showTask13);
+
+      if (task13State.completed) {
+        finishTask13();
+      } else if (
+        task13State.firstAnswer !== null &&
+        task13Message
+      ) {
+        task13Message.textContent =
+          "Deine erste Auswahl wurde bereits bewertet. " +
+          "Bitte korrigiere deine Übergabe.";
+      }
+
+      task13Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task13Form);
+
+        const selected = task13All.filter(
+          value => formData.getAll("task-13").includes(value)
+        );
+
+        if (selected.length !== 7) {
+          if (task13Message) {
+            task13Message.textContent =
+              "Bitte wähle genau sieben Informationsbausteine aus.";
+          }
+          return;
+        }
+
+        if (task13State.firstAnswer === null) {
+          task13State.firstAnswer = [...selected];
+
+          task13State.points = selected.filter(
+            value => task13Correct.includes(value)
+          ).length;
+
+          task13State.critical = selected.some(
+            value => ["C", "I", "J", "K"].includes(value)
+          );
+
+          saveTask13();
+        }
+
+        const fullyCorrect =
+          selected.length === task13Correct.length &&
+          selected.every(
+            value => task13Correct.includes(value)
+          );
+
+        if (fullyCorrect) {
+          task13State.completed = true;
+          saveTask13();
+          finishTask13();
+        } else {
+          task13State.wrongAttempts += 1;
+          saveTask13();
+
+          if (task13Message) {
+            const basicHint =
+              "Die Übergabe ist noch nicht vollständig korrekt. " +
+            "Prüfe insbesondere die Zeitangaben, " +
+            "den aktuellen Zustand, gesicherte Befunde " +
+            "und ungeklärte Medikamenteninformationen.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Baue die Übergabe gedanklich chronologisch auf: zuletzt beschwerdefrei, erste Beschwerden, neue Beobachtungen und aktueller Zustand. Kennzeichne unbekannte Angaben ausdrücklich.';
+
+            task13Message.textContent =
+              basicHint +
+              (task13State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task13Next = document.getElementById("task-13-next");
+      const task14Panel = document.getElementById("task-14-panel");
+      const task14Form = document.getElementById("task-14-form");
+      const task14Message = document.getElementById("task-14-message");
+      const task14Complete = document.getElementById("task-14-complete");
+      const task14Score = document.getElementById("task-14-score");
+
+      const task14StorageKey =
+        "praxismfa-schwindel-fall01-task14-v1";
+
+      const task14Correct = {
+        a: "yes",
+        b: "yes",
+        c: "no",
+        d: "yes",
+        e: "yes",
+        f: "no",
+        g: "yes"
+      };
+
+      const task14Keys = ["a", "b", "c", "d", "e", "f", "g"];
+
+      let task14State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task14StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            parsed.firstAnswer !== null &&
+            typeof parsed.firstAnswer === "object" &&
+            Number.isInteger(parsed.points) &&
+            parsed.points >= 0 &&
+            parsed.points <= 5 &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task14State = parsed;
+            task14State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Aufgabe funktioniert auch ohne Browserspeicher.
+      }
+
+      function saveTask14() {
+        try {
+          localStorage.setItem(
+            task14StorageKey,
+            JSON.stringify(task14State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask14() {
+        if (!task14State.completed) return;
+
+        if (task14Form) task14Form.hidden = true;
+        if (task14Complete) task14Complete.hidden = false;
+
+        if (task14Score) {
+          task14Score.textContent = String(task14State.points);
+        }
+      }
+
+      function showTask14() {
+        if (!task13State.completed || !task14Panel) return;
+
+        if (task13Panel) task13Panel.hidden = true;
+
+        task14Panel.hidden = false;
+
+        updateCasePhase(14);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 14 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "93.33%";
+        }
+
+        task14Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task13Next?.addEventListener("click", showTask14);
+
+      if (task14State.completed) {
+        finishTask14();
+      } else if (
+        task14State.firstAnswer !== null &&
+        task14Message
+      ) {
+        task14Message.textContent =
+          "Deine erste Bewertung wurde bereits gespeichert. " +
+          "Bitte korrigiere deine Bewertungen.";
+      }
+
+      task14Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task14Form);
+        const selected = {};
+
+        for (const key of task14Keys) {
+          selected[key] = String(formData.get(key) || "");
+        }
+
+        if (task14Keys.some(key => !selected[key])) {
+          if (task14Message) {
+            task14Message.textContent =
+              "Bitte bewerte alle sieben Aussagen.";
+          }
+          return;
+        }
+
+        if (task14State.firstAnswer === null) {
+          task14State.firstAnswer = { ...selected };
+
+          const correctCount = task14Keys.filter(
+            key => selected[key] === task14Correct[key]
+          ).length;
+
+          task14State.points =
+            correctCount === 7 ? 5 :
+            correctCount === 6 ? 4 :
+            correctCount === 5 ? 3 :
+            correctCount === 4 ? 2 :
+            correctCount === 3 ? 1 : 0;
+
+          task14State.critical =
+            selected.c === "yes" ||
+            selected.f === "yes";
+
+          saveTask14();
+        }
+
+        const fullyCorrect = task14Keys.every(
+          key => selected[key] === task14Correct[key]
+        );
+
+        if (fullyCorrect) {
+          task14State.completed = true;
+          saveTask14();
+          finishTask14();
+        } else {
+          task14State.wrongAttempts += 1;
+          saveTask14();
+
+          if (task14Message) {
+            const basicHint =
+              "Noch nicht alle Aussagen sind korrekt bewertet. " +
+            "Prüfe insbesondere die Herkunft der Informationen, " +
+            "die Zeitangaben und den Umgang mit Korrekturen.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Eine nachvollziehbare Dokumentation trennt Patientenaussagen von eigenen Beobachtungen. Korrekturen müssen erkennbar bleiben, statt ursprüngliche Angaben zu verschleiern.';
+
+            task14Message.textContent =
+              basicHint +
+              (task14State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      const task14Next = document.getElementById("task-14-next");
+      const task15Panel = document.getElementById("task-15-panel");
+      const task15Form = document.getElementById("task-15-form");
+      const task15Message = document.getElementById("task-15-message");
+      const task15Complete = document.getElementById("task-15-complete");
+      const task15Score = document.getElementById("task-15-score");
+
+      const task15StorageKey =
+        "praxismfa-schwindel-fall01-task15-v1";
+
+      let task15State = {
+        firstAnswer: null,
+        points: 0,
+        critical: false,
+        completed: false,
+        wrongAttempts: 0
+      };
+
+      try {
+        const saved = localStorage.getItem(task15StorageKey);
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          if (
+            parsed &&
+            typeof parsed === "object" &&
+            ["A", "B", "C", "D"].includes(parsed.firstAnswer) &&
+            Number.isInteger(parsed.points) &&
+            [0, 3].includes(parsed.points) &&
+            typeof parsed.critical === "boolean" &&
+            typeof parsed.completed === "boolean"
+          ) {
+            task15State = parsed;
+            task15State.wrongAttempts =
+              Number.isInteger(parsed.wrongAttempts) &&
+              parsed.wrongAttempts >= 0
+                ? parsed.wrongAttempts
+                : 0;
+          }
+        }
+      } catch {
+        // Aufgabe bleibt ohne Browserspeicher nutzbar.
+      }
+
+      function saveTask15() {
+        try {
+          localStorage.setItem(
+            task15StorageKey,
+            JSON.stringify(task15State)
+          );
+        } catch {
+          // Keine Unterbrechung bei deaktiviertem Speicher.
+        }
+      }
+
+      function finishTask15() {
+        if (!task15State.completed) return;
+
+        if (task15Form) task15Form.hidden = true;
+        if (task15Complete) task15Complete.hidden = false;
+
+        if (task15Score) {
+          task15Score.textContent = String(task15State.points);
+        }
+        renderFinalResult();
+      }
+
+      function showTask15() {
+        if (!task14State.completed || !task15Panel) return;
+
+        if (task14Panel) task14Panel.hidden = true;
+
+        task15Panel.hidden = false;
+
+        updateCasePhase(15);
+
+        if (progressLabel) {
+          progressLabel.textContent = "Aufgabe 15 von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width = "100%";
+        }
+
+        task15Panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      task14Next?.addEventListener("click", showTask15);
+
+      if (task15State.completed) {
+        finishTask15();
+      } else if (
+        task15State.firstAnswer !== null &&
+        task15Message
+      ) {
+        task15Message.textContent =
+          "Deine erste Antwort wurde bereits bewertet. " +
+          "Bitte korrigiere die Übergabe.";
+      }
+
+      task15Form?.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(task15Form);
+        const selected = String(formData.get("task-15") || "");
+
+        if (!["A", "B", "C", "D"].includes(selected)) {
+          if (task15Message) {
+            task15Message.textContent =
+              "Bitte wähle eine Antwort aus.";
+          }
+          return;
+        }
+
+        if (task15State.firstAnswer === null) {
+          task15State.firstAnswer = selected;
+          task15State.points = selected === "B" ? 3 : 0;
+          task15State.critical = selected !== "B";
+
+          saveTask15();
+        }
+
+        if (selected === "B") {
+          task15State.completed = true;
+          saveTask15();
+          finishTask15();
+        } else {
+          task15State.wrongAttempts += 1;
+          saveTask15();
+
+          if (task15Message) {
+            const basicHint =
+              "Diese Korrektur ist nicht sicher. " +
+            "Prüfe den tatsächlichen Kenntnisstand " +
+            "zu Symptombeginn, Antikoagulation " +
+            "und Bewusstseinsverschlechterung.";
+
+            const additionalHint =
+              ' Zusätzlicher Hinweis: Prüfe bei einer nachträglichen Korrektur, welche Informationen tatsächlich bestätigt sind. Unbekannte Zeitpunkte und Medikamente dürfen nicht nachträglich als gesichert eingetragen werden.';
+
+            task15Message.textContent =
+              basicHint +
+              (task15State.wrongAttempts >= 2
+                ? additionalHint
+                : "");
+          }
+        }
+      });
+
+
+      function renderFinalResult() {
+        const states = [
+          task1State,
+          task2State,
+          task3State,
+          task4State,
+          task5State,
+          task6State,
+          task7State,
+          task8State,
+          task9State,
+          task10State,
+          task11State,
+          task12State,
+          task13State,
+          task14State,
+          task15State
+        ];
+
+        const completedCount = states.filter(
+          state => state.completed === true
+        ).length;
+
+        if (completedCount !== 15) return;
+
+        const result = document.getElementById("final-result");
+        const totalElement =
+          document.getElementById("final-total-score");
+        const completedElement =
+          document.getElementById("final-completed-count");
+        const criticalElement =
+          document.getElementById("final-critical-count");
+        const scoreFill =
+          document.getElementById("final-score-fill");
+        const feedback =
+          document.getElementById("final-feedback");
+
+        if (
+          !result ||
+          !totalElement ||
+          !completedElement ||
+          !criticalElement ||
+          !scoreFill ||
+          !feedback
+        ) return;
+
+        const maximumPoints = [
+          6, 6, 8, 10, 10,
+          10, 6, 5, 4, 6,
+          9, 5, 7, 5, 3
+        ];
+
+        const validScores = states.every(
+          (state, index) =>
+            Number.isFinite(state.points) &&
+            state.points >= 0 &&
+            state.points <= maximumPoints[index] &&
+            (
+              index === 6
+                ? Number.isInteger(state.points * 2)
+                : Number.isInteger(state.points)
+            )
+        );
+
+        if (!validScores) {
+          feedback.textContent =
+            "Die gespeicherten Punktwerte konnten " +
+            "nicht vollständig geprüft werden.";
+          return;
+        }
+
+        const total = states.reduce(
+          (sum, state) => sum + state.points,
+          0
+        );
+
+        const criticalTasks = states.flatMap(
+          (state, index) =>
+            state.critical === true ? [index + 1] : []
+        );
+
+        const criticalCount = criticalTasks.length;
+
+        totalElement.textContent = String(total);
+        completedElement.textContent = String(completedCount);
+        criticalElement.textContent = String(criticalCount);
+
+        scoreFill.style.width = total + "%";
+
+        if (criticalCount > 0) {
+          feedback.textContent =
+            "Du hast alle 15 Aufgaben abgeschlossen " +
+            "und " + total + " von 100 Punkten erreicht. " +
+            "In " + criticalCount +
+            (criticalCount === 1
+              ? " Aufgabe wurde "
+              : " Aufgaben wurde ") +
+            "mindestens eine sicherheitskritische " +
+            "Fehlentscheidung in deiner ersten " +
+            "Bewertung festgestellt. " +
+            "Betroffene Aufgaben: " +
+            criticalTasks.join(", ") + ". " +
+            "Wiederhole insbesondere die betreffenden " +
+            "Entscheidungen zur Patientensicherheit. " +
+            "Eine hohe Gesamtpunktzahl hebt diese " +
+            "Fehler nicht auf.";
+        } else {
+          feedback.textContent =
+            "Du hast alle 15 Aufgaben abgeschlossen " +
+            "und " + total + " von 100 Punkten erreicht. " +
+            "In deinen ersten bewerteten Antworten " +
+            "wurde keine der im Lernfall definierten " +
+            "sicherheitskritischen Fehlentscheidungen " +
+            "erfasst. Prüfe dennoch die fachlichen " +
+            "Erläuterungen zu deinen Antworten.";
+        }
+
+        saveCompletedAttempt(total, criticalCount);
+        renderAttemptHistory();
+
+        result.hidden = false;
+      }
+
+
+
+      const attemptHistoryKey =
+        "praxismfa-schwindel-history-v1";
+
+      const attemptRecordedKey =
+        "praxismfa-schwindel-attempt-recorded-v1";
+
+      function readAttemptHistory() {
+        try {
+          const parsed = JSON.parse(
+            localStorage.getItem(attemptHistoryKey) || "[]"
+          );
+
+          if (!Array.isArray(parsed)) return [];
+
+          return parsed.filter(entry =>
+            entry &&
+            typeof entry.date === "string" &&
+            Number.isFinite(entry.points) &&
+            entry.points >= 0 &&
+            entry.points <= 100 &&
+            Number.isInteger(entry.critical) &&
+            entry.critical >= 0 &&
+            entry.critical <= 15
+          ).slice(-5);
+        } catch {
+          return [];
+        }
+      }
+
+      function saveCompletedAttempt(points, critical) {
+        try {
+          if (localStorage.getItem(attemptRecordedKey) === "1") {
+            return;
+          }
+
+          const history = readAttemptHistory();
+
+          history.push({
+            date: new Date().toISOString(),
+            points,
+            critical
+          });
+
+          localStorage.setItem(
+            attemptHistoryKey,
+            JSON.stringify(history.slice(-5))
+          );
+
+          localStorage.setItem(attemptRecordedKey, "1");
+        } catch {
+          // Der Praxisfall bleibt auch ohne Browserspeicher nutzbar.
+        }
+      }
+
+      function renderAttemptHistory() {
+        const list = document.getElementById(
+          "attempt-history-list"
+        );
+
+        if (!list) return;
+
+        list.replaceChildren();
+
+        const history = readAttemptHistory();
+
+        if (history.length === 0) {
+          const item = document.createElement("li");
+          item.textContent =
+            "Noch keine gespeicherten Ergebnisse vorhanden.";
+          list.appendChild(item);
+          return;
+        }
+
+        [...history].reverse().forEach((entry, index) => {
+          const item = document.createElement("li");
+          const date = new Date(entry.date);
+
+          const dateText = Number.isNaN(date.getTime())
+            ? "Datum unbekannt"
+            : date.toLocaleString("de-DE");
+
+          item.textContent =
+            dateText + ": " +
+            entry.points + " von 100 Punkten, " +
+            (entry.critical === 0
+              ? "keine Aufgabe mit sicherheitskritischen Fehlern."
+              : entry.critical === 1
+                ? "1 Aufgabe mit sicherheitskritischen Fehlern."
+                : entry.critical +
+                  " Aufgaben mit sicherheitskritischen Fehlern.");
+
+          list.appendChild(item);
+        });
+      }
+
+      document.getElementById("restart-case")
+        ?.addEventListener("click", () => {
+          const confirmed = window.confirm(
+            "Möchtest du einen neuen Versuch starten? " +
+            "Deine bisherigen Antworten werden zurückgesetzt. " +
+            "Die letzten fünf abgeschlossenen Ergebnisse bleiben erhalten."
+          );
+
+          if (!confirmed) return;
+
+          const taskStorageKeys = [
+            storageKey,
+            task2StorageKey,
+            task3StorageKey,
+            task4StorageKey,
+            task5StorageKey,
+            task6StorageKey,
+            task7StorageKey,
+            task8StorageKey,
+            task9StorageKey,
+            task10StorageKey,
+            task11StorageKey,
+            task12StorageKey,
+            task13StorageKey,
+            task14StorageKey,
+            task15StorageKey
+          ];
+
+          try {
+            taskStorageKeys.forEach(key =>
+              localStorage.removeItem(key)
+            );
+
+            localStorage.removeItem(attemptRecordedKey);
+
+            window.location.reload();
+          } catch {
+            window.alert(
+              "Der neue Versuch konnte nicht gestartet werden. " +
+              "Bitte prüfe, ob dein Browser die Speicherung erlaubt."
+            );
+          }
+        });
+
+      function updateCasePhase(taskNumber) {
+        const phases = [
+          { start: 1, end: 3, title: "Phase 1 · Ersteinschätzung" },
+          { start: 4, end: 6, title: "Phase 2 · Dynamische Notfallsituation" },
+          { start: 7, end: 9, title: "Phase 3 · Dokumentation und Übergabe" },
+          { start: 10, end: 12, title: "Phase 4 · Akute Zustandsverschlechterung" },
+          { start: 13, end: 13, title: "Phase 5 · Rettungsdienst und Übergabe" },
+          { start: 14, end: 14, title: "Phase 6 · Dokumentation" },
+          { start: 15, end: 15, title: "Phase 7 · Abschluss und Patientensicherheit" }
+        ];
+
+        const phase = phases.find(
+          item => taskNumber >= item.start && taskNumber <= item.end
+        );
+
+        const phaseLabel = simulation?.querySelector(
+          ":scope > .eyebrow"
+        );
+
+        if (phase && phaseLabel) {
+          phaseLabel.textContent = phase.title;
+        }
+      }
+
+      function restoreCaseNavigation() {
+        const states = [
+          task1State,
+          task2State,
+          task3State,
+          task4State,
+          task5State,
+          task6State,
+          task7State,
+          task8State,
+          task9State,
+          task10State,
+          task11State,
+          task12State,
+          task13State,
+          task14State,
+          task15State
+        ];
+
+        const hasProgress = states.some(
+          state =>
+            state.completed === true ||
+            state.firstAnswer !== null
+        );
+
+        if (!hasProgress) return;
+
+        const firstIncomplete = states.findIndex(
+          state => state.completed !== true
+        );
+
+        const currentTask =
+          firstIncomplete === -1 ? 15 : firstIncomplete + 1;
+
+        const panels = [
+          document.querySelector(
+            "#simulation > .placeholder"
+          ),
+          ...Array.from(
+            { length: 14 },
+            (_, index) =>
+              document.getElementById(
+                "task-" + (index + 2) + "-panel"
+              )
+          )
+        ];
+
+        if (panels.some(panel => !panel)) return;
+        if (!intro || !simulation) return;
+
+        panels.forEach((panel, index) => {
+          panel.hidden = index !== currentTask - 1;
+        });
+
+        intro.hidden = true;
+        simulation.hidden = false;
+
+        updateCasePhase(currentTask);
+
+        if (progressLabel) {
+          progressLabel.textContent =
+            firstIncomplete === -1
+              ? "Praxisfall abgeschlossen"
+              : "Aufgabe " + currentTask + " von 15";
+        }
+
+        if (progressFill) {
+          progressFill.style.width =
+            ((currentTask / 15) * 100).toFixed(2) + "%";
+        }
+
+        if (firstIncomplete === -1) {
+          renderFinalResult();
+        }
+
+        const currentPanel = panels[currentTask - 1];
+
+        currentPanel.scrollIntoView({
+          behavior: "auto",
+          block: "start"
+        });
+      }
+
+      restoreCaseNavigation();
+
+</script>
+  </body>
+</html>
