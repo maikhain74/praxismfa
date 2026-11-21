@@ -1,0 +1,725 @@
+---
+import { pruefeFallkonfiguration } from "../../lib/praxisfaelle/konfigurationspruefung.js";
+
+const { fall } = Astro.props;
+
+const pruefung = pruefeFallkonfiguration(fall);
+
+if (!pruefung.gueltig) {
+  throw new Error(
+    "Ungültige Praxisfall-Konfiguration: " +
+    pruefung.fehler.join("; ")
+  );
+}
+
+const ersteAufgabe = fall.aufgaben[0];
+const erstePhase = fall.phasen.find(
+  phase => phase.id === ersteAufgabe.phaseId
+);
+---
+
+<section class="praxisfall-engine" data-fall-id={fall.id}>
+  <div class="engine-header">
+    <p class="engine-eyebrow">
+      Interaktiver Praxisfall
+    </p>
+
+    <h2>{fall.titel}</h2>
+
+    <p>{fall.beschreibung}</p>
+  </div>
+
+  <div class="patient-card">
+    <h3>Ausgangssituation</h3>
+
+    <p>
+      <strong>Patient:&nbsp;</strong>{fall.patient.name}
+    </p>
+
+    <p>
+      <strong>Alter:&nbsp;</strong>{fall.patient.alter} Jahre
+    </p>
+
+    <p>{fall.patient.situation}</p>
+  </div>
+
+  <div class="engine-progress">
+    <p id="engine-phase">
+      {erstePhase?.titel}
+    </p>
+
+    <p id="engine-progress-label">
+      Aufgabe 1 von {fall.aufgaben.length}
+    </p>
+
+    <div
+      class="progress-track"
+      role="progressbar"
+      aria-label="Bearbeitungsfortschritt"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="engine-task">
+    <h3 id="engine-task-title">
+      {ersteAufgabe.titel}
+    </h3>
+
+    <p id="engine-task-question">
+      {ersteAufgabe.frage}
+    </p>
+
+    <form id="engine-answer-form">
+      <div class="answer-options">
+        {ersteAufgabe.optionen.map(option => (
+          <label class="answer-option">
+            <input
+              type={ersteAufgabe.typ === "single-choice" ? "radio" : "checkbox"}
+              name="engine-answer"
+              value={option.id}
+            />
+            <span>{option.text}</span>
+          </label>
+        ))}
+      </div>
+
+      <p
+        id="engine-message"
+        class="engine-message"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <button type="submit" class="engine-button">
+        Antwort verbindlich abgeben
+      </button>
+    </form>
+  </div>
+
+  <script
+    type="application/json"
+    data-engine-config
+    set:html={JSON.stringify(fall).replace(/</g, "\\u003c")}
+  ></script>
+
+</section>
+
+
+<script>
+  import {
+    beantworteAufgabe,
+    leseFallbewertungen,
+    ermittleFallfortschritt,
+    ermittleFallergebnis,
+    starteNeuenVersuch,
+    archiviereAbgeschlossenenVersuch
+} from "../../lib/praxisfaelle/fallsteuerung.js";
+
+  import {
+    leseVersuchshistorie
+  } from "../../lib/praxisfaelle/versuchshistorie.js";
+
+  const root = document.querySelector(".praxisfall-engine");
+
+  if (root) {
+    const configElement = root.querySelector(
+      "[data-engine-config]"
+    );
+
+    const fall = JSON.parse(configElement.textContent);
+    const speicher = window.localStorage;
+
+    const form = root.querySelector("#engine-answer-form");
+    const optionen = root.querySelector(".answer-options");
+    const titel = root.querySelector("#engine-task-title");
+    const frage = root.querySelector("#engine-task-question");
+    const phase = root.querySelector("#engine-phase");
+    const fortschrittLabel = root.querySelector(
+      "#engine-progress-label"
+    );
+    const balken = root.querySelector(".progress-fill");
+    const progressTrack = root.querySelector(".progress-track");
+    const meldung = root.querySelector("#engine-message");
+    const aufgabenbereich = root.querySelector(".engine-task");
+
+    let angezeigteAufgabe = null;
+
+    function element(tag, text, klasse) {
+      const knoten = document.createElement(tag);
+
+      if (text !== undefined) {
+        knoten.textContent = text;
+      }
+
+      if (klasse) {
+        knoten.className = klasse;
+      }
+
+      return knoten;
+    }
+
+    function zeigeBewertung(aufgabe, bewertung) {
+      form.hidden = false;
+      optionen.hidden = true;
+      form.querySelector('button[type="submit"]').hidden = true;
+      meldung.replaceChildren();
+
+      const bereich = element("div");
+
+      bereich.appendChild(
+        element(
+          "h3",
+          bewertung.korrekt
+            ? "Antwort richtig"
+            : "Antwort nicht richtig"
+        )
+      );
+
+      bereich.appendChild(
+        element(
+          "p",
+          `Deine Punkte: ${bewertung.punkte} von ${aufgabe.maxPunkte}`
+        )
+      );
+
+      if (bewertung.sicherheitskritisch) {
+        bereich.appendChild(
+          element(
+            "p",
+            "Diese Antwort wurde als sicherheitskritischer Fehler bewertet."
+          )
+        );
+      }
+
+      if (
+        typeof aufgabe.erklaerung === "string" &&
+        aufgabe.erklaerung.trim()
+      ) {
+        const erklaerungsbereich = element("div");
+
+        erklaerungsbereich.style.marginTop = "24px";
+        erklaerungsbereich.style.marginBottom = "24px";
+
+        const ueberschrift = element("h4", "Fachliche Erklärung");
+        ueberschrift.style.marginBottom = "10px";
+
+        const erklaerung = element("p", aufgabe.erklaerung);
+        erklaerung.style.lineHeight = "1.7";
+        erklaerung.style.whiteSpace = "pre-line";
+
+        erklaerungsbereich.appendChild(ueberschrift);
+        erklaerungsbereich.appendChild(erklaerung);
+
+        bereich.appendChild(erklaerungsbereich);
+      }
+
+      if (
+        aufgabe.antwortErklaerungen &&
+        typeof aufgabe.antwortErklaerungen === "object" &&
+        !Array.isArray(aufgabe.antwortErklaerungen)
+      ) {
+        const erklaerungen = element("div");
+
+        erklaerungen.style.marginTop = "24px";
+        erklaerungen.style.marginBottom = "24px";
+
+        const ueberschrift = element(
+          "h4",
+          "Erklärungen zu den Antwortmöglichkeiten"
+        );
+
+        erklaerungen.appendChild(ueberschrift);
+
+        for (const option of aufgabe.optionen) {
+          const begruendung = aufgabe.antwortErklaerungen[option.id];
+
+          if (
+            typeof begruendung !== "string" ||
+            !begruendung.trim()
+          ) {
+            continue;
+          }
+
+          const eintrag = element("div");
+          eintrag.style.marginTop = "16px";
+
+          const antwortTitel = element(
+            "p",
+            option.text
+          );
+
+          antwortTitel.style.fontWeight = "700";
+          antwortTitel.style.marginBottom = "6px";
+
+          const antwortText = element("p", begruendung);
+          antwortText.style.lineHeight = "1.7";
+          antwortText.style.whiteSpace = "pre-line";
+
+          eintrag.appendChild(antwortTitel);
+          eintrag.appendChild(antwortText);
+
+          erklaerungen.appendChild(eintrag);
+        }
+
+        bereich.appendChild(erklaerungen);
+      }
+
+      const weiter = element("button", "Weiter", "engine-button");
+      weiter.type = "button";
+
+      weiter.addEventListener("click", () => {
+        const naechsterIndex = fall.aufgaben.findIndex(
+          eintrag => eintrag.id === aufgabe.id
+        ) + 1;
+
+        if (naechsterIndex < fall.aufgaben.length) {
+          zeigeAufgabe(fall.aufgaben[naechsterIndex]);
+        } else {
+          zeigeAbschluss();
+        }
+      });
+
+      bereich.appendChild(weiter);
+      meldung.appendChild(bereich);
+    }
+
+    function zeigeAufgabe(aufgabe) {
+      angezeigteAufgabe = aufgabe;
+
+      aufgabenbereich
+        .querySelectorAll(".engine-result-content")
+        .forEach(element => element.remove());
+
+      titel.hidden = false;
+      frage.hidden = false;
+
+      const index = fall.aufgaben.findIndex(
+        eintrag => eintrag.id === aufgabe.id
+      );
+
+      const aktuellePhase = fall.phasen.find(
+        eintrag => eintrag.id === aufgabe.phaseId
+      );
+
+      const bewertungen = leseFallbewertungen(speicher, fall);
+      const bewertung = bewertungen[index];
+
+      titel.textContent = aufgabe.titel;
+      frage.textContent = aufgabe.frage;
+      phase.textContent = aktuellePhase?.titel || "";
+      fortschrittLabel.textContent =
+        `Aufgabe ${index + 1} von ${fall.aufgaben.length}`;
+
+      const prozent = Math.round(
+        (index / fall.aufgaben.length) * 100
+      );
+
+      balken.style.width = `${prozent}%`;
+      progressTrack.setAttribute("aria-valuenow", String(prozent));
+
+      optionen.replaceChildren();
+      meldung.replaceChildren();
+      form.hidden = false;
+      optionen.hidden = false;
+      form.querySelector('button[type="submit"]').hidden = false;
+
+      for (const option of aufgabe.optionen) {
+        const label = element("label", undefined, "answer-option");
+
+        const input = document.createElement("input");
+        input.type = aufgabe.typ === "single-choice"
+          ? "radio"
+          : "checkbox";
+        input.name = "engine-answer";
+        input.value = option.id;
+
+        label.appendChild(input);
+        label.appendChild(element("span", option.text));
+        optionen.appendChild(label);
+      }
+
+      if (bewertung?.abgeschlossen === true) {
+        zeigeBewertung(aufgabe, bewertung);
+      }
+    }
+
+    function zeigeAbschluss() {
+      const status = ermittleFallergebnis(speicher, fall);
+
+      if (!status.abgeschlossen) {
+        zeigeAktuellenStand();
+        return;
+      }
+
+      let archivierungsfehler = false;
+
+try {
+        archiviereAbgeschlossenenVersuch(speicher, fall);
+      } catch (fehler) {
+        archivierungsfehler = true;
+        console.error(
+          "Automatische Archivierung fehlgeschlagen:",
+          fehler
+        );
+        meldung.textContent = "Dein Ergebnis konnte nicht in der Versuchshistorie gespeichert werden.";
+      }
+
+      phase.textContent = "Praxisfall abgeschlossen";
+      fortschrittLabel.textContent =
+        `${fall.aufgaben.length} von ${fall.aufgaben.length} Aufgaben`;
+
+      balken.style.width = "100%";
+      progressTrack.setAttribute("aria-valuenow", "100");
+
+      titel.hidden = true;
+      frage.hidden = true;
+      form.hidden = true;
+
+      aufgabenbereich
+        .querySelectorAll(".engine-result-content")
+        .forEach(element => element.remove());
+
+      const ergebnisbereich = document.createElement("div");
+      ergebnisbereich.className = "engine-result-content";
+
+      aufgabenbereich.appendChild(ergebnisbereich);
+
+      const fehlerhinweis = document.createElement("p");
+      fehlerhinweis.setAttribute("role", "alert");
+      fehlerhinweis.style.color = "#a12622";
+      fehlerhinweis.style.fontWeight = "700";
+      fehlerhinweis.style.marginTop = "16px";
+      fehlerhinweis.hidden = !archivierungsfehler;
+
+      if (archivierungsfehler) {
+        fehlerhinweis.textContent =
+          "Dein Ergebnis konnte nicht in der Versuchshistorie gespeichert werden. Bitte versuche es erneut.";
+      }
+
+      ergebnisbereich.appendChild(fehlerhinweis);
+
+      ergebnisbereich.appendChild(
+        element("h3", "Dein Gesamtergebnis")
+      );
+
+      const ergebnis = status.ergebnis;
+
+      const prozent = element(
+        "p",
+        `${ergebnis.prozent} % der möglichen Punkte`
+      );
+      prozent.style.fontSize = "1.8rem";
+      prozent.style.fontWeight = "800";
+      prozent.style.color = "#e67e22";
+      ergebnisbereich.appendChild(prozent);
+
+      ergebnisbereich.appendChild(
+        element(
+          "p",
+          `Erreichte Punkte: ${ergebnis.erreichtePunkte} von ${ergebnis.maximalpunkte}`
+        )
+      );
+
+      ergebnisbereich.appendChild(
+        element(
+          "p",
+          `Abgeschlossene Aufgaben: ${ergebnis.aufgabenAnzahl} von ${fall.aufgaben.length}`
+        )
+      );
+
+      ergebnisbereich.appendChild(
+        element(
+          "p",
+          `Sicherheitskritische Fehler: ${ergebnis.sicherheitskritischeFehler}`
+        )
+      );
+
+      let rueckmeldung;
+
+      if (ergebnis.sicherheitskritischeFehler > 0) {
+        rueckmeldung =
+          "Achtung: In diesem Praxisfall wurden sicherheitskritische Fehler festgestellt. Bitte überprüfe die betreffenden Entscheidungen.";
+      } else if (ergebnis.prozent === 100) {
+        rueckmeldung =
+          "Sehr gutes Ergebnis. Du hast alle Aufgaben korrekt beantwortet.";
+      } else if (ergebnis.prozent >= 80) {
+        rueckmeldung =
+          "Gutes Ergebnis. Überprüfe die Aufgaben, bei denen du Punkte verloren hast.";
+      } else {
+        rueckmeldung =
+          "Du hast den Praxisfall abgeschlossen. Wiederhole die Inhalte und überprüfe deine Entscheidungen.";
+      }
+
+      const feedback = element("p", rueckmeldung);
+      feedback.style.marginTop = "24px";
+      feedback.style.lineHeight = "1.7";
+      feedback.style.fontWeight = "600";
+
+      ergebnisbereich.appendChild(feedback);
+
+      const historie = leseVersuchshistorie(
+        speicher,
+        fall.id
+      );
+
+      if (historie.length > 0) {
+        const historienbereich = document.createElement("div");
+        historienbereich.className = "engine-history";
+
+        historienbereich.style.marginTop = "28px";
+
+        historienbereich.appendChild(
+          element("h3", "Deine letzten Versuche")
+        );
+
+        const hinweis = element(
+          "p",
+          "Hier siehst du deine letzten fünf abgeschlossenen Versuche. Jedes Ergebnis wird automatisch gespeichert, sobald du den Praxisfall abgeschlossen hast."
+        );
+
+        historienbereich.appendChild(hinweis);
+
+        const liste = document.createElement("ol");
+
+        liste.style.paddingLeft = "22px";
+        liste.style.lineHeight = "1.8";
+
+        for (const eintrag of [...historie].reverse()) {
+          const listenpunkt = document.createElement("li");
+
+          const prozent = Math.round(
+            (eintrag.punkte / eintrag.maximalpunkte) * 100
+          );
+
+          const datum = new Date(
+            eintrag.datum
+          ).toLocaleString("de-DE", {
+            dateStyle: "medium",
+            timeStyle: "short"
+          });
+
+          listenpunkt.textContent =
+            `${datum}: ${eintrag.punkte} von ${eintrag.maximalpunkte} Punkten (${prozent} %), sicherheitskritische Fehler: ${eintrag.sicherheitskritischeFehler}`;
+
+          liste.appendChild(listenpunkt);
+        }
+
+        historienbereich.appendChild(liste);
+        ergebnisbereich.appendChild(historienbereich);
+      }
+
+      const neustartButton = document.createElement("button");
+
+      neustartButton.type = "button";
+      neustartButton.textContent = "Neuen Versuch starten";
+      neustartButton.className = "neuer-versuch-button";
+
+      neustartButton.style.marginTop = "24px";
+      neustartButton.style.padding = "14px 22px";
+      neustartButton.style.border = "0";
+      neustartButton.style.borderRadius = "12px";
+      neustartButton.style.backgroundColor = "#e67e22";
+      neustartButton.style.color = "#ffffff";
+      neustartButton.style.fontWeight = "700";
+      neustartButton.style.cursor = "pointer";
+
+      neustartButton.addEventListener("click", () => {
+        neustartButton.disabled = true;
+
+        try {
+          starteNeuenVersuch(speicher, fall);
+          angezeigteAufgabe = null;
+          zeigeAktuellenStand();
+        } catch (fehler) {
+          neustartButton.disabled = false;
+          fehlerhinweis.hidden = false;
+          fehlerhinweis.textContent =
+            "Der neue Versuch konnte nicht gestartet werden. Bitte versuche es erneut.";
+          console.error(fehler);
+        }
+      });
+
+      ergebnisbereich.appendChild(neustartButton);
+    }
+
+    function zeigeAktuellenStand() {
+      const fortschritt = ermittleFallfortschritt(
+        speicher,
+        fall
+      );
+
+      if (fortschritt.abgeschlossen) {
+        zeigeAbschluss();
+        return;
+      }
+
+      const aufgabe = fall.aufgaben.find(
+        eintrag => eintrag.id === fortschritt.aufgabeId
+      );
+
+      zeigeAufgabe(aufgabe);
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (!angezeigteAufgabe) return;
+
+      const ausgewaehlt = Array.from(
+        form.querySelectorAll("input:checked")
+      ).map(input => input.value);
+
+      if (ausgewaehlt.length === 0) {
+        meldung.textContent =
+          "Bitte wähle mindestens eine Antwort aus.";
+        return;
+      }
+
+      try {
+        const ergebnis = beantworteAufgabe(
+          speicher,
+          fall,
+          angezeigteAufgabe.id,
+          ausgewaehlt
+        );
+
+        zeigeBewertung(
+          angezeigteAufgabe,
+          ergebnis.bewertung
+        );
+      } catch (fehler) {
+        meldung.textContent =
+          "Die Antwort konnte nicht gespeichert werden.";
+        console.error(fehler);
+      }
+    });
+
+    zeigeAktuellenStand();
+  }
+</script>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  .praxisfall-engine {
+    color: #222;
+    font-family: Inter, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .engine-header {
+    margin-bottom: 32px;
+  }
+
+  .engine-eyebrow {
+    color: #e67e22;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+  }
+
+  .engine-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    margin: 14px 0;
+  }
+
+  .patient-card,
+  .engine-task {
+    background: #fff;
+    border: 1px solid #e4ddd6;
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+
+  .patient-card p {
+    line-height: 1.7;
+  }
+
+  .engine-progress {
+    margin: 36px 0;
+  }
+
+  #engine-phase {
+    color: #e67e22;
+    font-weight: 800;
+  }
+
+  #engine-progress-label {
+    font-weight: 700;
+  }
+
+  .progress-track {
+    height: 12px;
+    background: #eee3d8;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #e67e22;
+    transition: width 0.25s ease;
+  }
+
+  .answer-options {
+    display: grid;
+    gap: 14px;
+    margin: 26px 0;
+  }
+
+  .answer-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid #ded8d2;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .answer-option:hover {
+    border-color: #e67e22;
+    background: #fffaf5;
+  }
+
+  .answer-option input {
+    margin-top: 4px;
+    accent-color: #e67e22;
+  }
+
+  :global(.praxisfall-engine .engine-button) {
+    background: #e67e22;
+    color: #fff;
+    border: 0;
+    border-radius: 12px;
+    padding: 15px 24px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  :global(.praxisfall-engine .engine-button:hover) {
+    background: #c96a17;
+  }
+
+  .engine-message {
+    min-height: 24px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .patient-card,
+    .engine-task {
+      padding: 20px;
+    }
+  }
+</style>
