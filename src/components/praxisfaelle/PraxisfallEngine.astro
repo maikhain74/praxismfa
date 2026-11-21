@@ -69,6 +69,16 @@ const erstePhase = fall.phasen.find(
       {ersteAufgabe.titel}
     </h3>
 
+    <div id="engine-task-context" hidden>
+      <p id="engine-task-time"></p>
+      <h4 id="engine-task-context-heading" hidden>Patientensituation</h4>
+      <p id="engine-task-situation" style="white-space: pre-line;"></p>
+      <p
+        id="engine-task-details"
+        style="white-space: pre-line; background: #fff4e8; border-left: 4px solid #e67e22; border-radius: 8px; padding: 16px 20px; line-height: 1.7;"
+      ></p>
+    </div>
+
     <p id="engine-task-question">
       {ersteAufgabe.frage}
     </p>
@@ -137,6 +147,11 @@ const erstePhase = fall.phasen.find(
     const optionen = root.querySelector(".answer-options");
     const titel = root.querySelector("#engine-task-title");
     const frage = root.querySelector("#engine-task-question");
+    const kontext = root.querySelector("#engine-task-context");
+    const zeit = root.querySelector("#engine-task-time");
+    const kontextTitel = root.querySelector("#engine-task-context-heading");
+    const situation = root.querySelector("#engine-task-situation");
+    const details = root.querySelector("#engine-task-details");
     const phase = root.querySelector("#engine-phase");
     const fortschrittLabel = root.querySelector(
       "#engine-progress-label"
@@ -287,6 +302,65 @@ const erstePhase = fall.phasen.find(
       meldung.appendChild(bereich);
     }
 
+    function ermittleAntwortreihenfolge(aufgabe) {
+      const versuchId =
+        speicher.getItem(
+          `praxismfa:fall:${fall.id}:aktueller-versuch:v1`
+        ) || "erster-versuch";
+
+      const schluessel =
+        `praxismfa:fall:${fall.id}:versuch:${versuchId}:` +
+        `aufgabe:${aufgabe.id}:antwortreihenfolge:v1`;
+
+      const ids = aufgabe.optionen.map(option => option.id);
+      const gespeichert = speicher.getItem(schluessel);
+
+      if (gespeichert !== null) {
+        try {
+          const reihenfolge = JSON.parse(gespeichert);
+
+          if (
+            Array.isArray(reihenfolge) &&
+            reihenfolge.length === ids.length &&
+            new Set(reihenfolge).size === ids.length &&
+            reihenfolge.every(id => ids.includes(id))
+          ) {
+            return reihenfolge.map(
+              id => aufgabe.optionen.find(option => option.id === id)
+            );
+          }
+        } catch (fehler) {
+          console.warn(
+            "Gespeicherte Antwortreihenfolge ist ungültig.",
+            fehler
+          );
+        }
+      }
+
+      const gemischt = [...aufgabe.optionen];
+
+      for (let i = gemischt.length - 1; i > 0; i--) {
+        const zufallsindex = Math.floor(Math.random() * (i + 1));
+
+        [gemischt[i], gemischt[zufallsindex]] =
+          [gemischt[zufallsindex], gemischt[i]];
+      }
+
+      try {
+        speicher.setItem(
+          schluessel,
+          JSON.stringify(gemischt.map(option => option.id))
+        );
+      } catch (fehler) {
+        console.warn(
+          "Antwortreihenfolge konnte nicht gespeichert werden.",
+          fehler
+        );
+      }
+
+      return gemischt;
+    }
+
     function zeigeAufgabe(aufgabe) {
       angezeigteAufgabe = aufgabe;
 
@@ -310,6 +384,20 @@ const erstePhase = fall.phasen.find(
 
       titel.textContent = aufgabe.titel;
       frage.textContent = aufgabe.frage;
+
+      const z = aufgabe.uhrzeit || "";
+      const si = aufgabe.situation || "";
+      const d = aufgabe.zusatzinformationen || "";
+
+      zeit.textContent = z;
+      situation.textContent = si;
+      details.textContent = d;
+
+      zeit.hidden = !z;
+      situation.hidden = !si;
+      details.hidden = !d;
+      kontextTitel.hidden = !si;
+      kontext.hidden = !(z || si || d);
       phase.textContent = aktuellePhase?.titel || "";
       fortschrittLabel.textContent =
         `Aufgabe ${index + 1} von ${fall.aufgaben.length}`;
@@ -327,7 +415,7 @@ const erstePhase = fall.phasen.find(
       optionen.hidden = false;
       form.querySelector('button[type="submit"]').hidden = false;
 
-      for (const option of aufgabe.optionen) {
+      for (const option of ermittleAntwortreihenfolge(aufgabe)) {
         const label = element("label", undefined, "answer-option");
 
         const input = document.createElement("input");
@@ -337,8 +425,51 @@ const erstePhase = fall.phasen.find(
         input.name = "engine-answer";
         input.value = option.id;
 
+        label.style.display = "flex";
+        label.style.alignItems = "flex-start";
+        label.style.gap = "16px";
+        label.style.padding = "20px";
+        label.style.border = "1.5px solid #e4ddd6";
+        label.style.borderRadius = "14px";
+        label.style.backgroundColor = "#ffffff";
+        label.style.cursor = "pointer";
+        label.style.transition =
+          "border-color 0.2s, background-color 0.2s";
+        label.style.lineHeight = "1.6";
+
+        input.style.width = "20px";
+        input.style.height = "20px";
+        input.style.minWidth = "20px";
+        input.style.marginTop = "3px";
+        input.style.accentColor = "#e67e22";
+        input.style.cursor = "pointer";
+
+        const antwortText = element("span", option.text);
+        antwortText.style.flex = "1";
+
         label.appendChild(input);
-        label.appendChild(element("span", option.text));
+        label.appendChild(antwortText);
+
+        input.addEventListener("change", () => {
+          optionen.querySelectorAll(".answer-option").forEach(
+            karte => {
+              const auswahl = karte.querySelector("input");
+              const aktiv = auswahl.checked;
+
+              karte.style.borderColor =
+                aktiv ? "#e67e22" : "#e4ddd6";
+
+              karte.style.backgroundColor =
+                aktiv ? "#fff4e8" : "#ffffff";
+
+              karte.style.boxShadow =
+                aktiv
+                  ? "0 0 0 1px #e67e22"
+                  : "none";
+            }
+          );
+        });
+
         optionen.appendChild(label);
       }
 
@@ -377,6 +508,7 @@ try {
 
       titel.hidden = true;
       frage.hidden = true;
+      kontext.hidden = true;
       form.hidden = true;
 
       aufgabenbereich
@@ -598,7 +730,40 @@ try {
       }
     });
 
-    zeigeAktuellenStand();
+    const vorschauParameter = new URLSearchParams(
+      window.location.search
+    ).get("vorschau");
+
+    const lokaleVorschau =
+      ["localhost", "127.0.0.1"].includes(window.location.hostname) &&
+      vorschauParameter !== null &&
+      /^[1-9][0-9]*$/.test(vorschauParameter);
+
+    if (lokaleVorschau) {
+      const nummer = Number(vorschauParameter);
+      const vorschauAufgabe = fall.aufgaben.find(
+        eintrag => eintrag.nummer === nummer
+      );
+
+      if (vorschauAufgabe) {
+        zeigeAufgabe(vorschauAufgabe);
+
+        optionen.querySelectorAll("input").forEach(input => {
+          input.disabled = true;
+        });
+
+        form.querySelector('button[type="submit"]').hidden = true;
+
+        meldung.textContent =
+          "Lokale Vorschau: Diese Aufgabe kann hier nicht bewertet werden.";
+      } else {
+        form.hidden = true;
+        meldung.textContent =
+          "Die angeforderte Vorschaunummer existiert nicht.";
+      }
+    } else {
+      zeigeAktuellenStand();
+    }
   }
 </script>
 
