@@ -1,0 +1,955 @@
+---
+const title = "Gesetzliche Krankenversicherung und EBM | PraxisMFA";
+const description = "Lerne die gesetzliche Krankenversicherung, den Aufbau des EBM, Gebührenordnungspositionen, Pauschalen und grundlegende Abrechnungsregeln kennen.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+<style>
+  /* Lektion 13: Responsive Überschrift */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/lernen/">Lernen</a>
+        <a href="/praxis/">Praxis</a>
+        <a href="/pruefung/">Prüfung</a>
+        <a class="premium" href="/premium/">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zur Fachwelt 09
+      </a>
+
+      
+        
+        
+        <article>
+  <header class="lesson-hero">
+    <p class="eyebrow">Fachwelt 09 · Lektion 20</p>
+    <h1>Gesetzliche Krankenversicherung und EBM</h1>
+    <p class="lead">
+      Wie werden vertragsärztliche Leistungen abgerechnet?
+      Du lernst die Aufgaben der gesetzlichen Krankenversicherung,
+      den Aufbau des Einheitlichen Bewertungsmaßstabs und die
+      wichtigsten Regeln für die sichere Leistungserfassung kennen.
+    </p>
+  </header>
+
+  
+  <figure
+    class="lesson-image"
+    style="display:block; width:100%; max-width:680px; margin:24px auto; overflow:hidden;"
+  >
+    <img
+      src="/images/gesetzliche-krankenversicherung-und-ebm.png"
+      alt="Gesetzliche Krankenversicherung und EBM: Zusammenhang zwischen GKV, Einheitlichem Bewertungsmaßstab und vertragsärztlicher Abrechnung"
+      loading="lazy"
+      style="display:block; width:100%; max-width:100%; height:auto; object-fit:contain;"
+    />
+  </figure>
+
+<section class="content-section">
+    <p class="section-number">01</p>
+    <h2>Praxissituation: Eine Leistung soll abgerechnet werden</h2>
+    <p>
+      In einer hausärztlichen Gemeinschaftspraxis wurde bei einer gesetzlich
+      versicherten Patientin zusätzlich zur ärztlichen Untersuchung ein
+      Ruhe-EKG durchgeführt. Die Untersuchung ist in der digitalen
+      Patientenakte dokumentiert.
+    </p>
+    <p>
+      Bei der Leistungserfassung fragt eine Auszubildende:
+      „Kann ich das EKG jetzt einfach zusätzlich zur Versichertenpauschale
+      eintragen?“
+    </p>
+    <p>
+      Die erfahrene MFA antwortet:
+      „Bevor wir eine Gebührenordnungsposition erfassen, müssen wir
+      nachsehen, welche EBM-Regeln für diese Leistung gelten.“
+    </p>
+    <p>
+      <strong>&nbsp;Deine Aufgabe:</strong> Verstehe, warum die tatsächliche
+      Durchführung einer Untersuchung allein nicht ausreicht, um ihre
+      gesonderte Abrechenbarkeit zu beurteilen.
+    </p>
+    <p>
+      <strong>&nbsp;Merke:</strong> Im EBM entscheiden der Leistungsinhalt
+      und die geltenden Abrechnungsbestimmungen darüber, ob und wie
+      eine Leistung berechnet werden darf.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">02</p>
+    <h2>Das lernst du in dieser Lektion</h2>
+    <ul>
+      <li>Du erklärst die Rolle der gesetzlichen Krankenversicherung.</li>
+      <li>Du beschreibst die Aufgaben der Kassenärztlichen Vereinigungen.</li>
+      <li>Du erläuterst den Zweck des Einheitlichen Bewertungsmaßstabs.</li>
+      <li>Du erkennst die grundlegende Struktur des EBM.</li>
+      <li>Du verstehst, was eine Gebührenordnungsposition ist.</li>
+      <li>Du unterscheidest Pauschalen und gesondert berechnungsfähige Leistungen.</li>
+      <li>Du prüfst grundlegende Abrechnungsvoraussetzungen und Ausschlüsse.</li>
+      <li>Du erklärst den Unterschied zwischen EBM-Bewertung und tatsächlicher Vergütung.</li>
+      <li>Du gehst bei unklaren Abrechnungsfragen systematisch vor.</li>
+    </ul>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">03</p>
+    <h2>Die Rolle der GKV bei der ambulanten Versorgung</h2>
+    <p>
+      Die gesetzliche Krankenversicherung (GKV) ist ein zentraler
+      Bestandteil der gesundheitlichen Versorgung in Deutschland.
+      Sie gewährleistet im Rahmen der gesetzlichen Vorgaben den
+      Versicherungsschutz ihrer Mitglieder und der mitversicherten Personen.
+    </p>
+    <p>
+      Versicherte haben Anspruch auf die gesetzlich vorgesehenen
+      Leistungen. Für die vertragsärztliche Versorgung gilt dabei
+      das Wirtschaftlichkeitsgebot: Leistungen müssen ausreichend,
+      zweckmäßig und wirtschaftlich sein und dürfen das Maß des
+      Notwendigen nicht überschreiten.
+    </p>
+    <h3>Was bedeutet das für die Arztpraxis?</h3>
+    <ul>
+      <li>Die Praxis erbringt medizinisch notwendige vertragsärztliche Leistungen.</li>
+      <li>Für deren Abrechnung gelten verbindliche rechtliche und vertragliche Vorgaben.</li>
+      <li>Nicht jede gewünschte oder erbrachte Maßnahme ist automatisch eine GKV-Leistung.</li>
+      <li>Die Abrechnung erfolgt im regulären vertragsärztlichen Bereich grundsätzlich nicht durch eine Einzelrechnung an die gesetzlich versicherte Person.</li>
+    </ul>
+    <p>
+      <strong>&nbsp;Abgrenzung:</strong> Versicherungsnachweise,
+      elektronische Gesundheitskarte und Kostenträger wurden bereits
+      in der Lektion zur Patientenaufnahme behandelt.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">04</p>
+    <h2>Kassenärztliche Vereinigungen und vertragsärztliche Abrechnung</h2>
+    <p>
+      Die Kassenärztlichen Vereinigungen (KVen) übernehmen wichtige
+      Aufgaben bei der Sicherstellung der ambulanten vertragsärztlichen
+      Versorgung und bei der Abrechnung ärztlicher Leistungen.
+    </p>
+    <h3>Der grundlegende Abrechnungsweg</h3>
+    <ol>
+      <li>Die Praxis erbringt eine vertragsärztliche Leistung.</li>
+      <li>Die Leistung wird medizinisch dokumentiert und abrechnungsbezogen erfasst.</li>
+      <li>Die Praxis kontrolliert die Abrechnungsdaten.</li>
+      <li>Die vertragsärztliche Abrechnung wird grundsätzlich quartalsweise bei der zuständigen KV eingereicht.</li>
+      <li>Die KV prüft die Abrechnung nach den geltenden Vorgaben und ermittelt die Vergütung.</li>
+    </ol>
+    <p>
+      Die Finanzierung und Vergütung beruhen auf gesetzlichen,
+      kollektivvertraglichen und gegebenenfalls weiteren vertraglichen
+      Regelungen. Die Krankenkassen und die KVen haben dabei
+      unterschiedliche Aufgaben.
+    </p>
+    <p>
+      <strong>&nbsp;Wichtig:</strong> Besondere Versorgungs- und
+      Abrechnungsverträge können von diesem regulären Ablauf abweichen.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">05</p>
+    <h2>Was regelt der Einheitliche Bewertungsmaßstab?</h2>
+    <p>
+      Der Einheitliche Bewertungsmaßstab, kurz EBM, beschreibt
+      abrechnungsfähige Leistungen der vertragsärztlichen Versorgung
+      und legt deren Bewertung sowie Abrechnungsbestimmungen fest.
+    </p>
+    <p>
+      Er wird vom Bewertungsausschuss im Rahmen der gesetzlichen
+      Vorgaben beschlossen und regelmäßig weiterentwickelt.
+    </p>
+    <h3>Der EBM beantwortet wichtige Fragen</h3>
+    <ul>
+      <li>Welche Leistungen sind als Gebührenordnungsposition vorgesehen?</li>
+      <li>Welche Leistungsinhalte müssen erfüllt sein?</li>
+      <li>Welche zusätzlichen Abrechnungsvoraussetzungen gelten?</li>
+      <li>Wie ist die Leistung bewertet?</li>
+      <li>Welche Ausschlüsse, Begrenzungen oder Kombinationen sind zu beachten?</li>
+    </ul>
+    <p>
+      <strong>&nbsp;Merke:</strong> Der EBM ist nicht nur eine Liste
+      von Leistungen. Seine Allgemeinen Bestimmungen, Anmerkungen
+      und Abrechnungsregeln sind ebenso wichtig wie die einzelnen
+      Gebührenordnungspositionen.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">06</p>
+    <h2>Aufbau des EBM und seine verschiedenen Bereiche</h2>
+    <p>
+      Der EBM ist systematisch gegliedert. Seine Struktur hilft dabei,
+      Leistungen und die dazugehörigen Regeln aufzufinden.
+    </p>
+    <h3>Wichtige Bestandteile</h3>
+    <ul>
+      <li><strong>&nbsp;Allgemeine Bestimmungen:</strong> Übergreifende Regeln zur Anwendung und Berechnung von Leistungen.</li>
+      <li><strong>&nbsp;Arztgruppenübergreifende Leistungen:</strong> Leistungen, die unter den jeweiligen Voraussetzungen für verschiedene Arztgruppen relevant sein können.</li>
+      <li><strong>&nbsp;Arztgruppenspezifische Leistungen:</strong> Regelungen und Gebührenordnungspositionen für bestimmte Fachgruppen.</li>
+      <li><strong>&nbsp;Weitere besondere Leistungsbereiche:</strong> Zusätzliche Abschnitte mit jeweils eigenen Voraussetzungen und Bestimmungen.</li>
+      <li><strong>&nbsp;Anhänge:</strong> Ergänzende Regelungen und Zuordnungen, soweit sie für den jeweiligen Fall relevant sind.</li>
+    </ul>
+    <p>
+      Für eine korrekte Prüfung genügt es nicht, lediglich nach
+      einem bekannten Untersuchungsnamen zu suchen. Auch die
+      zugehörigen Kapitel, Anmerkungen und übergreifenden
+      Bestimmungen müssen berücksichtigt werden.
+    </p>
+    <p>
+      <strong>&nbsp;Praxisregel:</strong> Verwende für konkrete
+      Abrechnungsfragen die zum Leistungszeitpunkt maßgebliche
+      Fassung des EBM.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">07</p>
+    <h2>Gebührenordnungspositionen (GOP) verstehen</h2>
+    <p>
+      Eine Gebührenordnungsposition, kurz GOP, bezeichnet eine
+      im EBM beschriebene abrechnungsfähige Leistung oder
+      Leistungseinheit.
+    </p>
+    <h3>Was gehört zur Prüfung einer GOP?</h3>
+    <ul>
+      <li>Die Bezeichnung und Beschreibung der Leistung</li>
+      <li>Der obligate Leistungsinhalt</li>
+      <li>Gegebenenfalls fakultative Leistungsbestandteile</li>
+      <li>Die Bewertung der Position</li>
+      <li>Zusätzliche Abrechnungsvoraussetzungen</li>
+      <li>Hinweise zu Häufigkeit, Zeitraum und Kombinationen</li>
+      <li>Gegebenenfalls besondere Genehmigungen oder Qualifikationen</li>
+    </ul>
+    <p>
+      <strong>&nbsp;Obligat</strong> bedeutet, dass die vorgeschriebenen
+      Leistungsbestandteile erfüllt sein müssen.
+      <strong>&nbsp;Fakultativ</strong> bezeichnet Bestandteile,
+      die im Rahmen der jeweiligen Leistungsbeschreibung vorgesehen
+      sein können, aber nicht zwingend in jedem Fall erbracht werden müssen.
+    </p>
+    <p>
+      <strong>&nbsp;Wichtig:</strong> Eine GOP darf nicht allein
+      deshalb ausgewählt werden, weil ihre Kurzbezeichnung zu
+      einer dokumentierten Untersuchung zu passen scheint.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">08</p>
+    <h2>Versichertenpauschalen und weitere Pauschalen</h2>
+    <p>
+      Im EBM gibt es Leistungen, die als Pauschalen ausgestaltet
+      sind. Sie können mehrere Leistungsbestandteile oder
+      bestimmte Versorgungsaufgaben abbilden.
+    </p>
+    <h3>Beispiel: Versichertenpauschale</h3>
+    <p>
+      In der hausärztlichen Versorgung spielt die
+      Versichertenpauschale eine wichtige Rolle. Ob sie
+      berechnet werden darf und welche Bedingungen gelten,
+      richtet sich nach den aktuellen EBM-Bestimmungen.
+    </p>
+    <h3>Warum sind Pauschalen wichtig?</h3>
+    <p>
+      Eine Pauschale kann bestimmte Leistungen bereits
+      berücksichtigen. Deshalb darf nicht jede einzelne
+      Tätigkeit automatisch zusätzlich abgerechnet werden.
+    </p>
+    <p>
+      Daneben existieren weitere Pauschalen und gesonderte
+      Gebührenordnungspositionen mit unterschiedlichen
+      Voraussetzungen.
+    </p>
+    <p>
+      <strong>&nbsp;Merke:</strong> Ob eine Leistung neben einer
+      Pauschale gesondert berechnet werden darf, ergibt sich
+      aus den jeweils geltenden EBM-Regeln.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">09</p>
+    <h2>Abrechnungsvoraussetzungen und Leistungsausschlüsse</h2>
+    <p>
+      Eine Gebührenordnungsposition kann nur berechnet werden,
+      wenn die dafür geltenden Voraussetzungen erfüllt sind.
+      Diese können sich aus der Leistungsbeschreibung,
+      Anmerkungen und übergreifenden Bestimmungen ergeben.
+    </p>
+    <h3>Wichtige Prüfpunkte</h3>
+    <ul>
+      <li>Wurde die Leistung tatsächlich und vollständig erbracht?</li>
+      <li>Sind die obligaten Leistungsinhalte erfüllt?</li>
+      <li>Ist die Leistung für die betreffende Arztgruppe berechnungsfähig?</li>
+      <li>Sind gegebenenfalls erforderliche Genehmigungen vorhanden?</li>
+      <li>Ist die vorgesehene Häufigkeit eingehalten?</li>
+      <li>Besteht ein Ausschluss gegenüber einer anderen GOP?</li>
+      <li>Ist die Leistung bereits Bestandteil einer Pauschale oder einer anderen berechneten Leistung?</li>
+    </ul>
+    <h3>Was bedeutet ein Abrechnungsausschluss?</h3>
+    <p>
+      Ein Ausschluss kann festlegen, dass bestimmte Positionen
+      nicht gemeinsam berechnet werden dürfen. Dabei ist
+      genau zu beachten, ob sich die Regel beispielsweise
+      auf denselben Behandlungstag, denselben Behandlungsfall
+      oder einen anderen festgelegten Zeitraum bezieht.
+    </p>
+    <p>
+      <strong>&nbsp;Wichtig:</strong> Abrechnungsausschlüsse
+      dürfen nicht pauschal auf andere Leistungen übertragen
+      werden. Entscheidend ist die konkrete Regel.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">10</p>
+    <h2>Punkte, Euro-Bewertung und Vergütung – wichtige Unterschiede</h2>
+    <p>
+      Viele EBM-Leistungen sind mit Punktzahlen bewertet.
+      Für die Umrechnung spielt der jeweils geltende
+      Orientierungswert beziehungsweise ein maßgeblicher
+      regionaler oder vertraglicher Vergütungsmaßstab eine Rolle.
+    </p>
+    <h3>Warum ist die Unterscheidung wichtig?</h3>
+    <p>
+      Eine rechnerische Bewertung einer GOP ist nicht
+      in jedem Fall mit dem tatsächlich ausgezahlten
+      Vergütungsbetrag gleichzusetzen.
+    </p>
+    <p>
+      Die tatsächliche Vergütung kann von weiteren
+      gesetzlichen und vertraglichen Regelungen,
+      regionalen Vereinbarungen und der jeweiligen
+      Vergütungssystematik abhängen.
+    </p>
+    <h3>Ein vereinfachtes Rechenbeispiel</h3>
+    <p>
+      Angenommen, eine fiktive Leistung ist mit
+      <strong>&nbsp;100 Punkten</strong> bewertet und für ein
+      reines Übungsbeispiel wird ein fiktiver Punktwert
+      von <strong>&nbsp;0,12 Euro</strong> verwendet.
+    </p>
+    <p>
+      Dann ergibt sich rechnerisch:
+      <strong>&nbsp;100 × 0,12 Euro = 12,00 Euro.</strong>
+    </p>
+    <p>
+      Diese Zahlen sind ausschließlich didaktische Annahmen,
+      keine aktuellen EBM-Werte und keine Aussage über die
+      tatsächlich ausgezahlte Vergütung.
+    </p>
+    <p>
+      <strong>&nbsp;Merke:</strong> Punktbewertung,
+      rechnerischer Euro-Wert und tatsächliche
+      Vergütung müssen auseinandergehalten werden.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">11</p>
+    <h2>EBM-Regeln im Praxisverwaltungssystem anwenden</h2>
+    <p>
+      Moderne Praxisverwaltungssysteme unterstützen
+      die vertragsärztliche Abrechnung. Sie können
+      Gebührenordnungspositionen verwalten,
+      Leistungen zuordnen und auf bestimmte
+      Unstimmigkeiten hinweisen.
+    </p>
+    <h3>Ein sicherer Arbeitsablauf</h3>
+    <ol>
+      <li>Die richtige Patientenakte und den Behandlungskontext auswählen.</li>
+      <li>Die tatsächlich erbrachte Leistung anhand der Dokumentation nachvollziehen.</li>
+      <li>Die zutreffende GOP anhand der geltenden Bestimmungen prüfen.</li>
+      <li>Notwendige Angaben und Voraussetzungen kontrollieren.</li>
+      <li>Softwarehinweise zu Ausschlüssen oder fehlenden Angaben beachten.</li>
+      <li>Unklare Sachverhalte mit der zuständigen Person klären.</li>
+      <li>Erforderliche Einträge nur im Rahmen der eigenen Berechtigungen vornehmen.</li>
+    </ol>
+    <p>
+      <strong>&nbsp;Wichtig:</strong> Das PVS kann die Prüfung
+      unterstützen. Es ersetzt aber nicht die Kenntnis
+      der Abrechnungsregeln oder die Verantwortung
+      der zuständigen Personen.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">12</p>
+    <h2>Praxisfall: Eine zusätzliche Leistung korrekt prüfen</h2>
+    <p>
+      <strong>&nbsp;Situation:</strong> Eine gesetzlich
+      versicherte Patientin wurde in der hausärztlichen
+      Praxis untersucht. Zusätzlich wurde ein Ruhe-EKG
+      durchgeführt und medizinisch dokumentiert.
+    </p>
+    <p>
+      Im Praxisverwaltungssystem ist bereits eine
+      Versichertenpauschale erfasst. Eine Kollegin
+      möchte eine weitere GOP für das EKG ergänzen.
+    </p>
+    <p>
+      Sie sagt: „Die Untersuchung hat stattgefunden,
+      also können wir sie zusätzlich abrechnen.“
+    </p>
+    <h3>Deine Aufgaben</h3>
+    <ol>
+      <li>Warum reicht die Durchführung des EKGs als Begründung nicht aus?</li>
+      <li>Welche EBM-Bestimmungen müssen geprüft werden?</li>
+      <li>Welche Rolle spielt die bereits erfasste Pauschale?</li>
+      <li>Was tust du, wenn die Abrechenbarkeit unklar bleibt?</li>
+      <li>Wann darf die zusätzliche GOP erfasst werden?</li>
+    </ol>
+    <details>
+      <summary>Begründete Musterlösung anzeigen</summary>
+      <p>
+        <strong>&nbsp;1. Durchführung:</strong> Das EKG wurde
+        zwar tatsächlich durchgeführt. Daraus folgt aber
+        noch nicht automatisch, dass eine zusätzliche
+        GOP berechnet werden darf.
+      </p>
+      <p>
+        <strong>&nbsp;2. EBM-Prüfung:</strong> Zu prüfen sind
+        die zum Leistungszeitpunkt geltenden Leistungsbeschreibungen,
+        obligaten Inhalte, Berechnungsvoraussetzungen,
+        gegebenenfalls arztgruppenbezogenen Regelungen
+        sowie relevante Ausschlüsse und Anmerkungen.
+      </p>
+      <p>
+        <strong>&nbsp;3. Pauschale:</strong> Es muss geprüft
+        werden, ob die Untersuchung bereits Bestandteil
+        einer anderen berechneten Leistung ist oder
+        ob eine gesonderte Berechnung nach den
+        einschlägigen Bestimmungen zulässig ist.
+      </p>
+      <p>
+        <strong>&nbsp;4. Unklarheit:</strong> Ich dokumentiere
+        beziehungsweise kennzeichne die offene Abrechnungsfrage
+        nach Praxisvorgabe und beziehe die zuständige
+        Fachperson ein. Ich nehme keine ungeprüfte
+        Ergänzung vor.
+      </p>
+      <p>
+        <strong>&nbsp;5. Erfassung:</strong> Eine zusätzliche
+        GOP darf erst erfasst werden, wenn die zutreffende
+        Position und sämtliche erforderlichen Voraussetzungen
+        geprüft wurden und die Erfassung innerhalb
+        meiner Zuständigkeit erfolgt.
+      </p>
+      <p>
+        <strong>&nbsp;Prüfungsbezug:</strong> Du kannst
+        eine Abrechnungsfrage strukturiert beurteilen,
+        die Bedeutung von Pauschalen und Ausschlüssen
+        erklären und dein Vorgehen begründen.
+      </p>
+      <p>
+        <strong>&nbsp;Hinweis:</strong> Dieser Lernfall
+        trifft bewusst keine Aussage darüber, welche
+        konkrete EBM-Position für das beschriebene
+        EKG im Einzelfall berechnet werden darf.
+      </p>
+    </details>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">13</p>
+    <h2>Das musst du mitnehmen</h2>
+    <ul>
+      <li>Die GKV ist ein zentraler Bestandteil der ambulanten Versorgung.</li>
+      <li>Kassenärztliche Vereinigungen übernehmen wichtige Aufgaben bei der vertragsärztlichen Abrechnung.</li>
+      <li>Der EBM enthält Leistungen, Bewertungen und verbindliche Abrechnungsbestimmungen.</li>
+      <li>Gebührenordnungspositionen müssen anhand ihrer vollständigen Regeln geprüft werden.</li>
+      <li>Pauschalen können mehrere Leistungsbestandteile abbilden.</li>
+      <li>Nicht jede durchgeführte Untersuchung ist zusätzlich berechnungsfähig.</li>
+      <li>Abrechnungsausschlüsse und zeitliche Begrenzungen müssen beachtet werden.</li>
+      <li>Eine EBM-Punktbewertung ist nicht automatisch die tatsächlich ausgezahlte Vergütung.</li>
+      <li>Das PVS unterstützt die Abrechnung, ersetzt aber keine fachliche Prüfung.</li>
+    </ul>
+    <p>
+      <strong>&nbsp;Prüfungskompetenz:</strong> Du erklärst
+      den Aufbau des EBM, erkennst wichtige
+      Abrechnungsvoraussetzungen und kannst
+      bei unklaren Gebührenordnungspositionen
+      fachlich begründet vorgehen.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <p class="section-number">14</p>
+    <h2>Selbstcheck: Gesetzliche Krankenversicherung und EBM</h2>
+    <p>
+      Beantworte die Fragen zunächst selbst.
+      Öffne anschließend die jeweilige Lösung.
+    </p>
+
+    <details>
+      <summary>1. Welche Aufgabe hat der EBM in der vertragsärztlichen Versorgung?</summary>
+      <p>
+        Der EBM beschreibt abrechnungsfähige Leistungen
+        der vertragsärztlichen Versorgung, ihre Bewertungen
+        und die zugehörigen Abrechnungsbestimmungen.
+        Er ist damit eine zentrale Grundlage
+        der vertragsärztlichen Leistungsabrechnung.
+      </p>
+    </details>
+
+    <details>
+      <summary>2. Was ist eine Gebührenordnungsposition?</summary>
+      <p>
+        Eine GOP ist eine im EBM beschriebene
+        abrechnungsfähige Leistung oder Leistungseinheit.
+        Für ihre Berechnung müssen die jeweils geltenden
+        Leistungsinhalte und Abrechnungsvoraussetzungen
+        erfüllt sein.
+      </p>
+    </details>
+
+    <details>
+      <summary>3. Warum darf nicht jede Untersuchung zusätzlich zu einer Pauschale berechnet werden?</summary>
+      <p>
+        Weil eine Pauschale bereits bestimmte
+        Leistungsbestandteile berücksichtigen kann
+        und weitere EBM-Bestimmungen die gemeinsame
+        Berechnung einschränken oder ausschließen können.
+        Entscheidend ist die konkrete Regelung.
+      </p>
+    </details>
+
+    <details>
+      <summary>4. Ist die rechnerische Euro-Bewertung einer GOP immer die tatsächliche Vergütung?</summary>
+      <p>
+        Nein. Die tatsächliche Vergütung kann von
+        weiteren gesetzlichen, vertraglichen und
+        regionalen Regelungen abhängen.
+        Die rechnerische Bewertung allein reicht
+        deshalb nicht aus, um die Auszahlung
+        sicher zu bestimmen.
+      </p>
+    </details>
+
+    <details>
+      <summary>5. Wie gehst du vor, wenn eine zusätzliche GOP im PVS vorgeschlagen wird?</summary>
+      <p>
+        Ich prüfe die tatsächliche Leistung,
+        den Abrechnungskontext, die geltenden
+        Leistungsbeschreibungen und Voraussetzungen
+        sowie mögliche Ausschlüsse. Bei Unklarheiten
+        beziehe ich die zuständige Person ein.
+        Einen Softwarevorschlag übernehme ich
+        nicht ungeprüft.
+      </p>
+    </details>
+  </section>
+
+  <footer class="next-lesson" style="margin-top:32px; padding-top:28px;">
+    <p>Als Nächstes</p>
+    <h2>Lektion 21: Privatabrechnung und GOÄ</h2>
+    <a href="/lernen/praxisorganisation-recht-abrechnung/">
+      Zurück zur Fachwelt 09
+    </a>
+  </footer>
+</article>
+
+
+
+    </main>
+  </body>
+</html>

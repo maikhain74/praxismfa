@@ -1,0 +1,650 @@
+---
+const title = "Verwaltungsarbeiten und Schriftverkehr | PraxisMFA";
+const description = "Verwaltungsarbeiten, Posteingang, Postausgang, Schriftverkehr, Formulare, Wiedervorlagen und praxisnaher Selbstcheck für MFA-Auszubildende."; 
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+  
+<style>
+  /* PraxisMFA: Responsive Lektionsüberschriften */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+
+</head>
+
+
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">PraxisMFA</a>
+    <nav>
+      <a href="/lernen/">Lernen</a>
+      <a href="/pruefung/">Prüfung</a>
+      <a href="/premium/" class="premium">Premium</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+      ← Zurück zu Fachwelt 09
+    </a>
+
+    <header class="lesson-hero">
+      <p class="eyebrow">Fachwelt 09 · Praxisorganisation, Recht &amp; Abrechnung · Free</p>
+      <p class="lesson-number">Lektion 11</p>
+      <h1>Verwaltungsarbeiten und Schriftverkehr</h1>
+      <p>Wie du Post, Formulare, Korrespondenz und Fristen im Praxisalltag zuverlässig bearbeitest.</p>
+    </header>
+
+    <section class="learning-goal">
+      <h2>Das lernst du in dieser Lektion</h2>
+      <p>Du kannst typische Verwaltungsaufgaben strukturieren, Schriftverkehr professionell bearbeiten, vertrauliche Informationen schützen und dringende Vorgänge richtig priorisieren.</p>
+    </section>
+
+
+    
+    <figure style="margin: 36px 0; text-align: center;">
+      <img
+        src="/images/verwaltungsarbeiten-und-schriftverkehr.png"
+        alt="PraxisMFA Lernbild: Verwaltungsarbeiten und Schriftverkehr"
+        loading="lazy"
+        style="display: block; width: 100%; height: auto; border-radius: 16px;"
+      />
+    </figure>
+
+    <section class="content-section">
+      <p class="section-number">01</p>
+      <h2>Verwaltungsarbeiten im Praxisalltag</h2>
+      
+      <p>Eine Arztpraxis funktioniert nicht allein durch medizinische Behandlungen. Auch Verwaltungsarbeiten müssen zuverlässig organisiert werden. Dazu gehören Post, Schriftverkehr, Formulare, Ablage und die Überwachung wichtiger Termine.</p>
+      <p><strong>&nbsp;Deine Aufgabe als MFA:</strong> Du bearbeitest Vorgänge entsprechend deiner Zuständigkeit, erkennst dringliche Anliegen und leitest Informationen sicher an die richtige Person weiter.</p>
+      <p>Entscheidend ist nicht, möglichst viele Aufgaben gleichzeitig zu beginnen. Entscheidend ist, dass keine wichtige Information verloren geht und jeder Vorgang nachvollziehbar abgeschlossen wird.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">02</p>
+      <h2>Posteingang sicher bearbeiten</h2>
+      
+      <p>Post kann per Brief, Fax oder über einen freigegebenen digitalen Kommunikationsweg eingehen. Nicht jedes Dokument darf von jeder Person geöffnet oder bearbeitet werden.</p>
+      <ol>
+        <li>Eingänge nach dem festgelegten Praxisverfahren entgegennehmen.</li>
+        <li>Persönlich oder vertraulich gekennzeichnete Sendungen nur bei entsprechender Berechtigung öffnen.</li>
+        <li>Dringlichkeit und zuständige Ansprechperson feststellen.</li>
+        <li>Dokumente sicher zuordnen und weiterleiten.</li>
+        <li>Erforderliche Bearbeitung oder Wiedervorlage nachvollziehbar festhalten.</li>
+      </ol>
+      <p><strong>&nbsp;Praxisbeispiel:</strong> Ein Schreiben enthält eine kurzfristige Rückfrage zu einer geplanten Untersuchung. Du legst es nicht ungeprüft zur allgemeinen Ablage, sondern sorgst für eine zeitnahe Weitergabe.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">03</p>
+      <h2>Postausgang organisieren</h2>
+      
+      <p>Vor dem Versand muss feststehen, dass das Dokument vollständig, richtig adressiert und für den vorgesehenen Empfänger bestimmt ist.</p>
+      <ul>
+        <li>Ist das Dokument freigegeben beziehungsweise unterschrieben, soweit erforderlich?</li>
+        <li>Stimmen Empfänger, Anschrift und gegebenenfalls Aktenzeichen?</li>
+        <li>Sind die angekündigten Anlagen vollständig?</li>
+        <li>Ist der Versandweg für die enthaltenen Informationen geeignet und freigegeben?</li>
+        <li>Muss der Versand dokumentiert werden?</li>
+      </ul>
+      <p><strong>&nbsp;Wichtig:</strong> Medizinische Informationen dürfen nicht allein deshalb versendet werden, weil jemand telefonisch darum bittet. Identität, Berechtigung und zulässiger Übermittlungsweg müssen geklärt sein.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">04</p>
+      <h2>Professioneller Schriftverkehr</h2>
+      
+      <p>Schriftliche Kommunikation muss sachlich, verständlich, höflich und eindeutig sein. Sie repräsentiert die Praxis und kann für spätere Rückfragen wichtig werden.</p>
+      <p>Ein typisches Schreiben enthält Absender, Empfänger, Datum, aussagekräftigen Betreff, Anrede, verständlichen Haupttext, Grußformel und gegebenenfalls Anlagen.</p>
+      <p><strong>&nbsp;Ungeeignet:</strong> „Ihre Unterlagen fehlen. Schicken Sie alles sofort!“</p>
+      <p><strong>&nbsp;Besser:</strong> „Für die weitere Bearbeitung benötigen wir noch die vereinbarten Unterlagen. Bitte reichen Sie diese bis zum genannten Termin über den vorgesehenen Weg ein.“</p>
+      <p>Verwende keine unnötigen Fachbegriffe und mache keine medizinischen Zusagen ohne entsprechende Zuständigkeit.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">05</p>
+      <h2>E-Mails in der Arztpraxis</h2>
+      
+      <p>Auch bei E-Mails gelten Vertraulichkeit, Sorgfalt und die organisatorischen Regeln der Praxis. Eine schnelle Nachricht ist nicht automatisch eine sichere Nachricht.</p>
+      <ul>
+        <li>Absender und Empfänger sorgfältig kontrollieren.</li>
+        <li>Betreff und Inhalt eindeutig formulieren.</li>
+        <li>Vertrauliche Informationen nur über freigegebene und geeignete Kommunikationswege versenden.</li>
+        <li>Keine unbekannten Anhänge oder verdächtigen Links unüberlegt öffnen.</li>
+        <li>Bei unklaren Empfängeradressen oder Berechtigungen vor dem Versand nachfragen.</li>
+      </ul>
+      <p><strong>&nbsp;Abgrenzung:</strong> Die ausführliche Behandlung von Datenschutzvorfällen gehört zu Lektion 09. Hier übst du die sichere praktische Bearbeitung alltäglicher Korrespondenz.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">06</p>
+      <h2>Vordrucke und Formulare bearbeiten</h2>
+      
+      <p>Formulare strukturieren wiederkehrende Verwaltungsabläufe. Je nach Vorgang müssen Angaben geprüft, ergänzt oder an die zuständige Person weitergegeben werden.</p>
+      <ol>
+        <li>Passendes und aktuelles Formular auswählen.</li>
+        <li>Erforderliche Angaben anhand zulässiger Quellen prüfen.</li>
+        <li>Pflichtfelder vollständig und lesbar ausfüllen.</li>
+        <li>Fachliche Entscheidungen und notwendige Unterschriften der zuständigen Person überlassen.</li>
+        <li>Das fertige Dokument richtig zuordnen und weiterbearbeiten.</li>
+      </ol>
+      <p><strong>&nbsp;Merke:</strong> Eine MFA darf administrative Angaben vorbereiten. Sie darf aber keine ärztliche Entscheidung oder Unterschrift eigenmächtig ersetzen.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">07</p>
+      <h2>Dokumente richtig zuordnen und ablegen</h2>
+      
+      <p>Eine zuverlässige Ablage ermöglicht es berechtigten Mitarbeitenden, Informationen wiederzufinden. Fehlerhafte Zuordnungen können den Praxisablauf und die Patientensicherheit beeinträchtigen.</p>
+      <p>Prüfe bei jedem Dokument, zu welchem Vorgang es gehört, wer Zugriff benötigt und wo es nach den Praxisregeln abgelegt werden muss.</p>
+      <p><strong>&nbsp;Beispiel:</strong> Ein Schreiben betrifft zwei Personen mit ähnlichem Namen. Bevor du es einem Vorgang zuordnest, vergleichst du die vorgesehenen eindeutigen Identifikationsmerkmale.</p>
+      <p>Aufbewahrung und Löschung richten sich nach Dokumentart, geltenden Vorgaben und dem verbindlichen Ablagekonzept der Praxis. Nicht jede Unterlage hat dieselbe Aufbewahrungsfrist.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">08</p>
+      <h2>Fristen, Wiedervorlagen und Prioritäten</h2>
+      
+      <p>Eine Wiedervorlage sorgt dafür, dass ein noch nicht abgeschlossener Vorgang zum richtigen Zeitpunkt erneut bearbeitet wird.</p>
+      <ul>
+        <li>Fristen aus dem Originalvorgang korrekt übernehmen.</li>
+        <li>Eine verantwortliche Person oder zuständige Stelle festlegen.</li>
+        <li>Den Bearbeitungsstand nachvollziehbar dokumentieren.</li>
+        <li>Dringende medizinische Anliegen unverzüglich geeignet weiterleiten.</li>
+        <li>Abgeschlossene Vorgänge erst nach erforderlicher Kontrolle als erledigt markieren.</li>
+      </ul>
+      <p><strong>&nbsp;Wichtig:</strong> Nicht jede kurze Frist bedeutet einen medizinischen Notfall. Umgekehrt kann eine medizinisch dringliche Nachricht auch ohne formale Frist sofortiges Handeln erfordern.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">09</p>
+      <h2>Praxissituation: Drei Aufgaben gleichzeitig</h2>
+      
+      <p><strong>&nbsp;Situation:</strong> Montag, 8:15 Uhr. Am Empfang treffen drei Vorgänge ein: Ein Patient bittet um eine Kopie eines Formulars. Gleichzeitig kommt ein Brief mit einer Frist bis zum nächsten Werktag. Außerdem meldet sich telefonisch eine Patientin, die nach einer Behandlung über zunehmende Atemnot berichtet.</p>
+      <p><strong>&nbsp;Aufgabe:</strong> In welcher Reihenfolge handelst du und warum?</p>
+      <details>
+        <summary>Begründete Musterlösung anzeigen</summary>
+        <p><strong>&nbsp;1. Sofort:</strong> Die gemeldete Atemnot ist potenziell akut gefährlich. Nach dem Notfallverfahren der Praxis unverzüglich geeignete medizinische Hilfe organisieren; bei Verdacht auf einen lebensbedrohlichen Notfall den Rettungsdienst über 112 veranlassen. Die Patientin nicht wegen Verwaltungsaufgaben warten lassen.</p>
+        <p><strong>&nbsp;2. Danach:</strong> Das fristgebundene Schreiben prüfen und der zuständigen Person rechtzeitig zur Bearbeitung vorlegen.</p>
+        <p><strong>&nbsp;3. Anschließend:</strong> Die Formularanfrage entsprechend Berechtigung und Praxisablauf bearbeiten.</p>
+        <p><strong>&nbsp;Begründung:</strong> Medizinische Gefährdung hat Vorrang. Danach folgen zeitkritische Verwaltungsaufgaben und reguläre Anliegen.</p>
+      </details>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">10</p>
+      <h2>Typische Fehler und ihre Folgen</h2>
+      
+      <ul>
+        <li><strong>&nbsp;Falscher Empfänger:</strong> Vertrauliche Informationen können offengelegt werden. Deshalb Empfänger vor dem Versand prüfen.</li>
+        <li><strong>&nbsp;Fehlende Anlage:</strong> Ein Vorgang verzögert sich. Deshalb Unterlagen anhand des Schreibens kontrollieren.</li>
+        <li><strong>&nbsp;Keine Wiedervorlage:</strong> Fristen können verstreichen. Deshalb offene Vorgänge systematisch erfassen.</li>
+        <li><strong>&nbsp;Falsche Ablage:</strong> Dokumente sind schwer auffindbar oder werden einer falschen Person zugeordnet. Deshalb Zuordnung sorgfältig prüfen.</li>
+        <li><strong>&nbsp;Unklare Formulierung:</strong> Es entstehen Missverständnisse. Deshalb Anliegen und erforderliche nächste Schritte präzise benennen.</li>
+      </ul>
+      <p><strong>&nbsp;Lernregel:</strong> Kontrolliere besonders sorgfältig, wenn ein Fehler vertrauliche Daten, Fristen oder die Versorgung von Patienten betreffen könnte.</p>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">11</p>
+      <h2>Selbstcheck: Verwaltungsarbeiten und Schriftverkehr</h2>
+      
+      <p>Beantworte jede Frage zunächst selbst und öffne dann die Lösung.</p>
+      <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+        <summary>1. Welche Schritte gehören zu einem sicheren Posteingang?</summary>
+        <p>Sendung entsprechend den Praxisregeln entgegennehmen, Berechtigung zum Öffnen beachten, Dringlichkeit einschätzen, richtig zuordnen, weiterleiten und erforderliche Wiedervorlagen festhalten.</p>
+      </details>
+      <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+        <summary>2. Welche drei Dinge kontrollierst du vor dem Versand eines Schreibens?</summary>
+        <p>Zum Beispiel die richtige Empfängeradresse, Vollständigkeit einschließlich Anlagen sowie Freigabe und geeigneten Versandweg.</p>
+      </details>
+      <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+        <summary>3. Darfst du eine erforderliche ärztliche Unterschrift selbst ersetzen?</summary>
+        <p>Nein. Du kannst administrative Angaben im Rahmen deiner Aufgaben vorbereiten, darfst aber eine notwendige ärztliche Entscheidung oder Unterschrift nicht eigenmächtig ersetzen.</p>
+      </details>
+      <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+        <summary>4. Warum ist eine Wiedervorlage wichtig?</summary>
+        <p>Sie stellt sicher, dass offene Vorgänge rechtzeitig wieder aufgegriffen werden und Fristen sowie Zuständigkeiten nachvollziehbar bleiben.</p>
+      </details>
+      <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+        <summary>5. Was hat Vorrang: eine kurzfristige Verwaltungsfrist oder eine Patientin mit akuter Atemnot?</summary>
+        <p>Die potenziell akute medizinische Gefährdung hat Vorrang. Nach dem Notfallverfahren unverzüglich Hilfe organisieren und bei lebensbedrohlichem Verdacht 112 veranlassen.</p>
+      </details>
+    
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">12</p>
+      <h2>Das musst du mitnehmen</h2>
+      
+      <ul>
+        <li>Verwaltungsarbeiten sichern einen zuverlässigen Praxisablauf.</li>
+        <li>Post und Schriftverkehr müssen richtig zugeordnet, vollständig und nachvollziehbar bearbeitet werden.</li>
+        <li>Bei E-Mails und Dokumenten sind Empfänger, Berechtigung und geeignete Übermittlungswege entscheidend.</li>
+        <li>Formulare dürfen nur innerhalb der eigenen Zuständigkeit bearbeitet werden.</li>
+        <li>Fristen und Wiedervorlagen benötigen klare Verantwortlichkeiten.</li>
+        <li>Medizinisch dringende Situationen haben Vorrang vor Routineverwaltung.</li>
+      </ul>
+      <p><strong>&nbsp;Prüfungskompetenz:</strong> Du kannst einen Verwaltungsablauf nicht nur beschreiben, sondern die Reihenfolge deiner Arbeitsschritte fachlich begründen.</p>
+    
+    </section>
+
+
+    <footer class="next-lesson">
+      <p>Als Nächstes</p>
+      <h2>Lektion 12: Praxissoftware und digitale Patientenverwaltung</h2>
+      <a href="/lernen/praxisorganisation-recht-abrechnung/">
+        Zurück zur Fachwelt 09
+      </a>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,884 @@
+---
+const title = "Ausbildung, Arbeitsrecht und Berufspflichten | PraxisMFA";
+const description = "MFA-Lektion über Ausbildungsvertrag, Rechte und Pflichten, Berufsschule, Arbeitszeit, Jugendarbeitsschutz, Urlaub und berufliche Verantwortung.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+  
+<style>
+  /* PraxisMFA: Responsive Lektionsüberschriften */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+
+</head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/lernen/">Lernen</a>
+        <a href="/premium/" class="premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zur Fachwelt 09
+      </a>
+
+      <header class="lesson-hero">
+        <p class="eyebrow">Fachwelt 09 · Praxisorganisation, Recht &amp; Abrechnung · Free</p>
+        <p class="lesson-number">Lektion 07</p>
+        <h1>Ausbildung, Arbeitsrecht und Berufspflichten</h1>
+        <p class="lead">
+          Eine gute Ausbildung vermittelt nicht nur medizinisches Wissen.
+          Du musst auch deine Rechte und Pflichten kennen. In dieser
+          Lektion lernst du, welche Regeln für deinen Ausbildungsalltag
+          gelten und wie du typische Konfliktsituationen richtig einordnest.
+        </p>
+      </header>
+
+      <section class="learning-goal">
+        <h2>Das lernst du in dieser Lektion</h2>
+        <ul>
+          <li>Du kennst die wesentlichen Bestandteile deines Ausbildungsvertrages.</li>
+          <li>Du unterscheidest Pflichten des Ausbildungsbetriebs und der Auszubildenden.</li>
+          <li>Du verstehst die Regeln zur Berufsschule und zur Ausbildungszeit.</li>
+          <li>Du erkennst Unterschiede zwischen Jugendarbeitsschutz und allgemeinen Arbeitszeitregeln.</li>
+          <li>Du kannst typische Konflikte im Ausbildungsalltag sachlich einordnen.</li>
+        </ul>
+      </section>
+
+      
+      <figure style="margin: 36px 0; text-align: center;">
+        <img
+          src="/images/ausbildung-arbeitsrecht-und-berufspflichten.png"
+          alt="PraxisMFA Lernübersicht: Ausbildung, Arbeitsrecht und Berufspflichten"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Deine Ausbildung ist gesetzlich geregelt</h2>
+        <p>
+          Die Ausbildung zur Medizinischen Fachangestellten ist ein
+          staatlich anerkannter Ausbildungsberuf. Sie findet im dualen
+          System statt: im Ausbildungsbetrieb und in der Berufsschule.
+        </p>
+        <p>
+          Wichtige Grundlagen sind das Berufsbildungsgesetz (BBiG),
+          die Verordnung über die Berufsausbildung zur Medizinischen
+          Fachangestellten (MedFAngAusbV) und die einschlägigen
+          Arbeitsschutzgesetze.
+        </p>
+        <p>
+          <strong>&nbsp;Merke:</strong> Ein Ausbildungsverhältnis dient
+          in erster Linie dem Erwerb beruflicher Handlungskompetenz.
+          Auszubildende sind keine regulären Ersatzarbeitskräfte.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Der Ausbildungsvertrag</h2>
+        <p>
+          Vor Beginn der Ausbildung müssen die wesentlichen
+          Vertragsbedingungen nach den gesetzlichen Vorgaben
+          festgehalten werden. Dazu gehören insbesondere:
+        </p>
+        <ul>
+          <li>Art, Ziel und zeitliche Gliederung der Ausbildung.</li>
+          <li>Beginn und Dauer der Ausbildung.</li>
+          <li>Dauer der regelmäßigen täglichen Ausbildungszeit.</li>
+          <li>Dauer der Probezeit.</li>
+          <li>Zahlung und Höhe der Ausbildungsvergütung.</li>
+          <li>Dauer des Urlaubs.</li>
+          <li>Voraussetzungen für eine Kündigung.</li>
+          <li>Hinweise auf anwendbare Tarifverträge und Betriebsvereinbarungen.</li>
+        </ul>
+        <p>
+          Der Vertrag bildet die Grundlage des Ausbildungsverhältnisses.
+          Gesetzliche Schutzvorschriften können nicht einfach durch
+          abweichende Vertragsformulierungen aufgehoben werden.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Rechte und Pflichten im Ausbildungsbetrieb</h2>
+        <h3>Pflichten des Ausbildungsbetriebs</h3>
+        <ul>
+          <li>Die beruflichen Fertigkeiten, Kenntnisse und Fähigkeiten planmäßig vermitteln.</li>
+          <li>Geeignete Ausbildende und Ausbildungsmittel bereitstellen.</li>
+          <li>Auszubildende zum Besuch der Berufsschule anhalten und entsprechend den gesetzlichen Regeln freistellen.</li>
+          <li>Ausbildungsnachweise ermöglichen und regelmäßig durchsehen.</li>
+          <li>Auszubildende vor körperlichen und sittlichen Gefährdungen schützen.</li>
+          <li>Nur Aufgaben übertragen, die dem Ausbildungszweck dienen und den körperlichen Kräften angemessen sind.</li>
+        </ul>
+        <h3>Pflichten der Auszubildenden</h3>
+        <ul>
+          <li>Sich bemühen, die berufliche Handlungsfähigkeit zu erwerben.</li>
+          <li>Übertragene Ausbildungsaufgaben sorgfältig ausführen.</li>
+          <li>An vorgeschriebenen Ausbildungsmaßnahmen teilnehmen.</li>
+          <li>Berechtigte Weisungen befolgen.</li>
+          <li>Betriebliche Ordnungsvorschriften beachten.</li>
+          <li>Arbeitsmittel pfleglich behandeln und Betriebsgeheimnisse wahren.</li>
+          <li>Den vorgeschriebenen Ausbildungsnachweis führen.</li>
+        </ul>
+        <p>
+          <strong>&nbsp;Praxisbezug:</strong> Eine MFA-Auszubildende darf
+          im Rahmen ihres Ausbildungsstands unter geeigneter Anleitung
+          Aufgaben übernehmen. Medizinisch verantwortliche Entscheidungen
+          darf sie nicht eigenständig treffen.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Ausbildungsplan und Berichtsheft</h2>
+        <p>
+          Der Ausbildungsrahmenplan beschreibt, welche Fertigkeiten,
+          Kenntnisse und Fähigkeiten während der Ausbildung vermittelt
+          werden sollen. Daraus wird die betriebliche Ausbildungsplanung
+          entwickelt.
+        </p>
+        <p>
+          Der Ausbildungsnachweis, häufig Berichtsheft genannt,
+          dokumentiert die Ausbildung. Er kann nach den geltenden
+          Vorgaben schriftlich oder elektronisch geführt werden.
+        </p>
+        <p>
+          Der Ausbildungsbetrieb muss Gelegenheit geben, den
+          Ausbildungsnachweis am Arbeitsplatz zu führen, und ihn
+          regelmäßig durchsehen.
+        </p>
+        <p>
+          <strong>&nbsp;Merke:</strong> Das Berichtsheft ist keine
+          freiwillige Freizeitaufgabe. Es gehört zur Ausbildung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Berufsschule: Freistellung und Anrechnung</h2>
+        <p>
+          Der Ausbildungsbetrieb muss Auszubildende für die
+          Berufsschule nach den gesetzlichen Regeln freistellen.
+          Die Anrechnung auf die Ausbildungszeit richtet sich
+          insbesondere nach § 15 BBiG.
+        </p>
+        <ul>
+          <li>Die Berufsschulunterrichtszeit einschließlich der Pausen und notwendiger Wegezeiten zwischen Berufsschule und Ausbildungsstätte wird nach den gesetzlichen Vorgaben berücksichtigt.</li>
+          <li>An einem Berufsschultag mit mehr als fünf Unterrichtsstunden von mindestens 45 Minuten erfolgt einmal pro Woche die Anrechnung mit der durchschnittlichen täglichen Ausbildungszeit.</li>
+          <li>Bei Berufsschulwochen mit planmäßigem Blockunterricht von mindestens 25 Stunden an mindestens fünf Tagen gelten besondere Freistellungs- und Anrechnungsregeln.</li>
+          <li>Für minderjährige Auszubildende sind zusätzlich die Schutzvorschriften des Jugendarbeitsschutzgesetzes zu beachten.</li>
+        </ul>
+        <p>
+          Ein pauschaler Satz wie „Nach der Berufsschule musst du
+          immer noch in die Praxis“ ist deshalb falsch. Entscheidend
+          sind der konkrete Stundenplan, die gesetzlichen
+          Anrechnungsregeln und die individuelle Situation.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Arbeitszeit, Pausen und Überstunden</h2>
+        <p>
+          Für volljährige Auszubildende gilt grundsätzlich das
+          Arbeitszeitgesetz. Die werktägliche Arbeitszeit darf
+          regelmäßig acht Stunden nicht überschreiten. Eine
+          Verlängerung auf bis zu zehn Stunden ist nur unter
+          den gesetzlichen Ausgleichsvoraussetzungen zulässig.
+        </p>
+        <p>
+          Bei mehr als sechs bis zu neun Stunden Arbeitszeit
+          ist für Erwachsene eine Ruhepause von insgesamt
+          mindestens 30 Minuten erforderlich. Bei mehr als
+          neun Stunden sind es mindestens 45 Minuten.
+        </p>
+        <p>
+          Für Minderjährige gelten strengere Regeln, die wir
+          im nächsten Abschnitt behandeln.
+        </p>
+        <p>
+          Über die vereinbarte regelmäßige tägliche Ausbildungszeit
+          hinausgehende Beschäftigung ist nach § 17 BBiG besonders
+          zu vergüten oder durch entsprechende Freizeit auszugleichen.
+          Arbeitszeitgrenzen bleiben dabei verbindlich.
+        </p>
+        <p>
+          <strong>&nbsp;Wichtig:</strong> Eine Ausbildung darf nicht
+          dauerhaft darauf beruhen, dass Auszubildende personelle
+          Engpässe durch zusätzliche Arbeitsstunden ausgleichen.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Jugendarbeitsschutz: Wenn du noch keine 18 bist</h2>
+        <p>
+          Das Jugendarbeitsschutzgesetz (JArbSchG) schützt
+          minderjährige Beschäftigte und Auszubildende.
+          Grundsätzlich dürfen Jugendliche nicht mehr als
+          acht Stunden täglich und 40 Stunden wöchentlich
+          beschäftigt werden. Gesetzlich geregelte Ausnahmen
+          sind zu beachten.
+        </p>
+        <p>
+          Für Jugendliche gelten folgende Mindestpausen:
+        </p>
+        <ul>
+          <li>Bei mehr als viereinhalb bis sechs Stunden Arbeitszeit: mindestens 30 Minuten.</li>
+          <li>Bei mehr als sechs Stunden Arbeitszeit: mindestens 60 Minuten.</li>
+        </ul>
+        <p>
+          Auch tägliche Freizeit, Nachtarbeit, Wochenendarbeit
+          und gefährdende Tätigkeiten unterliegen besonderen
+          Schutzvorschriften. Für bestimmte Bereiche und
+          Tätigkeiten bestehen gesetzliche Ausnahmen.
+        </p>
+        <p>
+          <strong>&nbsp;Merke:</strong> Die Regeln für volljährige
+          Beschäftigte dürfen nicht einfach auf eine
+          17-jährige Auszubildende übertragen werden.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Urlaub, Krankheit und Vergütung</h2>
+        <p>
+          Auszubildende haben Anspruch auf bezahlten Erholungsurlaub.
+          Für Volljährige gilt der gesetzliche Mindesturlaub nach
+          dem Bundesurlaubsgesetz. Für Minderjährige richtet
+          sich der Mindesturlaub nach dem Jugendarbeitsschutzgesetz
+          und dem Alter zu Beginn des Kalenderjahres.
+        </p>
+        <p>
+          Tarifvertrag oder Ausbildungsvertrag können günstigere
+          Urlaubsregelungen vorsehen.
+        </p>
+        <p>
+          Bei Krankheit muss der Ausbildungsbetrieb unverzüglich
+          über die Arbeitsunfähigkeit und deren voraussichtliche
+          Dauer informiert werden. Die Nachweis- und
+          Meldepflichten sind zu beachten.
+        </p>
+        <p>
+          Für die Fortzahlung der Ausbildungsvergütung gelten
+          insbesondere die gesetzlichen Regelungen des BBiG.
+          Eine Erkrankung ist kein Grund, eigenmächtig auf
+          Ausbildungsvergütung zu verzichten.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">09</p>
+        <h2>Probezeit, Kündigung und Ausbildungsende</h2>
+        <p>
+          Die Probezeit muss nach dem BBiG mindestens einen
+          und darf höchstens vier Monate betragen.
+          Während der Probezeit kann das Ausbildungsverhältnis
+          von beiden Seiten jederzeit ohne Einhalten einer
+          Kündigungsfrist gekündigt werden.
+        </p>
+        <p>
+          Nach der Probezeit gelten besondere Kündigungsregeln.
+          Eine Kündigung aus wichtigem Grund ist unter den
+          gesetzlichen Voraussetzungen möglich.
+          Auszubildende können außerdem mit einer Frist von
+          vier Wochen kündigen, wenn sie die Berufsausbildung
+          aufgeben oder sich für eine andere Berufstätigkeit
+          ausbilden lassen wollen.
+        </p>
+        <p>
+          Das Ausbildungsverhältnis endet grundsätzlich mit
+          Ablauf der Ausbildungsdauer. Wird die Abschlussprüfung
+          vorher bestanden, endet es mit Bekanntgabe des
+          Ergebnisses durch den Prüfungsausschuss.
+        </p>
+        <p>
+          Bei nicht bestandener Abschlussprüfung kann auf
+          Verlangen der Auszubildenden unter den gesetzlichen
+          Voraussetzungen eine Verlängerung bis zur nächsten
+          Wiederholungsprüfung erfolgen, höchstens um ein Jahr.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">10</p>
+        <h2>Weisungsrecht, Verschwiegenheit und Verantwortung</h2>
+        <p>
+          In der Ausbildung musst du berechtigte Weisungen
+          der im Rahmen der Ausbildung weisungsbefugten
+          Personen beachten. Eine Weisung ist jedoch nicht
+          automatisch zulässig, nur weil sie von einer
+          vorgesetzten Person ausgesprochen wird.
+        </p>
+        <p>
+          Patientendaten und vertrauliche Informationen
+          müssen geschützt werden. Die ärztliche
+          Schweigepflicht und die datenschutzrechtlichen
+          Vorgaben wirken sich auch auf die Arbeit der MFA aus.
+        </p>
+        <p>
+          Medizinische Tätigkeiten dürfen nur im Rahmen
+          der zulässigen Aufgabenübertragung, der eigenen
+          Qualifikation und einer geeigneten Anleitung
+          beziehungsweise Überwachung ausgeführt werden.
+        </p>
+        <p>
+          <strong>&nbsp;Praxisbezug:</strong> Wenn du eine Tätigkeit
+          noch nicht sicher beherrschst, musst du dies offen
+          ansprechen und Unterstützung einfordern. Das dient
+          der Patientensicherheit und deiner Ausbildung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">11</p>
+        <h2>Tarifverträge und berufliche Weiterbildung</h2>
+        <p>
+          Tarifverträge können beispielsweise Regelungen
+          zur Vergütung, Arbeitszeit oder zum Urlaub enthalten.
+          Ob ein Tarifvertrag im konkreten Ausbildungsverhältnis
+          gilt, hängt von den rechtlichen Voraussetzungen
+          und gegebenenfalls vertraglichen Vereinbarungen ab.
+        </p>
+        <p>
+          Nach der Ausbildung bestehen verschiedene
+          Weiterbildungsmöglichkeiten. Dazu gehören
+          fachliche Fortbildungen, organisatorische
+          Spezialisierungen und weiterführende
+          Qualifikationen im Gesundheitswesen.
+        </p>
+        <p>
+          Berufliche Weiterbildung hilft, Fachwissen
+          aktuell zu halten und zusätzliche Verantwortung
+          zu übernehmen.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">12</p>
+        <h2>Praxisfall: Wenn die Ausbildung nicht nach Plan läuft</h2>
+        <p>
+          Eine 17-jährige MFA-Auszubildende arbeitet regelmäßig
+          länger als im Ausbildungsplan vorgesehen.
+          An einem Berufsschultag mit sechs Unterrichtsstunden
+          soll sie anschließend noch mehrere Stunden in
+          der Praxis aushelfen. Ihr Berichtsheft darf sie
+          ausschließlich zu Hause schreiben.
+          Außerdem übernimmt sie überwiegend Reinigungsarbeiten.
+        </p>
+
+        <h3>Aufgabe 1: Welche Probleme erkennst du?</h3>
+        <p>
+          Prüfe die Arbeitszeit nach dem Jugendarbeitsschutzgesetz,
+          die Berufsschulfreistellung nach dem BBiG,
+          die Gelegenheit zum Führen des Ausbildungsnachweises
+          und die Pflicht zur Vermittlung der Ausbildungsinhalte.
+        </p>
+
+        <h3>Aufgabe 2: Was ist rechtlich besonders wichtig?</h3>
+        <p>
+          Ein Berufsschultag mit mehr als fünf Unterrichtsstunden
+          von mindestens 45 Minuten wird einmal wöchentlich
+          mit der durchschnittlichen täglichen Ausbildungszeit
+          angerechnet. Für Minderjährige sind außerdem die
+          einschlägigen Freistellungs- und Schutzvorschriften
+          zu beachten.
+        </p>
+        <p>
+          Das Berichtsheft muss während der Ausbildungszeit
+          geführt werden können. Regelmäßige ausbildungsfremde
+          Tätigkeiten dürfen die Vermittlung der vorgesehenen
+          Ausbildungsinhalte nicht verdrängen.
+        </p>
+
+        <h3>Aufgabe 3: Wie sollte die Auszubildende handeln?</h3>
+        <p>
+          Sie dokumentiert die konkreten Situationen sachlich,
+          spricht zunächst mit der ausbildungsverantwortlichen
+          Person und bittet um Klärung anhand des Ausbildungsplans.
+          Falls das Problem bestehen bleibt, können beispielsweise
+          die zuständige Ärztekammer, die Berufsschule oder
+          eine geeignete Beratungsstelle unterstützen.
+        </p>
+        <p>
+          <strong>&nbsp;Prüfungswissen:</strong> Nicht jede
+          unangenehme Aufgabe ist automatisch ausbildungsfremd.
+          Entscheidend ist, ob sie dem Ausbildungszweck dient,
+          angemessen ist und die vorgeschriebenen Lerninhalte
+          tatsächlich vermittelt werden.
+        </p>
+      </section>
+
+      <section class="summary">
+        <h2>Das musst du mitnehmen</h2>
+        <ul>
+          <li>Das BBiG und die MFA-Ausbildungsverordnung bilden wesentliche Grundlagen deiner Ausbildung.</li>
+          <li>Der Ausbildungsbetrieb muss eine planmäßige und sichere Ausbildung ermöglichen.</li>
+          <li>Berufsschulzeiten werden nach gesetzlichen Regeln freigestellt und angerechnet.</li>
+          <li>Für minderjährige Auszubildende gelten besondere Schutzvorschriften.</li>
+          <li>Ausbildungsnachweise müssen während der Ausbildungszeit geführt werden können.</li>
+          <li>Bei Konflikten helfen sachliche Dokumentation, Gespräche und gegebenenfalls zuständige Beratungsstellen.</li>
+        </ul>
+      </section>
+
+      <section class="self-check">
+        <h2>Selbstcheck: Kennst du deine Rechte und Pflichten?</h2>
+
+        <details>
+          <summary>1. Warum darf eine MFA-Auszubildende nicht dauerhaft nur als Ersatzarbeitskraft eingesetzt werden?</summary>
+          <p>
+            Weil das Ausbildungsverhältnis dem Erwerb der
+            beruflichen Handlungsfähigkeit dient.
+            Der Betrieb muss die vorgesehenen Ausbildungsinhalte
+            planmäßig vermitteln.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. Darf der Betrieb verlangen, dass das Berichtsheft ausschließlich in der Freizeit geschrieben wird?</summary>
+          <p>
+            Nein. Der Betrieb muss Gelegenheit geben,
+            den Ausbildungsnachweis am Arbeitsplatz
+            während der Ausbildungszeit zu führen.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. Welche besonderen Regeln gelten für eine 17-jährige Auszubildende?</summary>
+          <p>
+            Insbesondere die Vorschriften des
+            Jugendarbeitsschutzgesetzes zu Arbeitszeit,
+            Pausen, Ruhezeiten und weiteren Schutzmaßnahmen.
+            Zusätzlich gelten die Ausbildungsregelungen des BBiG.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. Wird ein Berufsschultag mit sechs Unterrichtsstunden automatisch wie ein voller Arbeitstag angerechnet?</summary>
+          <p>
+            Ein Berufsschultag mit mehr als fünf
+            Unterrichtsstunden von mindestens 45 Minuten
+            wird einmal wöchentlich mit der durchschnittlichen
+            täglichen Ausbildungszeit angerechnet.
+            Die konkreten gesetzlichen Voraussetzungen
+            und weitere Berufsschultage müssen gesondert
+            berücksichtigt werden.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. An wen kannst du dich wenden, wenn erhebliche Ausbildungsprobleme nicht gelöst werden?</summary>
+          <p>
+            Zunächst kann ein sachliches Gespräch mit
+            der ausbildungsverantwortlichen Person helfen.
+            Weitere Anlaufstellen sind beispielsweise
+            die zuständige Ärztekammer, die Berufsschule
+            oder geeignete Beratungsstellen.
+          </p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p>Als Nächstes</p>
+        <h2>Lektion 08: Rechtliche Grundlagen der Patientenversorgung</h2>
+        <a href="/lernen/praxisorganisation-recht-abrechnung/">
+          Zurück zur Fachwelt 09
+        </a>
+      </footer>
+    </main>
+  </body>
+</html>

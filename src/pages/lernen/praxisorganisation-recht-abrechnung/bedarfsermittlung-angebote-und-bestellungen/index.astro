@@ -1,0 +1,813 @@
+---
+const title = "Bedarfsermittlung, Angebote und Bestellungen | PraxisMFA";
+const description = "Lerne, wie Medizinische Fachangestellte den Materialbedarf ermitteln, Angebote vergleichen und Bestellungen sicher vorbereiten.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+<style>
+  /* Lektion 13: Responsive Überschrift */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/lernen/">Lernen</a>
+        <a href="/praxis/">Praxis</a>
+        <a href="/pruefung/">Prüfung</a>
+        <a class="premium" href="/premium/">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zur Fachwelt 09
+      </a>
+
+      
+        
+        <article>
+          <header class="lesson-hero">
+            <p class="eyebrow">Fachwelt 09 · Lektion 16</p>
+            <h1>Bedarfsermittlung, Angebote und Bestellungen</h1>
+            <p class="lead">
+              Eine Arztpraxis benötigt jeden Tag zuverlässig Materialien.
+              Doch wann muss nachbestellt werden, welche Menge ist sinnvoll
+              und welches Angebot ist tatsächlich das beste?
+              In dieser Lektion lernst du, wie du Beschaffungsentscheidungen
+              im Praxisalltag fachlich begründet vorbereitest.
+            </p>
+          </header>
+
+          <figure class="lesson-image" style="margin: 32px 0 48px;">
+            <img
+              src="/images/bedarfsermittlung-angebote-und-bestellungen.png"
+              alt="PraxisMFA Lektion 16: Bedarfsermittlung, Angebote vergleichen und Bestellungen sicher vorbereiten."
+              loading="lazy"
+              style="width: 100%; height: auto; display: block; border-radius: 18px;"
+            />
+          </figure>
+
+
+          <section class="content-section">
+            <p class="section-number">1</p>
+            <h2>Praxissituation: Die Handschuhe werden knapp</h2>
+            <p>
+              Es ist Montagmorgen. Du kontrollierst den Materialbestand
+              und stellst fest, dass nur noch wenige Packungen
+              Untersuchungshandschuhe in Größe M vorhanden sind.
+              Gleichzeitig ist für die kommenden Tage ein erhöhtes
+              Patientenaufkommen geplant.
+            </p>
+            <p>
+              Deine Aufgabe besteht nicht darin, einfach möglichst viele
+              Packungen zu bestellen. Du musst prüfen, wie hoch der
+              tatsächliche Bedarf ist, welche Bestände vorhanden sind
+              und wann eine Lieferung spätestens eintreffen muss.
+            </p>
+            <p>
+              <strong>Merke:&nbsp;</strong>Eine gute Bestellung beginnt
+              mit einer nachvollziehbaren Bedarfsermittlung.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">2</p>
+            <h2>Das lernst du in dieser Lektion</h2>
+            <ul>
+              <li>Du ermittelst den Materialbedarf anhand von Verbrauch und Bestand.</li>
+              <li>Du unterscheidest Mindestbestand, Meldebestand und Bestellmenge.</li>
+              <li>Du berücksichtigst Lieferzeiten und absehbare Verbrauchsschwankungen.</li>
+              <li>Du vergleichst Angebote nach mehreren Kriterien.</li>
+              <li>Du bereitest Bestellungen vollständig und nachvollziehbar vor.</li>
+              <li>Du erkennst typische Fehler bei der Materialbeschaffung.</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">3</p>
+            <h2>Wie wird der Materialbedarf ermittelt?</h2>
+            <p>
+              Der Materialbedarf beschreibt, welche Menge eines Artikels
+              innerhalb eines bestimmten Zeitraums benötigt wird.
+              Grundlage sind beispielsweise bisherige Verbrauchsdaten,
+              geplante Untersuchungen und saisonale Veränderungen.
+            </p>
+            <p>
+              In einer Arztpraxis können elektronische Warenwirtschaftssysteme
+              oder Bestandslisten bei der Bedarfsermittlung helfen.
+              Entscheidend ist, dass die erfassten Bestände tatsächlich
+              mit den vorhandenen Materialien übereinstimmen.
+            </p>
+            <h3>Beispiel aus dem Praxisalltag</h3>
+            <p>
+              Eine Praxis verbraucht durchschnittlich 20 Packungen
+              Untersuchungshandschuhe pro Woche. Für die nächsten
+              drei Wochen werden somit voraussichtlich 60 Packungen benötigt.
+              Sind noch 18 Packungen vorhanden und bestehen keine weiteren
+              offenen Bestellungen, ergibt sich zunächst ein rechnerischer
+              Fehlbedarf von 42 Packungen.
+            </p>
+            <p>
+              <strong>Wichtig:&nbsp;</strong>Diese einfache Rechnung
+              berücksichtigt noch keinen zusätzlichen Sicherheitsbestand.
+              Außerdem muss geprüft werden, ob sich der Verbrauch verändert.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">4</p>
+            <h2>Mindestbestand, Meldebestand und Bestellmenge</h2>
+            <h3>Mindestbestand</h3>
+            <p>
+              Der Mindestbestand ist eine Sicherheitsreserve.
+              Er soll helfen, unerwartete Verbrauchsspitzen oder
+              Lieferverzögerungen zu überbrücken.
+            </p>
+            <h3>Meldebestand</h3>
+            <p>
+              Der Meldebestand ist die Bestandsmenge, bei deren
+              Erreichen eine neue Bestellung ausgelöst werden soll.
+              Er berücksichtigt den erwarteten Verbrauch während
+              der Lieferzeit und den vorgesehenen Mindestbestand.
+            </p>
+            <p>
+              <strong>Vereinfachte Formel:&nbsp;</strong>
+              Meldebestand = durchschnittlicher Tagesverbrauch ×
+              Lieferzeit in Tagen + Mindestbestand.
+            </p>
+            <h3>Rechenbeispiel</h3>
+            <p>
+              Eine Praxis verbraucht durchschnittlich vier Packungen
+              eines Materials pro Arbeitstag. Die Lieferzeit beträgt
+              fünf Arbeitstage. Der festgelegte Mindestbestand liegt
+              bei zehn Packungen.
+            </p>
+            <p>
+              Meldebestand = 4 × 5 + 10 = <strong>30 Packungen</strong>.
+            </p>
+            <p>
+              Sobald der Bestand 30 Packungen erreicht, sollte nach
+              dem festgelegten Bestellverfahren eine Bestellung
+              vorbereitet beziehungsweise ausgelöst werden.
+            </p>
+            <h3>Bestellmenge</h3>
+            <p>
+              Die Bestellmenge richtet sich nach dem geplanten Bedarf,
+              dem vorhandenen Bestand, offenen Bestellungen und
+              einem festgelegten Zielbestand. Auch Lagerkapazität
+              und Haltbarkeit müssen berücksichtigt werden.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">5</p>
+            <h2>Wann muss bestellt werden?</h2>
+            <p>
+              Der richtige Bestellzeitpunkt hängt nicht allein
+              von der Anzahl vorhandener Packungen ab.
+              Eine MFA muss auch die Lieferzeit und den erwarteten
+              Verbrauch bis zum Eintreffen der Ware berücksichtigen.
+            </p>
+            <ul>
+              <li>Wie viel Material ist tatsächlich noch vorhanden?</li>
+              <li>Wie hoch ist der durchschnittliche Verbrauch?</li>
+              <li>Wie lange benötigt der Lieferant?</li>
+              <li>Stehen besondere Untersuchungen oder Impfaktionen an?</li>
+              <li>Gibt es bereits bestellte, aber noch nicht gelieferte Ware?</li>
+              <li>Ist das Material kritisch für die Patientenversorgung?</li>
+            </ul>
+            <p>
+              Bei versorgungsrelevanten Materialien müssen drohende
+              Engpässe rechtzeitig an die zuständige Person
+              weitergegeben werden.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">6</p>
+            <h2>Bezugsquellen und Lieferanten auswählen</h2>
+            <p>
+              Praxen beziehen Materialien beispielsweise über
+              medizinische Fachhändler, Großhändler oder
+              spezialisierte Lieferanten.
+            </p>
+            <p>
+              Bei der Auswahl zählen neben dem Preis auch
+              Produktqualität, Verfügbarkeit, Lieferzuverlässigkeit,
+              Service und die Eignung für den vorgesehenen Einsatz.
+            </p>
+            <p>
+              Medizinprodukte müssen den geltenden Anforderungen
+              entsprechen. Eine günstige Alternative darf nicht
+              allein wegen ihres Preises ausgewählt werden,
+              wenn sie für die geplante Anwendung ungeeignet ist.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">7</p>
+            <h2>Angebote richtig vergleichen</h2>
+            <p>
+              Für einen sachgerechten Angebotsvergleich müssen
+              vergleichbare Produkte und Mengen zugrunde liegen.
+              Unterschiedliche Packungsgrößen können einen
+              scheinbar günstigen Preis verfälschen.
+            </p>
+            <h3>Beispiel: Zwei Angebote für Untersuchungshandschuhe</h3>
+            <p>
+              <strong>Angebot A:&nbsp;</strong>100 Handschuhe für 6,50 Euro
+              pro Packung.
+            </p>
+            <p>
+              <strong>Angebot B:&nbsp;</strong>200 Handschuhe für 11,80 Euro
+              pro Packung.
+            </p>
+            <p>
+              Der rechnerische Stückpreis beträgt bei Angebot A
+              0,065 Euro und bei Angebot B 0,059 Euro.
+              Angebot B ist beim reinen Stückpreis günstiger.
+            </p>
+            <p>
+              Trotzdem ist die Entscheidung noch nicht abgeschlossen:
+              Versandkosten, Lieferzeit, Qualität, passende Größen
+              und mögliche Mindestbestellmengen müssen ebenfalls
+              geprüft werden.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">8</p>
+            <h2>Preis ist nicht das einzige Entscheidungskriterium</h2>
+            <p>
+              Ein niedriger Einkaufspreis bedeutet nicht automatisch,
+              dass ein Angebot für die Praxis wirtschaftlicher ist.
+              Zusätzliche Kosten und organisatorische Auswirkungen
+              können entscheidend sein.
+            </p>
+            <ul>
+              <li><strong>Qualität:&nbsp;</strong>Ist das Produkt für den vorgesehenen Zweck geeignet?</li>
+              <li><strong>Lieferzeit:&nbsp;</strong>Kommt die Ware rechtzeitig an?</li>
+              <li><strong>Versandkosten:&nbsp;</strong>Entstehen zusätzliche Kosten?</li>
+              <li><strong>Packungsgröße:&nbsp;</strong>Ist die Menge bedarfsgerecht?</li>
+              <li><strong>Haltbarkeit:&nbsp;</strong>Kann die Ware vor Ablauf verwendet werden?</li>
+              <li><strong>Nachhaltigkeit:&nbsp;</strong>Lassen sich unnötige Verpackung und Abfall vermeiden?</li>
+            </ul>
+            <p>
+              Komplexere Kostenrechnungen und strategische
+              Einkaufsentscheidungen werden in Lektion 18 vertieft.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">9</p>
+            <h2>Eine Bestellung sicher vorbereiten</h2>
+            <p>
+              Bestellungen erfolgen heute häufig über digitale
+              Bestellportale oder die Praxissoftware.
+              Unabhängig vom Bestellweg müssen die Angaben
+              eindeutig und vollständig sein.
+            </p>
+            <ul>
+              <li>Bezeichnung und gegebenenfalls Artikelnummer</li>
+              <li>Benötigte Menge und korrekte Verpackungseinheit</li>
+              <li>Gewünschte Ausführung, Größe oder Variante</li>
+              <li>Lieferant und vereinbarte Konditionen</li>
+              <li>Lieferadresse und gegebenenfalls Liefertermin</li>
+              <li>Interne Freigabe nach den Regeln der Praxis</li>
+            </ul>
+            <p>
+              <strong>Wichtig:&nbsp;</strong>Eine MFA darf nur im Rahmen
+              ihrer übertragenen Aufgaben und Befugnisse
+              verbindliche Bestellungen auslösen.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">10</p>
+            <h2>Typische Fehler bei der Materialbestellung</h2>
+            <ul>
+              <li>Bestellung erst dann, wenn der Bestand bereits aufgebraucht ist.</li>
+              <li>Falsche Artikelnummer oder ungeeignete Produktvariante.</li>
+              <li>Verwechslung von Stückzahl und Packungsmenge.</li>
+              <li>Offene Bestellungen werden nicht berücksichtigt.</li>
+              <li>Lieferzeiten und Versandkosten werden übersehen.</li>
+              <li>Material wird ohne Prüfung der Lagerkapazität bestellt.</li>
+              <li>Eine Bestellung wird ohne erforderliche Freigabe ausgelöst.</li>
+            </ul>
+            <p>
+              Eine kurze Kontrolle vor dem Absenden verhindert
+              viele dieser Fehler.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">11</p>
+            <h2>Praxisfall: Welche Bestellung ist sinnvoll?</h2>
+            <p>
+              In einer Gemeinschaftspraxis werden durchschnittlich
+              sechs Packungen Untersuchungshandschuhe pro Arbeitstag
+              benötigt. Der aktuelle Bestand beträgt 35 Packungen.
+              Die reguläre Lieferzeit beträgt vier Arbeitstage.
+              Als Mindestbestand sind zwölf Packungen festgelegt.
+            </p>
+            <p>
+              Zwei Lieferanten bieten passende Handschuhe an:
+            </p>
+            <ul>
+              <li>Lieferant A: 5,90 Euro pro Packung, Lieferung in vier Arbeitstagen.</li>
+              <li>Lieferant B: 6,30 Euro pro Packung, Lieferung am nächsten Arbeitstag.</li>
+            </ul>
+            <h3>Deine Aufgaben</h3>
+            <ol>
+              <li>Berechne den Meldebestand.</li>
+              <li>Beurteile, ob bereits bestellt werden sollte.</li>
+              <li>Entscheide, welche weiteren Informationen du vor einer Bestellung benötigst.</li>
+              <li>Begründe, warum der günstigste Preis nicht automatisch entscheidend ist.</li>
+            </ol>
+            <details>
+              <summary>Begründete Musterlösung anzeigen</summary>
+            <p>
+              <strong>1. Meldebestand:&nbsp;</strong>
+              6 × 4 + 12 = 36 Packungen.
+            </p>
+            <p>
+              <strong>2. Bestellzeitpunkt:&nbsp;</strong>
+              Der aktuelle Bestand von 35 Packungen liegt bereits
+              unter dem Meldebestand. Eine Bestellung muss nach
+              dem vorgesehenen Verfahren umgehend vorbereitet werden.
+            </p>
+            <p>
+              <strong>3. Weitere Informationen:&nbsp;</strong>
+              Zu prüfen sind insbesondere offene Bestellungen,
+              tatsächliche Lagerbestände, benötigte Bestellmenge,
+              Versandkosten, Produktqualität und die interne Freigabe.
+            </p>
+            <p>
+              <strong>4. Lieferantenauswahl:&nbsp;</strong>
+              Lieferant A ist pro Packung günstiger.
+              Bei unverändertem Verbrauch würden während seiner
+              vier Arbeitstage Lieferzeit rechnerisch 24 Packungen
+              verbraucht. Es blieben elf Packungen und damit
+              eine Packung weniger als der vorgesehene Mindestbestand.
+              Eine schnellere Lieferung durch Lieferant B kann
+              deshalb sinnvoll sein. Die Entscheidung hängt auch
+              von Bestellmenge, Zusatzkosten und Versorgungssicherheit ab.
+            </p>
+            <p>
+              <strong>Praxisgedanke:&nbsp;</strong>
+              Die MFA bereitet die Entscheidung nachvollziehbar vor
+              und stimmt sie mit der zuständigen Person ab.
+            </p>
+          
+            </details></section>
+
+          <section class="content-section">
+            <p class="section-number">12</p>
+            <h2>Das musst du mitnehmen</h2>
+            <ul>
+              <li>Bedarfsermittlung verbindet Verbrauch, Bestand und Planung.</li>
+              <li>Der Meldebestand berücksichtigt Lieferzeit und Sicherheitsreserve.</li>
+              <li>Vergleichbar sind Angebote nur bei gleichen oder umgerechneten Mengeneinheiten.</li>
+              <li>Preis, Qualität, Lieferzeit und Versorgungssicherheit gehören zusammen.</li>
+              <li>Bestellungen müssen vollständig, korrekt und entsprechend der Zuständigkeiten erfolgen.</li>
+            </ul>
+          </section>
+
+          
+          <section class="content-section">
+            <p class="section-number">13</p>
+            <h2>Selbstcheck: Bedarfsermittlung und Bestellungen</h2>
+
+            <p>Beantworte die Fragen zunächst selbst und öffne anschließend die Lösung.</p>
+
+            <details>
+              <summary>1. Was ist der Unterschied zwischen Mindestbestand und Meldebestand?</summary>
+              <p>Der Mindestbestand ist eine Sicherheitsreserve. Der Meldebestand ist die Bestandsmenge, bei deren Erreichen eine neue Bestellung ausgelöst werden soll.</p>
+            </details>
+
+            <details>
+              <summary>2. Eine Praxis verbraucht drei Packungen pro Arbeitstag. Die Lieferzeit beträgt vier Arbeitstage, der Mindestbestand sechs Packungen. Wie hoch ist der Meldebestand?</summary>
+              <p>3 × 4 + 6 = 18 Packungen.</p>
+            </details>
+
+            <details>
+              <summary>3. Warum ist der Packungspreis allein kein ausreichendes Vergleichskriterium?</summary>
+              <p>Packungsgrößen, Versandkosten, Lieferzeit und Produktqualität können unterschiedlich sein. Für einen fairen Vergleich müssen die Angebote auf vergleichbare Mengen und Bedingungen bezogen werden.</p>
+            </details>
+
+            <details>
+              <summary>4. Welche Angaben gehören zu einer vollständigen Bestellung?</summary>
+              <p>Unter anderem Artikelbezeichnung, gegebenenfalls Artikelnummer, Menge, Verpackungseinheit, Lieferant, Lieferadresse und erforderliche interne Freigabe.</p>
+            </details>
+
+            <details>
+              <summary>5. Was solltest du tun, wenn ein dringend benötigtes Material möglicherweise nicht rechtzeitig geliefert wird?</summary>
+              <p>Den drohenden Engpass frühzeitig melden, Liefermöglichkeiten prüfen und die weitere Vorgehensweise mit der zuständigen Person abstimmen.</p>
+            </details>
+          </section>
+
+
+          
+          <footer class="next-lesson">
+            <p>Als Nächstes</p>
+            <h2>Lektion 17: Wareneingang, Lagerverwaltung und Kaufvertragsrecht</h2>
+            <a href="/lernen/praxisorganisation-recht-abrechnung/">
+              Zurück zur Fachwelt 09
+            </a>
+          </footer>
+
+        </article>
+
+
+    </main>
+  </body>
+</html>

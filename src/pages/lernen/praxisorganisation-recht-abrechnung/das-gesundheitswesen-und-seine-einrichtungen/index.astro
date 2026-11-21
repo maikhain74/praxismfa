@@ -1,0 +1,802 @@
+---
+const title = "Das Gesundheitswesen und seine Einrichtungen | PraxisMFA";
+const description = "MFA-Lektion: Aufbau des deutschen Gesundheitswesens, Patientenwege, Hausarztzentrierte Versorgung und Zusammenarbeit von Versorgungseinrichtungen verstehen.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+  
+<style>
+  /* PraxisMFA: Responsive Lektionsüberschriften */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+
+</head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/lernen/">Lernen</a>
+        <a href="/premium/" class="premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zur Fachwelt 09
+      </a>
+
+      <header class="lesson-hero">
+        <p class="eyebrow">Fachwelt 09 · Praxisorganisation, Recht &amp; Abrechnung · Free</p>
+        <p class="lesson-number">Lektion 06</p>
+        <h1>Das Gesundheitswesen und seine Einrichtungen</h1>
+        <p class="lead">
+          Ein Patient wird nicht immer nur in einer Arztpraxis behandelt.
+          Häufig arbeiten Hausarztpraxis, Facharztpraxis, Krankenhaus,
+          Rehabilitation und weitere Einrichtungen zusammen.
+          Als MFA musst du verstehen, wie dieser Weg organisiert wird
+          und welche Aufgaben du dabei übernimmst.
+        </p>
+      </header>
+
+      <section class="learning-goal">
+        <h2>Das lernst du in dieser Lektion</h2>
+        <ul>
+          <li>Du erklärst die grundlegende Struktur des deutschen Gesundheitswesens.</li>
+          <li>Du unterscheidest wichtige ambulante und stationäre Einrichtungen.</li>
+          <li>Du beschreibst den Weg eines Patienten durch verschiedene Versorgungsbereiche.</li>
+          <li>Du verstehst die koordinierende Rolle der Hausarztpraxis in der HZV.</li>
+          <li>Du erkennst deine organisatorischen Aufgaben und deine Kompetenzgrenzen als MFA.</li>
+        </ul>
+      </section>
+
+      <figure style="margin: 36px 0; text-align: center;">
+        <img
+          src="/images/das-gesundheitswesen-und-seine-einrichtungen.png"
+          alt="PraxisMFA Lernübersicht: Der Weg des Patienten durch das Gesundheitswesen mit Hausarztpraxis, Facharztpraxis, Krankenhaus, Rehabilitation und Nachsorge"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Warum das Gesundheitswesen mehr als eine Arztpraxis ist</h2>
+        <p>
+          Stell dir vor, ein Patient kommt wegen anhaltender Knieschmerzen
+          in seine Hausarztpraxis. Nach der Untersuchung wird eine
+          fachärztliche Abklärung erforderlich. Später kann eine Behandlung
+          im Krankenhaus oder eine Rehabilitation notwendig werden.
+        </p>
+        <p>
+          Damit der Patient sicher versorgt wird, müssen verschiedene
+          Einrichtungen zusammenarbeiten. Genau diese Zusammenarbeit
+          bezeichnet man als Versorgung über unterschiedliche
+          Versorgungsbereiche hinweg.
+        </p>
+        <p>
+          <strong>&nbsp;Merke:</strong> Gute Patientenversorgung endet nicht
+          an der Tür der eigenen Arztpraxis. Informationen, Befunde
+          und weitere Behandlungsschritte müssen sinnvoll aufeinander
+          abgestimmt werden.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Wer gehört zum deutschen Gesundheitswesen?</h2>
+        <p>
+          Das Gesundheitswesen umfasst Einrichtungen, Berufsgruppen,
+          Kostenträger und Organisationen, die an Gesundheitsförderung,
+          Prävention, Behandlung, Rehabilitation und Pflege beteiligt sind.
+        </p>
+        <ul>
+          <li><strong>&nbsp;Hausarztpraxen:</strong> erste Anlaufstelle für viele gesundheitliche Beschwerden und häufig Koordination weiterer Behandlungen.</li>
+          <li><strong>&nbsp;Facharztpraxen:</strong> spezialisierte Untersuchung und Behandlung, beispielsweise in Orthopädie oder Kardiologie.</li>
+          <li><strong>&nbsp;Medizinische Versorgungszentren (MVZ):</strong> Einrichtungen, in denen ärztliche Leistungen verschiedener Fachrichtungen organisiert werden können.</li>
+          <li><strong>&nbsp;Krankenhäuser:</strong> stationäre Versorgung und je nach Einrichtung auch ambulante Leistungen.</li>
+          <li><strong>&nbsp;Rehabilitationseinrichtungen:</strong> Unterstützung beim Wiedererlangen oder Erhalten von Fähigkeiten und Teilhabe.</li>
+          <li><strong>&nbsp;Pflegeeinrichtungen und Pflegedienste:</strong> pflegerische Versorgung und Unterstützung im Alltag.</li>
+          <li><strong>&nbsp;Krankenkassen und weitere Kostenträger:</strong> Finanzierung beziehungsweise Übernahme von Leistungen nach den geltenden Voraussetzungen.</li>
+          <li><strong>&nbsp;Öffentlicher Gesundheitsdienst:</strong> unter anderem Aufgaben des Gesundheitsschutzes und der Gesundheitsförderung.</li>
+        </ul>
+        <p>
+          Die Einrichtungen haben unterschiedliche Aufgaben. Für die MFA
+          ist entscheidend, zu erkennen, welche Stelle bei welchem
+          Versorgungsbedarf beteiligt sein kann.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Ambulant, stationär und rehabilitativ – was bedeutet das?</h2>
+        <p>
+          <strong>&nbsp;Ambulante Versorgung</strong> bedeutet, dass ein
+          Patient eine Behandlung erhält, ohne regulär zur stationären
+          Aufnahme im Krankenhaus zu bleiben. Dazu gehören beispielsweise
+          Untersuchungen in Hausarzt- und Facharztpraxen.
+        </p>
+        <p>
+          Bei einer <strong>&nbsp;stationären Behandlung</strong> wird
+          der Patient zur Versorgung in einer Einrichtung aufgenommen.
+          Das kann beispielsweise nach einer größeren Operation notwendig sein.
+        </p>
+        <p>
+          Eine <strong>&nbsp;Rehabilitation</strong> unterstützt Menschen
+          dabei, nach Erkrankungen oder Eingriffen ihre Fähigkeiten,
+          Selbstständigkeit und Teilhabe möglichst wiederzuerlangen
+          oder zu erhalten. Sie kann ambulant oder stationär erfolgen.
+        </p>
+        <p>
+          Die Entscheidung über medizinisch notwendige Behandlungen
+          und die geeignete Versorgungsform liegt bei den dafür
+          verantwortlichen ärztlichen beziehungsweise zuständigen Stellen.
+          Die MFA unterstützt die Organisation.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Der Patientenweg: Von der Hausarztpraxis zur Weiterbehandlung</h2>
+        <p>
+          Ein typischer, nicht für jeden Patienten identischer
+          Versorgungsweg kann so aussehen:
+        </p>
+        <ol>
+          <li><strong>&nbsp;Kontaktaufnahme:</strong> Der Patient vereinbart einen Termin oder meldet sich mit Beschwerden in der Praxis.</li>
+          <li><strong>&nbsp;Erste Einschätzung:</strong> Die MFA nimmt Informationen auf und erkennt Warnzeichen, bei denen unverzüglich ärztliche Hilfe erforderlich ist.</li>
+          <li><strong>&nbsp;Hausärztliche Untersuchung:</strong> Die Ärztin oder der Arzt entscheidet über Diagnostik, Behandlung und gegebenenfalls Weiterleitung.</li>
+          <li><strong>&nbsp;Fachärztliche Abklärung:</strong> Falls notwendig, werden Überweisung, Termin und erforderliche Unterlagen entsprechend den geltenden Regeln organisiert.</li>
+          <li><strong>&nbsp;Weitere Versorgung:</strong> Je nach Erkrankung können Krankenhaus, Rehabilitation oder Pflegeeinrichtungen beteiligt werden.</li>
+          <li><strong>&nbsp;Rückmeldung:</strong> Befunde und Entlassungsinformationen gelangen an die weiterbehandelnden Stellen und werden für die ärztliche Weiterbetreuung berücksichtigt.</li>
+        </ol>
+        <p>
+          Die MFA achtet darauf, dass organisatorische Schritte nachvollziehbar
+          ablaufen. Sie entscheidet jedoch nicht eigenständig über
+          Diagnosen, Überweisungsindikationen oder Therapien.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Hausarztzentrierte Versorgung (HZV): Der Patientenweg im Hausarztprogramm</h2>
+        <p>
+          Bei der Hausarztzentrierten Versorgung, kurz HZV, wählen
+          teilnehmende Versicherte eine Hausarztpraxis als zentrale
+          Anlaufstelle. Die Hausarztpraxis koordiniert die Versorgung
+          entsprechend dem jeweiligen HZV-Vertrag.
+        </p>
+        <p>
+          Die Grundlagen der freiwilligen Einschreibung und der
+          Vertragsunterlagen kennst du bereits aus der Lektion
+          „Behandlungsvertrag, Versichertennachweis und Kostenträger“.
+          Hier betrachten wir den weiteren Patientenweg.
+        </p>
+        <h3>So kann der Weg eines HZV-Patienten aussehen</h3>
+        <ol>
+          <li>Der eingeschriebene Patient wendet sich bei neuen Beschwerden zunächst an seine gewählte Hausarztpraxis, soweit keine Ausnahme oder akute Notfallsituation vorliegt.</li>
+          <li>Die MFA organisiert den Kontakt und informiert bei dringlichen Beschwerden unverzüglich die ärztlich verantwortliche Person.</li>
+          <li>Die Hausärztin oder der Hausarzt untersucht den Patienten und entscheidet, ob eine fachärztliche Mitbehandlung erforderlich ist.</li>
+          <li>Die MFA unterstützt bei einer gegebenenfalls erforderlichen Überweisung, Terminorganisation und sicheren Weitergabe notwendiger Informationen.</li>
+          <li>Nach der fachärztlichen Behandlung werden die eingehenden Befunde ärztlich bewertet und die weitere Versorgung abgestimmt.</li>
+        </ol>
+        <p>
+          <strong>&nbsp;Wichtig:</strong> Die konkreten Teilnahme- und
+          Überweisungsregeln unterscheiden sich je nach HZV-Vertrag.
+          Es gibt Ausnahmen von der grundsätzlichen hausärztlichen
+          Steuerung. Insbesondere darf eine Notfallversorgung nicht
+          durch organisatorische HZV-Abläufe verzögert werden.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Praxisfall: „Warum muss ich zuerst zum Hausarzt?“</h2>
+        <p>
+          Ein 58-jähriger Patient ist in das Hausarztprogramm eingeschrieben.
+          Er ruft wegen zunehmender Knieschmerzen an und möchte direkt
+          einen Termin in einer orthopädischen Praxis vereinbaren.
+        </p>
+        <p>
+          Er fragt: „Warum muss ich eigentlich zuerst zum Hausarzt?
+          Ich weiß doch, dass mein Knie wehtut.“
+        </p>
+        <h3>Deine Aufgabe als MFA</h3>
+        <p>
+          Du erklärst dem Patienten ruhig, dass seine Hausarztpraxis
+          im HZV-Modell die medizinische Versorgung koordiniert.
+          Die Hausärztin oder der Hausarzt beurteilt, welche Untersuchung
+          und Weiterbehandlung notwendig ist.
+        </p>
+        <p>
+          Du prüfst anhand der geltenden Praxisabläufe, welche
+          organisatorischen Schritte vorgesehen sind, und bietest
+          einen geeigneten Kontakt zur Hausarztpraxis an.
+          Bei Hinweisen auf eine dringliche Situation veranlasst du
+          unverzüglich eine ärztliche Einschätzung.
+        </p>
+        <h3>Was du nicht eigenständig entscheidest</h3>
+        <ul>
+          <li>Ob eine bestimmte fachärztliche Untersuchung medizinisch notwendig ist.</li>
+          <li>Ob die Beschwerden eine bestimmte Diagnose bedeuten.</li>
+          <li>Ob von vertraglichen Regeln abgewichen werden darf, wenn die Voraussetzungen ungeklärt sind.</li>
+        </ul>
+        <p>
+          <strong>&nbsp;Prüfungswissen:</strong> Erkläre immer sowohl den
+          Sinn der Koordination als auch deine konkreten Aufgaben.
+          „Der Patient muss das eben so machen“ ist keine gute
+          patientenorientierte Erklärung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Wenn ein Patient ins Krankenhaus muss</h2>
+        <p>
+          Nicht jeder Patientenweg führt über eine Facharztpraxis.
+          Je nach Erkrankung kann eine Krankenhausbehandlung
+          notwendig sein. Bei planbaren Behandlungen können
+          Einweisungsunterlagen und vorhandene Befunde wichtig sein.
+        </p>
+        <p>
+          Bei akuten, möglicherweise lebensbedrohlichen Beschwerden
+          steht dagegen die sofortige Notfallversorgung im Vordergrund.
+          Die MFA aktiviert die festgelegten Notfallabläufe,
+          informiert unverzüglich ärztliches Personal und veranlasst
+          im Rahmen ihrer Aufgaben die erforderliche Hilfe.
+        </p>
+        <p>
+          Nach einer stationären Behandlung können Entlassbrief,
+          Medikamentenplan, Nachsorgetermine und gegebenenfalls
+          weitere Unterstützungsangebote für die anschließende
+          Versorgung wichtig sein.
+        </p>
+        <p>
+          Die MFA sorgt für die sichere organisatorische Bearbeitung
+          und legt medizinisch relevante Informationen zur ärztlichen
+          Beurteilung vor.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Rehabilitation, Pflege und weitere Unterstützung</h2>
+        <p>
+          Manche Patienten benötigen nach einer Erkrankung oder
+          einem Krankenhausaufenthalt weitere Hilfe.
+          Dazu können Rehabilitation, Heil- und Hilfsmittelversorgung,
+          ambulante Pflege oder stationäre Pflege gehören.
+        </p>
+        <p>
+          Für die MFA ist wichtig, die beteiligten Einrichtungen
+          zu kennen, Unterlagen nach Praxisvorgaben vorzubereiten
+          und Rückfragen an die zuständigen Personen weiterzugeben.
+        </p>
+        <p>
+          Welche Leistungen im Einzelfall notwendig sind und
+          welche Voraussetzungen für deren Bewilligung gelten,
+          wird nicht allein durch die MFA entschieden.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">09</p>
+        <h2>Schnittstellen: Wo Patientenwege scheitern können</h2>
+        <p>
+          Eine Schnittstelle entsteht immer dann, wenn Informationen
+          oder Verantwortlichkeiten zwischen Personen oder
+          Einrichtungen übergeben werden.
+        </p>
+        <p>Typische Schwierigkeiten sind:</p>
+        <ul>
+          <li>Ein Facharztbericht ist noch nicht eingegangen.</li>
+          <li>Ein Patient versteht nicht, welche Praxis die Nachsorge übernimmt.</li>
+          <li>Ein Medikamentenplan ist nach einem Krankenhausaufenthalt unklar.</li>
+          <li>Ein vereinbarter Kontrolltermin wurde nicht organisiert.</li>
+          <li>Unterlagen werden über einen nicht freigegebenen Kommunikationsweg versendet.</li>
+        </ul>
+        <p>
+          Die MFA erkennt organisatorische Unklarheiten,
+          dokumentiert nach Praxisvorgaben und informiert
+          die zuständige Person. Medizinische Unstimmigkeiten,
+          insbesondere bei Medikamenten, müssen ärztlich geklärt werden.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">10</p>
+        <h2>Transferaufgabe: Erkläre den gesamten Patientenweg</h2>
+        <p>
+          Ein HZV-Patient wird nach hausärztlicher Untersuchung
+          orthopädisch mitbehandelt. Später erfolgt eine Operation
+          im Krankenhaus. Anschließend ist eine Rehabilitation
+          vorgesehen. Danach kommt der Patient zur Nachsorge
+          in die Hausarztpraxis.
+        </p>
+        <p>
+          Beschreibe den Weg in der richtigen Reihenfolge.
+          Erkläre zu jeder Station, welche Einrichtung beteiligt
+          ist und welche organisatorischen Aufgaben eine MFA
+          übernehmen kann.
+        </p>
+        <details>
+          <summary>Musterlösung anzeigen</summary>
+          <p>
+            Zunächst organisiert die MFA den Kontakt zur Hausarztpraxis.
+            Dort erfolgt die ärztliche Untersuchung und Entscheidung
+            über die weitere Behandlung. Bei erforderlicher
+            fachärztlicher Abklärung unterstützt die MFA die
+            Organisation und die Weitergabe notwendiger Unterlagen.
+            Bei einer späteren Krankenhausbehandlung werden
+            die vorgesehenen Informationen und Termine koordiniert.
+            Die Rehabilitation wird durch die zuständigen Stellen
+            geplant und beantragt. Nach der Entlassung unterstützt
+            die MFA die Nachsorgeorganisation, sorgt für die
+            Weiterleitung vorhandener Berichte und legt
+            medizinisch relevante Informationen zur ärztlichen
+            Bewertung vor.
+          </p>
+        </details>
+      </section>
+
+      <section class="summary">
+        <h2>Das musst du mitnehmen</h2>
+        <ul>
+          <li>Das Gesundheitswesen besteht aus unterschiedlichen, miteinander verbundenen Einrichtungen.</li>
+          <li>Ambulante Versorgung, stationäre Behandlung und Rehabilitation erfüllen verschiedene Aufgaben.</li>
+          <li>Die Hausarztpraxis kann eine zentrale Rolle bei der Koordination der Patientenversorgung übernehmen.</li>
+          <li>In der HZV gelten die Bedingungen des jeweiligen Vertrages einschließlich möglicher Ausnahmen.</li>
+          <li>Die MFA begleitet Patientenwege organisatorisch, trifft aber keine eigenständigen medizinischen Therapieentscheidungen.</li>
+          <li>Eine sichere Weitergabe von Informationen ist für die Versorgung besonders wichtig.</li>
+        </ul>
+      </section>
+
+      <section class="self-check">
+        <h2>Selbstcheck: Verstehst du den Patientenweg?</h2>
+
+        <details>
+          <summary>1. Worin unterscheiden sich ambulante und stationäre Versorgung?</summary>
+          <p>
+            Ambulante Versorgung erfolgt ohne reguläre stationäre
+            Aufnahme. Bei stationärer Versorgung wird der Patient
+            zur Behandlung in einer Einrichtung aufgenommen.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. Welche Aufgabe übernimmt die Hausarztpraxis in der HZV?</summary>
+          <p>
+            Sie ist für eingeschriebene Patienten eine zentrale
+            Anlaufstelle und koordiniert die Versorgung entsprechend
+            dem geltenden HZV-Vertrag.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. Warum ist die Rückmeldung einer Facharztpraxis wichtig?</summary>
+          <p>
+            Damit die weiterbehandelnde Praxis über relevante
+            Untersuchungsergebnisse und Empfehlungen informiert
+            ist und die weitere Versorgung ärztlich abgestimmt
+            werden kann.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. Was erklärst du einem HZV-Patienten, der direkt zum Orthopäden möchte?</summary>
+          <p>
+            Du erklärst die koordinierende Rolle der Hausarztpraxis
+            und die vertraglichen Abläufe, weist auf mögliche
+            Ausnahmen hin und organisierst bei Bedarf den Kontakt
+            zur zuständigen Person. Die medizinische Entscheidung
+            triffst du nicht eigenständig.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. Was tust du, wenn nach einer Krankenhausentlassung der Medikamentenplan unklar ist?</summary>
+          <p>
+            Du leitest die Unklarheit unverzüglich zur ärztlichen
+            Klärung weiter, statt Medikamente oder Dosierungen
+            eigenständig festzulegen. Die Unterlagen werden nach
+            Praxisvorgaben sicher bearbeitet.
+          </p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p>Als Nächstes</p>
+        <h2>Lektion 07: Ausbildung, Arbeitsrecht und Berufspflichten</h2>
+        <a href="/lernen/praxisorganisation-recht-abrechnung/">
+          Zurück zur Fachwelt 09
+        </a>
+      </footer>
+    </main>
+  </body>
+</html>

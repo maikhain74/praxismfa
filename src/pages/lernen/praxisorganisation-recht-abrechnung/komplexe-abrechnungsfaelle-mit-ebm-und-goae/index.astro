@@ -1,0 +1,712 @@
+---
+const title = "Komplexe Abrechnungsfälle mit EBM und GOÄ | PraxisMFA";
+const description = "Premium-Prüfungstraining für MFA: fünf komplexe Abrechnungsfälle zu EBM, GOÄ, Laborabrechnung, Gebührenkombinationen und Steigerungsfaktoren.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+<style>
+  /* Lektion 13: Responsive Überschrift */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+  </head>
+  
+
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">PraxisMFA</a>
+    <nav aria-label="Hauptnavigation">
+      <a href="/">Start</a>
+      <a href="/lernen/">Lernen</a>
+      <a href="/praxis/">Praxis</a>
+      <a href="/pruefung/">Prüfung</a>
+      <a class="premium" href="/premium/">Premium</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+      ← Zurück zur Fachwelt 09
+    </a>
+
+    <article>
+      <header class="lesson-hero">
+        <p class="eyebrow">Fachwelt 09 · Lektion 23 · Premium</p>
+        <h1>Komplexe Abrechnungsfälle mit EBM und GOÄ</h1>
+        <p class="lead">
+          Fünf realistische Prüfungssituationen aus der
+          Gemeinschaftspraxis: Erkenne Abrechnungsfehler,
+          überprüfe Gebührenpositionen und begründe
+          deine Entscheidungen. Mit ausführlichen
+          Musterlösungen und anspruchsvollem Selbstcheck.
+        </p>
+      </header>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Praxissituation: Abrechnung unter Zeitdruck</h2>
+        <p>Freitag, 14:30 Uhr. In einer hausärztlichen Gemeinschaftspraxis wird der nächste Abrechnungslauf vorbereitet. Die verantwortliche MFA entdeckt mehrere auffällige Einträge im Praxisverwaltungssystem.</p><p>Bei einem Patienten ist ein Belastungs-EKG erfasst, obwohl nur ein Ruhe-EKG dokumentiert wurde. Bei einer anderen Patientin sind externe Laboranalysen als Praxisleistungen vorgemerkt. Zusätzlich gibt es Fragen zu einer GOÄ-Rechnung.</p><p>Die Auszubildende soll nicht einfach möglichst viele Positionen freigeben. Sie muss herausfinden, welche Angaben sicher sind, welche fehlen und welche Positionen vorerst zurückgestellt werden.</p><p><strong>&nbsp;Dein Auftrag:</strong> Bearbeite fünf miteinander verbundene Prüfungsfälle. Begründe deine Entscheidungen so, dass sie für die zuständige Fachkraft nachvollziehbar sind.</p><p><strong>&nbsp;Prüfungsmerksatz:</strong> Eine dokumentierte medizinische Leistung ist nicht automatisch eine gesondert berechnungsfähige Leistung.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Deine Lernziele im Premium-Prüfungstraining</h2>
+        <ul>
+<li>Du überprüfst komplexe Abrechnungssituationen systematisch.</li>
+<li>Du unterscheidest Leistungsinhalt, Leistungsnachweis und Abrechenbarkeit.</li>
+<li>Du erkennst fehlerhafte EBM-Leistungszuordnungen.</li>
+<li>Du unterscheidest Laborauftrag, Probenentnahme und Laboranalyse.</li>
+<li>Du prüfst mögliche GOÄ-Doppelberechnungen und Kombinationsregeln.</li>
+<li>Du beurteilst Steigerungsfaktoren und Rechnungsbegründungen.</li>
+<li>Du priorisierst Fehler vor einem Abrechnungslauf.</li>
+<li>Du erkennst, wann ärztliche oder abrechnungsfachliche Rücksprache erforderlich ist.</li>
+</ul><p>Die Fälle enthalten bewusst unvollständige Informationen. Eine fachlich richtige Antwort kann deshalb auch lauten: „Diese Position darf noch nicht freigegeben werden; zunächst müssen bestimmte Voraussetzungen geklärt werden.“</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Abrechnungsprüfung in fünf Schritten</h2>
+        <p>Nutze für jeden Fall dieselbe Prüfreihenfolge. Sie hilft dir, unter Zeitdruck keine wesentliche Frage zu übersehen.</p><ol>
+<li><strong>&nbsp;1. Sachverhalt:</strong> Was wurde tatsächlich durchgeführt?</li>
+<li><strong>&nbsp;2. Nachweis:</strong> Welche Angaben stehen in der digitalen Patientenakte?</li>
+<li><strong>&nbsp;3. Regelwerk:</strong> Gelten EBM, GOÄ oder andere Vorgaben?</li>
+<li><strong>&nbsp;4. Berechnungsfähigkeit:</strong> Sind Leistungsinhalt, Voraussetzungen und Ausschlüsse geprüft?</li>
+<li><strong>&nbsp;5. Entscheidung:</strong> Freigeben, korrigieren oder zur Klärung zurückstellen?</li>
+</ol><p><strong>&nbsp;Wichtig:</strong> Für konkrete EBM-GOP sind die Bestimmungen des betreffenden Abrechnungsquartals maßgeblich. Bei der GOÄ sind die geltenden Leistungslegenden, allgemeinen Bestimmungen und rechtlichen Vorgaben zu berücksichtigen.</p><p><strong>&nbsp;Prüfungsmerksatz:</strong> Eine MFA darf fehlende medizinische Angaben nicht erfinden, um eine Abrechnungsposition zu rechtfertigen.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Fall 1: EBM – mehrere Leistungen an einem Behandlungstag</h2>
+        
+        <h3>Patient A: Schwindel und Herzklopfen</h3>
+        <p>Ein 58-jähriger GKV-Patient kommt wegen wiederkehrenden
+        Schwindels und Herzklopfens in die Hausarztpraxis.</p>
+        <p><strong>&nbsp;Dokumentation:</strong> Blutdruck 148/92 mmHg,
+        Puls 96/min, ärztliche Untersuchung und Ruhe-EKG.
+        Außerdem steht im Verlauf: „Weiteres Vorgehen besprochen“.</p>
+        <h3>Vorgemerkte EBM-Positionen</h3>
+        <ul>
+          <li>GOP 03000 – hausärztliche Versichertenpauschale</li>
+          <li>GOP 03230 – problemorientiertes ärztliches Gespräch</li>
+          <li>GOP 03321 – Belastungs-EKG</li>
+        </ul>
+        <h3>Dein Prüfungsauftrag</h3>
+        <ol>
+          <li>Welche Position passt offensichtlich nicht zur dokumentierten Untersuchung?</li>
+          <li>Welche Information fehlt zur Prüfung der GOP 03230?</li>
+          <li>Welche weiteren Voraussetzungen müssen bei GOP 03000 geprüft werden?</li>
+          <li>Welche Einträge dürfen vorerst nicht bestätigt werden?</li>
+        </ol>
+
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Musterlösung zu Fall 1</h2>
+        
+        <details>
+          <summary>Ausführliche Musterlösung und Prüfungsfallen anzeigen</summary>
+          <p><strong>&nbsp;GOP 03321:</strong> Diese Position bezeichnet ein Belastungs-EKG. Dokumentiert ist jedoch ein Ruhe-EKG. Die vorgemerkte Position stimmt somit nicht mit der erbrachten Leistung überein und darf nicht bestätigt werden.</p><p><strong>&nbsp;GOP 03230:</strong> Die Formulierung „Weiteres Vorgehen besprochen“ belegt kein problemorientiertes ärztliches Gespräch von mindestens zehn Minuten. Ob die Leistung tatsächlich in abrechnungsfähigem Umfang erbracht wurde, muss ärztlich geklärt und anhand der EBM-Bestimmungen geprüft werden.</p><p><strong>&nbsp;GOP 03000:</strong> Die hausärztliche Versichertenpauschale ist nicht allein aufgrund des Praxisbesuchs automatisch freizugeben. Insbesondere der Versorgungskontext, die zutreffende altersbezogene Position und die weiteren Abrechnungsbestimmungen müssen passen.</p><p><strong>&nbsp;Entscheidung:</strong> Die falsche EKG-Zuordnung wird zur Korrektur zurückgestellt. Das Gespräch bleibt klärungsbedürftig. Die Versichertenpauschale wird nach den geltenden Voraussetzungen geprüft.</p><p><strong>&nbsp;Prüfungsfalle:</strong> Mehrere tatsächlich durchgeführte Tätigkeiten bedeuten nicht, dass alle vorgemerkten GOP zusätzlich berechnet werden dürfen. Pauschalen und Ausschlüsse müssen gesondert geprüft werden.</p>
+        </details>
+<p><strong>&nbsp;Prüfungsmerksatz:</strong> Erst die tatsächliche Leistung und die EBM-Bestimmungen prüfen – niemals von einer vorgemerkten GOP auf die erbrachte Leistung schließen.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Fall 2: Laborauftrag und Abrechnungsverantwortung</h2>
+        
+        <h3>Patientin B: Labor bei arterieller Hypertonie</h3>
+        <p>Eine 64-jährige GKV-Patientin kommt zur Verlaufskontrolle.
+        Die Ärztin ordnet eine Bestimmung von Kreatinin und Kalium an.</p>
+        <p>Die MFA entnimmt die Blutprobe und bereitet den Versand
+        an ein externes Labor vor. Die Analysen werden dort durchgeführt.</p>
+        <p><strong>&nbsp;Im Praxisverwaltungssystem:</strong>
+        Die Blutentnahme und der Laborauftrag sind dokumentiert.
+        Zusätzlich wurden die Analysen als eigene Leistungen
+        der Hausarztpraxis vorgemerkt.</p>
+        <h3>Dein Prüfungsauftrag</h3>
+        <ol>
+          <li>Welche drei Vorgänge musst du unterscheiden?</li>
+          <li>Wer hat die eigentlichen Laboranalysen durchgeführt?</li>
+          <li>Welche Bedeutung hat der konkrete Laborabrechnungsweg?</li>
+          <li>Wie gehst du mit den vorgemerkten Analysepositionen um?</li>
+        </ol>
+
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Musterlösung zu Fall 2</h2>
+        
+        <details>
+          <summary>Ausführliche Musterlösung und Prüfungsfallen anzeigen</summary>
+          <p><strong>&nbsp;Schritt 1:</strong> Blutentnahme, Laboranforderung und Laboranalyse sind unterschiedliche Vorgänge. Ihre Dokumentation darf nicht miteinander gleichgesetzt werden.</p><p><strong>&nbsp;Schritt 2:</strong> Im Fall hat das externe Labor die Analysen durchgeführt. Daraus folgt nicht automatisch, dass die Hausarztpraxis die Analysepositionen als eigene Leistungen abrechnen darf.</p><p><strong>&nbsp;Schritt 3:</strong> Die MFA prüft den tatsächlichen Leistungserbringer, den Laborabrechnungsweg und die einschlägigen EBM-Bestimmungen. Ohne diese Informationen ist keine endgültige GOP-Freigabe möglich.</p><p><strong>&nbsp;Schritt 4:</strong> Unklare oder falsch zugeordnete Analysepositionen werden zur fachlichen Klärung zurückgestellt. Auch die gesonderte Berechnungsfähigkeit der Blutentnahme wird nicht ungeprüft unterstellt.</p><p><strong>&nbsp;Prüfungsfalle:</strong> Ein Laborauftrag belegt nicht, dass die anfordernde Praxis die Analyse selbst erbracht hat.</p>
+        </details>
+<p><strong>&nbsp;Prüfungsmerksatz:</strong> Leistungserbringung, Labororganisation und Abrechnungsberechtigung getrennt beurteilen.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Fall 3: GOÄ – Gebührenkombinationen überprüfen</h2>
+        
+        <h3>Patient C: Privatabrechnung nach GOÄ</h3>
+        <p>Ein 52-jähriger Privatpatient kommt wegen wiederkehrender
+        Brustschmerzen und Herzklopfen in die Hausarztpraxis.</p>
+        <p><strong>&nbsp;Dokumentation:</strong> Ärztliche Beratung
+        über 14 Minuten, Untersuchung von Herz und Lunge sowie
+        ein Ruhe-EKG mit zwölf Ableitungen.</p>
+        <h3>Vorgemerkte GOÄ-Nummern</h3>
+        <ul>
+          <li>Nr. 1 – Beratung</li>
+          <li>Nr. 3 – eingehende Beratung, mindestens zehn Minuten</li>
+          <li>Nr. 7 – vollständige Untersuchung mindestens eines Organsystems</li>
+          <li>Nr. 651 – elektrokardiographische Untersuchung</li>
+        </ul>
+        <h3>Dein Prüfungsauftrag</h3>
+        <ol>
+          <li>Dürfen Nr. 1 und Nr. 3 für dieselbe Beratung berechnet werden?</li>
+          <li>Welche Einschränkungen gelten für Nr. 3?</li>
+          <li>Was fehlt zur sicheren Bestätigung von Nr. 7?</li>
+          <li>Welche Kombination darf nicht ungeprüft freigegeben werden?</li>
+        </ol>
+
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">09</p>
+        <h2>Musterlösung zu Fall 3</h2>
+        
+        <details>
+          <summary>Ausführliche Musterlösung und Prüfungsfallen anzeigen</summary>
+          <p><strong>&nbsp;Nr. 1 und Nr. 3:</strong> Dieselbe ärztliche Beratung darf nicht gleichzeitig als einfache und als eingehende Beratung doppelt berechnet werden.</p><p><strong>&nbsp;Nr. 3:</strong> Die dokumentierten 14 Minuten sind ein wichtiger Hinweis, reichen für die endgültige Prüfung aber nicht allein aus. Auch die weiteren Leistungs- und Kombinationsbestimmungen sind zu beachten.</p><p><strong>&nbsp;Nr. 7:</strong> Die pauschale Angabe „Untersuchung von Herz und Lunge“ belegt nicht ohne Weiteres den vollständigen Leistungsinhalt einer Untersuchung nach Nr. 7. Der Umfang ist zu klären.</p><p><strong>&nbsp;Nr. 3 zusammen mit Nr. 651:</strong> Die GOÄ erlaubt die Nr. 3 nur allein oder zusammen mit ausdrücklich genannten Untersuchungsleistungen. Nr. 651 gehört nicht zu diesen Ausnahmen. Diese Kombination ist daher nicht zulässig.</p><p><strong>&nbsp;Entscheidung:</strong> Der Rechnungsentwurf mit allen vier Nummern darf nicht freigegeben werden. Eine zulässige Alternative wird anhand der tatsächlich erbrachten Leistungen und der GOÄ-Bestimmungen ärztlich beziehungsweise abrechnungsfachlich geprüft.</p><p><strong>&nbsp;Prüfungsfalle:</strong> Eine längere Beratung erlaubt nicht automatisch jede zusätzliche Gebührenposition. Die Abrechnung darf nicht allein nach dem höchsten Betrag gestaltet werden.</p>
+        </details>
+<p><strong>&nbsp;Prüfungsmerksatz:</strong> GOÄ-Leistungslegenden und Nebeneinanderberechnungsregeln gemeinsam prüfen.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">10</p>
+        <h2>Fall 4: GOÄ – Steigerungsfaktoren und Begründung</h2>
+        
+        <h3>Patient D: Erhöhter Steigerungsfaktor</h3>
+        <p>Ein 67-jähriger Privatpatient wird wegen wiederkehrender
+        Beschwerden untersucht. Wegen erheblicher
+        Bewegungseinschränkungen ist die Untersuchung erschwert.</p>
+        <h3>Rechnungsentwurf</h3>
+        <ul>
+          <li>GOÄ-Nr. 1 – Faktor 2,3, keine besondere Begründung</li>
+          <li>GOÄ-Nr. 7 – Faktor 3,2, Begründung: „Erhöhter Aufwand“</li>
+        </ul>
+        <p>Im medizinischen Verlauf ist eine Bewegungseinschränkung
+        erwähnt. Eine konkrete Beschreibung ihrer Auswirkungen
+        auf die betreffende Untersuchung fehlt im Rechnungsentwurf.</p>
+        <h3>Dein Prüfungsauftrag</h3>
+        <ol>
+          <li>Welche Bedeutung hat der Schwellenwert 2,3?</li>
+          <li>Welche Kriterien nennt § 5 GOÄ?</li>
+          <li>Ist „Erhöhter Aufwand“ eine ausreichende Begründung?</li>
+          <li>Wie lässt du den Rechnungsentwurf fachgerecht klären?</li>
+        </ol>
+
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">11</p>
+        <h2>Musterlösung zu Fall 4</h2>
+        
+        <details>
+          <summary>Ausführliche Musterlösung und Prüfungsfallen anzeigen</summary>
+          <p><strong>&nbsp;Faktor 2,3:</strong> Bei Leistungen des regulären Gebührenrahmens ist dies der Schwellenwert. Die konkrete Gebührenbemessung muss sich an § 5 GOÄ orientieren.</p><p><strong>&nbsp;Faktor 3,2:</strong> Eine Überschreitung des Schwellenwerts erfordert eine nachvollziehbare Begründung anhand der Besonderheiten der betreffenden Leistung.</p><p><strong>&nbsp;Bemessungskriterien:</strong> Nach § 5 GOÄ sind insbesondere Schwierigkeit, Zeitaufwand und Umstände bei der Ausführung der einzelnen Leistung relevant.</p><p><strong>&nbsp;Begründung:</strong> „Erhöhter Aufwand“ benennt keine konkrete Besonderheit und ist als pauschale Formulierung nicht ausreichend aussagekräftig.</p><p><strong>&nbsp;Vorgehen:</strong> Die MFA stellt den Entwurf zur ärztlichen Prüfung zurück. Es muss geklärt werden, welche konkrete Erschwernis bei genau dieser Untersuchung tatsächlich vorlag und ob sie die Gebührenbemessung trägt.</p><p><strong>&nbsp;Beispiel einer präziseren Begründungsrichtung:</strong> Eine erheblich erschwerte Lagerung aufgrund konkret dokumentierter Bewegungseinschränkungen kann relevant sein. Eine solche Formulierung darf aber nur verwendet werden, wenn sie dem tatsächlichen Verlauf entspricht.</p><p><strong>&nbsp;Prüfungsfalle:</strong> Eine vorhandene Diagnose rechtfertigt nicht automatisch einen höheren Faktor. Entscheidend ist der leistungsbezogene Mehraufwand.</p>
+        </details>
+<p><strong>&nbsp;Prüfungsmerksatz:</strong> Ein erhöhter Faktor braucht eine konkrete und zutreffende leistungsbezogene Begründung.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">12</p>
+        <h2>Fall 5: Komplexer Abrechnungslauf in der Gemeinschaftspraxis</h2>
+        
+        <h3>Freitag, 14:30 Uhr – fünf auffällige Vorgänge</h3>
+        <p>Die Praxis möchte den Abrechnungslauf abschließen.
+        Die zuständige MFA übergibt dir folgende Prüfliste:</p>
+        <ul>
+          <li><strong>&nbsp;Patient A:</strong> GKV – Belastungs-EKG vorgemerkt, Ruhe-EKG dokumentiert.</li>
+          <li><strong>&nbsp;Patient B:</strong> GKV – externe Laboranalyse als eigene Praxisleistung vorgemerkt.</li>
+          <li><strong>&nbsp;Patient C:</strong> Privat – GOÄ-Nrn. 1 und 3 für dieselbe Beratung angesetzt.</li>
+          <li><strong>&nbsp;Patient D:</strong> Privat – Faktor 3,2 mit der Begründung „Erhöhter Aufwand“.</li>
+          <li><strong>&nbsp;Patient E:</strong> Privat – Zahlungseingang vorhanden, Rechnung steht noch als offen im System.</li>
+        </ul>
+        <h3>Dein Abschlussauftrag</h3>
+        <ol>
+          <li>Ordne jedem Vorgang die Art des Problems zu.</li>
+          <li>Unterscheide sichere Fehler von noch ungeklärten Sachverhalten.</li>
+          <li>Lege fest, was vor dem Abrechnungslauf zurückgestellt werden muss.</li>
+          <li>Benenne die jeweils zuständige Person oder Stelle.</li>
+          <li>Begründe, warum Patient E anders behandelt wird als die Fälle A bis D.</li>
+        </ol>
+        <p><strong>&nbsp;Zusatzaufgabe:</strong> Erkläre, warum
+        „alles sofort korrigieren“ keine fachlich ausreichende
+        Handlungsstrategie ist.</p>
+
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">13</p>
+        <h2>Abschlusslösung: Prioritäten und Zuständigkeiten</h2>
+        
+        <details>
+          <summary>Vollständige Musterlösung zum Abschlussfall anzeigen</summary>
+          <p><strong>&nbsp;Patient A:</strong> Falsche Leistungszuordnung. Die vorgemerkte Belastungs-EKG-Position darf nicht für das dokumentierte Ruhe-EKG bestätigt werden. Korrektur nach Prüfung der tatsächlich erbrachten Leistung.</p><p><strong>&nbsp;Patient B:</strong> Abrechnungsverantwortung unklar. Leistungserbringer, Laborweg und EBM-Bestimmungen prüfen. Die Position bleibt bis zur Klärung zurückgestellt.</p><p><strong>&nbsp;Patient C:</strong> Mögliche Doppelberechnung. Die Nrn. 1 und 3 dürfen nicht für dieselbe Beratung nebeneinander berechnet werden. Die Rechnung muss korrigiert und fachlich geprüft werden.</p><p><strong>&nbsp;Patient D:</strong> Unzureichende Begründung für die Schwellenwertüberschreitung. Der Rechnungsentwurf geht zur ärztlichen Prüfung zurück.</p><p><strong>&nbsp;Patient E:</strong> Kein unmittelbarer Fehler bei der medizinischen Leistungsabrechnung, sondern ein Problem der Forderungsverwaltung. Zahlung eindeutig zuordnen, Buchung prüfen und Offene-Posten-Status korrigieren. Keine ungeprüfte Mahnung versenden.</p><p><strong>&nbsp;Priorisierung:</strong> Die Fälle A bis D betreffen die fachliche Prüfung von Abrechnungspositionen und Rechnungsentwürfen. Sie dürfen nicht ungeprüft freigegeben werden. Fall E betrifft die Zahlungszuordnung und muss im zuständigen Verwaltungsprozess bearbeitet werden.</p><p><strong>&nbsp;Zuständigkeiten:</strong> Die MFA kann Angaben abgleichen, Fehler markieren und Rückfragen vorbereiten. Ärztliche Leistungsbestätigung, medizinische Begründungen und strittige Abrechnungsfragen gehören zur jeweils zuständigen Fach- oder Leitungsebene.</p><p><strong>&nbsp;Warum nicht einfach alles sofort korrigieren?</strong> Weil die MFA nicht jede medizinische Leistung selbst beurteilen kann und fehlende Angaben nicht erfinden darf. Eine sichere Bearbeitung benötigt nachvollziehbare Prüfschritte und klare Verantwortlichkeiten.</p>
+        </details>
+<p><strong>&nbsp;Das musst du mitnehmen:</strong> Gute Abrechnung bedeutet nicht, möglichst viele Positionen zu bestätigen. Gute Abrechnung bedeutet, berechtigte Forderungen korrekt und nachvollziehbar zu erfassen und Fehler vor der Freigabe zu erkennen.</p>
+      </section>
+
+
+      <section class="content-section">
+        <p class="section-number">14</p>
+        <h2>Selbstcheck: Fünf anspruchsvolle Prüfungsfragen</h2>
+        <p>Bearbeite die Fragen zunächst ohne Hilfe. Öffne anschließend die begründeten Lösungen.</p>
+        <details>
+          <summary>1. Ein Ruhe-EKG ist dokumentiert, aber GOP 03321 vorgemerkt. Was tust du?</summary>
+          <p>Die GOP 03321 bezeichnet ein Belastungs-EKG. Die Zuordnung ist für das dokumentierte Ruhe-EKG falsch. Die Position wird zur Korrektur zurückgestellt.</p>
+        </details>
+
+        <details>
+          <summary>2. Warum darf ein externer Laborauftrag nicht automatisch als eigene Analyse abgerechnet werden?</summary>
+          <p>Weil Laborauftrag, Probenentnahme und Analyse unterschiedliche Vorgänge sind. Leistungserbringer und zulässiger Abrechnungsweg müssen geprüft werden.</p>
+        </details>
+
+        <details>
+          <summary>3. Warum dürfen GOÄ-Nrn. 1 und 3 nicht für dieselbe Beratung gemeinsam angesetzt werden?</summary>
+          <p>Weil dieselbe Beratung dadurch doppelt berechnet würde. Zusätzlich sind die besonderen Kombinationsregeln der Nr. 3 zu beachten.</p>
+        </details>
+
+        <details>
+          <summary>4. Was ist an der Begründung „Erhöhter Aufwand“ bei Faktor 3,2 problematisch?</summary>
+          <p>Sie beschreibt keine konkrete Besonderheit der einzelnen Leistung. Die Schwellenwertüberschreitung benötigt eine nachvollziehbare leistungsbezogene Begründung.</p>
+        </details>
+
+        <details>
+          <summary>5. Ein Patient hat bezahlt, aber die Rechnung steht noch als offen im System. Was ist der erste Schritt?</summary>
+          <p>Den Zahlungseingang anhand eindeutiger Merkmale prüfen und korrekt zuordnen. Vor einer Mahnung muss geklärt werden, ob die Forderung tatsächlich noch besteht.</p>
+        </details>
+<p><strong>&nbsp;Premium-Abschluss:</strong> Du hast fünf komplexe Prüfungssituationen bearbeitet. Entscheidend ist nicht nur die richtige Antwort, sondern eine fachlich nachvollziehbare Begründung.</p><p><strong>&nbsp;Regelwerks-Hinweis:</strong> Die Übungsfälle ersetzen nicht die Prüfung der zum Abrechnungszeitpunkt geltenden EBM-Bestimmungen und GOÄ-Regelungen.</p><p>Offizielle Grundlagen: <a href="https://ebm.kbv.de/index.xhtml">KBV – EBM</a> und <a href="https://www.gesetze-im-internet.de/go__1982/">Gebührenordnung für Ärzte (GOÄ)</a>.</p>
+      </section>
+
+
+      <footer class="next-lesson" style="margin-top:32px; padding-top:28px;">
+        <p class="section-number">ALS NÄCHSTES</p>
+        <h2>Lektion 24: Abschluss der Fachwelt 09</h2>
+        <p>
+          Festige dein Wissen aus Praxisorganisation,
+          Recht und Abrechnung und bereite dich
+          auf die abschließenden Prüfungsaufgaben vor.
+        </p>
+      </footer>
+    </article>
+
+
+
+
+
+
+    </main>
+  </body>
+</html>

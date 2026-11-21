@@ -1,0 +1,933 @@
+---
+const title = "Privatabrechnung und GOÄ | PraxisMFA";
+const description = "Lerne die privatärztliche Abrechnung nach GOÄ kennen: Gebührennummern, Steigerungsfaktoren, Rechnungsstellung und sichere MFA-Aufgaben.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+<style>
+  /* Lektion 13: Responsive Überschrift */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+  </head>
+  
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">PraxisMFA</a>
+    <nav aria-label="Hauptnavigation">
+      <a href="/">Start</a>
+      <a href="/lernen/">Lernen</a>
+      <a href="/praxis/">Praxis</a>
+      <a href="/pruefung/">Prüfung</a>
+      <a class="premium" href="/premium/">Premium</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+      ← Zurück zur Fachwelt 09
+    </a>
+
+    <article>
+      <header class="lesson-hero">
+        <p class="eyebrow">Fachwelt 09 · Lektion 21</p>
+        <h1>Privatabrechnung und GOÄ</h1>
+        <p class="lead">
+          Wie entsteht eine korrekte privatärztliche Rechnung?
+          Du lernst die Gebührenordnung für Ärzte kennen,
+          verstehst die Bedeutung von Steigerungsfaktoren
+          und erfährst, wie du die Abrechnung im digitalen
+          Praxisalltag sorgfältig vorbereitest und prüfst.
+        </p>
+      </header>
+
+      
+      <figure
+        class="lesson-image"
+        style="display:block; width:100%; max-width:680px; margin:24px auto; overflow:hidden;"
+      >
+        <img
+          src="/images/privatabrechnung-und-goae.png"
+          alt="Privatabrechnung und GOÄ: MFA prüft eine Privatrechnung mit Gebührennummern, Steigerungsfaktoren und Rechnungsangaben"
+          loading="lazy"
+          style="display:block; width:100%; max-width:100%; height:auto; object-fit:contain;"
+        />
+      </figure>
+
+<section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Praxissituation: Eine Patientin fragt nach ihrer Rechnung</h2>
+        <p>
+          In einer hausärztlichen Gemeinschaftspraxis hat eine
+          privatversicherte Patientin eine ärztliche Beratung
+          und Untersuchung erhalten. Die Leistungen sind in
+          der elektronischen Patientenakte dokumentiert.
+        </p>
+        <p>
+          Einige Tage später ruft sie an. Auf ihrer Rechnung
+          stehen Gebührennummern, Steigerungsfaktoren und
+          unterschiedliche Eurobeträge. Sie möchte wissen,
+          wie diese Beträge zustande kommen.
+        </p>
+        <p>
+          Die MFA-Auszubildende möchte die Rechnung erklären,
+          erkennt aber, dass sie zunächst die Grundlagen
+          der GOÄ sicher verstehen muss.
+        </p>
+        <p>
+          <strong>&nbsp;Deine Aufgabe:</strong> Lerne, wie
+          eine privatärztliche Rechnung aufgebaut ist und
+          welche Fragen du selbst beantworten kannst.
+        </p>
+        <p>
+          <strong>&nbsp;Merke:</strong> Eine Privatrechnung
+          muss nachvollziehbar, korrekt und anhand der
+          erbrachten Leistungen überprüfbar sein.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Das lernst du in dieser Lektion</h2>
+        <ul>
+          <li>Du erkennst typische Situationen der Privatabrechnung.</li>
+          <li>Du erklärst den Zweck der Gebührenordnung für Ärzte.</li>
+          <li>Du findest Gebührennummern und Leistungsbeschreibungen.</li>
+          <li>Du verstehst Einfachsatz und Steigerungsfaktor.</li>
+          <li>Du berechnest einfache Gebühren nachvollziehbar.</li>
+          <li>Du erkennst, wann eine besondere Begründung nötig ist.</li>
+          <li>Du unterscheidest Gebühren, Zuschläge und Auslagen.</li>
+          <li>Du überprüfst grundlegende Rechnungsangaben.</li>
+          <li>Du kennst deine Aufgaben und Grenzen als MFA.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Wann wird privatärztlich abgerechnet?</h2>
+        <p>
+          Privatärztliche Abrechnung kommt beispielsweise bei
+          privatversicherten Personen oder bei ärztlichen
+          Selbstzahlerleistungen vor. Entscheidend ist nicht
+          allein der Versicherungsstatus, sondern auf welcher
+          rechtlichen Grundlage die konkrete Leistung erbracht
+          und abgerechnet wird.
+        </p>
+        <p>
+          Auch gesetzlich Versicherte können bestimmte
+          Leistungen selbst bezahlen, etwa medizinisch nicht
+          notwendige Wunschleistungen. Dabei sind die
+          besonderen Informations- und Vereinbarungspflichten
+          zu beachten.
+        </p>
+        <p>
+          <strong>&nbsp;Wichtig:</strong> Nicht jede Behandlung
+          einer privatversicherten Person ist automatisch
+          eine beliebig gestaltbare Rechnung. Die GOÄ enthält
+          verbindliche Regeln für ihren Anwendungsbereich.
+        </p>
+        <p>
+          Die MFA prüft deshalb, welche Abrechnungsart für
+          den konkreten Behandlungsvorgang vorgesehen ist.
+          Unklare Fälle werden vor der Rechnungsstellung
+          mit der verantwortlichen Person geklärt.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Die GOÄ: Grundlage der privatärztlichen Vergütung</h2>
+        <p>
+          GOÄ bedeutet Gebührenordnung für Ärzte. Sie regelt
+          die Vergütung ärztlicher Leistungen, soweit sie
+          nach ihrem Anwendungsbereich heranzuziehen ist.
+        </p>
+        <p>
+          Die GOÄ besteht nicht nur aus einer Liste von
+          Leistungen. Sie enthält auch allgemeine
+          Bestimmungen, Regeln zur Gebührenbemessung,
+          zur Berechnungsfähigkeit und zur Rechnung.
+        </p>
+        <p>
+          Eine korrekte Rechnung setzt deshalb voraus,
+          dass die tatsächlich erbrachte Leistung mit der
+          passenden Gebührenposition und den dazugehörigen
+          Bestimmungen abgeglichen wird.
+        </p>
+        <p>
+          <strong>&nbsp;Praxisbezug:</strong> Eine im
+          Praxisverwaltungssystem hinterlegte Gebührennummer
+          ist ein Vorschlag zur Erfassung, aber kein Ersatz
+          für die fachliche Abrechnungsprüfung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Gebührennummern und Leistungsbeschreibungen</h2>
+        <p>
+          Die GOÄ ordnet ärztlichen Leistungen Gebührennummern
+          mit bestimmten Leistungsbeschreibungen zu.
+          Die Beschreibung legt fest, welche Leistung
+          mit der jeweiligen Position gemeint ist.
+        </p>
+        <p>
+          Vor der Erfassung müssen die dokumentierte
+          Leistung und die Leistungsbeschreibung
+          zusammenpassen. Zusätzlich sind gegebenenfalls
+          allgemeine Bestimmungen und Ausschlüsse zu prüfen.
+        </p>
+        <p>
+          <strong>&nbsp;Beispiel:</strong> In der Akte steht
+          lediglich „Patient beraten“. Diese Angabe kann
+          für eine sichere Prüfung unzureichend sein,
+          wenn Art, Umfang oder weitere abrechnungsrelevante
+          Voraussetzungen nicht erkennbar sind.
+        </p>
+        <p>
+          Die MFA erfindet fehlende Angaben nicht nachträglich.
+          Sie gibt die Dokumentation zur Klärung an die
+          behandelnde Ärztin oder den behandelnden Arzt zurück.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Einfachsatz und Steigerungsfaktor verstehen</h2>
+        <p>
+          Für eine GOÄ-Leistung ist ein Gebührenwert
+          vorgesehen. Durch Anwendung eines zulässigen
+          Steigerungsfaktors ergibt sich die berechnete
+          Gebühr. Dabei sind die jeweiligen gesetzlichen
+          Bemessungsregeln und Gebührenrahmen einzuhalten.
+        </p>
+        <p>
+          Für viele ärztliche Leistungen gilt ein
+          Gebührenrahmen bis zum 3,5-Fachen. Der
+          sogenannte Schwellenwert liegt dabei häufig
+          beim 2,3-Fachen. Für andere Leistungsgruppen
+          gelten abweichende Rahmen und Schwellenwerte.
+        </p>
+        <p>
+          <strong>&nbsp;Entscheidend:</strong> Der
+          Steigerungsfaktor darf nicht willkürlich gewählt
+          werden. Nach § 5 GOÄ sind insbesondere Schwierigkeit,
+          Zeitaufwand und Umstände der Leistungserbringung
+          zu berücksichtigen, soweit sie nicht bereits
+          in der Leistungsbewertung enthalten sind.
+        </p>
+        <p>
+          Ein höherer Faktor ist deshalb nicht automatisch
+          zulässig, nur weil eine Praxis höhere Einnahmen
+          erzielen möchte.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">07</p>
+        <h2>Eine einfache Gebührenberechnung</h2>
+        <p>
+          Für das Verständnis der Berechnung verwenden
+          wir einen ausdrücklich fiktiven Gebührenwert.
+          Er ist keine echte GOÄ-Gebührenposition.
+        </p>
+        <p>
+          Angenommen, der Einfachsatz einer Beispielposition
+          beträgt 10,00 Euro und der im Beispiel zulässige
+          Faktor ist 2,3.
+        </p>
+        <p>
+          <strong>&nbsp;Rechnung:</strong>
+          10,00 Euro × 2,3 = 23,00 Euro.
+        </p>
+        <p>
+          Die rechnerische Multiplikation ist einfach.
+          Schwieriger ist die vorgelagerte Prüfung:
+          Passt die Position zur erbrachten Leistung?
+          Ist der Faktor für diese Leistungsart zulässig
+          und sachgerecht? Gibt es Ausschlüsse?
+        </p>
+        <p>
+          <strong>&nbsp;Merke:</strong> Eine mathematisch
+          richtige Berechnung ist noch keine rechtlich
+          korrekte Abrechnung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">08</p>
+        <h2>Wann muss ein Steigerungsfaktor begründet werden?</h2>
+        <p>
+          Wird der für die betreffende Leistungsgruppe
+          geltende Schwellenwert überschritten, verlangt
+          die GOÄ grundsätzlich eine verständliche,
+          auf die einzelne Leistung bezogene Begründung
+          auf der Rechnung.
+        </p>
+        <p>
+          Pauschale Formulierungen ohne erkennbaren
+          Bezug zum Einzelfall reichen nicht ohne
+          Weiteres aus. Die Begründung muss die
+          besonderen Umstände nachvollziehbar machen.
+        </p>
+        <p>
+          <strong>&nbsp;Beispiel:</strong> Eine tatsächlich
+          außergewöhnlich zeitaufwendige Untersuchung
+          kann eine andere Bewertung erfordern als
+          eine unkomplizierte Routineleistung.
+          Ob und welcher höhere Faktor gerechtfertigt
+          ist, muss für die konkrete Leistung geprüft werden.
+        </p>
+        <p>
+          Die MFA kann auf eine fehlende Begründung
+          aufmerksam machen. Die medizinisch-fachliche
+          Bewertung erfolgt durch die verantwortliche
+          Ärztin oder den verantwortlichen Arzt.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">09</p>
+        <h2>Gebühren, Zuschläge und Auslagen unterscheiden</h2>
+        <p>
+          Auf einer Privatrechnung können neben
+          Gebühren für ärztliche Leistungen weitere
+          Positionen erscheinen. Dazu gehören
+          gegebenenfalls zulässige Zuschläge und
+          gesondert berechnungsfähige Auslagen.
+        </p>
+        <p>
+          Ob solche Positionen angesetzt werden dürfen,
+          hängt von den jeweiligen GOÄ-Bestimmungen ab.
+          Nicht jedes verwendete Material und nicht
+          jeder organisatorische Aufwand ist zusätzlich
+          berechnungsfähig.
+        </p>
+        <p>
+          <strong>&nbsp;Typischer Fehler:</strong> Eine
+          Praxis übernimmt automatisch sämtliche
+          Materialkosten aus der internen Verbrauchsliste
+          in die Patientenrechnung.
+        </p>
+        <p>
+          <strong>&nbsp;Richtiges Vorgehen:</strong>
+          Die MFA gleicht mögliche Auslagen mit den
+          geltenden Vorschriften ab und klärt
+          Zweifelsfälle vor der Rechnungsstellung.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">10</p>
+        <h2>Abrechnungsausschlüsse und Leistungsumfang</h2>
+        <p>
+          Nicht jede dokumentierte Einzeltätigkeit
+          darf als eigenständige Gebührenposition
+          berechnet werden. Manche Tätigkeiten sind
+          bereits Bestandteil einer anderen Leistung.
+        </p>
+        <p>
+          Außerdem können Bestimmungen festlegen,
+          welche Leistungen nebeneinander oder innerhalb
+          bestimmter Zeiträume nicht gemeinsam
+          berechnungsfähig sind.
+        </p>
+        <p>
+          Deshalb muss die MFA bei der Vorbereitung
+          der Rechnung auf mögliche Doppelansätze
+          achten. Das Praxisverwaltungssystem kann
+          dabei unterstützen, ersetzt aber nicht
+          die Prüfung der maßgeblichen Regeln.
+        </p>
+        <p>
+          <strong>&nbsp;Prüffrage:</strong> Wurde eine
+          Leistung tatsächlich eigenständig erbracht
+          und ist sie nach den geltenden Bestimmungen
+          zusätzlich berechnungsfähig?
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">11</p>
+        <h2>Die ordnungsgemäße Privatrechnung</h2>
+        <p>
+          § 12 GOÄ regelt die Anforderungen an eine
+          ärztliche Rechnung. Sie muss insbesondere
+          die für die Prüfung erforderlichen Angaben
+          zu den berechneten Leistungen enthalten.
+        </p>
+        <p>
+          Dazu gehören unter anderem das Leistungsdatum,
+          die Gebührennummer, die Leistungsbezeichnung,
+          der jeweilige Betrag und der Steigerungssatz.
+          Weitere Angaben können je nach Rechnungsposten
+          erforderlich sein.
+        </p>
+        <p>
+          <strong>&nbsp;Digitaler Praxisalltag:</strong>
+          Die MFA bereitet die Rechnung im
+          Praxisverwaltungssystem vor. Sie prüft
+          die Übernahme der dokumentierten Leistungen,
+          die Stammdaten und die Vollständigkeit
+          der abrechnungsrelevanten Angaben.
+        </p>
+        <p>
+          Die Rechnung wird nicht allein deshalb
+          korrekt, weil das Programm sie ohne
+          Fehlermeldung ausgibt.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">12</p>
+        <h2>Praxisfall: Eine Privatrechnung sicher prüfen</h2>
+        <p>
+          Frau Berger ist privatversichert. Nach
+          einer ärztlichen Beratung und Untersuchung
+          erstellt die Praxis eine Rechnung.
+          Im Praxisverwaltungssystem erscheinen
+          zwei Gebührenpositionen.
+        </p>
+        <p>
+          Bei einer Position wurde ein Faktor oberhalb
+          des für die betreffende Leistungsgruppe
+          geltenden Schwellenwerts verwendet.
+          Eine einzelfallbezogene Begründung ist
+          in der Rechnung bislang nicht erkennbar.
+          Außerdem steht in der Dokumentation
+          eine zusätzliche Tätigkeit, deren
+          gesonderte Berechnungsfähigkeit unklar ist.
+        </p>
+        <p>
+          <strong>&nbsp;Deine Aufgabe:</strong>
+          Beschreibe, welche Punkte du als MFA vor
+          der Rechnungsfreigabe prüfst und wie du
+          mit den beiden Auffälligkeiten umgehst.
+        </p>
+
+        <details>
+          <summary>Begründete Musterlösung anzeigen</summary>
+          <p>
+            Zuerst gleiche ich die erfassten Positionen
+            mit der dokumentierten Behandlung ab.
+            Ich kontrolliere, ob die Leistungsbeschreibungen
+            passen und ob mögliche Ausschlüsse
+            berücksichtigt wurden.
+          </p>
+          <p>
+            Danach prüfe ich die formalen Rechnungsangaben
+            nach § 12 GOÄ. Für den erhöhten Faktor
+            kontrolliere ich, ob die erforderliche
+            individuelle Begründung vorliegt.
+          </p>
+          <p>
+            Fehlt sie, darf ich keine medizinische
+            Begründung erfinden. Ich gebe den Vorgang
+            zur fachlichen Klärung zurück.
+          </p>
+          <p>
+            Die zusätzlich dokumentierte Tätigkeit
+            erfasse ich nicht ungeprüft als eigene
+            Gebührenposition. Zunächst muss geklärt
+            werden, ob sie bereits in einer anderen
+            Leistung enthalten ist oder gesondert
+            berechnet werden darf.
+          </p>
+          <p>
+            <strong>&nbsp;Begründung:</strong> Die
+            Abrechnung muss sowohl die tatsächliche
+            Leistung als auch die GOÄ-Bestimmungen
+            korrekt abbilden. Sorgfältige Prüfung
+            verhindert unberechtigte Forderungen,
+            Rückfragen und Rechnungskorrekturen.
+          </p>
+        </details>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">13</p>
+        <h2>Das musst du mitnehmen</h2>
+        <ul>
+          <li>Die GOÄ regelt privatärztliche Gebühren in ihrem Anwendungsbereich.</li>
+          <li>Gebührennummer und dokumentierte Leistung müssen zusammenpassen.</li>
+          <li>Der Steigerungsfaktor ist an gesetzliche Regeln gebunden.</li>
+          <li>Bei Überschreitung des jeweiligen Schwellenwerts ist grundsätzlich eine individuelle Begründung erforderlich.</li>
+          <li>Nicht jede Tätigkeit oder Auslage ist zusätzlich berechnungsfähig.</li>
+          <li>§ 12 GOÄ enthält wichtige Anforderungen an die Rechnung.</li>
+          <li>Das Praxisverwaltungssystem unterstützt, ersetzt aber keine fachliche Prüfung.</li>
+          <li>Die MFA erkennt Unklarheiten und gibt sie zur Klärung weiter.</li>
+        </ul>
+        <p>
+          <strong>&nbsp;Prüfungswissen:</strong>
+          Bei einer GOÄ-Aufgabe reicht es nicht,
+          Gebührennummern zu nennen. Erkläre
+          immer auch, warum die Leistung,
+          der Faktor und die Rechnungsangaben
+          überprüft werden müssen.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">14</p>
+        <h2>Selbstcheck: Teste dein Wissen</h2>
+        <p>
+          Beantworte die Fragen zunächst selbst.
+          Öffne anschließend die jeweilige Lösung.
+        </p>
+
+        <details>
+          <summary>1. Wofür steht die Abkürzung GOÄ?</summary>
+          <p>
+            GOÄ bedeutet Gebührenordnung für Ärzte.
+            Sie regelt die Vergütung privatärztlicher
+            Leistungen, soweit sie anzuwenden ist.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. Darf der Steigerungsfaktor frei gewählt werden?</summary>
+          <p>
+            Nein. Die Gebührenbemessung richtet sich
+            nach den gesetzlichen Vorgaben, insbesondere
+            § 5 GOÄ. Schwierigkeit, Zeitaufwand
+            und Umstände können dabei eine Rolle spielen.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. Was ergibt ein fiktiver Einfachsatz von 10 Euro beim Faktor 2,3?</summary>
+          <p>
+            Rechnerisch 23,00 Euro. Das Beispiel
+            ist keine echte GOÄ-Position. In der
+            Praxis müssen zusätzlich Gebührenrahmen,
+            Leistungsinhalt und Abrechnungsregeln stimmen.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. Was tust du, wenn eine notwendige Begründung auf der Rechnung fehlt?</summary>
+          <p>
+            Ich gebe den Vorgang zur Klärung
+            an die verantwortliche ärztliche Person.
+            Ich erfinde keine Begründung und
+            gebe die Rechnung nicht ungeprüft frei.
+          </p>
+        </details>
+
+        <details>
+          <summary>5. Warum muss eine MFA trotz Abrechnungssoftware sorgfältig prüfen?</summary>
+          <p>
+            Software kann Leistungen und Gebühren
+            verarbeiten, erkennt aber nicht jede
+            fehlerhafte Dokumentation, unzulässige
+            Kombination oder fehlende Begründung.
+            Die Rechnung muss deshalb anhand der
+            tatsächlichen Behandlung und der
+            geltenden Regeln überprüft werden.
+          </p>
+        </details>
+      </section>
+
+      <footer class="next-lesson" style="margin-top:32px; padding-top:28px;">
+        <p class="section-number">ALS NÄCHSTES</p>
+        <h2>Lektion 22: Abrechnungsprozesse, Zahlungsverkehr und Mahnwesen</h2>
+        <p>
+          Erfahre, wie Rechnungen bearbeitet,
+          Zahlungseingänge kontrolliert und offene
+          Forderungen im Praxisalltag sicher
+          nachverfolgt werden.
+        </p>
+      </footer>
+    </article>
+
+
+
+
+    </main>
+  </body>
+</html>

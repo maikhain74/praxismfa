@@ -1,0 +1,660 @@
+---
+const title = "Arbeitsabläufe und Zuständigkeiten";
+const description = "Lerne, wie MFA Arbeitsabläufe koordinieren, Aufgaben sicher übernehmen und Informationen zuverlässig weitergeben.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | PraxisMFA</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+  
+<style>
+  /* PraxisMFA: Responsive Lektionsüberschriften */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+
+</head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/lernen">Lernen</a>
+        <a href="/praxis">Praxis</a>
+        <a href="/pruefung">Prüfung</a>
+        <a href="/lernkarten">Lernkarten</a>
+        <a class="premium" href="/premium">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zu Praxisorganisation, Recht &amp; Abrechnung
+      </a>
+
+      <section class="lesson-hero">
+        <p class="eyebrow">Fachwelt 09 · Lektion 02 · Free</p>
+        <h1>Arbeitsabläufe und Zuständigkeiten</h1>
+        <p class="intro">
+          Eine Arztpraxis funktioniert nur dann zuverlässig, wenn einzelne
+          Arbeitsschritte aufeinander abgestimmt sind. Du lernst, wie du
+          Aufgaben organisierst, Informationen sicher weitergibst und
+          erkennst, wann eine Rücksprache notwendig ist.
+        </p>
+      </section>
+
+      <section class="learning-goal">
+        <p class="eyebrow">Dein Lernziel</p>
+        <h2>Das kannst du nach dieser Lektion</h2>
+        <p>
+          Du beschreibst typische Arbeitsabläufe einer Arztpraxis,
+          unterscheidest Zuständigkeiten, organisierst sichere Übergaben
+          und reagierst bei Störungen strukturiert. Dabei beachtest du
+          deine fachlichen Grenzen und die Patientensicherheit.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">01</p>
+        <h2>Wie läuft ein Patientenbesuch organisatorisch ab?</h2>
+        <p>
+          Ein geplanter Praxisbesuch beginnt häufig an der Anmeldung.
+          Dort werden die erforderlichen organisatorischen Angaben geprüft,
+          der Termin zugeordnet und die Patientin oder der Patient über
+          den weiteren Ablauf informiert.
+        </p>
+        <p>
+          Anschließend werden je nach Anlass Unterlagen vorbereitet,
+          Untersuchungsräume organisiert und notwendige Informationen
+          an die zuständige Person weitergegeben. Nach der Behandlung
+          folgen beispielsweise Terminvereinbarungen, Dokumentations-
+          und Verwaltungsaufgaben.
+        </p>
+        <p>
+          Nicht jeder Praxisbesuch folgt derselben Reihenfolge.
+          Akute Beschwerden, besondere Untersuchungen und unerwartete
+          Ereignisse können Anpassungen erforderlich machen.
+        </p>
+        <div class="remember">
+          <strong>Merke:</strong> Ein Arbeitsablauf besteht aus verbundenen
+          Schritten. Entscheidend ist, dass jede zuständige Person
+          die notwendigen Informationen rechtzeitig erhält.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">02</p>
+        <h2>Wie werden Aufgaben im Team konkret verteilt?</h2>
+        <p>
+          Die Aufgabenverteilung richtet sich nach Qualifikation,
+          Zuständigkeit, ärztlichen Anordnungen und den vereinbarten
+          Praxisabläufen. Eine MFA kann beispielsweise Termine
+          koordinieren, Untersuchungsräume vorbereiten oder
+          organisatorische Abläufe im Labor unterstützen.
+        </p>
+        <p>
+          Dienst- und Einsatzpläne legen fest, wer welche Bereiche
+          übernimmt. Vertretungsregelungen sorgen dafür, dass wichtige
+          Aufgaben auch bei Abwesenheiten erledigt werden.
+        </p>
+        <p>
+          Eine klare Zuständigkeit bedeutet nicht, dass niemand
+          unterstützen darf. Unterstützung muss jedoch abgesprochen
+          sein, und erforderliche Qualifikationen sowie fachliche
+          Verantwortlichkeiten müssen berücksichtigt werden.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:</strong> Kläre zu Arbeitsbeginn,
+          wer für Anmeldung, Behandlungsräume, Labor und
+          organisatorische Rückfragen zuständig ist.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">03</p>
+        <h2>Wie funktionieren sichere Übergaben?</h2>
+        <p>
+          Eine Übergabe verbindet zwei Arbeitsschritte. Sie muss
+          verständlich, vollständig genug für die nächste Aufgabe
+          und an die tatsächlich zuständige Person gerichtet sein.
+        </p>
+        <p>
+          Beispiel: Eine Patientin soll nach ärztlicher Anordnung
+          eine Untersuchung erhalten. Die vorbereitende MFA gibt
+          der zuständigen Kollegin weiter, welche Untersuchung
+          vorgesehen ist, welche Vorbereitungen bereits erfolgt
+          sind und welche Fragen noch offen sind.
+        </p>
+        <p>
+          Wichtige Angaben werden entsprechend den Praxisregeln
+          im dafür vorgesehenen System dokumentiert.
+          Patientendaten dürfen nicht unbefugt weitergegeben
+          oder offen im Wartebereich besprochen werden.
+        </p>
+        <div class="remember">
+          <strong>Merke:</strong> Eine gute Übergabe beantwortet:
+          Was ist zu tun? Was wurde bereits erledigt?
+          Was ist noch offen? Wer übernimmt den nächsten Schritt?
+        </div>
+      </section>
+
+      <figure style="margin: 36px 0; text-align: center;">
+        <img
+          src="/images/arbeitsablaeufe-und-zustaendigkeiten.png"
+          alt="PraxisMFA Lernübersicht: Arbeitsabläufe und Zuständigkeiten in der Arztpraxis"
+          loading="lazy"
+          style="display: block; width: 100%; height: auto; border-radius: 16px;"
+        />
+      </figure>
+
+      <section class="content-section">
+        <p class="section-number">04</p>
+        <h2>Welche Aufgaben darf eine MFA übernehmen?</h2>
+        <p>
+          MFA übernehmen zahlreiche organisatorische und
+          medizinisch unterstützende Aufgaben. Welche Tätigkeiten
+          im Einzelfall zulässig sind, hängt unter anderem
+          von ihrer Qualifikation, den rechtlichen Vorgaben
+          und einer gegebenenfalls erforderlichen ärztlichen
+          Delegation ab.
+        </p>
+        <p>
+          Ärztliche Diagnose- und Therapieentscheidungen dürfen
+          nicht eigenständig durch eine MFA getroffen werden.
+          Bei Unklarheiten, fehlender Einweisung oder
+          ungewöhnlichen Beobachtungen ist eine Rücksprache
+          mit der zuständigen ärztlichen Person erforderlich.
+        </p>
+        <p>
+          Eine organisatorische Aufgabe wie das Vereinbaren
+          eines Untersuchungstermins ist von der medizinischen
+          Entscheidung zu unterscheiden, ob und wie dringend
+          eine Untersuchung notwendig ist.
+        </p>
+        <div class="tip-box">
+          <strong>Praxis-Tipp:</strong> Wenn du eine Aufgabe
+          fachlich nicht sicher beurteilen oder durchführen
+          kannst, kläre die Zuständigkeit, bevor du handelst.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">05</p>
+        <h2>Was passiert, wenn ein Arbeitsablauf gestört wird?</h2>
+        <p>
+          Typische Störungen sind verspätete Untersuchungen,
+          technische Ausfälle, fehlende Materialien oder
+          kurzfristige Personalengpässe. Solche Situationen
+          erfordern eine abgestimmte Reaktion.
+        </p>
+        <p>
+          Zunächst wird geklärt, ob die Patientensicherheit
+          betroffen ist. Medizinisch dringliche Anliegen
+          müssen unverzüglich an die zuständige fachliche
+          Person weitergeleitet werden.
+        </p>
+        <p>
+          Anschließend werden die betroffenen Aufgaben
+          erfasst, Zuständigkeiten abgestimmt und notwendige
+          Änderungen kommuniziert. Die MFA verändert
+          nicht eigenmächtig medizinisch relevante Abläufe.
+        </p>
+        <div class="remember">
+          <strong>Merke:</strong> Bei Störungen gilt:
+          Sicherheit prüfen, zuständige Person informieren,
+          Vorgehen abstimmen und Änderungen weitergeben.
+        </div>
+      </section>
+
+      <section class="content-section">
+        <p class="section-number">06</p>
+        <h2>Praxissituation: Drei Aufgaben gleichzeitig</h2>
+        <p>
+          Dienstagvormittag: Du arbeitest an der Anmeldung.
+          Eine Patientin möchte einen Folgetermin vereinbaren.
+          Gleichzeitig meldet das Labor, dass eine angeforderte
+          Probe noch nicht eingetroffen ist.
+        </p>
+        <p>
+          Währenddessen berichtet ein wartender Patient,
+          dass er plötzlich starke Brustschmerzen hat
+          und sich sehr unwohl fühlt.
+        </p>
+        <p>
+          Du erkennst die möglichen Warnzeichen eines
+          medizinischen Notfalls und veranlasst sofort
+          die Alarmierung nach dem Notfallplan der Praxis.
+          Die zuständige ärztliche Person wird unverzüglich
+          hinzugezogen. Du lässt den Patienten nicht
+          unbeaufsichtigt und unterstützt entsprechend
+          deiner Qualifikation und den Anweisungen.
+        </p>
+        <p>
+          Die Terminvereinbarung kann warten. Die Rückfrage
+          des Labors wird nach der akuten Situation an
+          die zuständige Person weitergegeben. Anschließend
+          wird sichergestellt, dass offene Aufgaben nicht
+          vergessen werden.
+        </p>
+        <div class="remember">
+          <strong>Merke:</strong> Nicht die Reihenfolge des
+          Eintreffens entscheidet über die Bearbeitung,
+          sondern insbesondere die Dringlichkeit
+          und die Patientensicherheit.
+        </div>
+      </section>
+
+      <section class="summary">
+        <p class="eyebrow">Das musst du mitnehmen</p>
+        <ul>
+          <li>Arbeitsabläufe bestehen aus aufeinander abgestimmten Schritten.</li>
+          <li>Aufgaben werden nach Qualifikation und Zuständigkeit verteilt.</li>
+          <li>Übergaben müssen verständlich und zuverlässig erfolgen.</li>
+          <li>Patientendaten werden nur berechtigt weitergegeben.</li>
+          <li>Ärztliche Entscheidungen bleiben ärztliche Aufgaben.</li>
+          <li>Bei Störungen stehen Patientensicherheit und klare Absprachen im Vordergrund.</li>
+          <li>Offene Aufgaben müssen nach Unterbrechungen wieder aufgenommen werden.</li>
+        </ul>
+      </section>
+
+      <section class="self-check">
+        <p class="eyebrow">Selbstcheck</p>
+        <h2>Prüfe dein Wissen</h2>
+
+        <details>
+          <summary>1. Welche Schritte gehören zu einem typischen Patientenbesuch?</summary>
+          <p>Anmeldung, organisatorische Vorbereitung, Untersuchung oder Behandlung sowie anschließende Dokumentations- und Verwaltungsaufgaben.</p>
+        </details>
+
+        <details>
+          <summary>2. Wovon hängt die Aufgabenverteilung im Praxisteam ab?</summary>
+          <p>Von Qualifikation, Zuständigkeit, ärztlichen Anordnungen und vereinbarten Arbeitsabläufen.</p>
+        </details>
+
+        <details>
+          <summary>3. Welche Informationen gehören in eine gute Übergabe?</summary>
+          <p>Was zu tun ist, was bereits erledigt wurde, welche Fragen offen sind und wer den nächsten Schritt übernimmt.</p>
+        </details>
+
+        <details>
+          <summary>4. Warum darf eine MFA nicht eigenständig über eine medizinische Untersuchung entscheiden?</summary>
+          <p>Weil medizinische Indikations-, Diagnose- und Therapieentscheidungen ärztliche Aufgaben sind. Die MFA unterstützt innerhalb ihrer Befugnisse und Qualifikation.</p>
+        </details>
+
+        <details>
+          <summary>5. Wie reagierst du im Praxisfall auf die plötzlich auftretenden starken Brustschmerzen?</summary>
+          <p>Ich veranlasse sofort die Alarmierung nach dem Notfallplan, ziehe unverzüglich ärztliche Hilfe hinzu, lasse den Patienten nicht unbeaufsichtigt und unterstütze im Rahmen meiner Qualifikation.</p>
+        </details>
+      </section>
+
+      <footer class="next-lesson">
+        <p class="eyebrow">Als Nächstes</p>
+        <h2>Zeitmanagement und Praxisabläufe optimieren</h2>
+        <p>
+          In Lektion 03 lernst du, Arbeitszeit sinnvoll
+          einzuteilen, Engpässe zu erkennen und
+          Praxisabläufe systematisch zu verbessern.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

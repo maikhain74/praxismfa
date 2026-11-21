@@ -1,0 +1,699 @@
+---
+const title = "Grundlagen der medizinischen Abrechnung | PraxisMFA";
+const description = "Lerne die Grundlagen der medizinischen Leistungsabrechnung, digitale Leistungserfassung, Abrechnungsvoraussetzungen und typische Fehler kennen.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+<style>
+  /* Lektion 13: Responsive Überschrift */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/lernen/">Lernen</a>
+        <a href="/praxis/">Praxis</a>
+        <a href="/pruefung/">Prüfung</a>
+        <a class="premium" href="/premium/">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zur Fachwelt 09
+      </a>
+
+      
+        
+        
+        <article>
+          <header class="lesson-hero">
+            <p class="eyebrow">Fachwelt 09 · Lektion 19</p>
+            <h1>Grundlagen der medizinischen Abrechnung</h1>
+            <p class="lead">
+              Eine medizinische Leistung ist erbracht – doch wie wird daraus
+              ein korrekt vorbereiteter Abrechnungsvorgang? Du lernst den
+              Weg von der Behandlung über die Leistungserfassung bis zur
+              Kontrolle und Abrechnungsvorbereitung kennen.
+            </p>
+          </header>
+
+          
+          <figure
+            class="lesson-image"
+            style="display:block; width:100%; max-width:680px; margin:24px auto; overflow:hidden;"
+          >
+            <img
+              src="/images/grundlagen-der-medizinischen-abrechnung.png"
+              alt="Grundlagen der medizinischen Abrechnung: Von der Behandlung bis zur Abrechnung"
+              loading="lazy"
+              style="display:block; width:100%; max-width:100%; height:auto; object-fit:contain;"
+            >
+          </figure>
+
+<section class="content-section">
+            <p class="section-number">01</p>
+            <h2>Praxissituation: Die Behandlung ist abgeschlossen</h2>
+            <p>In einer Gemeinschaftspraxis wurden am Vormittag zahlreiche Patienten behandelt. Neben ärztlichen Gesprächen fanden Blutentnahmen, EKG-Untersuchungen und weitere diagnostische Maßnahmen statt.</p>
+            <p>Am Nachmittag kontrolliert eine erfahrene MFA die im Praxisverwaltungssystem erfassten Leistungen. Dabei stellt sie fest, dass bei einem Patienten eine durchgeführte Untersuchung in der medizinischen Dokumentation erwähnt wird, aber kein entsprechender abrechnungsbezogener Eintrag vorhanden ist.</p>
+            <p>Eine Kollegin sagt: „Die Untersuchung steht doch in der Patientenakte. Dann ist sie bestimmt auch schon abgerechnet.“</p>
+            <p><strong>&nbsp;Deine Aufgabe:</strong> Du musst verstehen, warum medizinische Dokumentation und Abrechnungserfassung nicht automatisch dasselbe sind und wie eine fehlende Leistung sachgerecht geklärt wird.</p>
+            <p><strong>&nbsp;Merke:</strong> Eine erbrachte Leistung ist nicht automatisch vollständig, richtig oder überhaupt abrechnungsfähig erfasst.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">02</p>
+            <h2>Das lernst du in dieser Lektion</h2>
+            <ul>
+              <li>Du erklärst den Zweck der medizinischen Leistungsabrechnung.</li>
+              <li>Du beschreibst den Weg von der Behandlung zur Abrechnungsvorbereitung.</li>
+              <li>Du unterscheidest Behandlungsdokumentation und Leistungserfassung.</li>
+              <li>Du ordnest EBM und GOÄ grundsätzlich ein.</li>
+              <li>Du erkennst, warum nicht jede dokumentierte Tätigkeit gesondert abrechenbar ist.</li>
+              <li>Du verstehst die Bedeutung von Abrechnungszeiträumen.</li>
+              <li>Du kontrollierst abrechnungsrelevante Angaben im digitalen Praxisalltag.</li>
+              <li>Du erkennst typische Fehler und leitest geeignete Klärungsschritte ein.</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">03</p>
+            <h2>Was bedeutet medizinische Leistungsabrechnung?</h2>
+            <p>Die medizinische Leistungsabrechnung ist der geregelte Prozess, mit dem erbrachte und nach den jeweiligen Vorschriften abrechenbare Leistungen erfasst, geprüft und gegenüber dem zuständigen Abrechnungspartner geltend gemacht werden.</p>
+            <p>Sie verbindet medizinische Versorgung, Dokumentation und wirtschaftliche Praxisorganisation.</p>
+            <h3>Warum ist eine korrekte Abrechnung wichtig?</h3>
+            <ul>
+              <li>Die Praxis kann berechtigte Vergütungsansprüche geltend machen.</li>
+              <li>Leistungen werden nachvollziehbar und regelgerecht zugeordnet.</li>
+              <li>Unzulässige oder doppelte Abrechnungen werden vermieden.</li>
+              <li>Fehler können vor der Abgabe einer Abrechnung erkannt werden.</li>
+              <li>Die wirtschaftliche Grundlage des Praxisbetriebs wird unterstützt.</li>
+            </ul>
+            <p><strong>&nbsp;Wichtig:</strong> Die Abrechnung richtet sich nach dem jeweils geltenden Regelwerk. Eine medizinisch sinnvolle Tätigkeit ist nicht zwangsläufig als eigenständige Position abrechenbar.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">04</p>
+            <h2>Der Weg von der Behandlung zur Abrechnung</h2>
+            <p>Der Ablauf lässt sich in mehrere zusammenhängende Schritte gliedern. Die konkrete Umsetzung hängt vom Versorgungskontext und vom verwendeten Praxisverwaltungssystem ab.</p>
+            <ol>
+              <li><strong>&nbsp;Behandlung:</strong> Eine medizinische Leistung wird tatsächlich erbracht.</li>
+              <li><strong>&nbsp;Dokumentation:</strong> Die Behandlung und wesentliche Befunde werden fachgerecht festgehalten.</li>
+              <li><strong>&nbsp;Leistungserfassung:</strong> Abrechnungsrelevante Leistungen werden nach den Praxisabläufen zugeordnet.</li>
+              <li><strong>&nbsp;Prüfung:</strong> Angaben und Abrechnungsvoraussetzungen werden kontrolliert.</li>
+              <li><strong>&nbsp;Korrektur:</strong> Unstimmigkeiten werden mit den zuständigen Personen geklärt.</li>
+              <li><strong>&nbsp;Abrechnung:</strong> Die geprüften Daten werden über den vorgesehenen Abrechnungsweg verarbeitet oder übermittelt.</li>
+            </ol>
+            <p><strong>&nbsp;Merke:</strong> Eine sorgfältige Vorbereitung vermindert Fehler. Sie ersetzt aber nicht die fachliche und abrechnungsrechtliche Prüfung.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">05</p>
+            <h2>Medizinische Dokumentation und Leistungserfassung</h2>
+            <p>Die medizinische Dokumentation beschreibt, was bei einem Patienten festgestellt, untersucht, behandelt oder veranlasst wurde. Sie dient insbesondere der nachvollziehbaren Patientenversorgung und erfüllt rechtliche Anforderungen.</p>
+            <p>Die abrechnungsrelevante Leistungserfassung ordnet erbrachte Leistungen den jeweils anwendbaren Abrechnungsregeln zu.</p>
+            <h3>Beispiel: EKG-Untersuchung</h3>
+            <p>In der Patientenakte steht, dass ein EKG durchgeführt wurde. Diese Angabe dokumentiert zunächst die medizinische Maßnahme.</p>
+            <p>Ob und wie die Untersuchung abgerechnet werden darf, hängt unter anderem vom Abrechnungssystem, den konkreten Voraussetzungen und möglichen Ausschlüssen ab.</p>
+            <p>Ein Eintrag im medizinischen Verlauf bedeutet deshalb nicht automatisch, dass bereits eine korrekte Abrechnungsposition erfasst wurde.</p>
+            <p><strong>&nbsp;Wichtig:</strong> Medizinische Einträge dürfen nicht nachträglich verändert werden, nur um eine Abrechnung zu ermöglichen. Unstimmigkeiten müssen fachlich korrekt und nachvollziehbar geklärt werden.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">06</p>
+            <h2>EBM und GOÄ: Zwei unterschiedliche Abrechnungssysteme</h2>
+            <p>Für die ambulante medizinische Versorgung sind insbesondere zwei Regelwerke wichtig.</p>
+            <h3>Einheitlicher Bewertungsmaßstab (EBM)</h3>
+            <p>Der EBM bildet eine wesentliche Grundlage für die Abrechnung vertragsärztlicher Leistungen in der gesetzlichen Krankenversicherung. Er enthält Leistungen und die zugehörigen Abrechnungsbestimmungen.</p>
+            <h3>Gebührenordnung für Ärzte (GOÄ)</h3>
+            <p>Die GOÄ ist die Gebührenordnung für privatärztliche Leistungen, soweit sie im jeweiligen Fall anzuwenden ist. Sie enthält Gebührenpositionen und weitere Abrechnungsregelungen.</p>
+            <p>Welches Regelwerk anzuwenden ist, hängt vom konkreten Behandlungs- und Abrechnungskontext ab. Auch besondere Verträge und weitere Vorgaben können relevant sein.</p>
+            <p><strong>&nbsp;Abgrenzung:</strong> Die konkreten EBM-Regeln und GOÄ-Berechnungen werden in den nachfolgenden Lektionen vertieft. Hier geht es zunächst um das Grundverständnis.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">07</p>
+            <h2>Welche Leistungen sind abrechnungsfähig?</h2>
+            <p>Nicht jede Tätigkeit in der Arztpraxis kann als eigenständige medizinische Leistung abgerechnet werden. Entscheidend sind die Voraussetzungen des anwendbaren Abrechnungssystems.</p>
+            <h3>Wichtige Prüffragen</h3>
+            <ul>
+              <li>Wurde die betreffende Leistung tatsächlich erbracht?</li>
+              <li>Ist die Leistung im konkreten Abrechnungskontext vorgesehen?</li>
+              <li>Sind die erforderlichen Voraussetzungen erfüllt?</li>
+              <li>Ist die notwendige Dokumentation vorhanden?</li>
+              <li>Bestehen zeitliche oder mengenmäßige Begrenzungen?</li>
+              <li>Gibt es Ausschlüsse oder Überschneidungen mit anderen Leistungen?</li>
+              <li>Ist eine besondere Genehmigung oder Qualifikation erforderlich?</li>
+            </ul>
+            <p>Welche dieser Fragen im Einzelfall relevant sind, ergibt sich aus den geltenden Bestimmungen.</p>
+            <p><strong>&nbsp;Merke:</strong> Die tatsächliche Durchführung einer Maßnahme ist notwendig, aber allein noch kein ausreichender Nachweis ihrer gesonderten Abrechenbarkeit.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">08</p>
+            <h2>Abrechnungszeiträume und organisatorische Abläufe</h2>
+            <p>Medizinische Leistungen werden nicht in jedem Abrechnungssystem auf dieselbe Weise oder im selben zeitlichen Rhythmus abgerechnet.</p>
+            <h3>Vertragsärztliche Abrechnung</h3>
+            <p>Die reguläre vertragsärztliche Abrechnung gegenüber der zuständigen Kassenärztlichen Vereinigung erfolgt grundsätzlich quartalsweise. Dabei müssen die jeweils geltenden Fristen und Vorgaben berücksichtigt werden.</p>
+            <h3>Privatärztliche Abrechnung</h3>
+            <p>Privatärztliche Leistungen werden nach den dafür geltenden Regeln in Rechnung gestellt. Der organisatorische Ablauf unterscheidet sich von der regulären vertragsärztlichen Quartalsabrechnung.</p>
+            <h3>Was bedeutet das für MFA?</h3>
+            <ul>
+              <li>Leistungen zeitnah und richtig erfassen.</li>
+              <li>Fehlende Angaben frühzeitig erkennen.</li>
+              <li>Interne Bearbeitungsfristen beachten.</li>
+              <li>Ungeklärte Vorgänge an zuständige Personen weitergeben.</li>
+              <li>Abrechnungsdaten nicht unkontrolliert verändern.</li>
+            </ul>
+            <p><strong>&nbsp;Wichtig:</strong> Konkrete Einreichungsfristen können von der zuständigen Stelle und dem jeweiligen Verfahren abhängen.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">09</p>
+            <h2>Leistungserfassung im digitalen Praxisverwaltungssystem</h2>
+            <p>Im heutigen Praxisalltag erfolgt die Vorbereitung der Leistungsabrechnung überwiegend digital. Praxisverwaltungssysteme unterstützen die Erfassung, Zuordnung und Kontrolle.</p>
+            <h3>Typische abrechnungsrelevante Angaben</h3>
+            <ul>
+              <li>Eindeutige Zuordnung zum richtigen Patienten</li>
+              <li>Datum beziehungsweise Zeitraum der Leistung</li>
+              <li>Art der erbrachten Leistung</li>
+              <li>Erforderliche medizinische Angaben und gegebenenfalls Diagnosen</li>
+              <li>Zuordnung zum passenden Abrechnungskontext</li>
+              <li>Gegebenenfalls weitere notwendige Kennzeichnungen oder Nachweise</li>
+            </ul>
+            <p>Welche Daten konkret erforderlich sind, hängt vom jeweiligen Regelwerk und der Leistung ab.</p>
+            <p><strong>&nbsp;Praxisregel:</strong> Automatische Vorschläge des PVS dürfen nicht ungeprüft übernommen werden. Software unterstützt die Arbeit, übernimmt aber nicht die Verantwortung für die Richtigkeit der Angaben.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">10</p>
+            <h2>Vollständigkeits- und Plausibilitätskontrolle</h2>
+            <p>Vor der Abrechnung sollten auffällige oder unvollständige Vorgänge erkannt und geklärt werden.</p>
+            <h3>Vollständigkeitskontrolle</h3>
+            <p>Hier wird geprüft, ob die für die Abrechnung erforderlichen Angaben vorhanden sind. Beispielsweise kann eine Leistung im medizinischen Verlauf dokumentiert sein, ohne dass ihre abrechnungsbezogene Erfassung abgeschlossen wurde.</p>
+            <h3>Plausibilitätskontrolle</h3>
+            <p>Hier geht es darum, ob Angaben nachvollziehbar zusammenpassen. Auffällig können beispielsweise widersprüchliche Leistungsdaten, unpassende Zuordnungen oder ungewöhnliche Kombinationen sein.</p>
+            <h3>Vorgehen bei Auffälligkeiten</h3>
+            <ol>
+              <li>Den betroffenen Vorgang eindeutig identifizieren.</li>
+              <li>Vorhandene Dokumentation und Erfassungsdaten vergleichen.</li>
+              <li>Die Ursache der Unstimmigkeit nicht vorschnell vermuten.</li>
+              <li>Die zuständige Fachperson einbeziehen.</li>
+              <li>Erforderliche Korrekturen nur entsprechend den Berechtigungen und Vorgaben vornehmen.</li>
+            </ol>
+            <p><strong>&nbsp;Merke:</strong> Eine Auffälligkeit ist zunächst ein Prüfhinweis und kein Beweis für eine fehlerhafte oder unzulässige Abrechnung.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">11</p>
+            <h2>Typische Abrechnungsfehler und ihre Folgen</h2>
+            <p>Fehler bei der Leistungserfassung können unterschiedliche Ursachen haben. Sie sollten systematisch erkannt und bearbeitet werden.</p>
+            <h3>Häufige Fehlerquellen</h3>
+            <ul>
+              <li><strong>&nbsp;Fehlende Erfassung:</strong> Eine erbrachte Leistung wurde nicht abrechnungsbezogen zugeordnet.</li>
+              <li><strong>&nbsp;Falscher Patient:</strong> Ein Eintrag wurde versehentlich einer anderen Patientenakte zugeordnet.</li>
+              <li><strong>&nbsp;Falsches Datum:</strong> Der Leistungszeitpunkt ist nicht korrekt erfasst.</li>
+              <li><strong>&nbsp;Doppelte Erfassung:</strong> Eine Leistung erscheint mehrfach, obwohl dies nicht gerechtfertigt ist.</li>
+              <li><strong>&nbsp;Fehlende Voraussetzungen:</strong> Notwendige Angaben oder Nachweise fehlen.</li>
+              <li><strong>&nbsp;Falscher Abrechnungskontext:</strong> Eine Leistung wurde einem ungeeigneten Verfahren zugeordnet.</li>
+            </ul>
+            <h3>Mögliche Folgen</h3>
+            <p>Fehler können zu Rückfragen, Abrechnungskorrekturen, verzögerter Vergütung, Rückforderungen oder weiteren rechtlichen und wirtschaftlichen Konsequenzen führen. Welche Folge eintritt, hängt vom konkreten Fall ab.</p>
+            <p><strong>&nbsp;Wichtig:</strong> Fehler dürfen nicht verdeckt werden. Sie müssen nachvollziehbar und entsprechend den Zuständigkeiten geklärt werden.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">12</p>
+            <h2>Praxisfall: Eine Leistung wurde nicht erfasst</h2>
+            <p><strong>&nbsp;Situation:</strong> Bei der Vorbereitung einer Abrechnung fällt dir auf, dass für einen Patienten eine EKG-Untersuchung im medizinischen Verlauf dokumentiert ist. In der abrechnungsbezogenen Übersicht erscheint jedoch kein passender Eintrag.</p>
+            <p>Ein Kollege sagt: „Dann trag die Leistung einfach nach. Das EKG wurde ja gemacht.“</p>
+            <p>Du weißt allerdings noch nicht, ob die Untersuchung bereits in einer anderen Position enthalten ist, welche Abrechnungsvoraussetzungen gelten und ob eine gesonderte Erfassung erforderlich ist.</p>
+            <h3>Deine Aufgaben</h3>
+            <ol>
+              <li>Welche Unstimmigkeit liegt vor?</li>
+              <li>Warum ist ein sofortiges Nachtragen ohne Prüfung problematisch?</li>
+              <li>Welche Informationen müssen geklärt werden?</li>
+              <li>Wie gehst du innerhalb deiner Zuständigkeit vor?</li>
+              <li>Wie lässt sich ein ähnlicher Fehler künftig vermeiden?</li>
+            </ol>
+            <details>
+              <summary>Begründete Musterlösung anzeigen</summary>
+              <p><strong>&nbsp;1. Unstimmigkeit:</strong> Die medizinische Dokumentation weist auf eine durchgeführte Untersuchung hin. In der abrechnungsbezogenen Erfassung fehlt jedoch ein entsprechender Eintrag. Ob tatsächlich eine abrechenbare Leistung fehlt, ist noch ungeklärt.</p>
+              <p><strong>&nbsp;2. Problem beim Nachtragen:</strong> Die Durchführung allein beweist nicht, dass eine eigenständige Abrechnung zulässig ist. Es könnten Abrechnungsausschlüsse, fehlende Voraussetzungen oder bereits enthaltene Leistungsbestandteile vorliegen.</p>
+              <p><strong>&nbsp;3. Erforderliche Informationen:</strong> Patienten- und Leistungszuordnung, Datum, vorhandene medizinische Dokumentation, anwendbares Abrechnungssystem, einschlägige Abrechnungsbedingungen und bisherige Erfassung.</p>
+              <p><strong>&nbsp;4. Fachgerechtes Vorgehen:</strong> Ich kennzeichne beziehungsweise melde die Auffälligkeit nach Praxisvorgabe, vergleiche die vorhandenen Angaben und informiere die zuständige Person. Eine Ergänzung erfolgt erst nach Klärung und im Rahmen meiner Berechtigungen. Notwendige Korrekturen müssen nachvollziehbar bleiben.</p>
+              <p><strong>&nbsp;5. Vorbeugung:</strong> Klare Verantwortlichkeiten, zeitnahe Leistungserfassung, abgestimmte Arbeitsabläufe und regelmäßige Vollständigkeitskontrollen können solche Fehler reduzieren.</p>
+              <p><strong>&nbsp;Prüfungsbezug:</strong> Du unterscheidest medizinische Dokumentation von Abrechnungserfassung, erkennst eine Auffälligkeit und begründest dein weiteres Vorgehen.</p>
+            </details>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">13</p>
+            <h2>Das musst du mitnehmen</h2>
+            <ul>
+              <li>Die medizinische Leistungsabrechnung folgt verbindlichen Regeln.</li>
+              <li>Behandlung, medizinische Dokumentation und Abrechnungserfassung sind unterschiedliche Schritte.</li>
+              <li>EBM und GOÄ sind wichtige, aber unterschiedliche Abrechnungssysteme.</li>
+              <li>Eine dokumentierte Leistung ist nicht automatisch gesondert abrechnungsfähig.</li>
+              <li>Die vertragsärztliche Abrechnung erfolgt grundsätzlich quartalsweise.</li>
+              <li>Digitale Praxisverwaltungssysteme unterstützen die Erfassung und Kontrolle.</li>
+              <li>Vollständigkeits- und Plausibilitätskontrollen helfen, Fehler frühzeitig zu erkennen.</li>
+              <li>Unklare Vorgänge müssen fachlich geprüft und entsprechend den Zuständigkeiten bearbeitet werden.</li>
+            </ul>
+            <p><strong>&nbsp;Prüfungskompetenz:</strong> Du kannst den grundsätzlichen Abrechnungsprozess erklären, typische Fehler erkennen und geeignete Klärungsschritte begründen.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">14</p>
+            <h2>Selbstcheck: Grundlagen der medizinischen Abrechnung</h2>
+            <p>Beantworte jede Frage zunächst selbst und öffne anschließend die Lösung.</p>
+
+            <details>
+              <summary>1. Warum ist eine dokumentierte Untersuchung nicht automatisch abrechnungsfähig?</summary>
+              <p>Weil die medizinische Dokumentation zunächst die durchgeführte Maßnahme beschreibt. Für eine Abrechnung müssen zusätzlich die jeweiligen Abrechnungsvoraussetzungen erfüllt sein. Außerdem kann eine Leistung bereits in einer anderen Position enthalten sein.</p>
+            </details>
+
+            <details>
+              <summary>2. Worin unterscheiden sich EBM und GOÄ grundsätzlich?</summary>
+              <p>Der EBM ist eine wesentliche Grundlage der vertragsärztlichen Abrechnung in der gesetzlichen Krankenversicherung. Die GOÄ regelt die Gebühren für privatärztliche Leistungen, soweit sie im konkreten Fall anzuwenden ist.</p>
+            </details>
+
+            <details>
+              <summary>3. Welche Angaben können für die digitale Leistungserfassung wichtig sein?</summary>
+              <p>Beispielsweise die richtige Patientenzuordnung, das Leistungsdatum, die erbrachte Leistung, erforderliche medizinische Angaben und der passende Abrechnungskontext. Die konkreten Anforderungen hängen vom Regelwerk ab.</p>
+            </details>
+
+            <details>
+              <summary>4. Was ist der Unterschied zwischen Vollständigkeits- und Plausibilitätskontrolle?</summary>
+              <p>Bei der Vollständigkeitskontrolle wird geprüft, ob notwendige Angaben vorhanden sind. Bei der Plausibilitätskontrolle wird beurteilt, ob die Angaben nachvollziehbar zusammenpassen und auffällige Widersprüche bestehen.</p>
+            </details>
+
+            <details>
+              <summary>5. Was tust du, wenn eine erbrachte Leistung in der Abrechnungsübersicht fehlt?</summary>
+              <p>Ich prüfe die vorhandenen Informationen, melde die Auffälligkeit der zuständigen Person und kläre die Abrechnungsvoraussetzungen. Ich trage eine Position nicht ungeprüft nach. Erforderliche Ergänzungen erfolgen nur nach den geltenden Vorgaben und im Rahmen meiner Berechtigungen.</p>
+            </details>
+          </section>
+
+          <footer class="next-lesson">
+            <p>Als Nächstes</p>
+            <h2>Lektion 20: Gesetzliche Krankenversicherung und EBM</h2>
+            <a href="/lernen/praxisorganisation-recht-abrechnung/">
+              Zurück zur Fachwelt 09
+            </a>
+          </footer>
+        </article>
+
+
+
+    </main>
+  </body>
+</html>

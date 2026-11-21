@@ -1,0 +1,705 @@
+---
+const title = "Wirtschaftliche Entscheidungen in der Arztpraxis | PraxisMFA";
+const description = "Premium-Lektion: Wirtschaftliche Entscheidungen, Gesamtkosten, Angebotsvergleiche und anspruchsvolle Praxisfälle mit Musterrechnungen.";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+<style>
+  /* Lektion 13: Responsive Überschrift */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">PraxisMFA</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="/">Start</a>
+        <a href="/lernen/">Lernen</a>
+        <a href="/praxis/">Praxis</a>
+        <a href="/pruefung/">Prüfung</a>
+        <a class="premium" href="/premium/">Premium</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+        ← Zurück zur Fachwelt 09
+      </a>
+
+      
+        
+        
+        <article>
+          <header class="lesson-hero">
+            <p class="eyebrow">Fachwelt 09 · Lektion 18 · Premium</p>
+            <h1>Wirtschaftliche Entscheidungen in der Arztpraxis</h1>
+            <p class="lead">
+              Wirtschaftlich handeln bedeutet nicht, immer das billigste Angebot
+              auszuwählen. Du lernst, Kosten zu berechnen, Risiken abzuwägen und
+              Entscheidungen für die Praxisleitung nachvollziehbar vorzubereiten.
+            </p>
+          </header>
+
+          <figure class="lesson-image" style="margin: 32px 0 48px;">
+            <img
+              src="/images/wirtschaftliche-entscheidungen-in-der-arztpraxis.png"
+              alt="PraxisMFA Lektion 18: Wirtschaftliche Entscheidungen anhand von Kosten, Qualität, Lieferfähigkeit, Patientensicherheit und Nachhaltigkeit beurteilen."
+              loading="lazy"
+              style="width: 100%; height: auto; display: block; border-radius: 18px;"
+            />
+          </figure>
+
+
+          <section class="content-section">
+            <p class="section-number">01</p>
+            <h2>Praxissituation: Die Praxis muss wirtschaftlicher arbeiten</h2>
+            <p>In einer Gemeinschaftspraxis sind die Materialausgaben gestiegen. Gleichzeitig häufen sich kurzfristige Nachbestellungen. Die Praxisleitung möchte Kosten reduzieren, ohne die Versorgungsqualität zu gefährden.</p>
+            <p>Du sollst verschiedene Beschaffungsmöglichkeiten auswerten. Ein Lieferant bietet besonders niedrige Stückpreise, verlangt aber eine hohe Mindestbestellmenge. Ein anderer ist teurer, liefert dafür zuverlässig in kleinen Mengen.</p>
+            <p><strong>&nbsp;Deine Aufgabe:</strong> Bereite eine Empfehlung vor, die Kosten, Qualität, Lagerkapazität, Lieferfähigkeit und Patientensicherheit berücksichtigt.</p>
+            <p><strong>&nbsp;Merke:</strong> Eine wirtschaftlich gute Entscheidung betrachtet mehr als den Einkaufspreis.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">02</p>
+            <h2>Das lernst du in dieser Lektion</h2>
+            <ul>
+              <li>Du unterscheidest Wirtschaftlichkeit und bloße Kostensenkung.</li>
+              <li>Du erkennst fixe und variable Kosten.</li>
+              <li>Du berechnest Gesamtkosten und effektive Bezugspreise.</li>
+              <li>Du berücksichtigst Rabatt, Skonto und Zahlungsbedingungen.</li>
+              <li>Du beurteilst Lagerkosten, Kapitalbindung und Lieferfähigkeit.</li>
+              <li>Du wertest digitale Beschaffungsdaten aus.</li>
+              <li>Du entwickelst und begründest wirtschaftliche Handlungsempfehlungen.</li>
+              <li>Du erkennst Grenzen deiner eigenen Entscheidungsbefugnis.</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">03</p>
+            <h2>Wirtschaftlichkeit im Praxisalltag</h2>
+            <p>Eine Arztpraxis muss ihre Ressourcen sinnvoll einsetzen. Dazu gehören Material, Arbeitszeit, Räume, Geräte und finanzielle Mittel. Wirtschaftlichkeit bedeutet, einen angemessenen Nutzen mit vertretbarem Ressourceneinsatz zu erreichen.</p>
+            <h3>Was gehört zu einer wirtschaftlichen Entscheidung?</h3>
+            <ul>
+              <li><strong>&nbsp;Bedarf:</strong> Wird das Produkt tatsächlich in dieser Menge benötigt?</li>
+              <li><strong>&nbsp;Kosten:</strong> Welche einmaligen und laufenden Ausgaben entstehen?</li>
+              <li><strong>&nbsp;Qualität:</strong> Erfüllt das Produkt die erforderlichen Eigenschaften?</li>
+              <li><strong>&nbsp;Verfügbarkeit:</strong> Ist eine rechtzeitige Lieferung gesichert?</li>
+              <li><strong>&nbsp;Sicherheit:</strong> Sind medizinische und hygienische Anforderungen erfüllt?</li>
+              <li><strong>&nbsp;Nachhaltigkeit:</strong> Lassen sich Abfälle und unnötige Transporte vermeiden?</li>
+            </ul>
+            <p><strong>&nbsp;Wichtig:</strong> Medizinische Sicherheit und verbindliche Qualitätsanforderungen dürfen nicht zugunsten eines niedrigeren Preises unterschritten werden.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">04</p>
+            <h2>Fixe und variable Kosten unterscheiden</h2>
+            <p>Für wirtschaftliche Überlegungen ist wichtig, wie sich Kosten bei veränderter Auslastung verhalten.</p>
+            <h3>Fixe Kosten</h3>
+            <p>Fixe Kosten bleiben innerhalb eines betrachteten Zeitraums und Beschäftigungsbereichs weitgehend unverändert. Beispiele sind eine feste monatliche Raummiete oder eine gleichbleibende Software-Grundgebühr.</p>
+            <h3>Variable Kosten</h3>
+            <p>Variable Kosten verändern sich mit der Leistungsmenge oder dem Verbrauch. Dazu können Untersuchungshandschuhe, Einmalmaterialien und bestimmte Laborverbrauchsmaterialien gehören.</p>
+            <h3>Beispielrechnung</h3>
+            <p>Eine Praxis hat monatlich 600 € fixe Kosten für einen betrachteten Arbeitsbereich. Hinzu kommen 2 € variable Materialkosten je Untersuchung.</p>
+            <p>Bei 200 Untersuchungen betragen die Gesamtkosten 600 € + (200 × 2 €) = <strong>&nbsp;1.000 €</strong>.</p>
+            <p>Bei 300 Untersuchungen betragen sie 600 € + (300 × 2 €) = <strong>&nbsp;1.200 €</strong>.</p>
+            <p><strong>&nbsp;Prüfungswissen:</strong> Gesamtkosten = fixe Kosten + variable Kosten. Die Einordnung gilt immer für den betrachteten Zeitraum und Zusammenhang.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">05</p>
+            <h2>Anschaffungspreis und Gesamtkosten</h2>
+            <p>Ein niedriger Kaufpreis kann durch hohe Folgekosten relativiert werden. Deshalb sollten bei einer Beschaffungsentscheidung alle relevanten Kosten betrachtet werden.</p>
+            <h3>Beispiel: Zwei Etikettendrucker</h3>
+            <p><strong>&nbsp;Gerät A:</strong> Anschaffung 180 €, Verbrauchsmaterial 120 € pro Jahr.</p>
+            <p><strong>&nbsp;Gerät B:</strong> Anschaffung 260 €, Verbrauchsmaterial 70 € pro Jahr.</p>
+            <p>Bei einer angenommenen Nutzungsdauer von drei Jahren und ohne weitere Kosten ergibt sich:</p>
+            <ul>
+              <li>Gerät A: 180 € + (3 × 120 €) = 540 €.</li>
+              <li>Gerät B: 260 € + (3 × 70 €) = 470 €.</li>
+            </ul>
+            <p><strong>&nbsp;Ergebnis:</strong> Gerät B ist über drei Jahre unter diesen Annahmen um 70 € günstiger, obwohl es zunächst mehr kostet.</p>
+            <p>In der Praxis müssen gegebenenfalls zusätzlich Wartung, Reparaturen, Energieverbrauch, Einweisung und Entsorgung berücksichtigt werden.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">06</p>
+            <h2>Angebote wirtschaftlich vergleichen</h2>
+            <p>Ein sinnvoller Angebotsvergleich berücksichtigt vergleichbare Produkte, gleiche Mengeneinheiten und die tatsächlichen Beschaffungskosten.</p>
+            <h3>Beispiel: Untersuchungshandschuhe</h3>
+            <p>Die Praxis benötigt 1.000 geeignete Handschuhe. Für die Übung gelten folgende Nettopreise:</p>
+            <ul>
+              <li><strong>&nbsp;Anbieter A:</strong> 10 Packungen mit je 100 Stück zu 5,40 €; Versand 12 €.</li>
+              <li><strong>&nbsp;Anbieter B:</strong> 10 Packungen mit je 100 Stück zu 5,90 €; versandkostenfrei.</li>
+            </ul>
+            <p>Anbieter A: (10 × 5,40 €) + 12 € = <strong>&nbsp;66 € netto</strong>.</p>
+            <p>Anbieter B: 10 × 5,90 € = <strong>&nbsp;59 € netto</strong>.</p>
+            <p>Obwohl Anbieter A den niedrigeren Packungspreis nennt, ist Anbieter B bei dieser Bestellmenge um 7 € günstiger.</p>
+            <p><strong>&nbsp;Entscheidungsgrenze:</strong> Vor der Empfehlung müssen Produktqualität, Eignung, Lieferzeit und weitere Vertragsbedingungen ebenfalls geprüft werden.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">07</p>
+            <h2>Rabatt, Skonto und Zahlungsbedingungen berechnen</h2>
+            <p>Ein Rabatt reduziert den vereinbarten Preis. Skonto ist ein möglicher Preisnachlass bei Zahlung innerhalb einer bestimmten Frist. Ob Skonto genutzt werden kann, hängt von den vereinbarten Bedingungen und der verfügbaren Liquidität ab.</p>
+            <h3>Rechenbeispiel</h3>
+            <p>Eine Bestellung hat einen Nettolistenpreis von 800 €. Der Lieferant gewährt 10 % Rabatt und anschließend 2 % Skonto auf den rabattierten Rechnungsbetrag bei fristgerechter Zahlung.</p>
+            <ol>
+              <li>Rabatt: 800 € × 10 % = 80 €.</li>
+              <li>Preis nach Rabatt: 800 € − 80 € = 720 €.</li>
+              <li>Skonto: 720 € × 2 % = 14,40 €.</li>
+              <li>Preis nach beiden Nachlässen: 720 € − 14,40 € = <strong>&nbsp;705,60 € netto</strong>.</li>
+            </ol>
+            <p>Die Rechnung dient der Übung mit Nettobeträgen. Bei tatsächlichen Rechnungen sind die konkreten Rechnungsangaben und die umsatzsteuerliche Behandlung zu beachten.</p>
+            <p><strong>&nbsp;Merke:</strong> Rabatt und Skonto werden hier nacheinander berechnet – nicht einfach als 12 % vom Listenpreis abgezogen.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">08</p>
+            <h2>Lagerkosten und Kapitalbindung</h2>
+            <p>Große Bestellmengen können günstigere Stückpreise ermöglichen. Gleichzeitig benötigen sie Lagerfläche und binden Geld. Hinzu kommen Risiken durch Beschädigung, Verfall oder veränderten Bedarf.</p>
+            <h3>Beispiel: Zu große Bestellung</h3>
+            <p>Die Praxis verbraucht durchschnittlich 20 Packungen eines Materials pro Monat. Ein Lieferant bietet einen Preisnachlass, wenn sofort 300 Packungen bestellt werden.</p>
+            <p>300 Packungen reichen rechnerisch für 300 ÷ 20 = <strong>&nbsp;15 Monate</strong>.</p>
+            <p>Ob diese Menge sinnvoll ist, hängt unter anderem von Haltbarkeit, Lagerbedingungen, verfügbarem Platz und finanziellen Mitteln ab.</p>
+            <p><strong>&nbsp;Wirtschaftliche Überlegung:</strong> Der Preisvorteil muss gegen zusätzliche Lager- und Risikokosten abgewogen werden. Eine hohe Bestellmenge ist nicht automatisch wirtschaftlich.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">09</p>
+            <h2>Qualität, Sicherheit und Wirtschaftlichkeit abwägen</h2>
+            <p>Die günstigste Alternative kann ausscheiden, wenn sie medizinische Anforderungen nicht erfüllt. Wirtschaftliche Entscheidungen beginnen deshalb mit der Festlegung verbindlicher Mindestanforderungen.</p>
+            <h3>Ein geeignetes Entscheidungsverfahren</h3>
+            <ol>
+              <li>Bedarf und erforderliche Produkteigenschaften festlegen.</li>
+              <li>Ungeeignete oder nicht ausreichend sichere Angebote ausschließen.</li>
+              <li>Die verbleibenden Angebote auf vergleichbarer Grundlage berechnen.</li>
+              <li>Lieferzuverlässigkeit, Folgekosten und Nachhaltigkeit bewerten.</li>
+              <li>Eine Empfehlung mit Gründen und offenen Fragen formulieren.</li>
+            </ol>
+            <p><strong>&nbsp;Beispiel:</strong> Ein preiswertes Produkt ist nicht für die vorgesehene medizinische Anwendung geeignet. Es darf nicht allein wegen seines Preises empfohlen werden.</p>
+            <p><strong>&nbsp;Verantwortung:</strong> MFA können Daten aufbereiten und Empfehlungen aussprechen. Die verbindliche Beschaffungsentscheidung trifft die dafür zuständige Person.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">10</p>
+            <h2>Digitale Auswertungen als Entscheidungsgrundlage</h2>
+            <p>Digitale Bestands- und Bestellsysteme können helfen, wirtschaftliche Probleme frühzeitig zu erkennen. Die Qualität der Auswertung hängt jedoch von vollständigen und korrekten Daten ab.</p>
+            <h3>Nützliche Kennzahlen</h3>
+            <ul>
+              <li><strong>&nbsp;Monatsverbrauch:</strong> Wie viel Material wird tatsächlich benötigt?</li>
+              <li><strong>&nbsp;Bestellhäufigkeit:</strong> Wie oft entstehen Beschaffungsvorgänge?</li>
+              <li><strong>&nbsp;Bestandsreichweite:</strong> Wie lange reicht der vorhandene Bestand voraussichtlich?</li>
+              <li><strong>&nbsp;Verfall und Ausschuss:</strong> Welche Materialien müssen ungenutzt entsorgt werden?</li>
+              <li><strong>&nbsp;Lieferzuverlässigkeit:</strong> Wie häufig treffen Bestellungen rechtzeitig und vollständig ein?</li>
+            </ul>
+            <h3>Beispiel: Bestandsreichweite</h3>
+            <p>Im Lager liegen 120 Packungen. Der durchschnittliche Verbrauch beträgt 30 Packungen pro Monat.</p>
+            <p>Bestandsreichweite = 120 ÷ 30 = <strong>&nbsp;4 Monate</strong>.</p>
+            <p>Diese Kennzahl ist eine Planungshilfe. Verbrauchsschwankungen, Haltbarkeit und notwendige Sicherheitsbestände müssen zusätzlich berücksichtigt werden.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">11</p>
+            <h2>Premium-Praxisfall 1: Drei Angebote – welche Empfehlung ist wirtschaftlich?</h2>
+            <p><strong>&nbsp;Situation:</strong> Eine Gemeinschaftspraxis benötigt 2.000 Untersuchungshandschuhe. Alle drei Angebote erfüllen laut Aufgabenstellung die festgelegten Qualitätsanforderungen. Die Preise sind Nettobeträge; weitere Steuern und Kosten bleiben für diese Übung unberücksichtigt.</p>
+            <ul>
+              <li><strong>&nbsp;Anbieter A:</strong> 20 Packungen à 100 Stück für je 5,20 €; Versand 18 €; Lieferung in 3 Tagen.</li>
+              <li><strong>&nbsp;Anbieter B:</strong> 20 Packungen à 100 Stück für je 5,70 €; versandkostenfrei; 2 % Skonto auf den Warenwert bei fristgerechter Zahlung; Lieferung in 2 Tagen.</li>
+              <li><strong>&nbsp;Anbieter C:</strong> 20 Packungen à 100 Stück für je 4,90 €; Versand 9 €; Lieferung in 14 Tagen.</li>
+            </ul>
+            <p>Die Praxis verfügt noch über Handschuhe für etwa fünf Tage. Eine fristgerechte Skontozahlung wäre möglich.</p>
+            <h3>Deine Aufgaben</h3>
+            <ol>
+              <li>Berechne die Beschaffungskosten aller drei Angebote.</li>
+              <li>Berücksichtige bei Anbieter B das mögliche Skonto.</li>
+              <li>Welches Angebot ist rechnerisch am günstigsten?</li>
+              <li>Welches Angebot würdest du unter den gegebenen Umständen empfehlen?</li>
+              <li>Welche Angaben würdest du vor einer verbindlichen Bestellung zusätzlich klären?</li>
+            </ol>
+            <details>
+              <summary>Ausführliche Musterrechnung und Entscheidung anzeigen</summary>
+              <p><strong>&nbsp;Anbieter A:</strong> 20 × 5,20 € = 104 €. Zuzüglich 18 € Versand ergibt das 122 €.</p>
+              <p><strong>&nbsp;Anbieter B:</strong> 20 × 5,70 € = 114 €. Das mögliche Skonto beträgt 114 € × 2 % = 2,28 €. Bei fristgerechter Zahlung ergibt sich ein Betrag von 111,72 €.</p>
+              <p><strong>&nbsp;Anbieter C:</strong> 20 × 4,90 € = 98 €. Zuzüglich 9 € Versand ergibt das 107 €.</p>
+              <p><strong>&nbsp;Rechnerisches Ergebnis:</strong> Anbieter C ist mit 107 € am günstigsten. Anbieter B kostet bei nutzbarem Skonto 111,72 €, Anbieter A 122 €.</p>
+              <p><strong>&nbsp;Bewertung:</strong> Anbieter C liefert erst in 14 Tagen. Der vorhandene Bestand reicht voraussichtlich nur fünf Tage. Ohne sichere Zwischenversorgung entsteht eine Versorgungslücke. Deshalb ist C trotz des niedrigsten Preises unter den gegebenen Umständen keine geeignete Empfehlung.</p>
+              <p><strong>&nbsp;Begründete Empfehlung:</strong> Anbieter B ist unter den Annahmen sinnvoll: Lieferung innerhalb von zwei Tagen, gesicherte Qualität und geringere Kosten als Anbieter A bei fristgerechter Skontozahlung. Der Mehrpreis gegenüber C beträgt lediglich 4,72 €.</p>
+              <p><strong>&nbsp;Vor Bestellung klären:</strong> Verbindlichkeit des Liefertermins, genaue Produktspezifikation, tatsächliche Skontobedingungen und Freigabe durch die zuständige Person.</p>
+              <p><strong>&nbsp;Prüfungsbezug:</strong> Du kombinierst Angebotsrechnung, Liquiditätsüberlegung und Versorgungssicherheit zu einer nachvollziehbaren Entscheidung.</p>
+            </details>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">12</p>
+            <h2>Premium-Praxisfall 2: Großeinkauf oder flexible Lieferung?</h2>
+            <p><strong>&nbsp;Situation:</strong> Eine Praxis verbraucht durchschnittlich 40 Packungen eines nicht kühlpflichtigen Verbrauchsmaterials pro Monat. Für die kommenden zwölf Monate wird ein Bedarf von 480 Packungen erwartet. Beide Liefermodelle erfüllen die Qualitätsanforderungen.</p>
+            <p><strong>&nbsp;Modell A – Jahresvorrat:</strong> 480 Packungen zu je 4,50 €. Einmalige Versandkosten 30 €. Die Praxis schätzt zusätzliche Lager- und Kapitalbindungskosten für das Jahr auf 180 €. Außerdem besteht ein nicht genau bezifferbares Verfallsrisiko.</p>
+            <p><strong>&nbsp;Modell B – monatliche Lieferung:</strong> Jeden Monat 40 Packungen zu je 4,90 €. Versandkosten 6 € pro Lieferung. Zusätzliche Lagerkosten werden in dieser vereinfachten Aufgabe nicht angesetzt.</p>
+            <h3>Deine Aufgaben</h3>
+            <ol>
+              <li>Berechne die jährlichen Kosten beider Modelle.</li>
+              <li>Ermittle die Kostendifferenz.</li>
+              <li>Welche Auswirkungen haben die Modelle auf die Liquidität?</li>
+              <li>Welche nicht vollständig berechenbaren Risiken bleiben?</li>
+              <li>Formuliere eine begründete Empfehlung.</li>
+            </ol>
+            <details>
+              <summary>Ausführliche Musterlösung mit wirtschaftlicher Bewertung anzeigen</summary>
+              <p><strong>&nbsp;Modell A:</strong> 480 × 4,50 € = 2.160 € Warenwert. Hinzu kommen 30 € Versand und 180 € geschätzte Lager- und Kapitalbindungskosten. Gesamtkosten: <strong>&nbsp;2.370 €</strong>.</p>
+              <p><strong>&nbsp;Modell B:</strong> 480 × 4,90 € = 2.352 € Warenwert. Zwölf Lieferungen × 6 € Versand = 72 €. Gesamtkosten: <strong>&nbsp;2.424 €</strong>.</p>
+              <p><strong>&nbsp;Differenz:</strong> Modell A ist in der vereinfachten Rechnung um 54 € günstiger.</p>
+              <p><strong>&nbsp;Liquidität:</strong> Bei Modell A muss der Warenwert zuzüglich Versand grundsätzlich früh finanziert werden, sofern keine abweichenden Zahlungsbedingungen gelten. Modell B verteilt die Zahlungen über das Jahr und kann dadurch die Liquidität schonen.</p>
+              <p><strong>&nbsp;Risiken:</strong> Modell A bindet mehr Lagerplatz und trägt ein höheres Risiko bei Verfall oder sinkendem Bedarf. Modell B ist stärker von regelmäßigen Lieferungen abhängig; Lieferstörungen könnten die Versorgung beeinträchtigen.</p>
+              <p><strong>&nbsp;Begründete Empfehlung:</strong> Eine eindeutige Entscheidung ist mit den Angaben nicht möglich. Der rechnerische Vorteil von Modell A beträgt nur 54 €. Die Praxisleitung sollte prüfen, ob Lagerkapazität, Haltbarkeit und Liquidität diesen Vorteil rechtfertigen. Bei knapper Liquidität oder unsicherem Bedarf kann Modell B trotz höherer Gesamtkosten sinnvoll sein.</p>
+              <p><strong>&nbsp;Weiterführende Überlegung:</strong> Eine dritte Lösung könnte ein Rahmenvertrag mit festgelegten Preisen und bedarfsgerechten Teillieferungen sein. Dessen Konditionen müssten zunächst eingeholt werden.</p>
+              <p><strong>&nbsp;Prüfungsbezug:</strong> Du erkennst, dass eine wirtschaftliche Entscheidung nicht immer eine einzige rechnerisch richtige Antwort hat.</p>
+            </details>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">13</p>
+            <h2>Das musst du mitnehmen</h2>
+            <ul>
+              <li>Wirtschaftlichkeit berücksichtigt Kosten, Nutzen und erforderliche Qualität.</li>
+              <li>Fixe und variable Kosten reagieren unterschiedlich auf die Leistungsmenge.</li>
+              <li>Der Anschaffungspreis allein bildet die tatsächlichen Gesamtkosten nicht ab.</li>
+              <li>Versandkosten, Rabatte, Skonto und Folgekosten können einen Angebotsvergleich verändern.</li>
+              <li>Große Bestellungen können Lagerkosten und Kapitalbindung erhöhen.</li>
+              <li>Patientensicherheit und verbindliche Qualitätsanforderungen haben Vorrang.</li>
+              <li>Digitale Kennzahlen unterstützen Entscheidungen, ersetzen aber keine fachliche Bewertung.</li>
+              <li>Eine gute Empfehlung nennt Zahlen, Annahmen, Risiken und Zuständigkeiten.</li>
+            </ul>
+            <p><strong>&nbsp;Prüfungskompetenz:</strong> Du kannst wirtschaftliche Alternativen berechnen, beurteilen und deine Empfehlung nachvollziehbar begründen.</p>
+          </section>
+
+          <section class="content-section">
+            <p class="section-number">14</p>
+            <h2>Selbstcheck: Wirtschaftlich entscheiden</h2>
+            <p>Beantworte jede Frage zunächst selbst. Öffne danach die jeweilige Lösung.</p>
+
+            <details>
+              <summary>1. Warum ist das Angebot mit dem niedrigsten Stückpreis nicht immer am günstigsten?</summary>
+              <p>Weil beispielsweise Versandkosten, Mindestbestellmengen, Folgekosten und Zahlungsbedingungen den tatsächlichen Gesamtpreis verändern können. Zusätzlich müssen Eignung und Lieferfähigkeit stimmen.</p>
+            </details>
+
+            <details>
+              <summary>2. Eine Praxis hat 500 € fixe Kosten und 3 € variable Kosten je Untersuchung. Wie hoch sind die Gesamtkosten bei 100 Untersuchungen?</summary>
+              <p>500 € + (100 × 3 €) = <strong>&nbsp;800 €</strong>.</p>
+            </details>
+
+            <details>
+              <summary>3. Wie hoch ist der Nettobetrag nach 10 % Rabatt auf 300 € und anschließend 2 % Skonto?</summary>
+              <p>300 € − 30 € Rabatt = 270 €. Davon 2 % Skonto = 5,40 €. Ergebnis: <strong>&nbsp;264,60 € netto</strong>. Vorausgesetzt, die vereinbarten Skontobedingungen werden erfüllt.</p>
+            </details>
+
+            <details>
+              <summary>4. Welche wirtschaftlichen Nachteile kann ein zu großer Lagerbestand haben?</summary>
+              <p>Er bindet finanzielle Mittel und Lagerfläche. Außerdem können zusätzliche Lagerkosten, Verfall, Beschädigung und unnötige Entsorgung entstehen.</p>
+            </details>
+
+            <details>
+              <summary>5. Was gehört zu einer begründeten Beschaffungsempfehlung an die Praxisleitung?</summary>
+              <p>Vergleichbare Berechnungen, Qualitäts- und Sicherheitsanforderungen, Lieferbedingungen, relevante Folgekosten, Risiken, erkennbare Annahmen und eine klare Empfehlung. Die Entscheidung trifft die zuständige Person.</p>
+            </details>
+          </section>
+
+          <footer class="next-lesson">
+            <p>Als Nächstes</p>
+            <h2>Lektion 19</h2>
+            <a href="/lernen/praxisorganisation-recht-abrechnung/">
+              Zurück zur Fachwelt 09
+            </a>
+          </footer>
+        </article>
+
+
+
+    </main>
+  </body>
+</html>

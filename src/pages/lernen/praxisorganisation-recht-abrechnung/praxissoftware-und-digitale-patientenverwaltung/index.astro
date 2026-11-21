@@ -1,0 +1,662 @@
+---
+const title = "Praxissoftware und digitale Patientenverwaltung | PraxisMFA";
+const description = "Praxisverwaltungssysteme sicher anwenden: Patienten zuordnen, Termine verwalten, Aufgaben bearbeiten und digitale Arbeitsabläufe verstehen.";  
+---
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family:
+      Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: #fffaf5;
+    color: #222;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: min(1440px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .brand {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 650;
+  }
+
+  nav a:hover {
+    color: #e67e22;
+  }
+
+  .premium {
+    padding: 11px 20px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  main {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 48px;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #e67e22;
+  }
+
+  .lesson-hero {
+    padding: 70px 0;
+  }
+
+  .eyebrow,
+  .section-number {
+    margin: 0 0 16px;
+    color: #e67e22;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 760px;
+    margin: 34px 0 0;
+    font-size: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .goal {
+    margin-top: 38px;
+    padding: 24px 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .goal-label,
+  .box-label,
+  .case-label {
+    margin: 0 0 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .goal p:last-child,
+  .remember p:last-child,
+  .connection p:last-child {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .content-section {
+    padding: 70px 0;
+    border-top: 1px solid #ded8d2;
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .content-section > p:not(.section-number),
+  .practice-section > p:not(.eyebrow) {
+    max-width: 760px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .remember,
+  .connection {
+    margin-top: 32px;
+    padding: 24px 26px;
+    border-radius: 18px;
+    background: #fff4e9;
+  }
+
+  .remember {
+    border: 1px solid #eadbcf;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .info-card {
+    padding: 26px;
+    border: 1px solid #ded8d2;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .info-card span {
+    color: #e67e22;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .info-card h3 {
+    margin: 22px 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .structure-list {
+    margin-top: 34px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .structure-list > div {
+    padding: 26px 0;
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  .structure-list span {
+    display: block;
+    margin-bottom: 8px;
+    color: #e67e22;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .structure-list p {
+    max-width: 760px;
+    margin: 0;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .lesson-graphic {
+    margin: 48px auto 0;
+    max-width: 760px;
+  }
+
+  .lesson-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ded8d2;
+    border-radius: 24px;
+  }
+
+  .lesson-graphic figcaption {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .practice-section,
+  .summary,
+  .self-check {
+    margin-top: 70px;
+    padding: 48px;
+    border-radius: 24px;
+  }
+
+  .practice-section {
+    background: #fff4e9;
+  }
+
+  .case {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid #d4ccc4;
+  }
+
+  .case p:not(.case-label) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .summary,
+  .self-check {
+    border: 1px solid #ded8d2;
+    background: #fff;
+  }
+
+  .summary ul {
+    margin: 30px 0 0;
+    padding-left: 24px;
+  }
+
+  .summary li {
+    margin: 14px 0;
+    line-height: 1.65;
+  }
+
+  details {
+    border-top: 1px solid #ded8d2;
+  }
+
+  details:last-child {
+    border-bottom: 1px solid #ded8d2;
+  }
+
+  summary {
+    padding: 22px 0;
+    cursor: pointer;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: -4px 0 24px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .next-lesson {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ded8d2;
+  }
+
+  .next-lesson h2 {
+    margin-bottom: 18px;
+  }
+
+  .next-lesson > p:last-child {
+    max-width: 700px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 850px) {
+    .site-header {
+      min-height: 80px;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .lesson-hero {
+      padding: 60px 0 55px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .practice-section,
+    .summary,
+    .self-check {
+      padding: 30px 22px;
+    }
+  }
+</style>
+<style>
+  .next-lesson h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    margin-top: 12px;
+    margin-bottom: 22px;
+  }
+
+  .next-lesson a {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #E67E22;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .next-lesson a:hover {
+    background: #c96a16;
+    color: #fff;
+  }
+</style>
+  
+<style>
+  /* PraxisMFA: Responsive Lektionsüberschriften */
+  .lesson-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.08;
+  }
+
+  @media (max-width: 650px) {
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+  }
+</style>
+
+</head>
+
+
+
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">PraxisMFA</a>
+    <nav>
+      <a href="/lernen/">Lernen</a>
+      <a href="/pruefung/">Prüfung</a>
+      <a href="/premium/" class="premium">Premium</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="back-link" href="/lernen/praxisorganisation-recht-abrechnung/">
+      ← Zurück zu Fachwelt 09
+    </a>
+
+    <header class="lesson-hero">
+      <p class="eyebrow">Fachwelt 09 · Praxisorganisation, Recht &amp; Abrechnung</p>
+      <p class="lesson-number">Lektion 12</p>
+      <h1>Praxissoftware und digitale Patientenverwaltung</h1>
+      <p>Wie du digitale Verwaltungsabläufe sicher, strukturiert und zuverlässig bearbeitest.</p>
+    </header>
+
+    <section class="learning-goal">
+      <h2>Das lernst du in dieser Lektion</h2>
+      <p>Du verstehst die wichtigsten Funktionen eines Praxisverwaltungssystems, kannst typische Arbeitsabläufe am Empfang einordnen, Patientendatensätze sicher auswählen und digitale Aufgaben nachvollziehbar bearbeiten.</p>
+    </section>
+
+
+    
+    <figure style="margin: 28px 0 36px;">
+      <img
+        src="/images/praxissoftware-und-digitale-patientenverwaltung.png"
+        alt="PraxisMFA Lektion 12: Praxissoftware und digitale Patientenverwaltung"
+        loading="lazy"
+        style="display: block; width: 100%; height: auto; border-radius: 16px;"
+      />
+    </figure>
+
+    <section class="content-section">
+      <p class="section-number">01</p>
+      <h2>Was ist ein Praxisverwaltungssystem?</h2>
+      
+        <p>Ein Praxisverwaltungssystem, kurz PVS, ist eine zentrale Software für organisatorische und administrative Abläufe in der Arztpraxis. Es unterstützt unter anderem die Patientenverwaltung, Terminplanung, Dokumentenorganisation und Abrechnung.</p>
+        <p><strong>&nbsp;Wichtig:</strong> Ein PVS ist nicht dasselbe wie die elektronische Patientenakte (ePA). Das PVS ist das interne Arbeitssystem der Praxis. Die ePA ist eine gesonderte digitale Anwendung im Gesundheitswesen.</p>
+        <p>Welche Funktionen verfügbar sind, hängt von der eingesetzten Software, ihrer Konfiguration und den Berechtigungen der Mitarbeitenden ab.</p>
+        <p><strong>&nbsp;Deine Aufgabe als MFA:</strong> Du nutzt die für deine Tätigkeit freigegebenen Funktionen und hältst die vorgesehenen Arbeitsabläufe ein.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">02</p>
+      <h2>Aufbau und Funktionen eines PVS</h2>
+      
+        <p>Viele Praxisverwaltungssysteme bieten vergleichbare Funktionsbereiche, auch wenn die Bedienoberflächen unterschiedlich aussehen.</p>
+        <ul>
+          <li><strong>&nbsp;Patientenverwaltung:</strong> Datensätze suchen und berechtigte Verwaltungsaufgaben bearbeiten.</li>
+          <li><strong>&nbsp;Terminplanung:</strong> Termine vergeben, verschieben und den Tagesablauf organisieren.</li>
+          <li><strong>&nbsp;Aufgabenverwaltung:</strong> Offene Vorgänge erfassen und Bearbeitungsstände nachvollziehen.</li>
+          <li><strong>&nbsp;Dokumentenverwaltung:</strong> Unterlagen einem Vorgang zuordnen und berechtigten Personen bereitstellen.</li>
+          <li><strong>&nbsp;Abrechnung:</strong> Abrechnungsbezogene Vorgänge nach den Regeln der Praxis vorbereiten.</li>
+          <li><strong>&nbsp;Kommunikation:</strong> Je nach System interne Nachrichten und freigegebene elektronische Übermittlungswege nutzen.</li>
+        </ul>
+        <p><strong>&nbsp;Merke:</strong> Nicht jede Funktion ist für jede MFA freigeschaltet. Die vorhandene Berechtigung bestimmt, welche Arbeitsschritte du durchführen darfst.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">03</p>
+      <h2>Sicher anmelden und Arbeitsbereich auswählen</h2>
+      
+        <p>Vor der Arbeit mit einem PVS meldest du dich mit deinem persönlichen Benutzerkonto an. Gemeinsam genutzte Zugangsdaten erschweren die Nachvollziehbarkeit und sind kein geeigneter Ersatz für individuelle Berechtigungen.</p>
+        <ol>
+          <li>Mit dem eigenen freigegebenen Benutzerkonto anmelden.</li>
+          <li>Den für deine Aufgabe vorgesehenen Arbeitsbereich auswählen.</li>
+          <li>Vor der Bearbeitung prüfen, ob der richtige Vorgang geöffnet ist.</li>
+          <li>Den Arbeitsplatz bei Unterbrechungen gegen unbefugten Zugriff sichern.</li>
+          <li>Die Sitzung nach den Praxisvorgaben beenden.</li>
+        </ol>
+        <p><strong>&nbsp;Praxisbeispiel:</strong> Du wirst vom Empfang kurzfristig in ein anderes Zimmer gerufen. Bevor du deinen Arbeitsplatz verlässt, sperrst du die Sitzung entsprechend dem Praxisverfahren.</p>
+        <p>Die ausführlichen Regeln zu Datenschutzvorfällen und technischen Sicherheitsmaßnahmen werden in den dafür vorgesehenen Lektionen behandelt.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">04</p>
+      <h2>Patienten im System eindeutig zuordnen</h2>
+      
+        <p>Ein besonders wichtiger Arbeitsschritt ist die sichere Auswahl des richtigen Patientendatensatzes. Eine Namensgleichheit reicht für eine eindeutige Zuordnung nicht aus.</p>
+        <p>Vergleiche die im jeweiligen Ablauf vorgesehenen Identifikationsmerkmale, beispielsweise vollständigen Namen und Geburtsdatum. Nutze dabei nur die erforderlichen und zulässigen Angaben.</p>
+        <p><strong>&nbsp;Praxisfall:</strong> In der Suchliste erscheinen zwei Personen mit dem Namen „Anna Müller“. Du darfst nicht allein anhand der Reihenfolge der Treffer entscheiden, welcher Datensatz geöffnet wird.</p>
+        <p><strong>&nbsp;Richtiges Vorgehen:</strong> Identität anhand der vorgesehenen Merkmale klären, den korrekten Datensatz auswählen und erst danach den Verwaltungsvorgang bearbeiten.</p>
+        <p>Die eigentliche Erfassung und Korrektur von Patientenstammdaten ist bereits Gegenstand der Lektion „Patientendaten richtig aufnehmen“.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">05</p>
+      <h2>Digitale Terminverwaltung</h2>
+      
+        <p>Die Terminverwaltung gehört zu den häufigsten Aufgaben am Empfang. Das PVS hilft dabei, verfügbare Zeitfenster, Behandlungsarten und organisatorische Vorgaben zu berücksichtigen.</p>
+        <ol>
+          <li>Das Anliegen aufnehmen und die erforderliche Terminart feststellen.</li>
+          <li>Die medizinische Dringlichkeit bei Bedarf durch die zuständige Fachperson einschätzen lassen.</li>
+          <li>Die passende Terminart und das vorgesehene Zeitfenster auswählen.</li>
+          <li>Den Termin dem richtigen Patientendatensatz zuordnen.</li>
+          <li>Datum, Uhrzeit, Ort und gegebenenfalls notwendige Vorbereitung mitteilen.</li>
+          <li>Den Termin entsprechend den Praxisvorgaben speichern.</li>
+        </ol>
+        <p><strong>&nbsp;Achtung:</strong> Eine medizinisch möglicherweise dringliche Beschwerde darf nicht ungeprüft wie ein gewöhnlicher Routine-Terminwunsch behandelt werden.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">06</p>
+      <h2>Aufgabenlisten und Bearbeitungsstatus</h2>
+      
+        <p>Digitale Aufgabenlisten unterstützen die Zusammenarbeit im Praxisteam. Sie zeigen, welche Vorgänge noch offen sind und wer für die weitere Bearbeitung zuständig ist.</p>
+        <p>Typische Statusangaben können „offen“, „in Bearbeitung“, „wartet auf Rückmeldung“ oder „erledigt“ sein. Die tatsächlichen Bezeichnungen unterscheiden sich je nach Software.</p>
+        <p><strong>&nbsp;Beispiel:</strong> Eine Patientin bittet um einen Rückruf. Du erfasst die Anfrage mit den notwendigen Angaben, ordnest sie der zuständigen Person zu und setzt den vorgesehenen Bearbeitungsstatus.</p>
+        <p>Eine Aufgabe darf erst als erledigt gekennzeichnet werden, wenn der dafür vorgesehene Arbeitsschritt tatsächlich abgeschlossen ist.</p>
+        <p><strong>&nbsp;Merke:</strong> Ein gespeicherter Eintrag bedeutet nicht automatisch, dass die zuständige Person ihn bereits gelesen oder bearbeitet hat.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">07</p>
+      <h2>Interne digitale Kommunikation</h2>
+      
+        <p>Viele Praxen nutzen interne Nachrichten, Aufgabenvermerke oder andere digitale Funktionen, um Informationen weiterzugeben.</p>
+        <p>Eine gute interne Nachricht ist kurz, sachlich und eindeutig. Sie enthält die erforderlichen Informationen, benennt das Anliegen und macht erkennbar, ob eine Rückmeldung oder Handlung erwartet wird.</p>
+        <p><strong>&nbsp;Ungeeignet:</strong> „Bitte kümmern!“</p>
+        <p><strong>&nbsp;Besser:</strong> „Patientin bittet um Rückruf zur Terminvorbereitung. Anfrage im zugehörigen Vorgang hinterlegt. Bitte Zuständigkeit und Rückmeldung nach Praxisablauf klären.“</p>
+        <p><strong>&nbsp;Wichtig:</strong> Dringende medizinische Informationen müssen über einen Kommunikationsweg weitergegeben werden, der eine rechtzeitige Wahrnehmung sicherstellt. Eine ungelesene digitale Nachricht allein genügt dafür möglicherweise nicht.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">08</p>
+      <h2>Elektronischer Datenaustausch im Praxisalltag</h2>
+      
+        <p>Digitale Praxisabläufe können auch den Austausch von Informationen mit externen Stellen umfassen. Welche Anwendungen und Übermittlungswege genutzt werden, richtet sich nach dem jeweiligen Vorgang und der technischen Ausstattung der Praxis.</p>
+        <p>Ein Beispiel ist die Kommunikation mit anderen Leistungserbringern über dafür vorgesehene sichere Verfahren.</p>
+        <ul>
+          <li>Den richtigen Empfänger und die Zuständigkeit prüfen.</li>
+          <li>Nur erforderliche und freigegebene Informationen übermitteln.</li>
+          <li>Den für den Vorgang vorgesehenen Übermittlungsweg verwenden.</li>
+          <li>Bei Fehlermeldungen nicht einfach wiederholt oder über einen beliebigen anderen Kanal versenden.</li>
+          <li>Den Übermittlungsstatus nach den Praxisvorgaben kontrollieren.</li>
+        </ul>
+        <p><strong>&nbsp;Abgrenzung:</strong> Die medizinische Bewertung von Laborergebnissen und ihre fachgerechte Weiterleitung werden in der entsprechenden Laborlektion behandelt.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">09</p>
+      <h2>Typische Bedienfehler vermeiden</h2>
+      
+        <p>Digitale Systeme können Arbeitsabläufe vereinfachen. Sie verhindern jedoch nicht automatisch menschliche Fehler.</p>
+        <ul>
+          <li><strong>&nbsp;Falscher Patientendatensatz:</strong> Vor der Bearbeitung eindeutige Identifikationsmerkmale prüfen.</li>
+          <li><strong>&nbsp;Falsche Terminart:</strong> Anliegen und organisatorische Vorgaben abgleichen.</li>
+          <li><strong>&nbsp;Nicht gespeicherte Änderung:</strong> Kontrollieren, ob der Vorgang tatsächlich übernommen wurde.</li>
+          <li><strong>&nbsp;Unklarer Aufgabenstatus:</strong> Zuständigkeit und nächsten Arbeitsschritt nachvollziehbar festhalten.</li>
+          <li><strong>&nbsp;Falscher Empfänger:</strong> Vor digitaler Weitergabe die Empfängerzuordnung kontrollieren.</li>
+          <li><strong>&nbsp;Unbeaufsichtigte Sitzung:</strong> Den Arbeitsplatz gegen unbefugte Einsicht sichern.</li>
+        </ul>
+        <p><strong>&nbsp;Grundsatz:</strong> Wenn ein Vorgang unklar ist, nicht durch Ausprobieren in einem echten Patientendatensatz nach einer Lösung suchen. Stattdessen die zuständige Person oder den vorgesehenen Supportweg einbeziehen.</p>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">10</p>
+      <h2>Praxisfall: Ein voller Vormittag am Empfang</h2>
+      
+        <p><strong>&nbsp;Situation:</strong> Es ist 9:10 Uhr. Du arbeitest am Empfang. Im PVS erscheinen zwei Patientinnen mit fast identischem Namen. Gleichzeitig soll ein Termin verschoben werden. Außerdem liegt eine digitale Rückrufaufgabe vor, bei der eine Patientin über zunehmende Atemnot berichtet hat.</p>
+        <p><strong>&nbsp;Deine Aufgabe:</strong> Entscheide, welche Handlung Vorrang hat, wie du die Patientendaten sicher zuordnest und wie du die offenen Vorgänge bearbeitest.</p>
+
+        <details>
+          <summary>Begründete Musterlösung anzeigen</summary>
+          <p><strong>&nbsp;1. Medizinische Dringlichkeit:</strong> Die Information über zunehmende Atemnot erfordert unverzügliche Aufmerksamkeit. Du organisierst nach dem Notfallverfahren der Praxis eine sofortige geeignete medizinische Einschätzung. Bei Verdacht auf einen lebensbedrohlichen Notfall ist der Rettungsdienst über 112 zu veranlassen. Du verlässt dich nicht darauf, dass eine digitale Aufgabe irgendwann gelesen wird.</p>
+          <p><strong>&nbsp;2. Eindeutige Zuordnung:</strong> Vor jeder Bearbeitung prüfst du die vorgesehenen Identifikationsmerkmale. Du wählst keinen Datensatz nur aufgrund eines ähnlichen Namens aus.</p>
+          <p><strong>&nbsp;3. Terminänderung:</strong> Du klärst die richtige Patientenzuordnung, prüfst das passende Zeitfenster, speicherst die Änderung und teilst die neuen Termindaten mit.</p>
+          <p><strong>&nbsp;4. Aufgabenstatus:</strong> Du dokumentierst den tatsächlichen Bearbeitungsstand und stellst sicher, dass die zuständige Person über die dringliche Situation informiert wurde.</p>
+          <p><strong>&nbsp;Begründung:</strong> Patientensicherheit hat Vorrang. Anschließend werden digitale Verwaltungsabläufe korrekt und nachvollziehbar abgeschlossen.</p>
+        </details>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">11</p>
+      <h2>Selbstcheck: Praxissoftware sicher anwenden</h2>
+      
+        <p>Beantworte die Fragen zunächst selbst. Öffne anschließend die Lösung.</p>
+
+        <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+          <summary>1. Was ist der Unterschied zwischen einem PVS und der ePA?</summary>
+          <p>Das PVS ist das interne Praxisverwaltungssystem für organisatorische und administrative Abläufe. Die ePA ist eine gesonderte digitale Anwendung im Gesundheitswesen. Beide sind nicht gleichzusetzen.</p>
+        </details>
+
+        <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+          <summary>2. Warum reicht der Patientenname für eine sichere Zuordnung häufig nicht aus?</summary>
+          <p>Weil mehrere Personen denselben oder einen sehr ähnlichen Namen haben können. Deshalb müssen die vorgesehenen eindeutigen Identifikationsmerkmale geprüft werden.</p>
+        </details>
+
+        <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+          <summary>3. Wann darf eine digitale Aufgabe als erledigt markiert werden?</summary>
+          <p>Erst wenn der vorgesehene Arbeitsschritt tatsächlich abgeschlossen wurde. Das bloße Anlegen oder Weiterleiten einer Aufgabe bedeutet nicht automatisch ihre Erledigung.</p>
+        </details>
+
+        <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+          <summary>4. Warum kann eine digitale Nachricht bei einem medizinisch dringlichen Anliegen unzureichend sein?</summary>
+          <p>Weil nicht sichergestellt ist, dass sie rechtzeitig gelesen wird. Bei dringlichen Anliegen muss ein Kommunikationsweg gewählt werden, der eine unverzügliche geeignete Reaktion ermöglicht.</p>
+        </details>
+
+        <details style="background: #ffffff; border: 1px solid #e8e0d8; border-radius: 12px; padding: 18px 22px; margin: 14px 0;">
+          <summary>5. Was tust du, wenn du eine Funktion im PVS nicht sicher bedienen kannst?</summary>
+          <p>Ich probiere nicht unkontrolliert an echten Patientendaten herum, sondern kläre die Vorgehensweise mit einer zuständigen Person oder über den vorgesehenen Supportweg.</p>
+        </details>
+        
+    </section>
+
+
+    <section class="content-section">
+      <p class="section-number">12</p>
+      <h2>Das musst du mitnehmen</h2>
+      
+        <ul>
+          <li>Ein PVS unterstützt zentrale organisatorische und administrative Praxisabläufe.</li>
+          <li>Die Arbeit erfolgt mit persönlichen Zugängen und innerhalb der eigenen Berechtigungen.</li>
+          <li>Vor der Bearbeitung muss der richtige Patientendatensatz eindeutig ausgewählt werden.</li>
+          <li>Terminplanung, Aufgabenlisten und digitale Kommunikation benötigen klare Abläufe.</li>
+          <li>Ein gespeicherter Vorgang ist nicht automatisch vollständig bearbeitet.</li>
+          <li>Bei dringlichen medizinischen Informationen ist eine rechtzeitige Reaktion wichtiger als die bloße digitale Erfassung.</li>
+        </ul>
+        <p><strong>&nbsp;Prüfungskompetenz:</strong> Du kannst typische digitale Verwaltungsabläufe beschreiben, Fehler erkennen und deine Handlungsschritte fachlich begründen.</p>
+        
+    </section>
+
+
+    <footer class="next-lesson">
+      <p>Als Nächstes</p>
+      <h2>Lektion 13: Dokumentationspflichten und Archivierung</h2>
+      <a href="/lernen/praxisorganisation-recht-abrechnung/">
+        Zurück zur Fachwelt 09
+      </a>
+    </footer>
+  </main>
+</body>
+</html>
