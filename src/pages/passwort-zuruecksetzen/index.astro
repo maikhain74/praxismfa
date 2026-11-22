@@ -1,0 +1,417 @@
+---
+const title = "Neues Passwort festlegen | PraxisMFA";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="Lege ein neues Passwort für dein PraxisMFA-Konto fest."
+    />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <main class="reset-page">
+      <section class="reset-card">
+        <a href="/" aria-label="PraxisMFA Startseite">
+          <img
+            src="/images/praxismfa-logo-header.png"
+            alt="PraxisMFA"
+            class="logo"
+          />
+        </a>
+
+        <p class="eyebrow">Dein PraxisMFA-Konto</p>
+        <h1>Neues Passwort festlegen</h1>
+
+        <p class="intro">
+          Wähle ein neues Passwort für dein Benutzerkonto.
+        </p>
+
+        <p
+          id="session-message"
+          class="message"
+          role="status"
+          aria-live="polite"
+        >
+          Dein Link zur Passwortzurücksetzung wird überprüft ...
+        </p>
+
+        <form id="reset-form" hidden>
+          <label for="password">Neues Passwort</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            minlength="12"
+            required
+            placeholder="Mindestens 12 Zeichen"
+          />
+
+          <label for="password-confirm">
+            Neues Passwort wiederholen
+          </label>
+          <input
+            id="password-confirm"
+            name="password-confirm"
+            type="password"
+            autocomplete="new-password"
+            minlength="12"
+            required
+            placeholder="Passwort erneut eingeben"
+          />
+
+          <button id="reset-button" type="submit">
+            Neues Passwort speichern
+          </button>
+        </form>
+
+        <p
+          id="reset-message"
+          class="message"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <p class="back-link">
+          <a href="/anmelden/">Zur Anmeldung</a>
+        </p>
+      </section>
+    </main>
+
+    <script>
+      import { supabase } from "../../lib/supabase/client.js";
+
+      const form = document.querySelector("#reset-form");
+      const sessionMessage = document.querySelector("#session-message");
+      const resetMessage = document.querySelector("#reset-message");
+      const button = document.querySelector("#reset-button");
+
+      let recoveryVerified = false;
+
+      function showSessionMessage(text) {
+        if (sessionMessage instanceof HTMLElement) {
+          sessionMessage.textContent = text;
+        }
+      }
+
+      function enableForm() {
+        recoveryVerified = true;
+
+        if (form instanceof HTMLFormElement) {
+          form.hidden = false;
+        }
+
+        showSessionMessage(
+          "Dein Link wurde bestätigt. Du kannst jetzt ein neues Passwort festlegen."
+        );
+      }
+
+      async function checkRecoveryLink() {
+        const params = new URLSearchParams(window.location.search);
+        const hash = new URLSearchParams(window.location.hash.slice(1));
+
+        const error = params.get("error") || hash.get("error");
+
+        if (error) {
+          showSessionMessage(
+            "Der Link ist ungültig oder abgelaufen. Bitte fordere einen neuen Link an."
+          );
+          return;
+        }
+
+        const code = params.get("code");
+        const tokenHash = params.get("token_hash");
+        const type = params.get("type") || hash.get("type");
+
+        try {
+          if (tokenHash && type === "recovery") {
+            const { error: verifyError } = await supabase.auth.verifyOtp({
+              token_hash: tokenHash,
+              type: "recovery",
+            });
+
+            if (verifyError) throw verifyError;
+          } else if (code) {
+            const { error: exchangeError } =
+              await supabase.auth.exchangeCodeForSession(code);
+
+            if (exchangeError) throw exchangeError;
+          } else if (
+            hash.has("access_token") &&
+            hash.has("refresh_token") &&
+            type === "recovery"
+          ) {
+            const { error: sessionError } =
+              await supabase.auth.setSession({
+                access_token: hash.get("access_token"),
+                refresh_token: hash.get("refresh_token"),
+              });
+
+            if (sessionError) throw sessionError;
+          } else {
+            showSessionMessage(
+              "Kein gültiger Link zur Passwortzurücksetzung erkannt."
+            );
+            return;
+          }
+
+          const { data, error: userError } =
+            await supabase.auth.getUser();
+
+          if (userError || !data.user) {
+            throw userError || new Error("Keine Benutzersitzung.");
+          }
+
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+          enableForm();
+        } catch (error) {
+          console.error("Passwortzurücksetzung fehlgeschlagen:", error);
+
+          showSessionMessage(
+            "Der Link konnte nicht bestätigt werden. Bitte fordere einen neuen Link an."
+          );
+        }
+      }
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!(form instanceof HTMLFormElement)) return;
+        if (!(resetMessage instanceof HTMLElement)) return;
+        if (!(button instanceof HTMLButtonElement)) return;
+        if (!recoveryVerified) return;
+
+        const formData = new FormData(form);
+        const password = String(formData.get("password") || "");
+        const confirmation = String(
+          formData.get("password-confirm") || ""
+        );
+
+        if (password.length < 12) {
+          resetMessage.textContent =
+            "Das Passwort muss mindestens 12 Zeichen enthalten.";
+          return;
+        }
+
+        if (password !== confirmation) {
+          resetMessage.textContent =
+            "Die beiden Passwörter stimmen nicht überein.";
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Passwort wird gespeichert ...";
+        resetMessage.textContent = "";
+
+        try {
+          const { error } = await supabase.auth.updateUser({
+            password,
+          });
+
+          if (error) {
+            resetMessage.textContent =
+              "Das Passwort konnte nicht gespeichert werden. Bitte versuche es erneut.";
+            return;
+          }
+
+          form.hidden = true;
+
+          await supabase.auth.signOut();
+
+          showSessionMessage(
+            "Dein Passwort wurde erfolgreich geändert. Du kannst dich jetzt mit deinem neuen Passwort anmelden."
+          );
+        } catch (error) {
+          console.error("Fehler beim Passwortwechsel:", error);
+
+          resetMessage.textContent =
+            "Bei der Passwortänderung ist ein Fehler aufgetreten.";
+        } finally {
+          button.disabled = false;
+          button.textContent = "Neues Passwort speichern";
+        }
+      });
+
+      checkRecoveryLink();
+    
+      // Passwort anzeigen oder verbergen
+      document.querySelectorAll('input[type="password"]').forEach((input) => {
+        if (!(input instanceof HTMLInputElement)) return;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "Passwort anzeigen";
+        button.setAttribute("aria-label", "Passwort anzeigen");
+        button.setAttribute("aria-pressed", "false");
+
+        button.style.background = "transparent";
+        button.style.color = "#d56d15";
+        button.style.border = "none";
+        button.style.padding = "0";
+        button.style.margin = "-12px 0 20px";
+        button.style.textAlign = "right";
+        button.style.fontSize = "0.9rem";
+        button.style.cursor = "pointer";
+        button.style.alignSelf = "flex-end";
+
+        button.addEventListener("click", () => {
+          const sichtbar = input.type === "password";
+
+          input.type = sichtbar ? "text" : "password";
+          button.textContent = sichtbar
+            ? "Passwort verbergen"
+            : "Passwort anzeigen";
+          button.setAttribute(
+            "aria-label",
+            sichtbar ? "Passwort verbergen" : "Passwort anzeigen"
+          );
+          button.setAttribute("aria-pressed", String(sichtbar));
+        });
+
+        input.insertAdjacentElement("afterend", button);
+      });
+
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(body) {
+    margin: 0;
+    background: #fffaf5;
+    color: #332b26;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+  }
+
+  .reset-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .reset-card {
+    width: 100%;
+    max-width: 490px;
+    background: #fff;
+    border: 1px solid #f1e3d4;
+    border-radius: 22px;
+    padding: 42px;
+    box-shadow: 0 16px 45px rgba(85, 56, 31, 0.07);
+  }
+
+  .logo {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 30px;
+  }
+
+  .eyebrow {
+    color: #d56d15;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    line-height: 1.2;
+  }
+
+  .intro {
+    margin-bottom: 24px;
+    color: #6f6258;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form[hidden] {
+    display: none;
+  }
+
+  label {
+    margin: 0 0 7px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid #d9c9b9;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 22px;
+    font: inherit;
+    background: #fffdfb;
+  }
+
+  input:focus {
+    outline: 2px solid #e67e22;
+    outline-offset: 2px;
+  }
+
+  button {
+    background: #e67e22;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #cf6d18;
+  }
+
+  button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+
+  .message {
+    margin: 18px 0;
+    color: #6f6258;
+    font-size: 0.95rem;
+  }
+
+  .back-link {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .back-link a {
+    color: #d56d15;
+    font-weight: 700;
+  }
+
+  @media (max-width: 650px) {
+    .reset-card {
+      padding: 28px 22px;
+    }
+  }
+</style>

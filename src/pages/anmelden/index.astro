@@ -67,6 +67,19 @@ const description = "Melde dich bei PraxisMFA an und verwalte deinen Lernzugang.
           </form>
 
           <p class="register-link">
+            <a href="#" id="forgot-password-link">
+              Passwort vergessen?
+            </a>
+          </p>
+
+          <p
+            id="recovery-message"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+          <p class="register-link">
             Noch kein Konto?
             <a href="/registrieren/">Jetzt registrieren</a>
           </p>
@@ -80,6 +93,63 @@ const description = "Melde dich bei PraxisMFA an und verwalte deinen Lernzugang.
       const form = document.querySelector("#login-form");
       const message = document.querySelector("#login-message");
       const button = document.querySelector("#login-button");
+
+      const forgotPasswordLink = document.querySelector(
+        "#forgot-password-link"
+      );
+
+      const recoveryMessage = document.querySelector(
+        "#recovery-message"
+      );
+
+      forgotPasswordLink?.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        if (!(recoveryMessage instanceof HTMLElement)) return;
+        if (!(forgotPasswordLink instanceof HTMLAnchorElement)) return;
+
+        const emailInput = document.querySelector("#email");
+
+        if (!(emailInput instanceof HTMLInputElement)) return;
+
+        const email = emailInput.value.trim();
+
+        if (!email || !emailInput.checkValidity()) {
+          recoveryMessage.textContent =
+            "Bitte gib zuerst deine gültige E-Mail-Adresse ein.";
+          emailInput.focus();
+          return;
+        }
+
+        recoveryMessage.textContent =
+          "Der Link zur Passwortzurücksetzung wird angefordert ...";
+
+        forgotPasswordLink.style.pointerEvents = "none";
+
+        try {
+          const { error } = await supabase.auth.resetPasswordForEmail(
+            email,
+            {
+              redirectTo:
+                window.location.origin + "/passwort-zuruecksetzen/",
+            }
+          );
+
+          if (error) {
+            recoveryMessage.textContent =
+              "Die Anfrage konnte nicht verarbeitet werden. Bitte versuche es später erneut.";
+            return;
+          }
+
+          recoveryMessage.textContent =
+            "Falls ein Konto mit dieser E-Mail-Adresse existiert, erhältst du eine E-Mail zur Passwortzurücksetzung.";
+        } catch {
+          recoveryMessage.textContent =
+            "Die Anfrage ist derzeit nicht möglich. Bitte versuche es später erneut.";
+        } finally {
+          forgotPasswordLink.style.pointerEvents = "";
+        }
+      });
 
       form?.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -117,6 +187,44 @@ const description = "Melde dich bei PraxisMFA an und verwalte deinen Lernzugang.
           button.textContent = "Anmelden";
         }
       });
+    
+      // Passwort anzeigen oder verbergen
+      document.querySelectorAll('input[type="password"]').forEach((input) => {
+        if (!(input instanceof HTMLInputElement)) return;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "Passwort anzeigen";
+        button.setAttribute("aria-label", "Passwort anzeigen");
+        button.setAttribute("aria-pressed", "false");
+
+        button.style.background = "transparent";
+        button.style.color = "#d56d15";
+        button.style.border = "none";
+        button.style.padding = "0";
+        button.style.margin = "-12px 0 20px";
+        button.style.textAlign = "right";
+        button.style.fontSize = "0.9rem";
+        button.style.cursor = "pointer";
+        button.style.alignSelf = "flex-end";
+
+        button.addEventListener("click", () => {
+          const sichtbar = input.type === "password";
+
+          input.type = sichtbar ? "text" : "password";
+          button.textContent = sichtbar
+            ? "Passwort verbergen"
+            : "Passwort anzeigen";
+          button.setAttribute(
+            "aria-label",
+            sichtbar ? "Passwort verbergen" : "Passwort anzeigen"
+          );
+          button.setAttribute("aria-pressed", String(sichtbar));
+        });
+
+        input.insertAdjacentElement("afterend", button);
+      });
+
     </script>
   </body>
 </html>
