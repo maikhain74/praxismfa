@@ -1,0 +1,345 @@
+---
+const title = "Kostenlos registrieren | PraxisMFA";
+const description = "Erstelle dein kostenloses PraxisMFA-Konto für deine MFA-Ausbildung.";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a class="logo" href="/" aria-label="PraxisMFA Startseite">
+          <img src="/images/praxismfa-logo-header.png" alt="PraxisMFA" />
+        </a>
+
+        <div class="nav-links">
+          <a href="/lernen/">Lernen</a>
+          <a href="/praxis/">Praxis</a>
+          <a href="/pruefung/">Prüfung</a>
+          <a href="/lernkarten/">Lernkarten</a>
+          <a class="premium-link" href="/premium/">Premium</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="register-section">
+        <div class="register-card">
+          <p class="eyebrow">Dein kostenloser Lernzugang</p>
+          <h1>Jetzt registrieren</h1>
+          <p class="intro">
+            Erstelle dein kostenloses PraxisMFA-Konto.
+            Premium kannst du später separat freischalten.
+          </p>
+
+          <form id="register-form">
+            <label for="email">E-Mail-Adresse</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="deine@email.de"
+            />
+
+            <label for="password">Passwort</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              minlength="12"
+              required
+              placeholder="Mindestens 12 Zeichen"
+            />
+
+            <label for="password-confirm">Passwort wiederholen</label>
+            <input
+              id="password-confirm"
+              name="password-confirm"
+              type="password"
+              autocomplete="new-password"
+              minlength="12"
+              required
+              placeholder="Passwort bestätigen"
+            />
+
+            <button id="register-button" type="submit">
+              Kostenloses Konto erstellen
+            </button>
+
+            <p
+              id="register-message"
+              class="message"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+
+          <p class="login-link">
+            Bereits registriert?
+            <a href="/anmelden/">Jetzt anmelden</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      import { supabase } from "../../lib/supabase/client.js";
+
+      const form = document.querySelector("#register-form");
+      const message = document.querySelector("#register-message");
+      const button = document.querySelector("#register-button");
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!(form instanceof HTMLFormElement)) return;
+        if (!(message instanceof HTMLElement)) return;
+        if (!(button instanceof HTMLButtonElement)) return;
+
+        const formData = new FormData(form);
+        const email = String(formData.get("email") || "").trim();
+        const password = String(formData.get("password") || "");
+        const confirmation = String(formData.get("password-confirm") || "");
+
+        message.classList.remove("success");
+
+        if (password !== confirmation) {
+          message.textContent = "Die Passwörter stimmen nicht überein.";
+          return;
+        }
+
+        if (password.length < 12) {
+          message.textContent = "Das Passwort muss mindestens 12 Zeichen enthalten.";
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Konto wird erstellt ...";
+        message.textContent = "";
+
+        try {
+          const { error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              emailRedirectTo: `${window.location.origin}/auth/bestaetigung/`,
+            },
+          });
+
+          if (error) {
+            message.textContent =
+              "Die Registrierung konnte nicht abgeschlossen werden. Bitte überprüfe deine Angaben oder versuche es später erneut.";
+            return;
+          }
+
+          message.classList.add("success");
+          message.textContent =
+            "Wenn deine Registrierung angenommen wurde, erhältst du eine E-Mail. Bitte bestätige deine Adresse über den Link, bevor du dich anmeldest.";
+
+          form.reset();
+        } catch {
+          message.textContent =
+            "Die Registrierung ist derzeit nicht möglich. Bitte versuche es später erneut.";
+        } finally {
+          button.disabled = false;
+          button.textContent = "Kostenloses Konto erstellen";
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(body) {
+    margin: 0;
+    background: #fffaf5;
+    color: #332b26;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+  }
+
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid #f0e4d8;
+  }
+
+  .nav {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .logo img {
+    display: block;
+    max-width: 190px;
+    width: 100%;
+    height: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    color: #49382c;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .nav-links a:hover {
+    color: #e67e22;
+  }
+
+  .nav-links .premium-link {
+    background: #e67e22;
+    color: white;
+    border-radius: 999px;
+    padding: 9px 20px;
+  }
+
+  .register-section {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 70px 20px;
+  }
+
+  .register-card {
+    width: 100%;
+    max-width: 490px;
+    background: #fff;
+    border: 1px solid #f1e3d4;
+    border-radius: 22px;
+    padding: 42px;
+    box-shadow: 0 16px 45px rgba(85, 56, 31, 0.07);
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #d56d15;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    line-height: 1.2;
+  }
+
+  .intro {
+    margin: 0 0 30px;
+    color: #6f6258;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin: 0 0 7px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid #d9c9b9;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 22px;
+    font: inherit;
+    background: #fffdfb;
+  }
+
+  input:focus {
+    outline: 2px solid #e67e22;
+    outline-offset: 2px;
+  }
+
+  button {
+    background: #e67e22;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #cf6d18;
+  }
+
+  button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+
+  .message {
+    min-height: 24px;
+    margin: 14px 0 0;
+    color: #a32920;
+    font-size: 0.9rem;
+  }
+
+  .message.success {
+    color: #287044;
+  }
+
+  .login-link {
+    margin: 20px 0 0;
+    text-align: center;
+    color: #6f6258;
+  }
+
+  .login-link a {
+    color: #d56d15;
+    font-weight: 700;
+  }
+
+  @media (max-width: 650px) {
+    .nav {
+      flex-direction: column;
+    }
+
+    .nav-links {
+      justify-content: center;
+      gap: 14px;
+      font-size: 0.9rem;
+    }
+
+    .register-section {
+      padding: 45px 16px;
+    }
+
+    .register-card {
+      padding: 28px 22px;
+    }
+  }
+</style>

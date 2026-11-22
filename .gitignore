@@ -22,3 +22,17 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.env.local
+
+# Local Vercel configuration
+.vercel/
+
+# Local backup files
+*.bak
+*.backup
+*.backup-*
+*.bak[0-9]*
+*.vor-*.bak
+
+# Local premium drafts
+premium-entwuerfe/

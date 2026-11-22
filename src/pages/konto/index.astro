@@ -1,0 +1,198 @@
+---
+const title = "Mein Konto";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | PraxisMFA</title>
+  </head>
+
+  <body>
+    <main class="account-page">
+      <a class="logo" href="/">
+        <img src="/images/praxismfa-logo-header.png" alt="PraxisMFA" />
+      </a>
+
+      <section class="account-card">
+        <p class="eyebrow">Dein persönlicher Bereich</p>
+        <h1>Mein Konto</h1>
+
+        <p id="account-message" aria-live="polite">
+          Dein Benutzerkonto wird geladen.
+        </p>
+
+        <div id="account-details" hidden>
+          <p class="account-label">Angemeldet als</p>
+          <p id="account-email" class="account-email"></p>
+
+          <button id="logout-button" type="button">
+            Abmelden
+          </button>
+        </div>
+
+        <a class="back-link" href="/">Zur Startseite</a>
+      </section>
+    </main>
+
+    <script>
+      import { supabase } from "../../lib/supabase/client.js";
+
+      const message = document.querySelector("#account-message");
+      const details = document.querySelector("#account-details");
+      const emailElement = document.querySelector("#account-email");
+      const logoutButton = document.querySelector("#logout-button");
+
+      async function loadAccount() {
+        const { data, error } = await supabase.auth.getUser();
+
+        if (!message || !details || !emailElement) return;
+
+        if (error || !data.user) {
+          window.location.replace("/anmelden/");
+          return;
+        }
+
+        emailElement.textContent = data.user.email || "Keine E-Mail-Adresse";
+        message.textContent = "Du bist erfolgreich angemeldet.";
+        details.hidden = false;
+      }
+
+      logoutButton?.addEventListener("click", async () => {
+        if (!(logoutButton instanceof HTMLButtonElement)) return;
+
+        logoutButton.disabled = true;
+
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+          if (message) {
+            message.textContent = "Abmeldung fehlgeschlagen. Bitte erneut versuchen.";
+          }
+          logoutButton.disabled = false;
+          return;
+        }
+
+        window.location.replace("/");
+      });
+
+      loadAccount();
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background: #fffaf3;
+    color: #302a24;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .account-page {
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 48px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .logo img {
+    width: 190px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .account-card {
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    padding: 38px;
+    background: #ffffff;
+    border: 1px solid #f0e0ce;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(74, 49, 22, 0.07);
+  }
+
+  .eyebrow {
+    color: #b86117;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 12px 0 20px;
+    font-size: 32px;
+  }
+
+  #account-message {
+    color: #665c51;
+    line-height: 1.6;
+  }
+
+  .account-label {
+    margin-top: 25px;
+    color: #756b60;
+    font-size: 14px;
+  }
+
+  .account-email {
+    font-size: 17px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  button {
+    margin-top: 22px;
+    width: 100%;
+    padding: 14px;
+    background: #e67e22;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #c96813;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 25px;
+    color: #a85612;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  @media (max-width: 520px) {
+    .account-card {
+      padding: 26px;
+    }
+
+    h1 {
+      font-size: 27px;
+    }
+  }
+</style>

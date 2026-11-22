@@ -26,6 +26,7 @@ const description =
           <a href="/pruefung/">Prüfung</a>
           <a href="/lernkarten/">Lernkarten</a>
           <a class="premium-link" href="/premium/">Premium</a>
+          <a id="account-link" href="/anmelden/">Anmelden</a>
         </div>
       </nav>
     </header>
@@ -117,6 +118,32 @@ const description =
       </section>
 
     </main>
+  
+    <script>
+      import { supabase } from "../lib/supabase/client.js";
+
+      const accountLink = document.querySelector("#account-link");
+
+      async function updateAccountLink() {
+        if (!(accountLink instanceof HTMLAnchorElement)) return;
+
+        const { data, error } = await supabase.auth.getUser();
+
+        if (!error && data.user) {
+          accountLink.textContent = "Mein Konto";
+          accountLink.href = "/konto/";
+        } else {
+          accountLink.textContent = "Anmelden";
+          accountLink.href = "/anmelden/";
+        }
+      }
+
+      updateAccountLink();
+
+      supabase.auth.onAuthStateChange(() => {
+        updateAccountLink();
+      });
+    </script>
   </body>
 </html>
 

@@ -1,0 +1,555 @@
+---
+import { premiumLektionen, premiumAnzahl } from "../../lib/premium/katalog.js";
+
+const title = "PraxisMFA Premium";
+const description =
+  "Entdecke die Premiumlektionen von PraxisMFA mit vertiefenden Lerninhalten, praxisnahen Fällen und Prüfungstraining.";
+
+const lernwelten = [...new Set(premiumLektionen.map((lektion) => lektion.lernwelt))];
+
+const gruppen = lernwelten.map((name) => ({
+  name,
+  lektionen: premiumLektionen
+    .filter((lektion) => lektion.lernwelt === name)
+    .sort((a, b) => a.nummer - b.nummer),
+}));
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | Lernplattform für Medizinische Fachangestellte</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a class="logo" href="/" aria-label="PraxisMFA Startseite">
+          <img src="/images/praxismfa-logo-header.png" alt="PraxisMFA" />
+        </a>
+
+        <div class="nav-links">
+          <a href="/lernen/">Lernen</a>
+          <a href="/praxis/">Praxis</a>
+          <a href="/pruefung/">Prüfung</a>
+          <a href="/lernkarten/">Lernkarten</a>
+          <a class="premium-link" href="/premium/" aria-current="page">Premium</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">PraxisMFA Premium</p>
+
+<div
+  id="premium-zugriff-hinweis"
+  role="status"
+  hidden
+  style="max-width:760px;margin:24px auto;padding:22px 26px;background:#fff4e8;border:1px solid #e67e22;border-radius:16px;text-align:left;"
+>
+  <p style="margin:0 0 10px;font-weight:700;color:#9a4d0c;">
+    Diese Lektion gehört zu PraxisMFA Premium.
+  </p>
+  <p style="margin:0;line-height:1.7;color:#493b30;">
+    Du bist erfolgreich angemeldet. Für diese Lektion
+    benötigst du ein aktives Premium-Abonnement.
+    Entdecke hier die Vorteile von PraxisMFA Premium.
+  </p>
+</div>
+
+
+        <h1>Mehr verstehen. Sicherer handeln.</h1>
+
+        <p class="claim">
+          Vertiefe dein Wissen für Ausbildung, Praxis und Prüfung.
+        </p>
+
+        <p class="intro">
+          Anspruchsvolle Praxissituationen, vertiefende Fachlektionen und
+          Prüfungstraining helfen dir, Zusammenhänge zu verstehen und
+          Entscheidungen fachlich zu begründen.
+        </p>
+
+        <div style="width: min(900px, 100%); margin: 36px auto 0;">
+          <img
+            src="/images/praxismfa-premium.png"
+            alt="Erfahrene Medizinische Fachangestellte unterstützt eine Auszubildende beim gemeinsamen Lernen in der Arztpraxis"
+            loading="eager"
+            fetchpriority="high"
+            style="display: block; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 12px 32px rgba(34, 34, 34, 0.08);"
+          />
+        </div>
+
+        <div class="hero-actions">
+          <a class="primary-cta" href="#premium-inhalte">
+            Premiuminhalte entdecken
+          </a>
+          <a class="secondary-cta" href="/lernen/">
+            Alle Fachwelten ansehen
+          </a>
+        </div>
+      </section>
+
+      <section class="benefits" aria-label="Premiumvorteile">
+        <div class="benefits-inner">
+          <article class="benefit">
+            <span class="benefit-icon" aria-hidden="true">01</span>
+            <h2>Wissen vertiefen</h2>
+            <p>
+              Lerne komplexere Zusammenhänge und verstehe, warum
+              bestimmte Vorgehensweisen sinnvoll sind.
+            </p>
+          </article>
+
+          <article class="benefit">
+            <span class="benefit-icon" aria-hidden="true">02</span>
+            <h2>Praxisfälle bearbeiten</h2>
+            <p>
+              Trainiere fachlich begründete Entscheidungen anhand
+              realistischer Situationen aus der Arztpraxis.
+            </p>
+          </article>
+
+          <article class="benefit">
+            <span class="benefit-icon" aria-hidden="true">03</span>
+            <h2>Prüfungskompetenz stärken</h2>
+            <p>
+              Übe, Wissen anzuwenden, Risiken einzuschätzen und
+              deine Entscheidungen nachvollziehbar zu erklären.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog" id="premium-inhalte">
+        <div class="catalog-inner">
+          <p class="section-eyebrow">Deine Premium-Lernbibliothek</p>
+          <h2>Entdecke die Premiumlektionen</h2>
+
+          <p class="section-intro">
+            Aktuell sind {premiumAnzahl} Premiumlektionen im Katalog erfasst.
+            Die Inhalte sind nach Fachwelten geordnet.
+          </p>
+
+          <div class="world-groups">
+            {gruppen.map((gruppe) => (
+              <section class="world-group">
+                <div class="world-heading">
+                  <h3>{gruppe.name}</h3>
+                  <span>
+                    {gruppe.lektionen.length}
+                    {gruppe.lektionen.length === 1 ? " Lektion" : " Lektionen"}
+                  </span>
+                </div>
+
+                <div class="lesson-grid">
+                  {gruppe.lektionen.map((lektion) => (
+                    <article class="lesson-card">
+                      <div class="lesson-meta">
+                        <span>Lektion {String(lektion.nummer).padStart(2, "0")}</span>
+                        <span class="premium-badge">Premium</span>
+                      </div>
+
+                      <h4>{lektion.titel}</h4>
+
+                      <a href={lektion.url} aria-label={`${lektion.titel} ansehen`}>
+                        Lektion ansehen <span aria-hidden="true">→</span>
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-inner">
+          <p class="section-eyebrow">Schritt für Schritt besser werden</p>
+          <h2>Deine Ausbildung. Dein Fortschritt.</h2>
+          <p>
+            PraxisMFA verbindet verständliches Fachwissen mit realistischen
+            Praxissituationen und anwendungsorientiertem Lernen.
+          </p>
+          <a class="primary-cta" href="/lernen/">
+            Zur Lernübersicht
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #fffaf5;
+    color: #222;
+    scroll-behavior: smooth;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  .site-header {
+    width: 100%;
+    padding: 24px 32px;
+    background: #fffaf5;
+  }
+
+  .nav {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo img {
+    display: block;
+    width: 170px;
+    height: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    color: #444;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: #111;
+  }
+
+  .nav-links .premium-link {
+    padding: 9px 16px;
+    border: 1px solid #e67e22;
+    border-radius: 999px;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  .hero {
+    padding: 100px 20px 110px;
+    text-align: center;
+  }
+
+  .hero > * {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .eyebrow,
+  .section-eyebrow {
+    margin-top: 0;
+    color: #e67e22;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.12;
+  }
+
+  .claim {
+    margin-top: 26px;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .intro {
+    margin-top: 22px;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    margin-top: 34px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .primary-cta {
+    border: 1px solid #e67e22;
+    background: #e67e22;
+    color: #fff;
+  }
+
+  .secondary-cta {
+    border: 1px solid #e9d8c9;
+    background: #fff;
+    color: #333;
+  }
+
+  .primary-cta:hover {
+    background: #cf6e18;
+  }
+
+  .secondary-cta:hover {
+    border-color: #e67e22;
+  }
+
+  .benefits {
+    padding: 65px 20px;
+    background: #fff;
+  }
+
+  .benefits-inner {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .benefit {
+    padding: 28px;
+    border: 1px solid #eee5dc;
+    border-radius: 18px;
+    background: #fffaf5;
+  }
+
+  .benefit-icon {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #e67e22;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  .benefit h2 {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+  }
+
+  .benefit p {
+    margin: 0;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .catalog {
+    padding: 90px 20px;
+  }
+
+  .catalog-inner {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+  }
+
+  .catalog-inner > .section-eyebrow,
+  .catalog-inner > h2,
+  .catalog-inner > .section-intro {
+    text-align: center;
+  }
+
+  .catalog h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .section-intro {
+    max-width: 680px;
+    margin: 20px auto 0;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .world-groups {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+  }
+
+  .world-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .world-heading h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .world-heading > span {
+    color: #8a5c37;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .lesson-card {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    border: 1px solid #eee5dc;
+    border-radius: 18px;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .lesson-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(34, 34, 34, 0.07);
+  }
+
+  .lesson-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #a45c1c;
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .premium-badge {
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: #fff0e1;
+    color: #b65d13;
+  }
+
+  .lesson-card h4 {
+    margin: 20px 0 26px;
+    font-size: 1.12rem;
+    line-height: 1.45;
+  }
+
+  .lesson-card a {
+    margin-top: auto;
+    color: #d46f18;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .lesson-card a:hover {
+    text-decoration: underline;
+  }
+
+  .closing {
+    padding: 85px 20px;
+    background: #fff;
+    text-align: center;
+  }
+
+  .closing-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .closing h2 {
+    margin: 12px 0 20px;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .closing p:not(.section-eyebrow) {
+    margin: 0 auto 30px;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 760px) {
+    .site-header {
+      padding: 20px;
+    }
+
+    .nav {
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .nav-links {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+    }
+
+    .hero {
+      padding: 65px 20px 75px;
+    }
+
+    .benefits-inner,
+    .lesson-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .catalog {
+      padding: 65px 20px;
+    }
+
+    .world-groups {
+      gap: 38px;
+    }
+
+    .world-heading h3 {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const hinweis = document.getElementById("premium-zugriff-hinweis");
+
+  if (params.get("hinweis") === "zugriff" && hinweis) {
+    hinweis.hidden = false;
+  }
+</script>
+

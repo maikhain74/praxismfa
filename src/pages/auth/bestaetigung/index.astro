@@ -1,0 +1,178 @@
+---
+const title = "E-Mail bestätigen | PraxisMFA";
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <main class="confirmation-page">
+      <section class="confirmation-card">
+        <a href="/">
+          <img
+            src="/images/praxismfa-logo-header.png"
+            alt="PraxisMFA"
+            class="logo"
+          />
+        </a>
+
+        <p class="eyebrow">PraxisMFA Benutzerkonto</p>
+
+        <h1>E-Mail-Bestätigung</h1>
+
+        <p id="confirmation-message" role="status" aria-live="polite">
+          Deine E-Mail-Bestätigung wird verarbeitet ...
+        </p>
+
+        <a class="login-button" href="/anmelden/">
+          Zur Anmeldung
+        </a>
+      </section>
+    </main>
+
+    <script>
+      import { supabase } from "../../../lib/supabase/client.js";
+
+      const message = document.querySelector("#confirmation-message");
+
+      async function processConfirmation() {
+        if (!(message instanceof HTMLElement)) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const hash = new URLSearchParams(window.location.hash.slice(1));
+
+        const code = params.get("code");
+        const error = params.get("error") || hash.get("error");
+
+        if (error) {
+          message.textContent =
+            "Die E-Mail-Bestätigung ist fehlgeschlagen. Der Link ist möglicherweise abgelaufen.";
+          return;
+        }
+
+        try {
+          if (code) {
+            const { error: exchangeError } =
+              await supabase.auth.exchangeCodeForSession(code);
+
+            if (exchangeError) {
+              message.textContent =
+                "Der Bestätigungslink konnte nicht verarbeitet werden.";
+              return;
+            }
+          } else if (hash.has("access_token") && hash.has("refresh_token")) {
+            const { error: sessionError } =
+              await supabase.auth.setSession({
+                access_token: hash.get("access_token"),
+                refresh_token: hash.get("refresh_token"),
+              });
+
+            if (sessionError) {
+              message.textContent =
+                "Die Bestätigung konnte nicht abgeschlossen werden.";
+              return;
+            }
+          } else {
+            message.textContent =
+              "Es wurde kein gültiger Bestätigungslink erkannt.";
+            return;
+          }
+
+          const { error: signOutError } = await supabase.auth.signOut();
+
+          if (signOutError) {
+            message.textContent =
+              "Deine E-Mail wurde bestätigt. Bitte melde dich anschließend an.";
+            return;
+          }
+
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+          message.textContent =
+            "Deine E-Mail wurde bestätigt. Du kannst dich jetzt anmelden.";
+        } catch {
+          message.textContent =
+            "Bei der Bestätigung ist ein Fehler aufgetreten.";
+        }
+      }
+
+      processConfirmation();
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fffaf5;
+    color: #332b26;
+  }
+
+  .confirmation-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+
+  .confirmation-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 42px;
+    background: white;
+    border: 1px solid #f1e3d4;
+    border-radius: 22px;
+    text-align: center;
+  }
+
+  .logo {
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    color: #d56d15;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 18px;
+  }
+
+  #confirmation-message {
+    color: #6f6258;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .login-button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #e67e22;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 10px;
+  }
+
+  .login-button:hover {
+    background: #cf6d18;
+  }
+</style>
