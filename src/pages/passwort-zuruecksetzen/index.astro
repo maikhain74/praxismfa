@@ -138,20 +138,25 @@ const title = "Neues Passwort festlegen | PraxisMFA";
 
             if (verifyError) throw verifyError;
           } else if (code) {
-            const { error: exchangeError } =
-              await supabase.auth.exchangeCodeForSession(code);
+            // Der SSR-Browserclient kann den PKCE-Code bereits
+            // automatisch verarbeitet haben.
+            const { data: sessionData } = await supabase.auth.getSession();
 
-            if (exchangeError) throw exchangeError;
+            if (!sessionData.session) {
+              const { error: exchangeError } =
+                await supabase.auth.exchangeCodeForSession(code);
+
+              if (exchangeError) throw exchangeError;
+            }
           } else if (
             hash.has("access_token") &&
             hash.has("refresh_token") &&
             type === "recovery"
           ) {
-            const { error: sessionError } =
-              await supabase.auth.setSession({
-                access_token: hash.get("access_token"),
-                refresh_token: hash.get("refresh_token"),
-              });
+            const { error: sessionError } = await supabase.auth.setSession({
+              access_token: hash.get("access_token"),
+              refresh_token: hash.get("refresh_token"),
+            });
 
             if (sessionError) throw sessionError;
           } else {
@@ -161,8 +166,7 @@ const title = "Neues Passwort festlegen | PraxisMFA";
             return;
           }
 
-          const { data, error: userError } =
-            await supabase.auth.getUser();
+          const { data, error: userError } = await supabase.auth.getUser();
 
           if (userError || !data.user) {
             throw userError || new Error("Keine Benutzersitzung.");
